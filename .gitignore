@@ -142,4 +142,4 @@ pom.xml
 .idea/misc.xml
 .idea/jpa-buddy-datasource.xml
 .idea/encodings.xml
-target
+target/**
