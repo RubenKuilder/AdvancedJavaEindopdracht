@@ -9,6 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <!--
+        JDk 16.02
+    -->
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
