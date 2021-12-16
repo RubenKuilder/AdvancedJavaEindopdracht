@@ -142,3 +142,4 @@ hs_err_pid*
 .idea/encodings.xml
 /target/
 /target/**
+src/main/resources/application.properties
