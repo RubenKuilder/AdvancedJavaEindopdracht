@@ -24,17 +24,20 @@ import java.util.Properties;
 public class DatabaseConfig
 {
     @Value("${database.username}")
-    private String name;
+    private String databaseName;
     @Value("${database.password}")
-    private String password;
+    private String databasePassword;
+    @Value("${database.url}")
+    private String databaseUrl;
+
     @Bean(name = "dataSource")
     public DataSource datasource()
     {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://127.0.0.1:3306/stenden_dashboard");
-        ds.setUsername(name);
-        ds.setPassword(password);
+        ds.setUrl(databaseUrl);
+        ds.setUsername(databaseName);
+        ds.setPassword(databasePassword);
 
         return ds;
     }
