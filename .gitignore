@@ -137,9 +137,7 @@ pom.xml
 hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java
-
-pom.xml
 .idea/misc.xml
 .idea/jpa-buddy-datasource.xml
 .idea/encodings.xml
-target/**
+/target/
