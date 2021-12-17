@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <changeSet id="1" author="Robbie Eijkelkamp">
+    <changeSet id="1" author="Robbie Eijkelkamp" context="user table created">
         <preConditions>
             <not>
                 <tableExists tableName="user"/>
@@ -12,7 +12,7 @@
         </preConditions>
         <createTable tableName="user">
             <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
                 <constraints nullable="false"/>
@@ -20,11 +20,239 @@
             <column name="password" type="varchar(500)">
                 <constraints nullable="false"/>
             </column>
-            <column name="profileImagePath" type="varchar(500)"/>
+            <column name="profileImagePath" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
             <column name="email" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
             <column name="isApproved" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Robbie Eijkelkamp" context="role and userNotAvailable table created">
+        <preConditions>
+            <not>
+                <tableExists tableName="role"/>
+                <tableExists tableName="userNotAvailable"/>
+            </not>
+        </preConditions>
+        <createTable tableName="role">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="userNotAvailable">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="role" baseColumnNames="user_id" constraintName="fk_user_role"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="userNotAvailable" baseColumnNames="user_id" constraintName="fk_userNotAvailable_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="3" author="Robbie Eijkelkamp" context="event, content and contentType tables created">
+        <preConditions>
+            <not>
+                <tableExists tableName="contentType"/>
+                <tableExists tableName="content"/>
+                <tableExists tableName="event"/>
+            </not>
+        </preConditions>
+        <createTable tableName="contentType">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="contentType" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="content">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="contentType_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="content" baseColumnNames="contentType_id" constraintName="fk_contentType_content"
+                                 referencedTableName="contentType"
+                                 referencedColumnNames="id"/>
+        <createTable tableName="event">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="content_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(500)"/>
+            <column name="startDate" type="date"/>
+            <column name="endDate" type="date"/>
+            <column name="switchTime" type="time"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content"
+                                 referencedTableName="content"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="user_id" constraintName="fk_event_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="4" author="Robbie Eijkelkamp" context="rssFeed and powerpoint tables created">
+        <preConditions>
+            <not>
+                <tableExists tableName="rssFeed"/>
+                <tableExists tableName="powerpoint"/>
+            </not>
+        </preConditions>
+        <createTable tableName="rssFeed">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="startDate" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endDate" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="rssFeed" baseColumnNames="user_id" constraintName="fk_rssFeed_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+        <createTable tableName="powerpoint">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="powerpoint" baseColumnNames="user_id" constraintName="fk_powerpoint_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="5" author="Robbie Eijkelkamp" context="schedule and userSchedule created">
+        <preConditions>
+            <not>
+                <tableExists tableName="schedule"/>
+                <tableExists tableName="userSchedule"/>
+            </not>
+        </preConditions>
+        <createTable tableName="schedule">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="startDate" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endDate" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="userSchedule">
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="schedule_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="userSchedule" baseColumnNames="user_id" constraintName="fk_userSchedule_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="userSchedule" baseColumnNames="schedule_id" constraintName="fk_userSchedule_schedule"
+                                 referencedTableName="schedule"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="6" author="Robbie Eijkelkamp" context="consultation and userConsultation created">
+        <preConditions>
+            <not>
+                <tableExists tableName="consultation"/>
+                <tableExists tableName="userConsultation"/>
+            </not>
+        </preConditions>
+        <createTable tableName="consultation">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="startTime" type="time">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endTime" type="time">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="userConsultation">
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="consultation_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="userConsultation" baseColumnNames="user_id" constraintName="fk_userConsultation_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="userConsultation" baseColumnNames="consultation_id" constraintName="fk_userConsultation_consultation"
+                                 referencedTableName="consultation"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    
+    <changeSet id="7" author="Robbie Eijkelkamp" context="eventSettings created">
+        <preConditions>
+            <not>
+                <tableExists tableName="eventSettings"/>
+            </not>
+        </preConditions>
+        <createTable tableName="eventSettings">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="soundOn" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="switchTime" type="time">
                 <constraints nullable="false"/>
             </column>
         </createTable>
