@@ -14,7 +14,7 @@ public class PutExceptionHandler {
     @ExceptionHandler(NoChangeException.class)
     public ErrorMessage handleNoChangeException(NoChangeException exception, HttpServletRequest request) {
         String response = String.format(
-                "I have the message '%s' for %s",
+                "Error %s - %s",
                 exception.getMessage(),
                 request.getRemoteAddr()
         );
