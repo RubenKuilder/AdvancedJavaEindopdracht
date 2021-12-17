@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class PutExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(NoChangeException.class)
     public ErrorMessage handleNoChangeException(NoChangeException exception, HttpServletRequest request) {
         String response = String.format(
