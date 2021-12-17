@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class DeleteExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(NotDeletedException.class)
     public ErrorMessage handleNotDeletedException(NotDeletedException exception, HttpServletRequest request) {
         String response = String.format(
-                "I have the message '%s' for %s",
+                "Error %s - %s",
                 exception.getMessage(),
                 request.getRemoteAddr()
         );
