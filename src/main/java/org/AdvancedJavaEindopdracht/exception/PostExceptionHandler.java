@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class PostExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(NotStoredException.class)
     public ErrorMessage handleNotStoredException(NotStoredException exception, HttpServletRequest request) {
         String response = String.format(
-                "I have the message '%s' for %s",
+                "Error: %s - %s",
                 exception.getMessage(),
                 request.getRemoteAddr()
         );
@@ -28,7 +28,7 @@ public class PostExceptionHandler {
     @ExceptionHandler(AlreadyExistsException.class)
     public ErrorMessage handleAlreadyExistsException(AlreadyExistsException exception, HttpServletRequest request) {
         String response = String.format(
-                "I have the message '%s' for %s",
+                "Error: %s - %s",
                 exception.getMessage(),
                 request.getRemoteAddr()
         );
