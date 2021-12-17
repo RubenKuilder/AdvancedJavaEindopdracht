@@ -4,6 +4,6 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 
 public class BadMediaTypeException extends HttpMediaTypeNotAcceptableException {
     public BadMediaTypeException() {
-        super("The give mediatype is not valid, use JSON instead.");
+        super("The given mediatype is not valid, use JSON instead.");
     }
 }

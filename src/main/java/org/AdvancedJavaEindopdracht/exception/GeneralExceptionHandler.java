@@ -62,7 +62,7 @@ public class GeneralExceptionHandler {
     public ErrorMessage responseStatusException(ResponseStatusException exception, HttpServletRequest request) {
         String response = String.format(
                 "Error: ",
-                "Status cant be covert - " + exception.getMessage(),
+                "Status unknown, returning instead - " + exception.getMessage(),
                 request.getRemoteAddr()
         );
         return new ErrorMessage(response);
