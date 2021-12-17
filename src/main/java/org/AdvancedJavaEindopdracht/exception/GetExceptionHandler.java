@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GetExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(AccessDeniedException.class)
     public ErrorMessage handleAccessDeniedException(AccessDeniedException exception, HttpServletRequest request) {
         String response = String.format(
-                "I have the message '%s' for %s",
+                "Error: %s - %s",
                 exception.getMessage(),
                 request.getRemoteAddr()
         );
