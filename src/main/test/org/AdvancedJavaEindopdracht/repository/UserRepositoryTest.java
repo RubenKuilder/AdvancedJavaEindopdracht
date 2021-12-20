@@ -31,7 +31,6 @@ public class UserRepositoryTest {
     @BeforeEach
     void setUp() {
         this.user = new User();
-        user.setId(69);
         user.setName("TobiasVanArkelen");
         user.setPassword("password]");
         user.setEmail("email");
@@ -49,8 +48,8 @@ public class UserRepositoryTest {
     @Test
     @DisplayName("Testing if getUser retrieves the right user")
     public void testMethodGetUser() {
-        User usertest = userRepository.getUser(1);
-        assertEquals("cat", usertest.getName());
+        User test = userRepository.getUser(1);
+        assertEquals("thijs", test.getName());
     }
 
     @Test
@@ -62,7 +61,7 @@ public class UserRepositoryTest {
 
     @Test
     @DisplayName("Testing if putUser changed the entry")
-    public void testMethodPutAnimal() {
+    public void testMethodPutUser() {
         userRepository.putUser(this.user, 1);
         User usertest = userRepository.getUser(1);
         assertEquals("TobiasVanArkelen", usertest.getName());

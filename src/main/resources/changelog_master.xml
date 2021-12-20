@@ -30,6 +30,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
     </changeSet>
 
     <changeSet id="2" author="Robbie Eijkelkamp" context="role and userNotAvailable table created">
@@ -257,4 +258,5 @@
             </column>
         </createTable>
     </changeSet>
+
 </databaseChangeLog>

@@ -20,16 +20,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserDTO> getUsers() {
-        return userRepository.getUsers().stream().map(convertToDTO::toUserDTO).collect(Collectors.toList());
-    }
+    public List<UserDTO> getUsers() { return userRepository.getUsers().stream().map(convertToDTO::toUserDTO).collect(Collectors.toList());}
 
     public UserDTO getUser(Integer id){
         return convertToDTO.toUserDTO(userRepository.getUser(id));
     }
 
-    public void create(User user){
-        userRepository.postUser(user);
+    public UserDTO create(User user){
+        return convertToDTO.toUserDTO(userRepository.postUser(user));
     }
 
     public void update(User user, Integer id){

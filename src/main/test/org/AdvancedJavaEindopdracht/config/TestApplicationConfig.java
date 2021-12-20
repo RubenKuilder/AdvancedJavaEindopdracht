@@ -60,7 +60,7 @@ public class TestApplicationConfig {
     public SpringLiquibase liquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource());
-        liquibase.setChangeLog("classpath: /changelog_master.xml");
+        liquibase.setChangeLog("classpath:org/AdvancedJavaEindopdracht/config/test_master.xml");
         return liquibase;
     }
 }

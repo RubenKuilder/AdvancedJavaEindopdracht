@@ -15,21 +15,21 @@ public class User {
     @Getter @Setter private int id;
 
     @NotBlank
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false)
     @Getter @Setter private String name;
 
     @NotBlank
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false)
     @Getter @Setter private String password;
 
     @NotBlank
-    @Column(name = "email", nullable = false, length = 50)
+    @Column(name = "email", nullable = false)
     @Getter @Setter private String email;
 
-    @Column(name = "avatarLink")
-    @Getter @Setter private String avatarLink;
+    @Column(name = "profileImagePath", nullable = false)
+    @Getter @Setter private String profileImagePath;
 
-    @Column(name = "approved")
+    @Column(name = "isApproved")
     @Getter @Setter private boolean approved;
 
     public User() {
