@@ -257,4 +257,11 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="8" author="Robbie Eijkelkamp" context="Changed eventsettings to globalsettings">
+        <preConditions>
+            <tableExists tableName="eventsettings"/>
+        </preConditions>
+        <renameTable oldTableName="eventsettings" newTableName="globalsettings"/>
+    </changeSet>
 </databaseChangeLog>
