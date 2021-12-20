@@ -44,9 +44,6 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="int">
-                <constraints nullable="false"/>
-            </column>
             <column name="role" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
@@ -62,9 +59,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="role" baseColumnNames="user_id" constraintName="fk_user_role"
-                                 referencedTableName="user"
-                                 referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="userNotAvailable" baseColumnNames="user_id" constraintName="fk_userNotAvailable_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>

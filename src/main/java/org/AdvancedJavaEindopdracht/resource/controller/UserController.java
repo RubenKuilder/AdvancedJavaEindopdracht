@@ -35,7 +35,6 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<UserDTO> postUser(@Valid @RequestBody User user){
-        System.out.println(user);
         return ResponseEntity.ok(service.create(user));
     }
 
