@@ -38,9 +38,8 @@ public class RoleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> putRole(@PathVariable("id") final Integer id, @Valid @RequestBody Role role){
-        service.update(role, id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<RoleDTO> putRole(@PathVariable("id") final Integer id, @Valid @RequestBody Role role){
+        return ResponseEntity.ok(service.update(role, id));
     }
 
     @DeleteMapping("/{id}")
