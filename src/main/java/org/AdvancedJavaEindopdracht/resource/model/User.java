@@ -32,6 +32,6 @@ public class User {
     private String profileImagePath;
 
     @Column(name = "isApproved")
-    private boolean approved;
+    private boolean isApproved;
 
 }

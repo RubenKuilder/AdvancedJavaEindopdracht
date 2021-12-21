@@ -29,8 +29,8 @@ public class RoleService {
         return convertToDTO.toRoleDTO(roleRepository.postRole(role));
     }
 
-    public void update(Role role, Integer id){
-        roleRepository.putRole(role, id);
+    public RoleDTO update(Role role, Integer id){
+        return convertToDTO.toRoleDTO(roleRepository.putRole(role, id));
     }
 
     public void delete(Integer id){
