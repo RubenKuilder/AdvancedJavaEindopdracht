@@ -27,4 +27,14 @@
             <column header="role" name="role" type="STRING"/>
         </loadData>
     </changeSet>
+
+    <changeSet id="12" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user_availability"/>
+        </preConditions>
+        <loadData tableName="user_availability" file="data/role.csv">
+            <column header="user_id" name="user_id" type="INTEGER"/>
+            <column header="date" name="date" type="DATE"/>
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
