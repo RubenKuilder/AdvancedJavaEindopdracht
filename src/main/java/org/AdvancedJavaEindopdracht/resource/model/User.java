@@ -1,39 +1,37 @@
 package org.AdvancedJavaEindopdracht.resource.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter private int id;
+    private int id;
 
     @NotBlank
     @Column(name = "name", nullable = false)
-    @Getter @Setter private String name;
+    private String name;
 
     @NotBlank
     @Column(name = "password", nullable = false)
-    @Getter @Setter private String password;
+    private String password;
 
     @NotBlank
     @Column(name = "email", nullable = false)
-    @Getter @Setter private String email;
+    private String email;
 
     @Column(name = "profileImagePath", nullable = false)
-    @Getter @Setter private String profileImagePath;
+    private String profileImagePath;
 
     @Column(name = "isApproved")
-    @Getter @Setter private boolean approved;
-
-    public User() {
-
-    }
+    private boolean approved;
 
 }

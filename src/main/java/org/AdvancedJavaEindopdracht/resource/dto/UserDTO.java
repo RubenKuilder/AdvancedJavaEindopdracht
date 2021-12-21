@@ -1,30 +1,26 @@
 package org.AdvancedJavaEindopdracht.resource.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-
+@Data
+@NoArgsConstructor
 public class UserDTO {
 
     @NotBlank
-    @Getter @Setter private String name;
+    private String name;
 
     @NotBlank
-    @Getter @Setter private String password;
+    private String password;
 
     @NotBlank
-    @Getter @Setter private String email;
+    private String email;
 
     @NotBlank
-    @Getter @Setter private String profileImagePath;
+    private String profileImagePath;
 
     @NotBlank
-    @Getter @Setter
     private boolean approved;
-
-    public UserDTO() {
-
-    }
 
 }
