@@ -30,8 +30,8 @@ public class UserService {
         return convertToDTO.toUserDTO(userRepository.postUser(user));
     }
 
-    public void update(User user, Integer id){
-        userRepository.putUser(user, id);
+    public UserDTO update(User user, Integer id){
+        return convertToDTO.toUserDTO(userRepository.putUser(user, id));
     }
 
     public void delete(Integer id){
