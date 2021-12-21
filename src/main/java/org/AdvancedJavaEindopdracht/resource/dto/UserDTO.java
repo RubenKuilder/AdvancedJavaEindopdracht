@@ -21,6 +21,6 @@ public class UserDTO {
     private String profileImagePath;
 
     @NotBlank
-    private boolean approved;
+    private boolean isApproved;
 
 }
