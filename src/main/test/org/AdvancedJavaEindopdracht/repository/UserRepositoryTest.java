@@ -34,7 +34,7 @@ public class UserRepositoryTest {
         user.setName("TobiasVanArkelen");
         user.setPassword("password]");
         user.setEmail("email");
-        user.setAvatarLink("link");
+        user.setProfileImagePath("link");
         user.setApproved(false);
     }
 

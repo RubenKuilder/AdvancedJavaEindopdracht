@@ -35,14 +35,13 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<UserDTO> postUser(@Valid @RequestBody User user){
-        System.out.println(user);
         return ResponseEntity.ok(service.create(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> putUser(@PathVariable("id") final Integer id, @Valid @RequestBody User user){
+    public ResponseEntity<UserDTO> putUser(@PathVariable("id") final Integer id, @Valid @RequestBody User user){
         service.update(user, id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(service.update(user, id));
     }
 
     @DeleteMapping("/{id}")

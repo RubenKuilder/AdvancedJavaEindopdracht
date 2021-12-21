@@ -35,13 +35,14 @@ public class UserRepository {
     }
 
     @Transactional
-    public void putUser(User user, int id){
+    public User putUser(User user, int id){
         User update = manager.find(User.class, id);
         update.setName(user.getName());
         update.setEmail(user.getEmail());
         update.setProfileImagePath(user.getProfileImagePath());
         update.setPassword(user.getPassword());
         update.setApproved(user.isApproved());
+        return update;
     }
 
     @Transactional
