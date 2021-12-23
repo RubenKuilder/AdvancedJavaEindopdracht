@@ -42,7 +42,7 @@ public class UserAvailabilityRepositoryTest {
 
         this.ua = new UserAvailability();
         this.ua.setUser(this.user);
-        this.ua.setDate(new Date(2010, 3, 5, 0, 0));
+        this.ua.setDate(new Date(2010, 3, 5));
     }
 
     @Test
@@ -56,14 +56,14 @@ public class UserAvailabilityRepositoryTest {
     @DisplayName("Testing if getUserAvailability retrieves the right user")
     public void testMethodGetUserAvailability() {
         UserAvailability userAvailability = userAvailabilityRepository.getUserAvailability(1);
-        assertEquals("user", userAvailability.getUser().getName());
+        assertEquals("thijs", userAvailability.getUser().getName());
     }
 
     @Test
     @DisplayName("Testing if postUserAvailability has posted the right user")
     public void testMethodPostUserAvailability() {
         UserAvailability userAvailability = userAvailabilityRepository.postUserAvailability(this.ua);
-        assertEquals("test", user.getName());
+        assertEquals("test", userAvailability.getUser().getName());
     }
 
     @Test

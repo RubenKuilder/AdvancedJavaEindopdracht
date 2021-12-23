@@ -4,10 +4,12 @@ import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.UserAvailabilityDTO;
 import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
 import org.AdvancedJavaEindopdracht.resource.repository.UserAvailabilityRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class UserAvailabilityService {
     private final ConvertToDTO convertToDTO = new ConvertToDTO();
 

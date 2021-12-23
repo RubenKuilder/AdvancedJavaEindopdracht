@@ -1,11 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.controller;
 
 import org.AdvancedJavaEindopdracht.resource.dto.UserAvailabilityDTO;
-import org.AdvancedJavaEindopdracht.resource.dto.UserDTO;
-import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
 import org.AdvancedJavaEindopdracht.resource.service.UserAvailabilityService;
-import org.AdvancedJavaEindopdracht.resource.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

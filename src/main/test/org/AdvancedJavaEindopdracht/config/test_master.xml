@@ -28,13 +28,14 @@
         </loadData>
     </changeSet>
 
-    <changeSet id="12" author="ThijsRijkers">
+    <changeSet id="13" author="ThijsRijkers">
         <preConditions>
             <tableExists tableName="user_availability"/>
         </preConditions>
-        <loadData tableName="user_availability" file="data/role.csv">
-            <column header="user_id" name="user_id" type="INTEGER"/>
-            <column header="date" name="date" type="DATE"/>
+        <loadData tableName="user_availability" file="data/user_availability.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="date" name="date"/>
         </loadData>
     </changeSet>
+
 </databaseChangeLog>

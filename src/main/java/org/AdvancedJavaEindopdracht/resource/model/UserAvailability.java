@@ -16,7 +16,7 @@ public class UserAvailability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
