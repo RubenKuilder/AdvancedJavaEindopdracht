@@ -20,12 +20,31 @@
         <preConditions>
             <tableExists tableName="user"/>
         </preConditions>
-        <loadData tableName="user" file="data/user.csv">
+        <loadData tableName="user" file="org/AdvancedJavaEindopdracht/configuration/data/user.csv">
             <column header="name" name="name" type="STRING"/>
             <column header="password" name="password" type="STRING"/>
             <column header="profileImagePath" name="profileImagePath" type="STRING"/>
             <column header="email" name="email" type="STRING"/>
             <column header="isApproved" name="isApproved" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="13" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="role"/>
+        </preConditions>
+        <loadData tableName="role" file="org/AdvancedJavaEindopdracht/configuration/data/role.csv">
+            <column header="role" name="role" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="14" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user_availability"/>
+        </preConditions>
+        <loadData tableName="user_availability" file="org/AdvancedJavaEindopdracht/configuration/data/user_availability.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="date" name="date"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

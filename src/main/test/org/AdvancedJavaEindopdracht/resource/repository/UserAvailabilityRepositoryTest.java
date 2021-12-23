@@ -1,10 +1,7 @@
-package org.AdvancedJavaEindopdracht.repository;
+package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.config.TestApplicationConfig;
-import org.AdvancedJavaEindopdracht.resource.model.Role;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
-import org.AdvancedJavaEindopdracht.resource.repository.UserAvailabilityRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -21,7 +19,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestApplicationConfig.class)
+@ContextConfiguration(classes = com.configuration.DatabaseConfigTest.class)
+@SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
 @Transactional
 public class UserAvailabilityRepositoryTest {
 
