@@ -1,6 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
-import org.AdvancedJavaEindopdracht.ConvertToDto;
+import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.GlobalSettingsDto;
 import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.repository.GlobalSettingsRepository;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class GlobalSettingsService
 {
     private final GlobalSettingsRepository globalSettingsRepository;
-    private final ConvertToDto convertToDto = new ConvertToDto();
+    private final ConvertToDTO convertToDto = new ConvertToDTO();
 
     public GlobalSettingsService(GlobalSettingsRepository globalSettingsRepository)
     {
@@ -28,6 +28,7 @@ public class GlobalSettingsService
 
     public GlobalSettingsDto getGlobalSettingsById(Integer id)
     {
+
         return convertToDto.toGlobalSettingsDto(globalSettingsRepository.getSettingsById(id));
     }
 
