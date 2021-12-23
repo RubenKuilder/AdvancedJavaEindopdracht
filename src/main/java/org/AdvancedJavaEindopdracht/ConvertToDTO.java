@@ -25,7 +25,6 @@ public class ConvertToDTO {
         roleDTO.setRole(role.getRole());
         return roleDTO;
     }
-
     public UserAvailabilityDTO toUserAvailabilityDTO (UserAvailability userAvailability) {
         UserAvailabilityDTO userAvailabilityDTO = new UserAvailabilityDTO();
         userAvailabilityDTO.setUser(userAvailability.getUser());

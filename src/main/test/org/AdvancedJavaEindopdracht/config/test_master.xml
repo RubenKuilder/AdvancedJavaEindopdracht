@@ -27,7 +27,7 @@
             <column header="role" name="role" type="STRING"/>
         </loadData>
     </changeSet>
-
+  
     <changeSet id="13" author="ThijsRijkers">
         <preConditions>
             <tableExists tableName="user_availability"/>
@@ -37,5 +37,4 @@
             <column header="date" name="date"/>
         </loadData>
     </changeSet>
-
 </databaseChangeLog>
