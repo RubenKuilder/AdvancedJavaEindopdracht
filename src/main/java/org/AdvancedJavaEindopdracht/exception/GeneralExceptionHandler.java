@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
@@ -63,6 +64,17 @@ public class GeneralExceptionHandler {
         String response = String.format(
                 "Error: ",
                 "Status unknown, returning instead - " + exception.getMessage(),
+                request.getRemoteAddr()
+        );
+        return new ErrorMessage(response);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NoResultException.class)
+    public ErrorMessage noResultException(NoResultException exception, HttpServletRequest request) {
+        String response = String.format(
+                "Error: ",
+                exception.getMessage(),
                 request.getRemoteAddr()
         );
         return new ErrorMessage(response);
