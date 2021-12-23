@@ -30,6 +30,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
     </changeSet>
 
     <changeSet id="2" author="Robbie Eijkelkamp" context="role and userNotAvailable table created">
@@ -81,7 +82,7 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="contentType" type="varchar(50)">
+            <column name="name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -104,15 +105,15 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="content_id" type="int">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="user_id" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="varchar(500)"/>
-            <column name="startDate" type="date"/>
-            <column name="endDate" type="date"/>
-            <column name="switchTime" type="time"/>
+            <column name="startDateTime" type="datetime"/>
+            <column name="endDateTime" type="datetime"/>
+            <column name="duration" type="int"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content"
                                  referencedTableName="content"
