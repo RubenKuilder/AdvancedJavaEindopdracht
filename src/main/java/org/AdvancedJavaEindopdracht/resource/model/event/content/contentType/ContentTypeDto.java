@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class ContentTypeDto {
     private Long id;
-    
+
     @NotBlank
     private String name;
 }

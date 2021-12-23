@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="changelog_master.xml"/>
+    <changeSet id="10" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user"/>
+        </preConditions>
+        <loadData tableName="user" file="data/user.csv">
+            <column header="name" name="name" type="STRING"/>
+            <column header="password" name="password" type="STRING"/>
+            <column header="profileImagePath" name="profileImagePath" type="STRING"/>
+            <column header="email" name="email" type="STRING"/>
+            <column header="isApproved" name="isApproved" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

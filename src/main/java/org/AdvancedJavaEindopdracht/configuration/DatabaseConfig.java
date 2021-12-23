@@ -51,7 +51,7 @@ public class DatabaseConfig
 
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setPackagesToScan("org.AdvancedJavaEindopdracht.resource.model");
+        em.setPackagesToScan("org.AdvancedJavaEindopdracht.resource");
         em.setDataSource(datasource());
         em.setPersistenceUnitName("EmFactory");
         em.setJpaProperties(additionalProperties());
