@@ -28,7 +28,6 @@ class GlobalSettingsRepositoryTest
     @Autowired
     private GlobalSettingsRepository globalSettingsRepository;
 
-    @Transactional
     @Test
     void getSettings()
     {
@@ -38,7 +37,6 @@ class GlobalSettingsRepositoryTest
         assertEquals(new Time(00,00,00), globalSettingsList.get(0).getSwitchTime());
     }
 
-    @Transactional
     @Test
     void getSettingsById()
     {
@@ -47,7 +45,6 @@ class GlobalSettingsRepositoryTest
         assertEquals(new Time(00,00,00), globalSettings.getSwitchTime());
     }
 
-    @Transactional
     @Test
     void uploadGlobalSettings()
     {
@@ -59,7 +56,6 @@ class GlobalSettingsRepositoryTest
         assertEquals(new Time(12, 12 ,12), uploadedSettings.getSwitchTime());
     }
 
-    @Transactional
     @Test
     void deleteGlobalSettings()
     {
@@ -68,7 +64,6 @@ class GlobalSettingsRepositoryTest
         assertEquals(new Time(00,00,00), globalSettingsDeleted.getSwitchTime());
     }
 
-    @Transactional
     @Test
     void updateGlobalSettings()
     {

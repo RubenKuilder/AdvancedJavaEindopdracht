@@ -6,8 +6,8 @@ import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 
 
-public class ConvertToDTO {
-
+public class ConvertToDTO
+{
     public GlobalSettingsDto toGlobalSettingsDto(GlobalSettings globalSettings)
     {
         GlobalSettingsDto globalSettingsDto = new GlobalSettingsDto();

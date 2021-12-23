@@ -1,4 +1,4 @@
-package org.AdvancedJavaEindopdracht.resource.service;
+package org.AdvancedJavaEindopdracht.resource.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
+@Transactional
 class GlobalSettingsControllerTest
 {
     @Autowired
@@ -30,7 +31,6 @@ class GlobalSettingsControllerTest
     }
 
     @Test
-    @Transactional
     @Order(1)
     void getGlobalSettings() throws Exception
     {
@@ -44,7 +44,6 @@ class GlobalSettingsControllerTest
     }
 
     @Test
-    @Transactional
     @Order(2)
     void getGlobalSettingsById() throws Exception
     {
@@ -56,7 +55,6 @@ class GlobalSettingsControllerTest
     }
 
     @Test
-    @Transactional
     @Order(3)
     void createGlobalSettings() throws Exception
     {
@@ -70,7 +68,6 @@ class GlobalSettingsControllerTest
     }
 
     @Test
-    @Transactional
     @Order(4)
     void deleteGlobalSettings() throws Exception
     {
@@ -82,7 +79,6 @@ class GlobalSettingsControllerTest
     }
 
     @Test
-    @Transactional
     @Order(5)
     void updateGlobalSettings() throws Exception
     {

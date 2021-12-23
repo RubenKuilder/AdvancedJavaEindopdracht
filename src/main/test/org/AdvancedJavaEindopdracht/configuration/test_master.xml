@@ -15,4 +15,17 @@
             <column header="switchTime" name="switchTime" type="DATE"/>
         </loadData>
     </changeSet>
+
+    <changeSet id="12" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user"/>
+        </preConditions>
+        <loadData tableName="user" file="data/user.csv">
+            <column header="name" name="name" type="STRING"/>
+            <column header="password" name="password" type="STRING"/>
+            <column header="profileImagePath" name="profileImagePath" type="STRING"/>
+            <column header="email" name="email" type="STRING"/>
+            <column header="isApproved" name="isApproved" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
