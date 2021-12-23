@@ -4,6 +4,7 @@ import org.AdvancedJavaEindopdracht.ConvertToDto;
 import org.AdvancedJavaEindopdracht.resource.dto.GlobalSettingsDto;
 import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.repository.GlobalSettingsRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
