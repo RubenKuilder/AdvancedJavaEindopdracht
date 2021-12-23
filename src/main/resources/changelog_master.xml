@@ -33,25 +33,22 @@
 
     </changeSet>
 
-    <changeSet id="2" author="Robbie Eijkelkamp" context="role and userNotAvailable table created">
+    <changeSet id="2" author="Robbie Eijkelkamp" context="role and user_availability table created">
         <preConditions>
             <not>
                 <tableExists tableName="role"/>
-                <tableExists tableName="userNotAvailable"/>
+                <tableExists tableName="user_availability"/>
             </not>
         </preConditions>
         <createTable tableName="role">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="int">
-                <constraints nullable="false"/>
-            </column>
             <column name="role" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="userNotAvailable">
+        <createTable tableName="user_availability">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -62,10 +59,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="role" baseColumnNames="user_id" constraintName="fk_user_role"
-                                 referencedTableName="user"
-                                 referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="userNotAvailable" baseColumnNames="user_id" constraintName="fk_userNotAvailable_user"
+        <addForeignKeyConstraint baseTableName="user_availability" baseColumnNames="user_id" constraintName="fk_user_availability_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
     </changeSet>
