@@ -18,4 +18,13 @@
             <column header="isApproved" name="isApproved" type="BOOLEAN"/>
         </loadData>
     </changeSet>
+
+    <changeSet id="11" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="role"/>
+        </preConditions>
+        <loadData tableName="role" file="data/role.csv">
+            <column header="role" name="role" type="STRING"/>
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
