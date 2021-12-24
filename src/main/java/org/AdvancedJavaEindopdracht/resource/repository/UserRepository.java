@@ -1,9 +1,11 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.resource.model.User;
+import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
@@ -20,6 +22,9 @@ public class UserRepository {
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<User> query = cb.createQuery(User.class);
         return manager.createQuery(query.select(query.from(User.class))).getResultList();
+
+//        TypedQuery<User> query = manager.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.consultations c", User.class);
+//        return query.getResultList();
     }
 
     public User getUser(int id){

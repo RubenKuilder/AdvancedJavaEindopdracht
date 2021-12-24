@@ -1,10 +1,14 @@
 package org.AdvancedJavaEindopdracht.resource.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,6 +19,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "users")
+    List<Consultation> consultations;
 
     @NotBlank
     @Column(name = "name", nullable = false)

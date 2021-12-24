@@ -211,10 +211,10 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="startTime" type="time">
+            <column name="startDateTime" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="endTime" type="time">
+            <column name="endDateTime" type="datetime">
                 <constraints nullable="false"/>
             </column>
         </createTable>
