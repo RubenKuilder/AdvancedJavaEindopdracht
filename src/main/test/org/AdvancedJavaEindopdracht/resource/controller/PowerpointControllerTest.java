@@ -6,6 +6,7 @@ import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,6 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration(classes = com.configuration.DatabaseConfigTest.class)
@@ -32,7 +34,8 @@ public class PowerpointControllerTest {
 
     @Test
     public void testGetPowerpoints() throws Exception {
-        mockMvc.perform(get("/powerpoint").accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/powerpoint").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andReturn();
     }
