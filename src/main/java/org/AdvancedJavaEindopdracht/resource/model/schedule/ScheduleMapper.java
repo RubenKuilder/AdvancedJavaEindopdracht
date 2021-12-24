@@ -3,10 +3,12 @@ package org.AdvancedJavaEindopdracht.resource.model.schedule;
 import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.AdvancedJavaEindopdracht.resource.model.event.EventDto;
 import org.AdvancedJavaEindopdracht.util.EntityMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ScheduleMapper implements EntityMapper<Schedule, ScheduleDto> {
     @Override
     public ScheduleDto mapFromEntity(Schedule schedule) {

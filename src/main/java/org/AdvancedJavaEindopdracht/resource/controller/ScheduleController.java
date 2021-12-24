@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/content")
+@RequestMapping("/schedule")
 public class ScheduleController {
     private final ScheduleService scheduleService;
 
