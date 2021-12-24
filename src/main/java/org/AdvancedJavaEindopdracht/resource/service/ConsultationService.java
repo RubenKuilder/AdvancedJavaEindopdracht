@@ -2,6 +2,7 @@ package org.AdvancedJavaEindopdracht.resource.service;
 
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationMapper;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
 import org.AdvancedJavaEindopdracht.resource.repository.ConsultationRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +19,28 @@ public class ConsultationService {
     }
 
     public List<ConsultationDto> get() {
-        return contentMapper.mapFromEntityList(contentRespository.get());
+        return consultationMapper.mapFromEntityList(consultationRepository.get());
     }
 
     public ConsultationDto getById(long id) {
-        return contentMapper.mapFromEntity(contentRespository.getById(id));
+        return consultationMapper.mapFromEntity(consultationRepository.getById(id));
     }
 
     public ConsultationDto persist(ConsultationDto consultationDto) {
-        return contentMapper.mapFromEntity(
-                contentRespository.persist(contentMapper.mapToEntity(consultationDto))
+        return consultationMapper.mapFromEntity(
+                consultationRepository.persist(consultationMapper.mapToEntity(consultationDto))
         );
+    }
+
+    public ConsultationDto put(long id, ConsultationDto consultationDto) {
+        return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
+    }
+
+    public ConsultationDto patch(long id, ConsultationDto consultationDto) {
+        return consultationMapper.mapFromEntity(consultationRepository.patch(id, consultationMapper.mapToEntity(consultationDto)));
+    }
+
+    public void delete(long id) {
+        consultationRepository.delete(id);
     }
 }

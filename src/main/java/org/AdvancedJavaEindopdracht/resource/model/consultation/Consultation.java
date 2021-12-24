@@ -7,6 +7,7 @@ import org.AdvancedJavaEindopdracht.resource.model.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -19,8 +20,12 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "consultations")
-    Set<User> users;
+    @ManyToMany
+    @JoinTable(
+            name = "userConsultation",
+            joinColumns = @JoinColumn(name = "consultation_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    List<User> users;
 
     private Date startDateTime;
 

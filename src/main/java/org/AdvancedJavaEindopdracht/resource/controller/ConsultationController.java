@@ -1,6 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.controller;
 
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
 import org.AdvancedJavaEindopdracht.resource.service.ConsultationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,21 @@ public class ConsultationController {
     @PostMapping
     public ResponseEntity<ConsultationDto> post(@RequestBody @Valid ConsultationDto consultationDto) {
         return ResponseEntity.ok(consultationService.persist(consultationDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ConsultationDto> put(@PathVariable long id, @RequestBody @Valid ConsultationDto consultationDto) {
+        return ResponseEntity.ok(consultationService.put(id, consultationDto));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ConsultationDto> patch(@PathVariable int id, @RequestBody ConsultationDto consultationDto) {
+        return ResponseEntity.ok(consultationService.patch(id, consultationDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable int id) {
+        consultationService.delete(id);
+        return ResponseEntity.ok(String.format("Consultation with ID %d successfully deleted.", id));
     }
 }
