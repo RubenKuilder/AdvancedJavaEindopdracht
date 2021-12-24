@@ -14,6 +14,15 @@ public class ConvertToDTO {
         return globalSettingsDto;
     }
 
+    public RssFeedDTO toRssFeedDTO(RssFeed rssFeed) {
+        RssFeedDTO rssFeedDTO = new RssFeedDTO();
+        rssFeedDTO.setLink(rssFeed.getLink());
+        rssFeedDTO.setEndDate(rssFeed.getEndDate());
+        rssFeedDTO.setStartDate(rssFeed.getStartDate());
+        rssFeedDTO.setUser(rssFeed.getUser());
+        return rssFeedDTO;
+    }
+
     public UserDTO toUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setName(user.getName());

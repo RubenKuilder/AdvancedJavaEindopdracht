@@ -58,4 +58,15 @@
         </loadData>
     </changeSet>
 
+    <changeSet id="16" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="rssfeed"/>
+        </preConditions>
+        <loadData tableName="rssfeed" file="org/AdvancedJavaEindopdracht/configuration/data/RssFeed.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="link" name="link"/>
+            <column header="startDate" name="startDate"/>
+            <column header="endDate" name="endDate"/>
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
