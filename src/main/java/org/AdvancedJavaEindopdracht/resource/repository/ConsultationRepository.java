@@ -25,13 +25,17 @@ public class ConsultationRepository {
     }
 
     public List<Consultation> get() {
-        Hibernate.initialize(userRepository.getUsers());
-        TypedQuery<Consultation> query = entityManager.createQuery("SELECT c FROM Consultation c JOIN FETCH c.users u", Consultation.class);
+//        Hibernate.initialize(userRepository.getUsers());
+        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u", Consultation.class);
         return query.getResultList();
     }
 
+    // Hier gebruik ik geen entityManager.find omdat die een lazyInitialize error gaf.
     public Consultation getById(long id) {
-        return entityManager.find(Consultation.class, id);
+        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+//        return entityManager.find(Consultation.class, id);
     }
 
     public Consultation persist(Consultation consultation) {
