@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="changelog_master.xml"/>
+    <changeSet id="11" author="Madlyaza">
+        <preConditions>
+            <tableExists tableName="globalsettings"/>
+        </preConditions>
+        <loadData tableName="globalsettings" file="org/AdvancedJavaEindopdracht/configuration/data/GlobalSettings.csv">
+            <column header="soundOn" name="soundOn" type="BOOLEAN"/>
+            <column header="switchTime" name="switchTime" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="12" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user"/>
+        </preConditions>
+        <loadData tableName="user" file="org/AdvancedJavaEindopdracht/configuration/data/user.csv">
+            <column header="name" name="name" type="STRING"/>
+            <column header="password" name="password" type="STRING"/>
+            <column header="profileImagePath" name="profileImagePath" type="STRING"/>
+            <column header="email" name="email" type="STRING"/>
+            <column header="isApproved" name="isApproved" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="13" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="role"/>
+        </preConditions>
+        <loadData tableName="role" file="org/AdvancedJavaEindopdracht/configuration/data/role.csv">
+            <column header="role" name="role" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="14" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user_availability"/>
+        </preConditions>
+        <loadData tableName="user_availability" file="org/AdvancedJavaEindopdracht/configuration/data/user_availability.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="date" name="date"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
