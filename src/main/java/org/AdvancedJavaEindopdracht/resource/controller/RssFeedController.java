@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rssfeed")
+@RequestMapping("/rss")
 public class RssFeedController {
 
     private final RssFeedService service;
