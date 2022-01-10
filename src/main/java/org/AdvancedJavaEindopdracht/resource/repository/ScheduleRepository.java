@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.Content;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
@@ -32,5 +33,36 @@ public class ScheduleRepository {
     public Schedule persist(Schedule schedule) {
         entityManager.persist(schedule);
         return schedule;
+    }
+
+    public Schedule put(long id, Schedule schedule) {
+        schedule.setId(id);
+        return entityManager.merge(schedule);
+    }
+
+    public Schedule patch(long id, Schedule schedule) {
+        if (getById(id) == null)
+            throw new DataNotFoundException();
+
+        Schedule updatedSchedule = getById(id);
+
+        if (schedule.getUsers() != null) {
+            updatedSchedule.setUsers(schedule.getUsers());
+        }
+
+        if (schedule.getStartDateTime() != null) {
+            updatedSchedule.setStartDateTime(schedule.getStartDateTime());
+        }
+
+        if (schedule.getEndDateTime() != null) {
+            updatedSchedule.setEndDateTime(schedule.getEndDateTime());
+        }
+
+        return updatedSchedule;
+    }
+
+    public void delete(long id) {
+        Schedule scheduleToDelete = getById(id);
+        entityManager.remove(entityManager.contains(scheduleToDelete) ? scheduleToDelete : entityManager.merge(scheduleToDelete));
     }
 }

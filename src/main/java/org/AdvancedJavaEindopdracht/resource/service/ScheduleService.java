@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentMapper;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleDto;
@@ -32,5 +33,17 @@ public class ScheduleService {
         return scheduleMapper.mapFromEntity(
                 scheduleRepository.persist(scheduleMapper.mapToEntity(scheduleDto))
         );
+    }
+
+    public ScheduleDto put(long id, ScheduleDto scheduleDto) {
+        return scheduleMapper.mapFromEntity(scheduleRepository.put(id, scheduleMapper.mapToEntity(scheduleDto)));
+    }
+
+    public ScheduleDto patch(long id, ScheduleDto scheduleDto) {
+        return scheduleMapper.mapFromEntity(scheduleRepository.patch(id, scheduleMapper.mapToEntity(scheduleDto)));
+    }
+
+    public void delete(long id) {
+        scheduleRepository.delete(id);
     }
 }

@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.controller;
 
+import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleDto;
 import org.AdvancedJavaEindopdracht.resource.service.ContentService;
@@ -32,5 +33,21 @@ public class ScheduleController {
     @PostMapping
     public ResponseEntity<ScheduleDto> post(@RequestBody @Valid ScheduleDto scheduleDto) {
         return ResponseEntity.ok(scheduleService.persist(scheduleDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ScheduleDto> put(@PathVariable long id, @RequestBody @Valid ScheduleDto scheduleDto) {
+        return ResponseEntity.ok(scheduleService.put(id, scheduleDto));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ScheduleDto> patch(@PathVariable int id, @RequestBody ScheduleDto scheduleDto) {
+        return ResponseEntity.ok(scheduleService.patch(id, scheduleDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable int id) {
+        scheduleService.delete(id);
+        return ResponseEntity.ok(String.format("Schedule with ID %d successfully deleted.", id));
     }
 }
