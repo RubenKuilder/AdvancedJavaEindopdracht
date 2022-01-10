@@ -201,6 +201,14 @@
             <version>2.4.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.soulwing.jwt/jwt-provider -->
+        <dependency>
+            <groupId>org.soulwing.jwt</groupId>
+            <artifactId>jwt-provider</artifactId>
+            <version>1.1.0</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 
     <build>
