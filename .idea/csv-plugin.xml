@@ -3,6 +3,20 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\src\main\resources\data\powerpoint.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\resources\data\role.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\resources\data\user.csv">
           <value>
             <Attribute>
@@ -11,6 +25,20 @@
           </value>
         </entry>
         <entry key="\src\main\resources\data\user_availability.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\test\org\AdvancedJavaEindopdracht\configuration\data\RssFeed.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\test\org\AdvancedJavaEindopdracht\configuration\data\user_availability.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

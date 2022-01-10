@@ -40,7 +40,6 @@ public class UserAvailabilityController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserAvailabilityDTO> putAvailability(@PathVariable("id") final Integer id, @Valid @RequestBody UserAvailability availability){
-        service.update(availability, id);
         return ResponseEntity.ok(service.update(availability, id));
     }
 
