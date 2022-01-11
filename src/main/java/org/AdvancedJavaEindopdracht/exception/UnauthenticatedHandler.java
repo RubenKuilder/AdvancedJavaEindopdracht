@@ -1,4 +1,4 @@
-package org.AdvancedJavaEindopdracht.security;
+package org.AdvancedJavaEindopdracht.exception;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * We use this class to send a response if
- */
 public class UnauthenticatedHandler implements AuthenticationEntryPoint {
     @Override
     public void commence(
