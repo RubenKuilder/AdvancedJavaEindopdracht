@@ -41,6 +41,7 @@ public class ScheduleControllerTest {
     @Test
     @Order(1)
     public void getScheduleByIDTest() throws Exception {
+        //TODO: Populate liquibase database with CSV instead of POST
         //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
@@ -56,6 +57,7 @@ public class ScheduleControllerTest {
     @Test
     @Order(2)
     public void deleteScheduleTest() throws Exception {
+        //TODO: Populate liquibase database with CSV instead of POST
         //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
@@ -70,6 +72,7 @@ public class ScheduleControllerTest {
 
     @Test
     public void getSchedulesTest() throws Exception {
+        //TODO: Populate liquibase database with CSV instead of POST
         //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
@@ -142,6 +145,10 @@ public class ScheduleControllerTest {
 
     @Test
     public void patchScheduleTest() throws Exception {
+        //TODO: Populate liquibase database with CSV instead of POST
+        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
+        postScheduleTest();
+        
         Schedule schedule = new Schedule();
         schedule.setTitle("Mooie titel patch");
         schedule.setDescription("Mooie beschrijving patch");

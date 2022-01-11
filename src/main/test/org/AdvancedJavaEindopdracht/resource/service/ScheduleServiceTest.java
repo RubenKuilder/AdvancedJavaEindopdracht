@@ -38,6 +38,8 @@ public class ScheduleServiceTest {
     @Order(1)
     void getScheduleByIDTest() throws Exception
     {
+        //TODO: Populate liquibase database with CSV instead of POST
+        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
         ScheduleDto scheduleDto = scheduleService.getById(1);
@@ -49,6 +51,7 @@ public class ScheduleServiceTest {
     @Test
     @Order(2)
     public void deleteScheduleTest() throws Exception {
+        //TODO: Populate liquibase database with CSV instead of POST
         //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
@@ -62,6 +65,8 @@ public class ScheduleServiceTest {
     @Transactional
     void getScheduleTest() throws Exception
     {
+        //TODO: Populate liquibase database with CSV instead of POST
+        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
         List<ScheduleDto> scheduleDtoList = scheduleService.get();
@@ -127,6 +132,8 @@ public class ScheduleServiceTest {
     @Test
     @Transactional
     void patchScheduleTest() throws Exception {
+        //TODO: Populate liquibase database with CSV instead of POST
+        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
         ScheduleDto scheduleDto = new ScheduleDto();
