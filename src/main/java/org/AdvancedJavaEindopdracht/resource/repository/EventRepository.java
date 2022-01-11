@@ -68,8 +68,9 @@ public class EventRepository {
         return updatedEvent;
     }
 
-    public void delete(long id) {
-        Event eventToDelete = getById(id);
-        entityManager.remove(entityManager.contains(eventToDelete) ? eventToDelete : entityManager.merge(eventToDelete));
+    public Event delete(long id) {
+        Event event = entityManager.find(Event.class, id);
+        entityManager.remove(event);
+        return event;
     }
 }
