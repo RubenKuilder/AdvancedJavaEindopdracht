@@ -43,7 +43,7 @@ public class ScheduleService {
         return scheduleMapper.mapFromEntity(scheduleRepository.patch(id, scheduleMapper.mapToEntity(scheduleDto)));
     }
 
-    public void delete(long id) {
-        scheduleRepository.delete(id);
+    public ScheduleDto delete(long id) {
+        return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
     }
 }

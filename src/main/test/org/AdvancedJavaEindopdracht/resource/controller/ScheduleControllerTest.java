@@ -44,12 +44,27 @@ public class ScheduleControllerTest {
         //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
         postScheduleTest();
 
-        this.mockMvc.perform(get("/schedule/2").contentType(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/schedule/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Mooie titel post"))
                 .andExpect(jsonPath("$.description").value("Mooie beschrijving post"))
                 .andExpect(jsonPath("$.startDateTime").value("10-01-2022 15:40:10"))
                 .andExpect(jsonPath("$.endDateTime").value("10-01-2022 15:50:10"))
+                .andReturn();
+    }
+
+    @Test
+    @Order(2)
+    public void deleteScheduleTest() throws Exception {
+        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
+        postScheduleTest();
+
+        this.mockMvc.perform(delete("/schedule/2")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Mooie titel post"))
+                .andExpect(jsonPath("$.description").value("Mooie beschrijving post"))
                 .andReturn();
     }
 
