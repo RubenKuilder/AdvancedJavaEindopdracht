@@ -26,6 +26,8 @@
             <column header="profileImagePath" name="profileImagePath" type="STRING"/>
             <column header="email" name="email" type="STRING"/>
             <column header="isApproved" name="isApproved" type="BOOLEAN"/>
+            <column header="role" name="role" type="STRING"/>
+            <column header="enabled" name="enabled" type="BOOLEAN"/>
         </loadData>
     </changeSet>
 
