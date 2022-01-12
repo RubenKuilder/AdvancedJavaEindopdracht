@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
@@ -22,7 +21,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
@@ -34,14 +32,9 @@ public class ScheduleServiceTest {
     private ScheduleService scheduleService;
 
     @Test
-    @Transactional
     @Order(1)
-    void getScheduleByIDTest() throws Exception
+    void getScheduleByIDTest()
     {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
         ScheduleDto scheduleDto = scheduleService.getById(1);
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
@@ -50,33 +43,26 @@ public class ScheduleServiceTest {
 
     @Test
     @Order(2)
-    public void deleteScheduleTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
+    void getScheduleTest()
+    {
+        List<ScheduleDto> scheduleDtoList = scheduleService.getAll();
 
-        ScheduleDto scheduleDto = scheduleService.delete(2);
+        assertEquals("Mooie titel post", scheduleDtoList.get(1).getTitle());
+        assertEquals("Mooie beschrijving post", scheduleDtoList.get(1).getDescription());
+    }
+
+    @Test
+    @Order(3)
+    public void deleteScheduleTest() {
+        ScheduleDto scheduleDto = scheduleService.delete(1);
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
     }
 
-    @Test
-    @Transactional
-    void getScheduleTest() throws Exception
-    {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
 
-        List<ScheduleDto> scheduleDtoList = scheduleService.get();
-
-        assertEquals("Mooie titel post", scheduleDtoList.get(0).getTitle());
-        assertEquals("Mooie beschrijving post", scheduleDtoList.get(0).getDescription());
-    }
 
     @Test
-    @Transactional
     void postScheduleTest() throws Exception
     {
         User user = new User();
@@ -103,7 +89,6 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Transactional
     void putScheduleTest() throws Exception
     {
         User user = new User();
@@ -130,12 +115,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    @Transactional
-    void patchScheduleTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
+    void patchScheduleTest() {
         ScheduleDto scheduleDto = new ScheduleDto();
         scheduleDto.setTitle("Mooie titel patch");
         scheduleDto.setDescription("Mooie beschrijving patch");

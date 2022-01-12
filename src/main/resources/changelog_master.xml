@@ -177,10 +177,10 @@
             <column name="description" type="varchar(250)">
                 <constraints nullable="false"/>
             </column>
-            <column name="startDateTime" type="date">
+            <column name="startDate" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="endDateTime" type="date">
+            <column name="endDate" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -271,5 +271,13 @@
                 <constraints nullable="false"/>
             </column>
         </addColumn>
+    </changeSet>
+    
+    <changeSet id="10" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="schedule"/>
+        </preConditions>
+        <renameColumn tableName="schedule" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
+        <renameColumn tableName="schedule" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
     </changeSet>
 </databaseChangeLog>

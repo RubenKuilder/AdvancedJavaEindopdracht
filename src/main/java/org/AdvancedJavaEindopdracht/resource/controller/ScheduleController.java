@@ -1,9 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.controller;
 
-import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleDto;
-import org.AdvancedJavaEindopdracht.resource.service.ContentService;
 import org.AdvancedJavaEindopdracht.resource.service.ScheduleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +19,7 @@ public class ScheduleController {
 
     @GetMapping
     public ResponseEntity<List<ScheduleDto>> get() {
-        return ResponseEntity.ok(scheduleService.get());
+        return ResponseEntity.ok(scheduleService.getAll());
     }
 
     @GetMapping("/{id}")

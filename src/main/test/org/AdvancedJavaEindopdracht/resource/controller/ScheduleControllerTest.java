@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,54 +42,43 @@ public class ScheduleControllerTest {
     @Test
     @Order(1)
     public void getScheduleByIDTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
-        this.mockMvc.perform(get("/schedule/1").contentType(MediaType.APPLICATION_JSON))
+        MvcResult mvcResult = this.mockMvc.perform(get("/schedule/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Mooie titel post"))
                 .andExpect(jsonPath("$.description").value("Mooie beschrijving post"))
-                .andExpect(jsonPath("$.startDateTime").value("10-01-2022 15:40:10"))
-                .andExpect(jsonPath("$.endDateTime").value("10-01-2022 15:50:10"))
+                .andExpect(jsonPath("$.startDateTime").value("08-12-2022 00:00:00"))
+                .andExpect(jsonPath("$.endDateTime").value("08-12-2022 00:00:00"))
                 .andReturn();
     }
 
     @Test
     @Order(2)
     public void deleteScheduleTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
-        this.mockMvc.perform(delete("/schedule/2")
+        this.mockMvc.perform(delete("/schedule/1")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Mooie titel post"))
                 .andExpect(jsonPath("$.description").value("Mooie beschrijving post"))
+                .andExpect(jsonPath("$.startDateTime").value("08-12-2022 00:00:00"))
+                .andExpect(jsonPath("$.endDateTime").value("08-12-2022 00:00:00"))
                 .andReturn();
     }
 
     @Test
     public void getSchedulesTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
         this.mockMvc.perform(get("/schedule").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].title").value("Mooie titel post"))
-                .andExpect(jsonPath("$.[0].description").value("Mooie beschrijving post"))
-                .andExpect(jsonPath("$.[0].startDateTime").value("10-01-2022 15:40:10"))
-                .andExpect(jsonPath("$.[0].endDateTime").value("10-01-2022 15:50:10"))
+                .andExpect(jsonPath("$.[1].title").value("Mooie titel post"))
+                .andExpect(jsonPath("$.[1].description").value("Mooie beschrijving post"))
+                .andExpect(jsonPath("$.[1].startDateTime").value("08-12-2022 00:00:00"))
+                .andExpect(jsonPath("$.[1].endDateTime").value("08-12-2022 00:00:00"))
                 .andReturn();
     }
 
     @Test
     public void postScheduleTest() throws Exception {
         User user = new User();
-        user.setId(1);
         List<User> usersList = Arrays.asList(user);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -117,7 +107,6 @@ public class ScheduleControllerTest {
     @Test
     public void putScheduleTest() throws Exception {
         User user = new User();
-        user.setId(1);
         List<User> usersList = Arrays.asList(user);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -145,21 +134,22 @@ public class ScheduleControllerTest {
 
     @Test
     public void patchScheduleTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-        
-        Schedule schedule = new Schedule();
-        schedule.setTitle("Mooie titel patch");
-        schedule.setDescription("Mooie beschrijving patch");
 
-        mockMvc.perform(put("/schedule/2")
+        User user = new User();
+        List<User> usersList = Arrays.asList(user);
+
+        Schedule schedule = new Schedule();
+        schedule.setTitle("Mooie titel patch test");
+        schedule.setDescription("Mooie beschrijving patch test");
+        schedule.setUsers(usersList);
+
+        mockMvc.perform(put("/schedule/1")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(schedule)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("Mooie titel patch"))
-                .andExpect(jsonPath("$.description").value("Mooie beschrijving patch"))
+                .andExpect(jsonPath("$.title").value("Mooie titel patch test"))
+                .andExpect(jsonPath("$.description").value("Mooie beschrijving patch test"))
                 .andReturn();
     }
 }

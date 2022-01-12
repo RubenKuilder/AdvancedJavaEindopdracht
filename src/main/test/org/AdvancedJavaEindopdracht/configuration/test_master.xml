@@ -81,6 +81,7 @@
             <column header="endDateTime" name="endDateTime"/>
         </loadData>
     </changeSet>
+
     <changeSet id="18" author="Robbie Eijkelkamp">
         <preConditions>
             <tableExists tableName="userconsultation"/>
@@ -88,6 +89,28 @@
         <loadData tableName="userconsultation" file="org/AdvancedJavaEindopdracht/configuration/data/consultation_user.csv">
             <column header="user_id" name="user_id"/>
             <column header="consultation_id" name="consultation_id"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="19" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="schedule"/>
+        </preConditions>
+        <loadData tableName="schedule" file="org/AdvancedJavaEindopdracht/configuration/data/schedule.csv">
+            <column header="title" name="title"/>
+            <column header="description" name="description"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="userSchedule"/>
+        </preConditions>
+        <loadData tableName="userschedule" file="org/AdvancedJavaEindopdracht/configuration/data/user_schedule.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="schedule_id" name="schedule_id"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

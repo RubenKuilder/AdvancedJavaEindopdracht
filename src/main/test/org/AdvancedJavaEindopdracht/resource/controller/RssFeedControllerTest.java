@@ -24,8 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
-@ContextConfiguration(classes = com.configuration.DatabaseConfigTest.class)
-@SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
+@ContextConfiguration(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
+@SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
 public class RssFeedControllerTest {
     @Autowired
     private WebApplicationContext wac;

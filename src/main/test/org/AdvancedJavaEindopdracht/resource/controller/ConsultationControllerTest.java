@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +22,7 @@ import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
+@SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 class ConsultationControllerTest
 {

@@ -63,7 +63,7 @@ public class ConsultationRepository {
         return updatedConsultation;
     }
 
-    public Consultation delete(long id) throws Exception {
+    public Consultation delete(long id) {
         Consultation consultationToDelete = getById(id);
 
         entityManager.remove(entityManager.contains(consultationToDelete) ? consultationToDelete : entityManager.merge(consultationToDelete));

@@ -21,7 +21,7 @@ public class ScheduleService {
         this.scheduleMapper = scheduleMapper;
     }
 
-    public List<ScheduleDto> get() {
+    public List<ScheduleDto> getAll() {
         return scheduleMapper.mapFromEntityList(scheduleRepository.get());
     }
 
