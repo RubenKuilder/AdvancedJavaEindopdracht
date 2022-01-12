@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/roles")
 public class RoleController {
     private final RoleService service;
