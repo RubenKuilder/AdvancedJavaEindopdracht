@@ -1,6 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,8 +70,11 @@ public class EventRepository {
     }
 
     public Event delete(long id) {
-        Event event = entityManager.find(Event.class, id);
-        entityManager.remove(event);
-        return event;
+        Event eventToDelete = getById(id);
+
+        //TODO: Exception handler
+
+        entityManager.remove(entityManager.contains(eventToDelete) ? eventToDelete : entityManager.merge(eventToDelete));
+        return eventToDelete;
     }
 }
