@@ -45,8 +45,7 @@ public class ConsultationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable int id) {
-        consultationService.delete(id);
-        return ResponseEntity.ok(String.format("Consultation with ID %d successfully deleted.", id));
+    public ResponseEntity<ConsultationDto> delete(@PathVariable int id) {
+        return ResponseEntity.ok(consultationService.delete(id));
     }
 }

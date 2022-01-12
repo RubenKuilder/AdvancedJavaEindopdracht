@@ -177,10 +177,10 @@
             <column name="description" type="varchar(250)">
                 <constraints nullable="false"/>
             </column>
-            <column name="startDate" type="date">
+            <column name="startDateTime" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="endDate" type="date">
+            <column name="endDateTime" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
