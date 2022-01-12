@@ -259,4 +259,17 @@
         </preConditions>
         <renameTable oldTableName="eventsettings" newTableName="globalsettings"/>
     </changeSet>
+
+    <changeSet id="9" author="Robbie Eijkelkamp">
+        <addColumn tableName="user">
+            <column name="role" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="user">
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -49,7 +49,7 @@ public class UserRepositoryTest {
     @DisplayName("Testing if getUser retrieves the right user")
     public void testMethodGetUser() {
         User test = userRepository.getUser(1);
-        assertEquals("thijs", test.getName());
+        assertEquals("Madlyaza", test.getName());
     }
 
     @Test

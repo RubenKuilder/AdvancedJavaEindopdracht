@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ public class RssFeed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -24,11 +25,11 @@ public class RssFeed {
     @Column(name = "link", nullable = false)
     private String link;
 
-    @NotBlank
+    @NotNull
     @Column(name = "startDate", nullable = false)
     private Date startDate;
 
-    @NotBlank
+    @NotNull
     @Column(name = "endDate", nullable = false)
     private Date endDate;
 }

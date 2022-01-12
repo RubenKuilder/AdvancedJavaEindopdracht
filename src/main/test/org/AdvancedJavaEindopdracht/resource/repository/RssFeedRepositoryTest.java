@@ -58,7 +58,7 @@ public class RssFeedRepositoryTest {
     @DisplayName("Testing if getRssFeed retrieves the right user")
     public void testMethodGetRssFeed() {
         RssFeed feed = repository.getRssFeed(1);
-        assertEquals("thijs", feed.getUser().getName());
+        assertEquals("Madlyaza", feed.getUser().getName());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class RssFeedRepositoryTest {
 
     @Test
     @DisplayName("Testing if putUserAvailability changed the entry")
-    public void testMethodPutUserAvailability() {
+    public void testPutRssFeed() {
         this.feed.getUser().setName("test2");
         repository.putRssFeed(this.feed, 1);
         RssFeed putfeed = repository.getRssFeed(1);

@@ -55,7 +55,7 @@ public class UserAvailabilityRepositoryTest {
     @DisplayName("Testing if getUserAvailability retrieves the right user")
     public void testMethodGetUserAvailability() {
         UserAvailability userAvailability = userAvailabilityRepository.getUserAvailability(1);
-        assertEquals("thijs", userAvailability.getUser().getName());
+        assertEquals("Madlyaza", userAvailability.getUser().getName());
     }
 
     @Test

@@ -1,2 +1,2 @@
-name,password,profileImagePath,email,isApproved
-thijs,thijs,thijs,thijs,true
+name,password,profileImagePath,email,isApproved,role,enabled
+Madlyaza,$2a$12$I450gpW4mjyhX1DUI/jZ8O4NsKz8ba2SjPWyr3No.CrwjV3pyVPwi,thijs,thijs,true,ROLE_USER,1
