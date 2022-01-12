@@ -63,9 +63,9 @@ public class ScheduleRepository {
     }
 
     public Schedule delete(long id) {
+        Schedule scheduleToDelete = getById(id);
 
-        Schedule schedule = entityManager.find(Schedule.class, id);
-        entityManager.remove(schedule);
-        return schedule;
+        entityManager.remove(entityManager.contains(scheduleToDelete) ? scheduleToDelete : entityManager.merge(scheduleToDelete));
+        return scheduleToDelete;
     }
 }
