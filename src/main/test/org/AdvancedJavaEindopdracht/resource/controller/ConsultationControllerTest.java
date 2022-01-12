@@ -58,11 +58,11 @@ class ConsultationControllerTest
     {
         this.mockMvc.perform(post("/consultation")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"soundOn\":false,\"switchTime\":\"00:12:03\"}"))
+                        .content("{\"startDateTime\":\"12-12-2021 00:00:00\",\"endDateTime\":\"01-01-2022 00:00:00\"}"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.soundOn").value(false))
-                .andExpect(jsonPath("$.switchTime").value("00:12:03"));
+                .andExpect(jsonPath("$.startDateTime").value("12-12-2021 00:00:00"))
+                .andExpect(jsonPath("$.endDateTime").value("01-01-2022 00:00:00"));
     }
 
     @Test
