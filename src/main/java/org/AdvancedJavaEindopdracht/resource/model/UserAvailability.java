@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -21,7 +22,7 @@ public class UserAvailability {
     private User user;
 
 
-    @NotBlank
+    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 }

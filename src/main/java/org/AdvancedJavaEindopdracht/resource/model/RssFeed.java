@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -24,11 +25,11 @@ public class RssFeed {
     @Column(name = "link", nullable = false)
     private String link;
 
-    @NotBlank
+    @NotNull
     @Column(name = "startDate", nullable = false)
     private Date startDate;
 
-    @NotBlank
+    @NotNull
     @Column(name = "endDate", nullable = false)
     private Date endDate;
 }
