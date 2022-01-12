@@ -40,7 +40,7 @@ public class ConsultationService {
         return consultationMapper.mapFromEntity(consultationRepository.patch(id, consultationMapper.mapToEntity(consultationDto)));
     }
 
-    public void delete(long id) {
-        consultationRepository.delete(id);
+    public ConsultationDto delete(long id) {
+        return consultationMapper.mapFromEntity(consultationRepository.delete(id));
     }
 }

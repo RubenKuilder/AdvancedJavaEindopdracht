@@ -1,9 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.Content;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -26,12 +23,14 @@ public class ConsultationRepository {
 
     public List<Consultation> get() {
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u", Consultation.class);
+
         return query.getResultList();
     }
 
     // Hier gebruik ik geen entityManager.find omdat die een lazyInitialize error gaf.
     public Consultation getById(long id) {
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
+
         query.setParameter("id", id);
         return query.getSingleResult();
     }
@@ -47,9 +46,6 @@ public class ConsultationRepository {
     }
 
     public Consultation patch(long id, Consultation consultation) {
-        if (getById(id) == null)
-            throw new DataNotFoundException();
-
         Consultation updatedConsultation = getById(id);
 
         if (consultation.getUsers() != null) {
@@ -67,8 +63,10 @@ public class ConsultationRepository {
         return updatedConsultation;
     }
 
-    public void delete(long id) {
+    public Consultation delete(long id) throws Exception {
         Consultation consultationToDelete = getById(id);
+
         entityManager.remove(entityManager.contains(consultationToDelete) ? consultationToDelete : entityManager.merge(consultationToDelete));
+        return consultationToDelete;
     }
 }
