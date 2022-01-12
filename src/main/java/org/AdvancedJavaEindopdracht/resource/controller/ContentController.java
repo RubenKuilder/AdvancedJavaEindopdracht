@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/content")
 public class ContentController {
     private final ContentService contentService;

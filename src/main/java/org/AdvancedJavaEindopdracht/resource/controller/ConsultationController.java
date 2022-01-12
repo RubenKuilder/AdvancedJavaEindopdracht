@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/consultation")
 public class ConsultationController {
     private final ConsultationService consultationService;

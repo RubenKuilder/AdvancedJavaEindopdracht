@@ -136,6 +136,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors();
         // First we configure it to allow authentication and authorization in REST
         // This is just a helper method made by me to split it up
         enableRESTAuthentication(http)
