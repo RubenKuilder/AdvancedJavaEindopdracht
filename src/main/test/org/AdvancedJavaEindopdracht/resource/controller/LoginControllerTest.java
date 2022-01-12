@@ -16,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @ContextConfiguration(classes = com.configuration.DatabaseConfigTest.class)
 @SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
@@ -32,7 +33,9 @@ class LoginControllerTest
     @BeforeEach
     public void setup()
     {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).build();
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webContext)
+                .apply(springSecurity())
+                .build();
     }
 
     @Test
