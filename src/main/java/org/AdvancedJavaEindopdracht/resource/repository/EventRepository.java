@@ -72,8 +72,6 @@ public class EventRepository {
     public Event delete(long id) {
         Event eventToDelete = getById(id);
 
-        //TODO: Exception handler
-
         entityManager.remove(entityManager.contains(eventToDelete) ? eventToDelete : entityManager.merge(eventToDelete));
         return eventToDelete;
     }
