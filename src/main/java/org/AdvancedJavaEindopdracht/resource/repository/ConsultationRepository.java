@@ -25,7 +25,6 @@ public class ConsultationRepository {
     }
 
     public List<Consultation> get() {
-//        Hibernate.initialize(userRepository.getUsers());
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u", Consultation.class);
         return query.getResultList();
     }
@@ -35,7 +34,6 @@ public class ConsultationRepository {
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
         query.setParameter("id", id);
         return query.getSingleResult();
-//        return entityManager.find(Consultation.class, id);
     }
 
     public Consultation persist(Consultation consultation) {
