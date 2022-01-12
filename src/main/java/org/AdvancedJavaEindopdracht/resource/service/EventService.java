@@ -39,7 +39,7 @@ public class EventService {
         return eventMapper.mapFromEntity(eventRepository.patch(id, eventMapper.mapToEntity(eventDto)));
     }
 
-    public void delete(long id) {
-        eventRepository.delete(id);
+    public EventDto delete(long id) {
+        return eventMapper.mapFromEntity(eventRepository.delete(id));
     }
 }
