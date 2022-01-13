@@ -19,8 +19,8 @@ public class ConvertToDTO {
     public RssFeedDTO toRssFeedDTO(RssFeed rssFeed) {
         RssFeedDTO rssFeedDTO = new RssFeedDTO();
         rssFeedDTO.setLink(rssFeed.getLink());
-        rssFeedDTO.setEndDate(rssFeed.getEndDate());
-        rssFeedDTO.setStartDate(rssFeed.getStartDate());
+        rssFeedDTO.setEndDateTime(rssFeed.getEndDateTime());
+        rssFeedDTO.setStartDateTime(rssFeed.getStartDateTime());
         rssFeedDTO.setUser(rssFeed.getUser());
         return rssFeedDTO;
     }

@@ -9,6 +9,7 @@ import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
 import org.AdvancedJavaEindopdracht.resource.service.PowerpointService;
 import org.AdvancedJavaEindopdracht.resource.service.RssFeedService;
 import org.AdvancedJavaEindopdracht.resource.service.UserAvailabilityService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,9 +52,8 @@ public class RssFeedController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRssFeed(@PathVariable("id") final Integer id){
-        service.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<RssFeedDTO> deleteRssFeed(@PathVariable("id") final Integer id){
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 
 }

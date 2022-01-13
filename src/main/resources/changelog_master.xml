@@ -319,4 +319,12 @@
                                  onUpdate="CASCADE"/>
         <addNotNullConstraint tableName="event" columnName="content_id" columnDataType="int"/>
     </changeSet>
+
+    <changeSet id="13.2" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="rssfeed"/>
+        </preConditions>
+        <renameColumn tableName="rssfeed" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
+        <renameColumn tableName="rssfeed" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
+    </changeSet>
 </databaseChangeLog>

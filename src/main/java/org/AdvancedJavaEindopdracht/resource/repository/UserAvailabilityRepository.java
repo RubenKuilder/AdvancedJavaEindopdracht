@@ -40,8 +40,9 @@ public class UserAvailabilityRepository {
         return update;
     }
 
-    public void deleteUserAvailability(int id){
+    public UserAvailability deleteUserAvailability(int id){
         UserAvailability ua = manager.find(UserAvailability.class, id);
         manager.remove(ua);
+        return ua;
     }
 }

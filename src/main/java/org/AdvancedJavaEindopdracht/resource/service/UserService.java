@@ -34,7 +34,7 @@ public class UserService {
         return convertToDTO.toUserDTO(userRepository.putUser(user, id));
     }
 
-    public void delete(Integer id){
-        userRepository.deleteUser(id);
+    public UserDTO delete(Integer id){
+        return convertToDTO.toUserDTO(userRepository.getUser(id));
     }
 }

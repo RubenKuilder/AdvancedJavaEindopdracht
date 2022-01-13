@@ -18,11 +18,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Transactional
 @ContextConfiguration(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
@@ -43,14 +44,14 @@ public class UserAvailabilityControllerTest {
         mockMvc.perform(get("/availability").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.[0].date").value("08-12-2021 00:00:00"));
     }
 
     @Test
     public void testGetUserAvailability() throws Exception {
         mockMvc.perform(get("/availability/1"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.date").value("08-12-2021 00:00:00"));
     }
 
     @Test
@@ -58,7 +59,7 @@ public class UserAvailabilityControllerTest {
     public void testDeleteUserAvailability() throws Exception {
         mockMvc.perform(delete("/availability/1"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.date").value("08-12-2021 00:00:00"));
     }
 
     @Test
@@ -72,14 +73,42 @@ public class UserAvailabilityControllerTest {
         user.setProfileImagePath("test");
         user.setEmail("test");
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = sdf.parse("08-12-2021 00:00:00");
+
         ua.setUser(user);
-        ua.setDate(new Date(2010, 3, 5));
+        ua.setDate(date);
 
         mockMvc.perform(post("/availability")
                         .content(new ObjectMapper().writeValueAsString(ua))
                         .contentType("application/json"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.date").value("08-12-2021 00:00:00"));
+
+    }
+
+    @Test
+    public void testPutUserAvailability() throws Exception {
+        UserAvailability ua = new UserAvailability();
+        User user = new User();
+
+        user.setName("test");
+        user.setPassword("test");
+        user.setApproved(true);
+        user.setProfileImagePath("test");
+        user.setEmail("test");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = sdf.parse("08-12-2021 00:00:00");
+
+        ua.setUser(user);
+        ua.setDate(date);
+
+        mockMvc.perform(put("/availability/1")
+                        .content(new ObjectMapper().writeValueAsString(ua))
+                        .contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.date").value("08-12-2021 00:00:00"));
 
     }
 }

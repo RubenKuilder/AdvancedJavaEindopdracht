@@ -50,25 +50,25 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void testMethodGetUserAvailabilities() {
-        List<Consultation> uas = consultationRepository.get();
-        assertNotNull(uas);
+    public void getAll() {
+        List<Consultation> consultations = consultationRepository.get();
+        assertNotNull(consultations);
     }
 
     @Test
-    public void testMethodGetUserAvailability() {
+    public void getById() {
         Consultation consultation = consultationRepository.getById(1);
         assertEquals("Madlyaza", consultation.getUsers().get(0).getName());
     }
 
     @Test
-    public void testMethodPostUserAvailability() {
+    public void postTest() {
         Consultation con = consultationRepository.persist(this.consultation);
         assertEquals("test", con.getUsers().get(0).getName());
     }
 
     @Test
-    public void testMethodPutUserAvailability() {
+    public void putTest() {
         this.consultation.getUsers().get(0).setName("test2");
         consultationRepository.put(1, this.consultation);
         Consultation con = consultationRepository.getById(1);
@@ -76,7 +76,7 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void testMethodDeleteUserAvailability() {
+    public void deleteTest() {
         consultationRepository.delete(1);
     }
 }

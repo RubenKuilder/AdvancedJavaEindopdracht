@@ -42,7 +42,7 @@ public class ScheduleControllerTest {
     @Test
     @Order(1)
     public void getScheduleByIDTest() throws Exception {
-        MvcResult mvcResult = this.mockMvc.perform(get("/schedule/1").contentType(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/schedule/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Mooie titel post"))
                 .andExpect(jsonPath("$.description").value("Mooie beschrijving post"))
