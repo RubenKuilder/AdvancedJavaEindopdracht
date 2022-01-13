@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
+import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -23,6 +24,10 @@ public class User {
     @JsonIgnore
     @ManyToMany(mappedBy = "users")
     List<Consultation> consultations;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "users")
+    List<Schedule> schedules;
 
     @NotBlank
     @Column(name = "name", nullable = false)

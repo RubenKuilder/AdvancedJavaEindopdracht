@@ -1,4 +1,4 @@
-package com.configuration;
+package org.AdvancedJavaEindopdracht.configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.config.BeanPostProcessor;

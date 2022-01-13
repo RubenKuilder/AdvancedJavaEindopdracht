@@ -19,8 +19,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = com.configuration.DatabaseConfigTest.class)
-@SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
+@ContextConfiguration(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
+@SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class UserAvailabilityRepositoryTest {
 
