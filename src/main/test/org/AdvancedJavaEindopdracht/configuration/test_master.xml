@@ -132,4 +132,11 @@
             <column header="path" name="path"/>
         </loadData>
     </changeSet>
+
+    <changeSet id="23" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="content"/>
+        </preConditions>
+        
+    </changeSet>
 </databaseChangeLog>

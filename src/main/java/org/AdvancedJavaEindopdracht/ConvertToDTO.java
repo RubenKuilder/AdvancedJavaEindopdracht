@@ -2,6 +2,8 @@ package org.AdvancedJavaEindopdracht;
 
 import org.AdvancedJavaEindopdracht.resource.dto.*;
 import org.AdvancedJavaEindopdracht.resource.model.*;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 
 
 public class ConvertToDTO {
@@ -51,5 +53,12 @@ public class ConvertToDTO {
         powerpointDTO.setUser(powerpoint.getUser());
         powerpointDTO.setPath(powerpoint.getPath());
         return powerpointDTO;
+    }
+
+    public ContentTypeDto toContentTypeDTO(ContentType contentType)
+    {
+        ContentTypeDto contentTypeDto = new ContentTypeDto();
+        contentTypeDto.setName(contentType.getName());
+        return contentTypeDto;
     }
 }

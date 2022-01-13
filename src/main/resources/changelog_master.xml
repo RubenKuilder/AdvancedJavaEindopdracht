@@ -306,4 +306,17 @@
                                  onUpdate="NO ACTION"/>
         <addNotNullConstraint tableName="event" columnName="content_id" columnDataType="int"/>
     </changeSet>
+
+    <changeSet id="13" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="event"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="event" constraintName="fk_event_content_updated"/>
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content_updated"
+                                 referencedTableName="content"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+        <addNotNullConstraint tableName="event" columnName="content_id" columnDataType="int"/>
+    </changeSet>
 </databaseChangeLog>

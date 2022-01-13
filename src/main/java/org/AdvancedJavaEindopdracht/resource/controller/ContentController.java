@@ -42,10 +42,4 @@ public class ContentController {
     public ResponseEntity<ContentDto> patch(@PathVariable int id, @RequestBody ContentDto contentDto) {
         return ResponseEntity.ok(contentService.patch(id, contentDto));
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable int id) {
-        contentService.delete(id);
-        return ResponseEntity.ok(String.format("Content with ID %d successfully deleted.", id));
-    }
 }
