@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
+import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.Content;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -43,37 +45,104 @@ class EventControllerTest
 
 
     @Test
-    void getAll()
+    void getAll() throws Exception
     {
         this.mockMvc.perform(get("/event").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.[0].name").value("Text"))
-                .andExpect(jsonPath("$.[1].name").value("Video"));
+                .andExpect(jsonPath("$.[0].description").value("Test"))
+                .andExpect(jsonPath("$.[0].startDateTime").value("08-11-2021 00:00:00"))
+                .andExpect(jsonPath("$.[0].duration").value(2000));
     }
 
     @Test
-    void getById()
+    void getById() throws Exception
     {
+        this.mockMvc.perform(get("/event/1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.description").value("Test"))
+                .andExpect(jsonPath("$.startDateTime").value("08-11-2021 00:00:00"))
+                .andExpect(jsonPath("$.duration").value(2000));
     }
 
     @Test
-    void postEvent()
+    void postEvent() throws Exception
     {
+        ContentType contentType = new ContentType();
+        contentType.setName("Text");
+
+        Content content = new Content();
+        content.setPath("path");
+        content.setContentType(contentType);
+
+        Event event = new Event();
+        event.setContent(content);
+        event.setDescription("Description");
+        event.setDuration(2000L);
+        event.setEndDateTime(null);
+        event.setStartDateTime(null);
+        event.setUser_id(1L);
+
+        this.mockMvc.perform(post("/event")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(event)))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.description").value("Description"))
+                .andExpect(jsonPath("$.duration").value(2000L));
     }
 
     @Test
-    void putEvent()
+    void putEvent() throws Exception
     {
+        ContentType contentType = new ContentType();
+        contentType.setName("Text");
+
+        Content content = new Content();
+        content.setPath("path");
+        content.setContentType(contentType);
+
+        Event event = new Event();
+        event.setContent(content);
+        event.setDescription("Description");
+        event.setDuration(2000L);
+        event.setEndDateTime(null);
+        event.setStartDateTime(null);
+        event.setUser_id(1L);
+
+        this.mockMvc.perform(put("/event/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(event)))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.description").value("Description"))
+                .andExpect(jsonPath("$.duration").value(2000L));
     }
 
     @Test
-    void patchEvent()
+    void patchEvent() throws Exception
     {
+        Event event = new Event();
+        event.setDescription("Description");
+        event.setDuration(2000L);
+        event.setUser_id(1L);
+        this.mockMvc.perform(patch("/event/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(event)))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.description").value("Description"))
+                .andExpect(jsonPath("$.duration").value(2000L));
     }
 
     @Test
-    void deleteEvent()
+    void deleteEvent() throws Exception
     {
+        this.mockMvc.perform(delete("/event/1"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.description").value("Test"))
+                .andExpect(jsonPath("$.duration").value(2000L));
     }
 }
