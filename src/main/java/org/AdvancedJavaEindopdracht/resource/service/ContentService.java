@@ -38,8 +38,4 @@ public class ContentService {
     public ContentDto patch(long id, ContentDto contentDto) {
         return contentMapper.mapFromEntity(contentRespository.patch(id, contentMapper.mapToEntity(contentDto)));
     }
-
-    public void delete(long id) {
-        contentRespository.delete(id);
-    }
 }

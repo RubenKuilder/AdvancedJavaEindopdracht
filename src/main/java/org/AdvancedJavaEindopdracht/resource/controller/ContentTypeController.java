@@ -2,6 +2,7 @@ package org.AdvancedJavaEindopdracht.resource.controller;
 
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 import org.AdvancedJavaEindopdracht.resource.service.ContentTypeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +46,7 @@ public class ContentTypeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable int id) {
-        contentTypeService.delete(id);
-        return ResponseEntity.ok(String.format("Contenttype with ID %d successfully deleted.", id));
+    public ResponseEntity<ContentTypeDto> delete(@PathVariable int id) {
+        return new ResponseEntity<>(contentTypeService.delete(id), HttpStatus.OK);
     }
 }

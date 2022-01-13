@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class ContentControllerTest
+class ContentTypeControllerTest
 {
     @Autowired
     private WebApplicationContext webContext;
@@ -44,76 +44,70 @@ class ContentControllerTest
     @Test
     void getAll() throws Exception
     {
-        this.mockMvc.perform(get("/content").contentType(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/contenttype").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.[0].contentType.id").value(1))
-                .andExpect(jsonPath("$.[0].path").value("Location Path"))
-                .andExpect(jsonPath("$.[1].contentType.id").value(2))
-                .andExpect(jsonPath("$.[1].path").value("Location test"));
+                .andExpect(jsonPath("$.[0].name").value("Text"))
+                .andExpect(jsonPath("$.[1].name").value("Video"));
     }
 
     @Test
     void getById() throws Exception
     {
-        this.mockMvc.perform(get("/content/1").contentType(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/contenttype/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.contentType.id").value(1))
-                .andExpect(jsonPath("$.path").value("Location Path"));
+                .andExpect(jsonPath("$.name").value("Text"));
     }
 
     @Test
-    void postContent() throws Exception
+    void postContentType() throws Exception
     {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
-        Content content = new Content();
-        content.setContentType(contentType);
-        content.setPath("Post Path");
-
-        this.mockMvc.perform(post("/content")
+        this.mockMvc.perform(post("/contenttype")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(content)))
+                        .content(new ObjectMapper().writeValueAsString(contentType)))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.contentType.name").value("Text"))
-                .andExpect(jsonPath("$.path").value("Post Path"));
+                .andExpect(jsonPath("$.name").value("Text"));
     }
 
     @Test
-    void putContent() throws Exception
+    void putContentType() throws Exception
     {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
-        contentType.setId(1L);
 
-        Content content = new Content();
-        content.setContentType(contentType);
-        content.setPath("Put Path");
-
-        this.mockMvc.perform(put("/content/1")
+        this.mockMvc.perform(put("/contenttype/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(content)))
+                        .content(new ObjectMapper().writeValueAsString(contentType)))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.contentType.name").value("Text"))
-                .andExpect(jsonPath("$.path").value("Put Path"));
+                .andExpect(jsonPath("$.name").value("Text"));
     }
 
     @Test
-    void patchContent() throws Exception
+    void patchContentType() throws Exception
     {
-        Content content = new Content();
-        content.setPath("Patch Path");
+        ContentType contentType = new ContentType();
+        contentType.setName("Text");
 
-        this.mockMvc.perform(patch("/content/1")
+        this.mockMvc.perform(patch("/contenttype/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(content)))
+                        .content(new ObjectMapper().writeValueAsString(contentType)))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.contentType.name").value("Text"))
-                .andExpect(jsonPath("$.path").value("Patch Path"));
+                .andExpect(jsonPath("$.name").value("Text"));
+    }
+
+    @Test
+    void deleteContentType() throws Exception
+    {
+        this.mockMvc.perform(delete("/contenttype/1"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.name").value("Text"));
     }
 }
