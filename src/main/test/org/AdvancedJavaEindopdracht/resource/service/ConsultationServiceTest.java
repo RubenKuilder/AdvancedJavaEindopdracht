@@ -1,28 +1,20 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.AdvancedJavaEindopdracht.resource.dto.GlobalSettingsDto;
-import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
-import org.AdvancedJavaEindopdracht.resource.model.User;
-import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)

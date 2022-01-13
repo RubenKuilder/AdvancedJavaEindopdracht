@@ -1,7 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
-import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
@@ -42,5 +43,49 @@ public class ContentServiceTest {
         ContentDto contentDto = contentService.getById(1);
         assertEquals(1, contentDto.getContentType().getId());
         assertEquals("Location Path", contentDto.getPath());
+    }
+
+    @Test
+    void postContent() throws Exception
+    {
+        ContentType contentType = new ContentType();
+        contentType.setName("Text");
+
+        ContentDto contentDto = new ContentDto();
+        contentDto.setContentType(contentType);
+        contentDto.setPath("Post Path");
+
+        ContentDto persistedContent = contentService.persist(contentDto);
+
+        assertEquals("Text", persistedContent.getContentType().getName());
+        assertEquals("Post Path", persistedContent.getPath());
+    }
+
+    @Test
+    void putContent() throws Exception
+    {
+        ContentType contentType = new ContentType();
+        contentType.setId(1L);
+        contentType.setName("Text");
+
+        ContentDto contentDto = new ContentDto();
+        contentDto.setContentType(contentType);
+
+        ContentDto persistedContent = contentService.put(1, contentDto);
+
+        assertEquals("Text", persistedContent.getContentType().getName());
+        assertNull(persistedContent.getPath());
+    }
+
+    @Test
+    void patchContent() throws Exception
+    {
+        ContentDto contentDto = new ContentDto();
+        contentDto.setPath("Patch Path");
+
+        ContentDto persistedContent = contentService.patch(1, contentDto);
+
+        assertEquals(1, persistedContent.getContentType().getId());
+        assertEquals("Patch Path", persistedContent.getPath());
     }
 }
