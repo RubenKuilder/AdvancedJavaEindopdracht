@@ -168,6 +168,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private HttpSecurity enableRESTAuthentication(HttpSecurity http) throws Exception {
         http
+                .antMatcher("/signup/**")
+                .authorizeRequests()
+                .anyRequest().authenticated();
+
+        http
                 .authorizeRequests()
                 .mvcMatchers("/authenticate")
                 .permitAll()
@@ -181,6 +186,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(new UserAccessDeniedHandler())
                 // When a user tries to reach an endpoint without a JWT, use the following handler.
                 .authenticationEntryPoint(new UnauthenticatedHandler());
+
 
         // We need to register our JWTFilter. We register it before the UsernamePasswordAuthenticationFilter,
         // as that is part of the group of filters where Spring expects updates to the SecurityContextHolder
