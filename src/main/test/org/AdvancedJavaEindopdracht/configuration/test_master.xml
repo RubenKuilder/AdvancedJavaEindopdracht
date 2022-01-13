@@ -137,6 +137,13 @@
         <preConditions>
             <tableExists tableName="content"/>
         </preConditions>
-        
+        <loadData tableName="event" file="org/AdvancedJavaEindopdracht/configuration/data/event.csv">
+            <column header="content_id" name="content_id"/>
+            <column header="user_id" name="user_id"/>
+            <column header="description" name="description"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+            <column header="duration" name="duration"/>
+        </loadData>
     </changeSet>
 </databaseChangeLog>
