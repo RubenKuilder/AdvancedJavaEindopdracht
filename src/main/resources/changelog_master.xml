@@ -280,4 +280,30 @@
         <renameColumn tableName="schedule" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
         <renameColumn tableName="schedule" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
     </changeSet>
+    
+    <changeSet id="11" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="event"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="event" constraintName="fk_event_content"/>
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content_updated"
+                                 referencedTableName="content"
+                                 referencedColumnNames="id"
+        onDelete="SET NULL"
+        onUpdate="CASCADE"/>
+        <dropNotNullConstraint tableName="event" columnName="content_id" columnDataType="int"/>
+    </changeSet>
+    
+    <changeSet id="12" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="event"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="event" constraintName="fk_event_content_updated"/>
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content_updated"
+                                 referencedTableName="content"
+                                 referencedColumnNames="id"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"/>
+        <addNotNullConstraint tableName="event" columnName="content_id" columnDataType="int"/>
+    </changeSet>
 </databaseChangeLog>
