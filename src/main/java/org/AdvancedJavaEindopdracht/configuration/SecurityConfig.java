@@ -137,9 +137,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
+
         // First we configure it to allow authentication and authorization in REST
         // This is just a helper method made by me to split it up
-        enableRESTAuthentication(http)
+        disableAuthOnSwagger(enableRESTAuthentication(http))
                 // Now let's say which requests we want to authorize
                 .authorizeRequests()
                 // Every single request needs to be authorized... with the exception of /authorization,
@@ -192,6 +193,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return http;
     }
 
+    private HttpSecurity disableAuthOnSwagger(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().mvcMatchers("/swagger-ui.html",
+                        "swagger-resources/**",
+                        "/webjars/springfox-swagger-ui/**",
+                        "/v2/api-docs**",
+                        "/",
+                        "index.jsp")
+                .permitAll();
+        return httpSecurity;
+    }
 
 }
 
