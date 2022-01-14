@@ -29,7 +29,7 @@ public class EventServiceTest {
     private EventService eventTypeService;
 
     @Test
-    void getALlEvents() throws Exception
+    void getAllEvents() throws Exception
     {
         List<EventDto> eventDtoList = eventTypeService.get();
 
