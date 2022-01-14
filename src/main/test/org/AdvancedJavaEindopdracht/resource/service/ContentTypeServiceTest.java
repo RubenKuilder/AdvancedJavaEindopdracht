@@ -58,9 +58,9 @@ public class ContentTypeServiceTest {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
-        ContentTypeDto persistedContentTypeDto = contentTypeService.put(1, contentTypeDto);
+        ContentTypeDto putContentTypeDto = contentTypeService.put(1, contentTypeDto);
 
-        assertEquals("New content type", persistedContentTypeDto.getName());
+        assertEquals("New content type", putContentTypeDto.getName());
     }
 
     @Test
@@ -69,9 +69,9 @@ public class ContentTypeServiceTest {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
-        ContentTypeDto persistedContentTypeDto = contentTypeService.patch(1, contentTypeDto);
+        ContentTypeDto patchedContentTypeDto = contentTypeService.patch(1, contentTypeDto);
 
-        assertEquals("New content type", persistedContentTypeDto.getName());
+        assertEquals("New content type", patchedContentTypeDto.getName());
     }
 
     @Test

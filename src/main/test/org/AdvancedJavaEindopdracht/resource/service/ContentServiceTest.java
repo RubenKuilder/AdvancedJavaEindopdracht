@@ -71,10 +71,10 @@ public class ContentServiceTest {
         ContentDto contentDto = new ContentDto();
         contentDto.setContentType(contentType);
 
-        ContentDto persistedContent = contentService.put(1, contentDto);
+        ContentDto putContent = contentService.put(1, contentDto);
 
-        assertEquals("Text", persistedContent.getContentType().getName());
-        assertNull(persistedContent.getPath());
+        assertEquals("Text", putContent.getContentType().getName());
+        assertNull(putContent.getPath());
     }
 
     @Test
@@ -83,9 +83,9 @@ public class ContentServiceTest {
         ContentDto contentDto = new ContentDto();
         contentDto.setPath("Patch Path");
 
-        ContentDto persistedContent = contentService.patch(1, contentDto);
+        ContentDto patchedContent = contentService.patch(1, contentDto);
 
-        assertEquals(1, persistedContent.getContentType().getId());
-        assertEquals("Patch Path", persistedContent.getPath());
+        assertEquals(1, patchedContent.getContentType().getId());
+        assertEquals("Patch Path", patchedContent.getPath());
     }
 }
