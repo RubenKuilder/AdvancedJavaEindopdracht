@@ -49,8 +49,8 @@ class RssServiceTest
     {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
-        feed.setEndDate(new Date(01, 01, 2022, 00, 00, 00));
-        feed.setStartDate(new Date(01, 01, 2022, 00, 00, 00));
+        feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
+        feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
 
         User user = new User();
         user.setName("test22");
@@ -78,8 +78,8 @@ class RssServiceTest
     {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
-        feed.setEndDate(new Date(01, 01, 2022, 00, 00, 00));
-        feed.setStartDate(new Date(01, 01, 2022, 00, 00, 00));
+        feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
+        feed.setStartDateTime(new Date(01, 01, 2022, 00, 00, 00));
 
         User user = new User();
         user.setName("test33");

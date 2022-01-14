@@ -3,6 +3,7 @@ package org.AdvancedJavaEindopdracht.resource.controller;
 import org.AdvancedJavaEindopdracht.resource.dto.RoleDTO;
 import org.AdvancedJavaEindopdracht.resource.model.Role;
 import org.AdvancedJavaEindopdracht.resource.service.RoleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +45,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRole(@PathVariable("id") final Integer id){
-        service.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<RoleDTO> deleteRole(@PathVariable("id") final Integer id){
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

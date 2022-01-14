@@ -18,8 +18,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Transactional
 @ContextConfiguration(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
@@ -40,14 +40,15 @@ public class RoleControllerTest {
         mockMvc.perform(get("/roles").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.[0].role").value("user"))
+                .andExpect(jsonPath("$.[1].role").value("admin"));
     }
 
     @Test
     public void testGetRole() throws Exception {
         mockMvc.perform(get("/roles/1"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.role").value("user"));
     }
 
     @Test
@@ -55,7 +56,7 @@ public class RoleControllerTest {
     public void testDeleteRoles() throws Exception {
         mockMvc.perform(delete("/roles/1"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.role").value("user"));
     }
 
     @Test
@@ -67,7 +68,20 @@ public class RoleControllerTest {
                         .content(new ObjectMapper().writeValueAsString(role))
                         .contentType("application/json"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.role").value("test"));
+
+    }
+
+    @Test
+    public void testPutRoles() throws Exception {
+        Role role = new Role();
+        role.setRole("test");
+
+        mockMvc.perform(put("/roles/1")
+                        .content(new ObjectMapper().writeValueAsString(role))
+                        .contentType("application/json"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.role").value("test"));
 
     }
 }

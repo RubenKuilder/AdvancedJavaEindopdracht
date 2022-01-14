@@ -43,8 +43,8 @@ public class RssFeedRepositoryTest {
         this.feed = new RssFeed();
         this.feed.setUser(this.user);
         this.feed.setLink("test");
-        this.feed.setStartDate(new Date(2010, 3, 5));
-        this.feed.setEndDate(new Date(2010, 3, 5));
+        this.feed.setStartDateTime(new Date(2010, 3, 5));
+        this.feed.setEndDateTime(new Date(2010, 3, 5));
     }
 
     @Test
