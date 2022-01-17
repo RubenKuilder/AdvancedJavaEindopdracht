@@ -17,7 +17,7 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = CascadeType.PERSIST)
     @JoinColumn(name="contentType_id")
     private ContentType contentType;
 

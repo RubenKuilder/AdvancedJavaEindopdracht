@@ -67,8 +67,83 @@
         <loadData tableName="rssfeed" file="org/AdvancedJavaEindopdracht/configuration/data/RssFeed.csv">
             <column header="user_id" name="user_id"/>
             <column header="link" name="link"/>
-            <column header="startDate" name="startDate"/>
-            <column header="endDate" name="endDate"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="17" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="consultation"/>
+        </preConditions>
+        <loadData tableName="consultation" file="org/AdvancedJavaEindopdracht/configuration/data/consultation.csv">
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="18" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="userconsultation"/>
+        </preConditions>
+        <loadData tableName="userconsultation" file="org/AdvancedJavaEindopdracht/configuration/data/consultation_user.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="consultation_id" name="consultation_id"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="19" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="schedule"/>
+        </preConditions>
+        <loadData tableName="schedule" file="org/AdvancedJavaEindopdracht/configuration/data/schedule.csv">
+            <column header="title" name="title"/>
+            <column header="description" name="description"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="userSchedule"/>
+        </preConditions>
+        <loadData tableName="userschedule" file="org/AdvancedJavaEindopdracht/configuration/data/user_schedule.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="schedule_id" name="schedule_id"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="21" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="contenttype"/>
+        </preConditions>
+        <loadData tableName="contentType" file="org/AdvancedJavaEindopdracht/configuration/data/contenttype.csv">
+            <column header="name" name="name"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="22" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="content"/>
+        </preConditions>
+        <loadData tableName="content" file="org/AdvancedJavaEindopdracht/configuration/data/content.csv">
+            <column header="contentType_id" name="contentType_id"/>
+            <column header="path" name="path"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="23" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="content"/>
+        </preConditions>
+        <loadData tableName="event" file="org/AdvancedJavaEindopdracht/configuration/data/event.csv">
+            <column header="content_id" name="content_id"/>
+            <column header="user_id" name="user_id"/>
+            <column header="description" name="description"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+            <column header="duration" name="duration"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

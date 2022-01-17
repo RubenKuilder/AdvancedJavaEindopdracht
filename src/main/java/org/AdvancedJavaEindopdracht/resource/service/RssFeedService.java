@@ -33,7 +33,7 @@ public class RssFeedService {
         return convertToDTO.toRssFeedDTO(repository.putRssFeed(rssFeed, id));
     }
 
-    public void delete(Integer id){
-        repository.deleteRssFeed(id);
+    public RssFeedDTO delete(Integer id){
+        return convertToDTO.toRssFeedDTO(repository.deleteRssFeed(id));
     }
 }

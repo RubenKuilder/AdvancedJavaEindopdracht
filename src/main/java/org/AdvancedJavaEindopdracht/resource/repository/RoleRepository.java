@@ -38,8 +38,9 @@ public class RoleRepository {
         return update;
     }
 
-    public void deleteRole(int id){
+    public Role deleteRole(int id){
         Role role = manager.find(Role.class, id);
         manager.remove(role);
+        return role;
     }
 }

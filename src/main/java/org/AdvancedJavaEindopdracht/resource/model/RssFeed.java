@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,10 +27,12 @@ public class RssFeed {
     private String link;
 
     @NotNull
-    @Column(name = "startDate", nullable = false)
-    private Date startDate;
+    @Column(name = "startDateTime", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
+    private Date startDateTime;
 
     @NotNull
-    @Column(name = "endDate", nullable = false)
-    private Date endDate;
+    @Column(name = "endDateTime", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
+    private Date endDateTime;
 }

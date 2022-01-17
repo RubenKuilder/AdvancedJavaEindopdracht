@@ -33,14 +33,9 @@ public class ScheduleRepositoryTest {
     private ScheduleRepository scheduleRepository;
 
     @Test
-    @Transactional
     @Order(1)
-    void getScheduleByIDTest() throws Exception
+    void getScheduleByIDTest()
     {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
         Schedule schedule = scheduleRepository.getById(1);
 
         assertEquals("Mooie titel post", schedule.getTitle());
@@ -49,35 +44,25 @@ public class ScheduleRepositoryTest {
 
     @Test
     @Order(2)
-    public void deleteScheduleTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
-
-        //TODO: ID should be 1 if you run this single test, and 2 if you run all tests.
-        // This should be fixed if the data is loaded via CSV instead of POST
-        Schedule schedule = scheduleRepository.delete(2);
+    public void deleteScheduleTest()
+    {
+        Schedule schedule = scheduleRepository.delete(1);
 
         assertEquals("Mooie titel post", schedule.getTitle());
         assertEquals("Mooie beschrijving post", schedule.getDescription());
     }
 
     @Test
-    @Transactional
-    void getScheduleTest() throws Exception
+    void getScheduleTest()
     {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
 
         List<Schedule> scheduleList = scheduleRepository.get();
 
-        assertEquals("Mooie titel post", scheduleList.get(0).getTitle());
-        assertEquals("Mooie beschrijving post", scheduleList.get(0).getDescription());
+        assertEquals("Mooie titel post", scheduleList.get(1).getTitle());
+        assertEquals("Mooie beschrijving post", scheduleList.get(1).getDescription());
     }
 
     @Test
-    @Transactional
     void postScheduleTest() throws Exception
     {
         User user = new User();
@@ -104,7 +89,6 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    @Transactional
     void putScheduleTest() throws Exception
     {
         User user = new User();
@@ -131,11 +115,7 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    @Transactional
-    void patchScheduleTest() throws Exception {
-        //TODO: Populate liquibase database with CSV instead of POST
-        //Aangezien het niet lukt om data toe te voegen via een changeset, wordt er eerst data gepost
-        postScheduleTest();
+    void patchScheduleTest(){
 
         Schedule schedule = new Schedule();
         schedule.setTitle("Mooie titel patch");

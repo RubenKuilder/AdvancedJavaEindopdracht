@@ -1,6 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,8 +49,9 @@ public class ContentTypeRepository {
         return updatedContentType;
     }
 
-    public void delete(long id) {
-        ContentType contentTypeToDelete = getById(id);
-        entityManager.remove(entityManager.contains(contentTypeToDelete) ? contentTypeToDelete : entityManager.merge(contentTypeToDelete));
+    public ContentType delete(long id) {
+        ContentType contentType = entityManager.find(ContentType.class, id);
+        entityManager.remove(contentType);
+        return contentType;
     }
 }

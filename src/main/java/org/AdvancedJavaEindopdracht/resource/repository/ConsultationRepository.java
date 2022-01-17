@@ -22,7 +22,7 @@ public class ConsultationRepository {
     }
 
     public List<Consultation> get() {
-        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u", Consultation.class);
+        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u order by c.id", Consultation.class);
 
         return query.getResultList();
     }
@@ -63,7 +63,7 @@ public class ConsultationRepository {
         return updatedConsultation;
     }
 
-    public Consultation delete(long id) throws Exception {
+    public Consultation delete(long id) {
         Consultation consultationToDelete = getById(id);
 
         entityManager.remove(entityManager.contains(consultationToDelete) ? consultationToDelete : entityManager.merge(consultationToDelete));

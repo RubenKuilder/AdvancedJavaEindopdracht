@@ -33,7 +33,7 @@ public class UserAvailabilityService {
         return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.putUserAvailability(userAvailability, id));
     }
 
-    public void delete(Integer id){
-        userAvailabilityRepository.deleteUserAvailability(id);
+    public UserAvailabilityDTO delete(Integer id){
+        return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.deleteUserAvailability(id));
     }
 }
