@@ -14,6 +14,8 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 
 
 import javax.transaction.Transactional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +36,8 @@ public class ConsultationRepositoryTest {
     private Consultation consultation;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws ParseException
+    {
         this.user = new User();
         user.setName("test");
         user.setApproved(true);
@@ -42,9 +45,13 @@ public class ConsultationRepositoryTest {
         user.setPassword("true");
         user.setProfileImagePath("true");
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date startDateTime = sdf.parse("01-01-2022 00:00:00");
+        Date endDateTime = sdf.parse("01-01-2022 00:00:00");
+
         this.consultation= new Consultation();
-        consultation.setStartDateTime(new  Date(01, 01, 2022, 00, 00, 00));
-        consultation.setEndDateTime(new  Date(01, 01, 2022, 00, 00, 00));
+        consultation.setStartDateTime(startDateTime);
+        consultation.setEndDateTime(endDateTime);
         List<User> usersList = Arrays.asList(user);
         consultation.setUsers(usersList);
     }
@@ -68,15 +75,19 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void putTest() {
-        this.consultation.getUsers().get(0).setName("test2");
-        consultationRepository.put(1, this.consultation);
-        Consultation con = consultationRepository.getById(1);
-        assertEquals("test2", con.getUsers().get(0).getName());
+    public void putTest() throws ParseException
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date startDateTime = sdf.parse("10-01-2022 15:40:10");
+        this.consultation.setStartDateTime(startDateTime);
+        Consultation con = consultationRepository.put(1,this.consultation);
+        assertEquals(startDateTime, con.getStartDateTime());
     }
 
     @Test
-    public void deleteTest() {
-        consultationRepository.delete(1);
+    public void deleteTest()
+    {
+        Consultation consultation = consultationRepository.delete(1);
+        assertEquals("Madlyaza", consultation.getUsers().get(0).getName());
     }
 }
