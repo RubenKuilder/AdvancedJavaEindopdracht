@@ -22,7 +22,7 @@ public class ConsultationRepository {
     }
 
     public List<Consultation> get() {
-        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u", Consultation.class);
+        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u order by c.id", Consultation.class);
 
         return query.getResultList();
     }

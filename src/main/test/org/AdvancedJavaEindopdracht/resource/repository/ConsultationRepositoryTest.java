@@ -59,10 +59,10 @@ public class ConsultationRepositoryTest {
         List<Consultation> consultationList = consultationRepository.get();
 
         assertEquals(2, consultationList.size());
-        assertEquals("2021-11-08 00:00:00.0", consultationList.get(1).getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", consultationList.get(1).getEndDateTime().toString());
-        assertEquals("2021-01-01 00:00:00.0", consultationList.get(0).getStartDateTime().toString());
-        assertEquals("2022-01-01 00:00:00.0", consultationList.get(0).getEndDateTime().toString());
+        assertEquals("2021-11-08 00:00:00.0", consultationList.get(0).getStartDateTime().toString());
+        assertEquals("2022-12-08 00:00:00.0", consultationList.get(0).getEndDateTime().toString());
+        assertEquals("2021-01-01 00:00:00.0", consultationList.get(1).getStartDateTime().toString());
+        assertEquals("2022-01-01 00:00:00.0", consultationList.get(1).getEndDateTime().toString());
     }
 
     @Test

@@ -28,10 +28,8 @@ public class Consultation {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     List<User> users;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
     private Date startDateTime;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
     private Date endDateTime;
 
 }
