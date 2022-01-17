@@ -1,6 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,17 +101,7 @@ public class ConsultationRepositoryTest {
 
         assertEquals(startDateTime, putConsultation.getStartDateTime());
         assertNull(putConsultation.getEndDateTime());
-    }
-
-    @Test
-    public void putTest() throws ParseException
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date startDateTime = sdf.parse("10-01-2022 15:40:10");
-        this.consultation.setStartDateTime(startDateTime);
-        Consultation con = consultationRepository.put(1,this.consultation);
-        assertEquals(startDateTime, con.getStartDateTime());
-    }
+    } 
 
     @Test
     public void patchConsultation() throws Exception
