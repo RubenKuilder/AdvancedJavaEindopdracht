@@ -11,6 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -27,16 +29,16 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void getRssFeeds() throws Exception
+    void getRssFeeds()
     {
         List<RssFeedDTO>  list = service.getRssFeeds();
 
-        assertEquals(1, list.size());
+        assertEquals(2, list.size());
     }
 
     @Test
     @Transactional
-    void getRssFeed() throws Exception
+    void getRssFeed()
     {
         RssFeedDTO rss = service.getRssFeed(1);
 
@@ -45,12 +47,15 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void createRss() throws Exception
+    void createRss() throws ParseException
     {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
-        feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
-        feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date startDateTime = sdf.parse("10-01-2022 15:40:10");
+        Date endDateTime = sdf.parse("10-01-2022 15:50:10");
+        feed.setStartDateTime(startDateTime);
+        feed.setEndDateTime(endDateTime);
 
         User user = new User();
         user.setName("test22");
@@ -67,14 +72,14 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void deleteRss() throws Exception
+    void deleteRss()
     {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRss() throws Exception
+    void updateRss()
     {
         RssFeed feed = new RssFeed();
         feed.setLink("test");

@@ -25,7 +25,7 @@ public class ConsultationServiceTest {
     private ConsultationService consultationService;
 
     @Test
-    void getAllConsultation() throws Exception
+    void getAllConsultation()
     {
         List<ConsultationDto> consultationDtoList = consultationService.get();
 
@@ -37,7 +37,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void getById() throws Exception
+    void getById()
     {
         ConsultationDto consultationDto = consultationService.getById(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());
@@ -89,7 +89,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void deleteConsultation() throws Exception
+    void deleteConsultation()
     {
         ConsultationDto consultationDto = consultationService.delete(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());

@@ -35,7 +35,7 @@ class GlobalSettingsServiceTest
 
     @Test
     @Transactional
-    void getGlobalSettings() throws Exception
+    void getGlobalSettings()
     {
         List<GlobalSettingsDto> globalSettingsDtoList = globalSettingsService.getGlobalSettings();
 
@@ -46,7 +46,7 @@ class GlobalSettingsServiceTest
 
     @Test
     @Transactional
-    void getGlobalSettingsById() throws Exception
+    void getGlobalSettingsById()
     {
         GlobalSettingsDto globalSettingsDto = globalSettingsService.getGlobalSettingsById(1);
         assertTrue(globalSettingsDto.isSoundOn());
@@ -55,7 +55,7 @@ class GlobalSettingsServiceTest
 
     @Test
     @Transactional
-    void createGlobalSettings() throws Exception
+    void createGlobalSettings()
     {
         GlobalSettings globalSettings = new GlobalSettings();
         globalSettings.setSwitchTime(new Time(12,12,12));
@@ -68,7 +68,7 @@ class GlobalSettingsServiceTest
 
     @Test
     @Transactional
-    void deleteGlobalSettings() throws Exception
+    void deleteGlobalSettings()
     {
         GlobalSettingsDto globalSettingsDto = globalSettingsService.deleteGlobalSettings(1);
         assertTrue(globalSettingsDto.isSoundOn());
@@ -77,7 +77,7 @@ class GlobalSettingsServiceTest
 
     @Test
     @Transactional
-    void updateGlobalSettings() throws Exception
+    void updateGlobalSettings()
     {
         GlobalSettings globalSettings = new GlobalSettings();
         globalSettings.setSwitchTime(new Time(12,12,12));

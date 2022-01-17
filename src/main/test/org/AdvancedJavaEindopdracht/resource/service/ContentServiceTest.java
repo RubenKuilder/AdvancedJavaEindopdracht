@@ -24,7 +24,7 @@ public class ContentServiceTest {
     private ContentService contentService;
 
     @Test
-    void getAllContent() throws Exception
+    void getAllContent()
     {
         List<ContentDto> contentDtoList = contentService.get();
 
@@ -38,7 +38,7 @@ public class ContentServiceTest {
     }
 
     @Test
-    void getById() throws Exception
+    void getById()
     {
         ContentDto contentDto = contentService.getById(1);
         assertEquals(1, contentDto.getContentType().getId());
@@ -46,7 +46,7 @@ public class ContentServiceTest {
     }
 
     @Test
-    void postContent() throws Exception
+    void postContent()
     {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
@@ -62,7 +62,7 @@ public class ContentServiceTest {
     }
 
     @Test
-    void putContent() throws Exception
+    void putContent()
     {
         ContentType contentType = new ContentType();
         contentType.setId(1L);
@@ -78,7 +78,7 @@ public class ContentServiceTest {
     }
 
     @Test
-    void patchContent() throws Exception
+    void patchContent()
     {
         ContentDto contentDto = new ContentDto();
         contentDto.setPath("Patch Path");

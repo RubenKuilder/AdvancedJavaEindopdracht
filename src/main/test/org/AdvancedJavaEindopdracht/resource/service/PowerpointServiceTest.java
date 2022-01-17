@@ -40,7 +40,7 @@ class PowerpointServiceTest
 
     @Test
     @Transactional
-    void getPowerpoints() throws Exception
+    void getPowerpoints()
     {
         List<PowerpointDTO>  list = service.getPowerpoints();
 
@@ -49,7 +49,7 @@ class PowerpointServiceTest
 
     @Test
     @Transactional
-    void getPowerpoint() throws Exception
+    void getPowerpoint()
     {
         PowerpointDTO dto = service.getPowerpoint(1);
 
@@ -58,7 +58,7 @@ class PowerpointServiceTest
 
     @Test
     @Transactional
-    void createRole() throws Exception
+    void createRole()
     {
         Powerpoint powerpoint = new Powerpoint();
         User user = new User();
@@ -78,14 +78,14 @@ class PowerpointServiceTest
 
     @Test
     @Transactional
-    void deleteRole() throws Exception
+    void deleteRole()
     {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRole() throws Exception
+    void updateRole()
     {
         Powerpoint powerpoint = new Powerpoint();
         User user = new User();

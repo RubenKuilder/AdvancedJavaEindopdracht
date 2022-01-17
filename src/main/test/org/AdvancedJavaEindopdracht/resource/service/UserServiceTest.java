@@ -25,7 +25,8 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void getUsers() throws Exception {
+    void getUsers()
+    {
         List<UserDTO> list = service.getUsers();
 
         assertEquals(2, list.size());
@@ -33,7 +34,8 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void getUser() throws Exception {
+    void getUser()
+    {
         UserDTO dto = service.getUser(1);
 
         assertEquals("Madlyaza", dto.getName());
@@ -41,7 +43,8 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void createUser() throws Exception {
+    void createUser()
+    {
         User user = new User();
         user.setName("test22");
         user.setApproved(true);
@@ -57,13 +60,15 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void deleteUser() throws Exception {
-        service.delete(1);
+    void deleteUser()
+    {
+        assertEquals("Madlyaza",service.delete(1).getName());
     }
 
     @Test
     @Transactional
-    void updateUser() throws Exception {
+    void updateUser()
+    {
         User user = new User();
         user.setName("test33");
         user.setApproved(true);

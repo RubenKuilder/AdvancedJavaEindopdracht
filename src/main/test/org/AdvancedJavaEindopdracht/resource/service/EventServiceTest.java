@@ -29,7 +29,7 @@ public class EventServiceTest {
     private EventService eventService;
 
     @Test
-    void getAllEvents() throws Exception
+    void getAllEvents()
     {
         List<EventDto> eventDtoList = eventService.get();
 
@@ -50,7 +50,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void getById() throws Exception
+    void getById()
     {
         EventDto eventDto = eventService.getById(1);
 
@@ -114,7 +114,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void patchEvent() throws Exception
+    void patchEvent()
     {
         EventDto eventDto = new EventDto();
         eventDto.setUser_id(2L);
