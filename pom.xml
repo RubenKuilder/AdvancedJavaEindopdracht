@@ -240,6 +240,11 @@
                 <configuration>
                     <!--You used to need a web.xml file, but now we can do it with just Java-->
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>additional_resources</directory>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
 
