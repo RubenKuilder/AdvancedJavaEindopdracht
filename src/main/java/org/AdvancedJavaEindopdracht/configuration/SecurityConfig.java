@@ -138,6 +138,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
 
+        http
+                .authorizeRequests()
+                .antMatchers("/signup/**")
+                .permitAll();
+
         // First we configure it to allow authentication and authorization in REST
         // This is just a helper method made by me to split it up
         disableAuthOnSwagger(enableRESTAuthentication(http))
@@ -156,6 +161,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // which is wat the CSRF exploit relies on.
                 .csrf()
                 .disable();
+
     }
 
     /**
@@ -167,11 +173,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     private HttpSecurity enableRESTAuthentication(HttpSecurity http) throws Exception {
-        http
-                .antMatcher("/signup/**")
-                .authorizeRequests()
-                .anyRequest().authenticated();
-
         http
                 .authorizeRequests()
                 .mvcMatchers("/authenticate")
