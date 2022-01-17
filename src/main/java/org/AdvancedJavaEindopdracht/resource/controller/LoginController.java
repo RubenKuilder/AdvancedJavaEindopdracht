@@ -26,7 +26,11 @@ public class LoginController
         this.jwtProvider = jwtProvider;
     }
 
-
+    /**
+     * Post a single login.
+     *
+     * @return      response entity with token
+     */
     @PostMapping
     public ResponseEntity<String> login(@RequestBody LoginDTO login)
     {

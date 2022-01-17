@@ -22,29 +22,54 @@ public class PowerpointController {
         this.service = service;
     }
 
+    /**
+     * Returns a list of all powerpoints.
+     *
+     * @return      response entity with list of all powerpoints
+     */
     @GetMapping
     @ResponseBody
     public ResponseEntity<List<PowerpointDTO>> getPowerpoints(){
         return ResponseEntity.ok(service.getPowerpoints());
     }
 
+    /**
+     * Returns a single powerpoint.
+     *
+     * @return      response entity with single powerpoint
+     */
     @GetMapping("/{id}")
     @ResponseBody
     public ResponseEntity<PowerpointDTO> getPowerpoint(@PathVariable("id") final Integer id){
         return ResponseEntity.ok(service.getPowerpoint(id));
     }
 
+    /**
+     * Post a single powerpoint.
+     *
+     * @return      response entity with posted powerpoint
+     */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PowerpointDTO> postPowerpoint(@Valid @RequestBody Powerpoint powerpoint){
         return ResponseEntity.ok(service.create(powerpoint));
     }
 
+    /**
+     * Put a single powerpoint.
+     *
+     * @return      response entity with put powerpoint
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<PowerpointDTO> putPowerpoint(@PathVariable("id") final Integer id, @Valid @RequestBody Powerpoint powerpoint){
+    public ResponseEntity<PowerpointDTO> putPowerpoint(@PathVariable("id") final Integer id, @Valid @RequestBody Powerpoint powerpoint) {
         return ResponseEntity.ok(service.update(powerpoint, id));
     }
 
+    /**
+     * Delete a single powerpoint.
+     *
+     * @return      response entity with deleted powerpoint
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<PowerpointDTO> deletePowerpoint(@PathVariable("id") final Integer id){
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
