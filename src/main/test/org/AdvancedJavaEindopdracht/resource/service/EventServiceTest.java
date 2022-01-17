@@ -26,12 +26,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @Transactional
 public class EventServiceTest {
     @Autowired
-    private EventService eventTypeService;
+    private EventService eventService;
 
     @Test
     void getAllEvents()
     {
-        List<EventDto> eventDtoList = eventTypeService.get();
+        List<EventDto> eventDtoList = eventService.get();
 
         assertEquals(2, eventDtoList.size());
         assertEquals(1, eventDtoList.get(0).getContent().getId());
@@ -52,7 +52,7 @@ public class EventServiceTest {
     @Test
     void getById()
     {
-        EventDto eventDto = eventTypeService.getById(1);
+        EventDto eventDto = eventService.getById(1);
 
         assertEquals(1, eventDto.getContent().getId());
         assertEquals(1, eventDto.getUser_id());
@@ -82,7 +82,7 @@ public class EventServiceTest {
         eventDto.setEndDateTime(endDateTime);
         eventDto.setDuration(500L);
 
-        EventDto persistedEventDto = eventTypeService.persist(eventDto);
+        EventDto persistedEventDto = eventService.persist(eventDto);
 
         assertEquals("New content type", persistedEventDto.getContent().getContentType().getName());
         assertEquals("Hele mooie path", persistedEventDto.getContent().getPath());
@@ -104,7 +104,7 @@ public class EventServiceTest {
         eventDto.setDescription("Description");
         eventDto.setStartDateTime(startDateTime);
 
-        EventDto putEventDto = eventTypeService.put(1, eventDto);
+        EventDto putEventDto = eventService.put(1, eventDto);
 
         assertEquals(1L, putEventDto.getUser_id());
         assertEquals("Description", putEventDto.getDescription());
@@ -120,7 +120,7 @@ public class EventServiceTest {
         eventDto.setUser_id(2L);
         eventDto.setDescription("Description");
 
-        EventDto patchedEventDto = eventTypeService.patch(1, eventDto);
+        EventDto patchedEventDto = eventService.patch(1, eventDto);
 
 
         assertEquals(1, patchedEventDto.getContent().getId());
