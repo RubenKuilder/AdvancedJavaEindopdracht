@@ -37,7 +37,7 @@ class RoleServiceTest
 
     @Test
     @Transactional
-    void getRoles() throws Exception
+    void getRoles()
     {
         List<RoleDTO>  list = service.getRoles();
 
@@ -46,7 +46,7 @@ class RoleServiceTest
 
     @Test
     @Transactional
-    void getRole() throws Exception
+    void getRole()
     {
         RoleDTO role = service.getRole(1);
 
@@ -55,7 +55,7 @@ class RoleServiceTest
 
     @Test
     @Transactional
-    void createRole() throws Exception
+    void createRole()
     {
         Role role = new Role();
         role.setRole("test");
@@ -66,14 +66,14 @@ class RoleServiceTest
 
     @Test
     @Transactional
-    void deleteRole() throws Exception
+    void deleteRole()
     {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRole() throws Exception
+    void updateRole()
     {
         Role role = new Role();
         role.setRole("test");

@@ -27,7 +27,7 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void getRssFeeds() throws Exception
+    void getRssFeeds()
     {
         List<RssFeedDTO>  list = service.getRssFeeds();
 
@@ -36,7 +36,7 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void getRssFeed() throws Exception
+    void getRssFeed()
     {
         RssFeedDTO rss = service.getRssFeed(1);
 
@@ -45,7 +45,7 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void createRss() throws Exception
+    void createRss()
     {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
@@ -67,14 +67,14 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void deleteRss() throws Exception
+    void deleteRss()
     {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRss() throws Exception
+    void updateRss()
     {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
