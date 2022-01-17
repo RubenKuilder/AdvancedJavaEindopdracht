@@ -36,7 +36,7 @@ public class PowerpointService {
         return convertToDTO.toPowerpointDTO(repository.putPowerpoint(powerpoint, id));
     }
 
-    public void delete(Integer id){
-        repository.deletePowerpoint(id);
+    public PowerpointDTO delete(Integer id){
+        return convertToDTO.toPowerpointDTO(repository.deletePowerpoint(id));
     }
 }

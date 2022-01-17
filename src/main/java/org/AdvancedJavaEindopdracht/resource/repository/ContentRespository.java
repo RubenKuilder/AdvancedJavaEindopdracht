@@ -51,9 +51,4 @@ public class ContentRespository {
 
         return updatedContent;
     }
-
-    public void delete(long id) {
-        Content contentToDelete = getById(id);
-        entityManager.remove(entityManager.contains(contentToDelete) ? contentToDelete : entityManager.merge(contentToDelete));
-    }
 }

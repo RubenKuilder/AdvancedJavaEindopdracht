@@ -33,7 +33,7 @@ public class RoleService {
         return convertToDTO.toRoleDTO(roleRepository.putRole(role, id));
     }
 
-    public void delete(Integer id){
-        roleRepository.deleteRole(id);
+    public RoleDTO delete(Integer id){
+        return convertToDTO.toRoleDTO(roleRepository.deleteRole(id));
     }
 }

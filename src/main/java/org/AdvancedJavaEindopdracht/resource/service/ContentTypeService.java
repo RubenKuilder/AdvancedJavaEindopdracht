@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeMapper;
 import org.AdvancedJavaEindopdracht.resource.repository.ContentTypeRepository;
@@ -11,6 +12,7 @@ import java.util.List;
 public class ContentTypeService {
     private final ContentTypeRepository contentTypeRepository;
     private final ContentTypeMapper contentTypeMapper;
+    private final ConvertToDTO convertToDto = new ConvertToDTO();
 
     public ContentTypeService(ContentTypeRepository contentTypeRepository, ContentTypeMapper contentTypeMapper) {
         this.contentTypeRepository = contentTypeRepository;
@@ -39,7 +41,7 @@ public class ContentTypeService {
         return contentTypeMapper.mapFromEntity(contentTypeRepository.patch(id, contentTypeMapper.mapToEntity(contentTypeDto)));
     }
 
-    public void delete(long id) {
-        contentTypeRepository.delete(id);
+    public ContentTypeDto delete(long id) {
+        return convertToDto.toContentTypeDTO(contentTypeRepository.delete(id));
     }
 }

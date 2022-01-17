@@ -17,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Transactional
-@ContextConfiguration(classes = com.configuration.DatabaseConfigTest.class)
-@SpringJUnitWebConfig(classes = com.configuration.DatabaseConfigTest.class)
+@ContextConfiguration(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
+@SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
 public class PowerpointControllerTest {
     @Autowired
     private WebApplicationContext wac;
@@ -39,22 +39,25 @@ public class PowerpointControllerTest {
         mockMvc.perform(get("/powerpoint").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.[0].path").value("test"))
+                .andExpect(jsonPath("$.[0].user.id").value(1));
     }
 
     @Test
     public void testGetPowerpoint() throws Exception {
         mockMvc.perform(get("/powerpoint/1"))
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.path").value("test"))
+                .andExpect(jsonPath("$.user.id").value(1));
     }
 
     @Test
-    @DirtiesContext
     public void testDeletePowerpoint() throws Exception {
         mockMvc.perform(delete("/powerpoint/1"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.path").value("test"))
+                .andExpect(jsonPath("$.user.id").value(1));
     }
 
     @Test
@@ -75,7 +78,7 @@ public class PowerpointControllerTest {
                         .content(new ObjectMapper().writeValueAsString(pp))
                         .contentType("application/json"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$.path").value("test"));
 
     }
 }

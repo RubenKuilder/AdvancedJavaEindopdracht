@@ -52,8 +52,9 @@ public class UserRepository {
         return update;
     }
 
-    public void deleteUser(int id){
+    public User deleteUser(int id){
         User user = manager.find(User.class, id);
         manager.remove(user);
+        return user;
     }
 }

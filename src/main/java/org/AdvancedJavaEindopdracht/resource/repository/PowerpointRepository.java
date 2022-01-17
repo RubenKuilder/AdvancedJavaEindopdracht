@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
 import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
 import org.springframework.stereotype.Repository;
@@ -40,8 +41,10 @@ public class PowerpointRepository {
         return update;
     }
 
-    public void deletePowerpoint(int id){
-        Powerpoint ua = manager.find(Powerpoint.class, id);
-        manager.remove(ua);
+    public Powerpoint deletePowerpoint(int id){
+
+        Powerpoint powerpoint = manager.find(Powerpoint.class, id);
+        manager.remove(powerpoint);
+        return powerpoint;
     }
 }

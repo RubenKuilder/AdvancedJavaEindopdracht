@@ -3,6 +3,7 @@ package org.AdvancedJavaEindopdracht.resource.controller;
 import org.AdvancedJavaEindopdracht.resource.dto.UserDTO;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("id") final Integer id){
-        service.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable("id") final Integer id){
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

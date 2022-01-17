@@ -35,13 +35,14 @@ public class RssFeedRepository {
         RssFeed update = manager.find(RssFeed.class, id);
         update.setUser(rssFeed.getUser());
         update.setLink(rssFeed.getLink());
-        update.setEndDate(rssFeed.getEndDate());
-        update.setStartDate(rssFeed.getStartDate());
+        update.setEndDateTime(rssFeed.getEndDateTime());
+        update.setStartDateTime(rssFeed.getStartDateTime());
         return update;
     }
 
-    public void deleteRssFeed(int id){
+    public RssFeed deleteRssFeed(int id){
         RssFeed feed = manager.find(RssFeed.class, id);
         manager.remove(feed);
+        return feed;
     }
 }
