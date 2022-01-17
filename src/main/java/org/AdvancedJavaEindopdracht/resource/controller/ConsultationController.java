@@ -45,7 +45,7 @@ public class ConsultationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ConsultationDto> delete(@PathVariable int id) {
+    public ResponseEntity<ConsultationDto> delete(@PathVariable int id) throws Exception {
         return ResponseEntity.ok(consultationService.delete(id));
     }
 }
