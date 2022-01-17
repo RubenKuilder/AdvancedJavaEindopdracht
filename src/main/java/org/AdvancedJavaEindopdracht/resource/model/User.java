@@ -47,4 +47,11 @@ public class User {
     @Column(name = "isApproved")
     private boolean isApproved;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
+
+
 }

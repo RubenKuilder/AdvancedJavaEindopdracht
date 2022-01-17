@@ -2,6 +2,7 @@ package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +33,11 @@ public class UserRepository {
     }
 
     public User postUser(User user){
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setApproved(false);
+        user.setRole("ROLE_USER");
+        user.setEnabled(false);
+
         manager.persist(user);
         return manager.find(User.class, user.getId());
     }
