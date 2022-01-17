@@ -89,7 +89,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void deleteConsultation()
+    void deleteConsultation() throws Exception
     {
         ConsultationDto consultationDto = consultationService.delete(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());
