@@ -29,7 +29,8 @@ public class LoginController
     /**
      * Post a single login.
      *
-     * @return      response entity with token
+     * @param login     login to post
+     * @return          response entity with token
      */
     @PostMapping
     public ResponseEntity<String> login(@RequestBody LoginDTO login)

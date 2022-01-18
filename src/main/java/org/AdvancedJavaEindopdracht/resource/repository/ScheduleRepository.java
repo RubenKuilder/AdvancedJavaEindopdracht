@@ -1,9 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
-import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
-import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.Content;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

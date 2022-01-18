@@ -33,6 +33,7 @@ public class ContentTypeController {
     /**
      * Returns a single content type.
      *
+     * @param id    id of the content type to find
      * @return      response entity with single content type
      */
     @GetMapping("/{id}")
@@ -43,7 +44,8 @@ public class ContentTypeController {
     /**
      * Post a single content type.
      *
-     * @return      response entity with posted content type
+     * @param contentTypeDto    content type to post
+     * @return                  response entity with posted content type
      */
     @PostMapping
     public ResponseEntity<ContentTypeDto> post(@RequestBody @Valid ContentTypeDto contentTypeDto) {
@@ -53,7 +55,9 @@ public class ContentTypeController {
     /**
      * Put a single content type.
      *
-     * @return      response entity with put content type
+     * @param id                id of the content type to put
+     * @param contentTypeDto    content type to put
+     * @return                  response entity with put content type
      */
     @PutMapping("/{id}")
     public ResponseEntity<ContentTypeDto> put(@PathVariable long id, @RequestBody @Valid ContentTypeDto contentTypeDto) {
@@ -63,7 +67,9 @@ public class ContentTypeController {
     /**
      * Patch a single content type.
      *
-     * @return      response entity with patched content type
+     * @param id                id of the content type to patch
+     * @param contentTypeDto    content type to patch
+     * @return                  response entity with patched content type
      */
     @PatchMapping("/{id}")
     public ResponseEntity<ContentTypeDto> patch(@PathVariable int id, @RequestBody ContentTypeDto contentTypeDto) {
@@ -73,6 +79,7 @@ public class ContentTypeController {
     /**
      * Delete a single content type.
      *
+     * @param id    id of the content type to delete
      * @return      response entity with deleted content type
      */
     @DeleteMapping("/{id}")

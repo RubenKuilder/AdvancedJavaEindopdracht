@@ -1,8 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
-import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

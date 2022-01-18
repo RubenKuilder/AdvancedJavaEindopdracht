@@ -53,8 +53,8 @@ public class ConsultationRepository {
     /**
      * Post a single consultation.
      *
-     * @param consultation consultation to post
-     * @return      response entity with posted consultation
+     * @param consultation  consultation to post
+     * @return              response entity with posted consultation
      */
     public Consultation persist(Consultation consultation) {
         entityManager.persist(consultation);

@@ -36,6 +36,7 @@ public class GlobalSettingsController
     /**
      * Returns a single global setting.
      *
+     * @param id    id of the global setting to find
      * @return      response entity with single global setting
      */
     @GetMapping("/{id}")
@@ -47,7 +48,8 @@ public class GlobalSettingsController
     /**
      * Post a single global setting.
      *
-     * @return      response entity with posted global setting
+     * @param globalSettings    global setting to post
+     * @return                  response entity with posted global setting
      */
     @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GlobalSettingsDto> createSettings(@RequestBody GlobalSettings globalSettings)
@@ -58,6 +60,7 @@ public class GlobalSettingsController
     /**
      * Delete a single global setting.
      *
+     * @param id    id of the global setting to delete
      * @return      response entity with deleted global setting
      */
     @DeleteMapping("/{id}")
@@ -69,7 +72,9 @@ public class GlobalSettingsController
     /**
      * Put a single global setting.
      *
-     * @return      response entity with put global setting
+     * @param id                id of the global setting to put
+     * @param globalSettings    global setting to put
+     * @return                  response entity with put global setting
      */
     @PutMapping(value = "/{id}",
     consumes = MediaType.APPLICATION_JSON_VALUE,

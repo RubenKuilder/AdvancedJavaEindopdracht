@@ -39,8 +39,8 @@ public class ContentRespository {
     /**
      * Post a single content.
      *
-     * @param content content to post
-     * @return      response entity with posted content
+     * @param content   content to post
+     * @return          response entity with posted content
      */
     public Content persist(Content content) {
         entityManager.persist(content);

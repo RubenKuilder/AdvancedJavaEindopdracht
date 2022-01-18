@@ -30,6 +30,7 @@ public class ScheduleController {
     /**
      * Returns a single schedule.
      *
+     * @param id    id of the schedule to find
      * @return      response entity with single schedule
      */
     @GetMapping("/{id}")
@@ -40,7 +41,8 @@ public class ScheduleController {
     /**
      * Post a single schedule.
      *
-     * @return      response entity with posted schedule
+     * @param scheduleDto   schedule to post
+     * @return              response entity with posted schedule
      */
     @PostMapping
     public ResponseEntity<ScheduleDto> post(@RequestBody @Valid ScheduleDto scheduleDto) {
@@ -50,7 +52,9 @@ public class ScheduleController {
     /**
      * Put a single schedule.
      *
-     * @return      response entity with put schedule
+     * @param id            id of the schedule to put
+     * @param scheduleDto   schedule to put
+     * @return              response entity with put schedule
      */
     @PutMapping("/{id}")
     public ResponseEntity<ScheduleDto> put(@PathVariable long id, @RequestBody @Valid ScheduleDto scheduleDto) {
@@ -60,7 +64,9 @@ public class ScheduleController {
     /**
      * Patch a single schedule.
      *
-     * @return      response entity with patched schedule
+     * @param id            id of the schedule to patch
+     * @param scheduleDto   consultation to patch
+     * @return              response entity with patched schedule
      */
     @PatchMapping("/{id}")
     public ResponseEntity<ScheduleDto> patch(@PathVariable int id, @RequestBody ScheduleDto scheduleDto) {
@@ -70,6 +76,7 @@ public class ScheduleController {
     /**
      * Delete a single schedule.
      *
+     * @param id    id of the schedule to delete
      * @return      response entity with deleted schedule
      */
     @DeleteMapping("/{id}")

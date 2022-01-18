@@ -1,7 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
-import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,8 +39,8 @@ public class ContentTypeRepository {
     /**
      * Post a single content type.
      *
-     * @param contentType content type to post
-     * @return      response entity with posted content type
+     * @param contentType   content type to post
+     * @return              response entity with posted content type
      */
     public ContentType persist(ContentType contentType) {
         entityManager.persist(contentType);

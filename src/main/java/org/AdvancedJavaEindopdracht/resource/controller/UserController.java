@@ -36,6 +36,7 @@ public class UserController {
     /**
      * Returns a single user.
      *
+     * @param id    id of the user to find
      * @return      response entity with single user
      */
     @GetMapping("/{id}")
@@ -47,6 +48,7 @@ public class UserController {
     /**
      * Post a single user.
      *
+     * @param user  user to post
      * @return      response entity with posted user
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -58,6 +60,8 @@ public class UserController {
     /**
      * Put a single user.
      *
+     * @param id    id of the user to put
+     * @param user  user to put
      * @return      response entity with put user
      */
     @PutMapping("/{id}")
@@ -69,6 +73,7 @@ public class UserController {
     /**
      * Delete a single user.
      *
+     * @param id    id of the user to delete
      * @return      response entity with deleted user
      */
     @DeleteMapping("/{id}")

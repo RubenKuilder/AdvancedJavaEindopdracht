@@ -31,6 +31,7 @@ public class ContentController {
     /**
      * Returns a single content.
      *
+     * @param id    id of the content to find
      * @return      response entity with single content
      */
     @GetMapping("/{id}")
@@ -41,7 +42,8 @@ public class ContentController {
     /**
      * Post a single content.
      *
-     * @return      response entity with posted content
+     * @param contentDto    content to post
+     * @return              response entity with posted content
      */
     @PostMapping
     public ResponseEntity<ContentDto> post(@RequestBody @Valid ContentDto contentDto) {
@@ -51,7 +53,9 @@ public class ContentController {
     /**
      * Put a single content.
      *
-     * @return      response entity with put content
+     * @param id            id of the content to put
+     * @param contentDto    content to put
+     * @return              response entity with put content
      */
     @PutMapping("/{id}")
     public ResponseEntity<ContentDto> put(@PathVariable long id, @RequestBody @Valid ContentDto contentDto) {
@@ -61,7 +65,9 @@ public class ContentController {
     /**
      * Patch a single content.
      *
-     * @return      response entity with patched content
+     * @param id            id of the content to patch
+     * @param contentDto    content to patch
+     * @return              response entity with patched content
      */
     @PatchMapping("/{id}")
     public ResponseEntity<ContentDto> patch(@PathVariable int id, @RequestBody ContentDto contentDto) {

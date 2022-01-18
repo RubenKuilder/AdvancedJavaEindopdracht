@@ -69,9 +69,9 @@ public class GlobalSettingsRepository
      * Put a single global setting.
      * Updates all fields.
      *
-     * @param id    id of the global setting to put
-     * @param globalSettings global setting to put
-     * @return      response entity with put global setting
+     * @param id                id of the global setting to put
+     * @param globalSettings    global setting to put
+     * @return                  response entity with put global setting
      */
     public GlobalSettings updateGlobalSettings(GlobalSettings globalSettings, Integer id)
     {

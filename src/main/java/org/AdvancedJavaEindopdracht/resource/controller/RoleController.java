@@ -35,6 +35,7 @@ public class RoleController {
     /**
      * Returns a single role.
      *
+     * @param id    id of the role to find
      * @return      response entity with single role
      */
     @GetMapping("/{id}")
@@ -46,6 +47,7 @@ public class RoleController {
     /**
      * Post a single role.
      *
+     * @param role  role to post
      * @return      response entity with posted role
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -57,6 +59,8 @@ public class RoleController {
     /**
      * Put a single role.
      *
+     * @param id    id of the role to put
+     * @param role  role to put
      * @return      response entity with put role
      */
     @PutMapping("/{id}")
@@ -67,6 +71,7 @@ public class RoleController {
     /**
      * Delete a single role.
      *
+     * @param id    id of the role to delete
      * @return      response entity with deleted role
      */
     @DeleteMapping("/{id}")

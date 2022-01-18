@@ -36,6 +36,7 @@ public class UserAvailabilityController {
     /**
      * Returns a single user availability.
      *
+     * @param id    id of the user availability to find
      * @return      response entity with single user availability
      */
     @GetMapping("/{id}")
@@ -47,7 +48,8 @@ public class UserAvailabilityController {
     /**
      * Post a single user availability.
      *
-     * @return      response entity with posted user availability
+     * @param availability  user availability to post
+     * @return              response entity with posted user availability
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -58,7 +60,9 @@ public class UserAvailabilityController {
     /**
      * Put a single user availability.
      *
-     * @return      response entity with put user availability
+     * @param id            id of the user availability to put
+     * @param availability  user availability to put
+     * @return              response entity with put user availability
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserAvailabilityDTO> putAvailability(@PathVariable("id") final Integer id, @Valid @RequestBody UserAvailability availability){
@@ -68,6 +72,7 @@ public class UserAvailabilityController {
     /**
      * Delete a single user availability.
      *
+     * @param id    id of the user availability to delete
      * @return      response entity with deleted user availability
      */
     @DeleteMapping("/{id}")

@@ -22,6 +22,7 @@ public class SignupController{
     /**
      * Post a single user.
      *
+     * @param user  user to post
      * @return      response entity with user
      */
     @PostMapping

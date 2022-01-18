@@ -36,6 +36,7 @@ public class PowerpointController {
     /**
      * Returns a single powerpoint.
      *
+     * @param id    id of the powerpoint to find
      * @return      response entity with single powerpoint
      */
     @GetMapping("/{id}")
@@ -47,7 +48,8 @@ public class PowerpointController {
     /**
      * Post a single powerpoint.
      *
-     * @return      response entity with posted powerpoint
+     * @param powerpoint    powerpoint to post
+     * @return              response entity with posted powerpoint
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -58,7 +60,9 @@ public class PowerpointController {
     /**
      * Put a single powerpoint.
      *
-     * @return      response entity with put powerpoint
+     * @param id            id of the powerpoint to put
+     * @param powerpoint    powerpoint to put
+     * @return              response entity with put powerpoint
      */
     @PutMapping("/{id}")
     public ResponseEntity<PowerpointDTO> putPowerpoint(@PathVariable("id") final Integer id, @Valid @RequestBody Powerpoint powerpoint) {
@@ -68,6 +72,7 @@ public class PowerpointController {
     /**
      * Delete a single powerpoint.
      *
+     * @param id    id of the powerpoint to delete
      * @return      response entity with deleted powerpoint
      */
     @DeleteMapping("/{id}")
