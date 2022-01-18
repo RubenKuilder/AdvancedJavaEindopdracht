@@ -25,7 +25,7 @@ sudo apt install default-jdk
 ###1.2.2 Check for Tomcat in Repository
 Check for the Tomcat server package in the repository. This will show you all the latest packages available for download.
 ```shell
-sudo apt-chache search tomcat
+sudo apt-cache search tomcat
 ```
 
 ###1.2.3 Download Tomcat
@@ -65,7 +65,7 @@ When the file is opened, add these three tagged lines in the file above the “<
 ```shell
 <role rolename="admin-gui"/>
 <role rolename="manager-gui"/>
-<user username="tomcat" password="pass"roles="admin-gui,manager-gui"/>
+<user username="tomcat" password="password" roles="admin-gui,manager-gui"/>
 ```
 Save the file and close it. Now, we can move on to accessing the manager application area.
 
@@ -101,14 +101,19 @@ sudo service mysql status
 ```
 ![img.png](additional_resources/imgMYSQL.png)
 
-###1.3.3 Create new user
+###1.3.3 Login with root
+
+First time with MySQL you will need to login with ```sudo mysql -u root``` as the root user this should sign you in directly.
+
+![img.png](additional_resources/imgRootLogin.png)
+###1.3.4 Create new user
 Create a new user using the following command.
 ```shell
 CREATE USER 'stenden'@'localhost' IDENTIFIED BY 'St3nd3n_D@shboard';
 ```
 ![img.png](additional_resources/imgCreateUser.png)
 
-###1.3.4 Grant new user permissions
+###1.3.5 Grant new user permissions
 
 At this point stenden has no permissions to do anything with the databases. In fact, even if stenden tries to login (with the password, St3nd3n_D@shboard), they will not be able to reach the MySQL shell.
 
@@ -118,14 +123,14 @@ Therefore, the first thing to do is to provide the user with access to the infor
 GRANT ALL PRIVILEGES ON stenden_dashboard.* TO 'stenden'@'localhost';
 ```
 
-###1.3.5 Flush
+###1.3.6 Flush
 Once you have finalized the permissions that you want to set up for your new users, always be sure to reload all the privileges.
 ```shell
 FLUSH PRIVILEGES;
 ```
 Your changes will now be in effect.
 
-###1.3.5 Quit and Log In
+###1.3.7 Quit and Log In
 To test our new user, log out by typing:
 ```shell
 quit
@@ -135,6 +140,16 @@ and log back in with this command:
 mysql -u stenden -p
 ```
 
-###1.3.6 Create Database
-Run the command ```CREATE DATABASE stenden;``` to create the stenden database.
+###1.3.8 Create Database
+Run the command ```CREATE DATABASE stenden_dashboard;``` to create the stenden_dashboard database.
 
+##1.4 Deploy application
+
+### 1.4.1 Download the .WAR
+First we will download the .WAR file using the following command. Make sure you are not writing within the MySQL/MardiaDB commandline type ```quit``` if you are.
+
+```shell
+wget https://github.com/RubenKuilder/AdvancedJavaEindopdracht/raw/war-export-testing/additional_resources/Stenden_Dashboard.war
+```
+
+### 1.4.2 Deploying the application
