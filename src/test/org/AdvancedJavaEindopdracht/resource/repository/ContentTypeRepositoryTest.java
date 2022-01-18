@@ -1,8 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
-import org.AdvancedJavaEindopdracht.resource.service.ContentTypeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

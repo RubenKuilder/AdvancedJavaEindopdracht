@@ -1,7 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.controller;
 
 import org.AdvancedJavaEindopdracht.security.JWTProvider;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

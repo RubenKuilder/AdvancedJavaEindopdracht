@@ -1,7 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
 import org.AdvancedJavaEindopdracht.resource.model.RssFeed;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.junit.jupiter.api.BeforeEach;

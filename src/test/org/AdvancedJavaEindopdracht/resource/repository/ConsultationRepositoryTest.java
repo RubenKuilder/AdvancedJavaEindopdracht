@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

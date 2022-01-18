@@ -1,7 +1,5 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
-import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

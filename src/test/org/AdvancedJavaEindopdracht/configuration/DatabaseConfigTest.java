@@ -42,6 +42,9 @@ public class DatabaseConfigTest implements WebMvcConfigurer
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.h2.Driver");
         ds.setUrl("jdbc:h2:mem:unit-testing-jpa;DB_CLOSE_DELAY=-1;MODE=MySQL");
+
+        System.out.println("++++++++++++++++++++++++++");
+
         ds.setUsername("test");
         ds.setPassword("test");
         return ds;

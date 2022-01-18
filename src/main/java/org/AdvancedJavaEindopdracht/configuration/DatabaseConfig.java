@@ -35,6 +35,7 @@ public class DatabaseConfig
     {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
+
         ds.setUrl(databaseUrl);
         ds.setUsername(databaseName);
         ds.setPassword(databasePassword);

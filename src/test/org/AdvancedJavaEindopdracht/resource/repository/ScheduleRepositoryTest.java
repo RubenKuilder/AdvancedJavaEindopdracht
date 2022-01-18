@@ -1,10 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 
-import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
-import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleDto;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
