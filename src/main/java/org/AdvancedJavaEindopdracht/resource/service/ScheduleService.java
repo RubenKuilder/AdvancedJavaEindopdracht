@@ -21,28 +21,65 @@ public class ScheduleService {
         this.scheduleMapper = scheduleMapper;
     }
 
+    /**
+     * Maps Entity to DTO and returns a list of all schedules.
+     *
+     * @return      response entity with list of all schedules
+     */
     public List<ScheduleDto> getAll() {
         return scheduleMapper.mapFromEntityList(scheduleRepository.get());
     }
 
+    /**
+     * Maps Entity to DTO and returns a single schedule.
+     *
+     * @param id    id of the schedule to find
+     * @return      response entity with single schedule
+     */
     public ScheduleDto getById(long id) {
         return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
     }
 
+    /**
+     * Maps Entity to DTO and posts a single schedule.
+     *
+     * @param scheduleDto   schedule to post
+     * @return              response entity with posted schedule
+     */
     public ScheduleDto persist(ScheduleDto scheduleDto) {
         return scheduleMapper.mapFromEntity(
                 scheduleRepository.persist(scheduleMapper.mapToEntity(scheduleDto))
         );
     }
 
+    /**
+     * Maps Entity to DTO and puts a single schedule.
+     *
+     * @param id            id of the schedule to put
+     * @param scheduleDto   schedule to put
+     * @return              response entity with put schedule
+     */
     public ScheduleDto put(long id, ScheduleDto scheduleDto) {
         return scheduleMapper.mapFromEntity(scheduleRepository.put(id, scheduleMapper.mapToEntity(scheduleDto)));
     }
 
+    /**
+     * Maps Entity to DTO and patches a single schedule.
+     *
+     * @param id            id of the schedule to patch
+     * @param scheduleDto   consultation to patch
+     * @return              response entity with patched schedule
+     */
     public ScheduleDto patch(long id, ScheduleDto scheduleDto) {
         return scheduleMapper.mapFromEntity(scheduleRepository.patch(id, scheduleMapper.mapToEntity(scheduleDto)));
     }
 
+    /**
+     * Maps Entity to DTO and deletes a single schedule.
+     *
+     * @param id    id of the schedule to delete
+     * @return      response entity with deleted schedule
+     */
     public ScheduleDto delete(long id) {
         return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
     }
