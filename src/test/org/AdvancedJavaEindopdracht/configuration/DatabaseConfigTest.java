@@ -43,8 +43,6 @@ public class DatabaseConfigTest implements WebMvcConfigurer
         ds.setDriverClassName("org.h2.Driver");
         ds.setUrl("jdbc:h2:mem:unit-testing-jpa;DB_CLOSE_DELAY=-1;MODE=MySQL");
 
-        System.out.println("++++++++++++++++++++++++++");
-
         ds.setUsername("test");
         ds.setPassword("test");
         return ds;
@@ -79,7 +77,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
-        properties.setProperty("hibernate-dialect", "org.hibernate.dialect.H2Dialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         return properties;
     }
 

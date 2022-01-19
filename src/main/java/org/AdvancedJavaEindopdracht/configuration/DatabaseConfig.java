@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.configuration;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Properties;
 
 @EnableTransactionManagement
@@ -39,6 +41,11 @@ public class DatabaseConfig
         ds.setUrl(databaseUrl);
         ds.setUsername(databaseName);
         ds.setPassword(databasePassword);
+
+        System.out.println("++++++++++++++++++++++++++");
+        System.out.println(databasePassword);
+        System.out.println(databaseName);
+        System.out.println(databaseUrl);
 
         return ds;
     }
@@ -72,7 +79,7 @@ public class DatabaseConfig
     {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
-        properties.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return properties;
     }
 
