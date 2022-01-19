@@ -42,11 +42,6 @@ public class DatabaseConfig
         ds.setUsername(databaseName);
         ds.setPassword(databasePassword);
 
-        System.out.println("++++++++++++++++++++++++++");
-        System.out.println(databasePassword);
-        System.out.println(databaseName);
-        System.out.println(databaseUrl);
-
         return ds;
     }
 
