@@ -322,9 +322,9 @@
 
     <changeSet id="13.2" author="Robbie Eijkelkamp">
         <preConditions>
-            <tableExists tableName="rssfeed"/>
+            <tableExists tableName="rssFeed"/>
         </preConditions>
-        <renameColumn tableName="rssfeed" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
-        <renameColumn tableName="rssfeed" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
+        <renameColumn tableName="rssFeed" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
+        <renameColumn tableName="rssFeed" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
     </changeSet>
 </databaseChangeLog>
