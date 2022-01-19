@@ -67,6 +67,7 @@ When the file is opened, add these three tagged lines in the file above the “<
 <role rolename="manager-gui"/>
 <user username="tomcat" password="password" roles="admin-gui,manager-gui"/>
 ```
+![img.png](additional_resources/imgUsersXml.png)
 Save the file and close it. Now, we can move on to accessing the manager application area.
 
 ### 1.2.8 Restart Tomcat
@@ -107,7 +108,7 @@ First time with MySQL you will need to login with ```sudo mysql -u root``` as th
 
 ![img.png](additional_resources/imgRootLogin.png)
 ### 1.3.4 Create new user
-Create a new user using the following command.
+Create a new user using the following command. (If different credentials are wanted then this has to be changed in the code)
 ```shell
 CREATE USER 'stenden'@'localhost' IDENTIFIED BY 'St3nd3n_D@shboard';
 ```
@@ -135,10 +136,11 @@ To test our new user, log out by typing:
 ```shell
 quit
 ```
-and log back in with this command:
+And log back in, using the password from earlier, with this command:
 ```shell
 mysql -u stenden -p
 ```
+
 
 ### 1.3.8 Create Database
 Run the command ```CREATE DATABASE stenden_dashboard;``` to create the stenden_dashboard database.
