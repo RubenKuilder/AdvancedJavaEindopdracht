@@ -8,9 +8,9 @@
     <include file="changelog_master.xml"/>
     <changeSet id="11" author="Madlyaza">
         <preConditions>
-            <tableExists tableName="globalsettings"/>
+            <tableExists tableName="globalSettings"/>
         </preConditions>
-        <loadData tableName="globalsettings" file="org/AdvancedJavaEindopdracht/configuration/data/GlobalSettings.csv">
+        <loadData tableName="globalSettings" file="org/AdvancedJavaEindopdracht/configuration/data/GlobalSettings.csv">
             <column header="soundOn" name="soundOn" type="BOOLEAN"/>
             <column header="switchTime" name="switchTime" type="DATE"/>
         </loadData>
@@ -42,9 +42,9 @@
 
     <changeSet id="14" author="ThijsRijkers">
         <preConditions>
-            <tableExists tableName="user_availability"/>
+            <tableExists tableName="userAvailability"/>
         </preConditions>
-        <loadData tableName="user_availability" file="org/AdvancedJavaEindopdracht/configuration/data/user_availability.csv">
+        <loadData tableName="userAvailability" file="org/AdvancedJavaEindopdracht/configuration/data/user_availability.csv">
             <column header="user_id" name="user_id"/>
             <column header="date" name="date"/>
         </loadData>
@@ -84,9 +84,9 @@
 
     <changeSet id="18" author="Robbie Eijkelkamp">
         <preConditions>
-            <tableExists tableName="userconsultation"/>
+            <tableExists tableName="userConsultation"/>
         </preConditions>
-        <loadData tableName="userconsultation" file="org/AdvancedJavaEindopdracht/configuration/data/consultation_user.csv">
+        <loadData tableName="userConsultation" file="org/AdvancedJavaEindopdracht/configuration/data/consultation_user.csv">
             <column header="user_id" name="user_id"/>
             <column header="consultation_id" name="consultation_id"/>
         </loadData>
@@ -116,7 +116,7 @@
 
     <changeSet id="21" author="Robbie Eijkelkamp">
         <preConditions>
-            <tableExists tableName="contenttype"/>
+            <tableExists tableName="contentType"/>
         </preConditions>
         <loadData tableName="contentType" file="org/AdvancedJavaEindopdracht/configuration/data/contenttype.csv">
             <column header="name" name="name"/>

@@ -33,11 +33,11 @@
 
     </changeSet>
 
-    <changeSet id="2" author="Robbie Eijkelkamp" context="role and user_availability table created">
+    <changeSet id="2" author="Robbie Eijkelkamp" context="role and userAvailability table created">
         <preConditions>
             <not>
                 <tableExists tableName="role"/>
-                <tableExists tableName="user_availability"/>
+                <tableExists tableName="userAvailability"/>
             </not>
         </preConditions>
         <createTable tableName="role">
@@ -48,7 +48,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="user_availability">
+        <createTable tableName="userAvailability">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -59,7 +59,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="user_availability" baseColumnNames="user_id" constraintName="fk_user_availability_user"
+        <addForeignKeyConstraint baseTableName="userAvailability" baseColumnNames="user_id" constraintName="fk_user_availability_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
     </changeSet>
@@ -252,12 +252,12 @@
             </column>
         </createTable>
     </changeSet>
-    
+
     <changeSet id="8" author="Robbie Eijkelkamp" context="Changed eventsettings to globalsettings">
         <preConditions>
-            <tableExists tableName="eventsettings"/>
+            <tableExists tableName="eventSettings"/>
         </preConditions>
-        <renameTable oldTableName="eventsettings" newTableName="globalsettings"/>
+        <renameTable oldTableName="eventSettings" newTableName="globalSettings"/>
     </changeSet>
 
     <changeSet id="9" author="Robbie Eijkelkamp">
