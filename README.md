@@ -151,7 +151,7 @@ Run the command ```CREATE DATABASE stenden_dashboard;``` to create the stenden_d
 First we will download the .WAR file using the following command. Make sure you are not writing within the MySQL/MardiaDB commandline type ```quit``` if you are.
 
 ```shell
-wget https://github.com/RubenKuilder/AdvancedJavaEindopdracht/raw/war-export-testing/additional_resources/Stenden_Dashboard.war
+wget https://github.com/RubenKuilder/AdvancedJavaEindopdracht/raw/main/additional_resources/Stenden_Dashboard.war
 ```
 
 ### 1.4.2 Deploying the application
