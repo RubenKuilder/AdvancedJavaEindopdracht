@@ -153,3 +153,13 @@ wget https://github.com/RubenKuilder/AdvancedJavaEindopdracht/raw/war-export-tes
 ```
 
 ### 1.4.2 Deploying the application
+Go to http://127.0.0.1:8080/manager/html and look under the deploy tab for "WAR file to deploy". 
+Click on Choose File and choose the file we just downloaded. Then hit deploy.
+
+![deploy.png](additional_resources/imgDeploy.png)
+
+### 1.4.3 Checking if the application deployed
+After the page finishes loading you should see it have true under the running header, it should have started up automatically.
+If it did not launch try hitting deploy on Stenden_Dashboard, if it errors you can look under ```/var/lib/tomcat9/logs/catalina.out``` for the logs.
+
+![img.png](additional_resources/imgApplication.png)
