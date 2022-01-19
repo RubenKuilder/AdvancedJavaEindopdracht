@@ -19,6 +19,12 @@ public class SignupController{
             this.service = service;
         }
 
+    /**
+     * Post a single user.
+     *
+     * @param user  user to post
+     * @return      response entity with user
+     */
     @PostMapping
     public ResponseEntity<UserDTO> signup(@Valid @RequestBody User user)
     {

@@ -16,21 +16,46 @@ public class RssFeedRepository {
     @PersistenceContext
     private EntityManager manager;
 
+    /**
+     * Returns a list of all RSS feeds.
+     *
+     * @return      response entity with list of all RSS feeds
+     */
     public List<RssFeed> getRssFeeds(){
         CriteriaBuilder cb = manager.getCriteriaBuilder();
         CriteriaQuery<RssFeed> query = cb.createQuery(RssFeed.class);
         return manager.createQuery(query.select(query.from(RssFeed.class))).getResultList();
     }
 
+    /**
+     * Find a single RSS feed and return it.
+     *
+     * @param id    id of the RSS feed to find
+     * @return      response entity with a single RSS feed
+     */
     public RssFeed getRssFeed(int id){
         return manager.find(RssFeed.class, id);
     }
 
+    /**
+     * Post a single RSS feed.
+     *
+     * @param rssFeed   RSS feed to post
+     * @return          response entity with posted RSS feed
+     */
     public RssFeed postRssFeed(RssFeed rssFeed){
         manager.persist(rssFeed);
         return manager.find(RssFeed.class, rssFeed.getId());
     }
 
+    /**
+     * Put a single RSS feed.
+     * Updates all fields.
+     *
+     * @param id        id of the RSS feed to put
+     * @param rssFeed   RSS feed to put
+     * @return          response entity with put RSS feed
+     */
     public RssFeed putRssFeed(RssFeed rssFeed, int id){
         RssFeed update = manager.find(RssFeed.class, id);
         update.setUser(rssFeed.getUser());
@@ -40,6 +65,12 @@ public class RssFeedRepository {
         return update;
     }
 
+    /**
+     * Delete a single RSS feed and return it.
+     *
+     * @param id    id of the RSS feed to delete
+     * @return      response entity with deleted RSS feed
+     */
     public RssFeed deleteRssFeed(int id){
         RssFeed feed = manager.find(RssFeed.class, id);
         manager.remove(feed);
