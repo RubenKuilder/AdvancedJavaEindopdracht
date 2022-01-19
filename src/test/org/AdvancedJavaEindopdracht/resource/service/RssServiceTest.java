@@ -63,6 +63,7 @@ class RssServiceTest
         user.setEmail("true");
         user.setPassword("true");
         user.setProfileImagePath("true");
+
         feed.setUser(user);
 
         RssFeedDTO dto = service.create(feed);

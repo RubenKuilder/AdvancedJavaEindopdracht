@@ -27,6 +27,7 @@ public class ConvertToDTO {
 
     public UserDTO toUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
         userDTO.setName(user.getName());
         userDTO.setApproved(user.isApproved());
         userDTO.setEmail(user.getEmail());
