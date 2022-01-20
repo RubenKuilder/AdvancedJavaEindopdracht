@@ -31,7 +31,7 @@ public class UserAvailibilityServiceTest {
     {
         List<UserAvailabilityDTO> list = service.getUserAvailabilities();
 
-        assertEquals(1, list.size());
+        assertEquals(2, list.size());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class UserAvailibilityServiceTest {
 
         UserAvailability ua = new UserAvailability();
         ua.setUser(user);
-        ua.setDate(new Date(2010, 3, 5));
+        ua.setDate(new Date(2010, 3, 5, 5, 5, 5));
 
         UserAvailabilityDTO dto = service.create(ua);
 

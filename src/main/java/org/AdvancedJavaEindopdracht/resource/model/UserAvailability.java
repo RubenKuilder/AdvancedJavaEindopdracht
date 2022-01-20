@@ -25,6 +25,6 @@ public class UserAvailability {
 
     @NotNull
     @Column(name = "date", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private Date date;
 }
