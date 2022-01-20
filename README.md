@@ -212,3 +212,20 @@ Next navigate to the run anything window and execute
 ```mvn clean verify cargo:run```
 
 After a few minutes of startup messages it should be running and you can navigate to the application under the normal ```localhost:8080```
+
+### 2.6 Running tests with coverage (_optional?_)
+This part is optional unless it's not, I will explain. Running test with coverage for some of the team had an issue involving the coverage reporter.
+The default Idea coverage reporter would not function with dependency injection so every single test would break, to fix this we had to switch the coverage reporter to a different one which then made the tests work.
+
+If running tests with coverage breaks all tests this can be fixed by going to 
+
+```
+run -> 
+edit configurations -> 
+All in AdvancedJavaEindopdracht -> 
+Modify options -> 
+Specify alternative code coverage runner -> 
+Here you choose a different runner
+```
+
+For me personally I used JaCoCo because it was the only other runner available to me.
