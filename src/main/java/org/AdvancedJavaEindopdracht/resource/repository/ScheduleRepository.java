@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 @Transactional
@@ -49,7 +50,7 @@ public class ScheduleRepository {
      * @param schedule  schedule to post
      * @return          response entity with posted schedule
      */
-    public Schedule persist(Schedule schedule) {
+    public Schedule post(Schedule schedule) {
         entityManager.persist(schedule);
         return schedule;
     }
@@ -92,6 +93,15 @@ public class ScheduleRepository {
 
         if (schedule.getEndDateTime() != null) {
             updatedSchedule.setEndDateTime(schedule.getEndDateTime());
+        }
+
+        if(schedule.getDescription() != null && !Objects.equals(schedule.getDescription(), "")) {
+            updatedSchedule.setDescription(schedule.getDescription());
+        }
+
+        if(schedule.getTitle() != null && !Objects.equals(schedule.getTitle(), ""))
+        {
+            updatedSchedule.setTitle(schedule.getTitle());
         }
 
         return updatedSchedule;

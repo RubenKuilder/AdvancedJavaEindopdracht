@@ -1,11 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
-import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
-import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentMapper;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleDto;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleMapper;
-import org.AdvancedJavaEindopdracht.resource.repository.ContentRespository;
 import org.AdvancedJavaEindopdracht.resource.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +44,7 @@ public class ScheduleService {
      */
     public ScheduleDto persist(ScheduleDto scheduleDto) {
         return scheduleMapper.mapFromEntity(
-                scheduleRepository.persist(scheduleMapper.mapToEntity(scheduleDto))
+                scheduleRepository.post(scheduleMapper.mapToEntity(scheduleDto))
         );
     }
 
