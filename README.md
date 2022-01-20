@@ -211,7 +211,7 @@ First open the project and build the application to ensure no errors are encount
 Next navigate to the run anything window and execute
 ```mvn clean verify cargo:run```
 
-After a few minutes of startup messages it should be running and you can navigate to the application under the normal ```localhost:8080```
+After a few minutes of startup messages it should be running, and you can navigate to the application under the normal ```localhost:8080```
 
 ### 2.6 Running tests with coverage (_optional?_)
 This part is optional unless it's not, I will explain. Running test with coverage for some of the team had an issue involving the coverage reporter.
