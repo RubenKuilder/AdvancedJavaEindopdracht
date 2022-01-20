@@ -1,7 +1,9 @@
 # Stenden Dashboard
 This is the stenden dashboard an API created for the use within NHL Stenden.
 
-## Installing the Stenden Dashboard
+[Raspberry Setup](https://github.com/StendenDashboard/api#Raspberry_setup)
+
+## Raspberry Setup
 
 ## 1. Server Configuration
 First we need to set up everything in the hosting environment. We recommend you use linux. In the example we are using 'DebianGNU/Linux 10(buster)' running in a virtual machine.
@@ -165,5 +167,3 @@ After the page finishes loading you should see it have true under the running he
 If it did not launch try hitting deploy on Stenden_Dashboard, if it errors you can look under ```/var/lib/tomcat9/logs/catalina.out``` for the logs.
 
 ![img.png](additional_resources/imgApplication.png)
-
-test
