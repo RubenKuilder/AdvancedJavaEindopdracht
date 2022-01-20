@@ -1,10 +1,12 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
+import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
@@ -23,9 +25,8 @@ public class PowerpointRepository {
      * @return      response entity with list of all powerpoints
      */
     public List<Powerpoint> getPowerpoints(){
-        CriteriaBuilder cb = manager.getCriteriaBuilder();
-        CriteriaQuery<Powerpoint> query = cb.createQuery(Powerpoint.class);
-        return manager.createQuery(query.select(query.from(Powerpoint.class))).getResultList();
+        TypedQuery<Powerpoint> query = manager.createQuery("SELECT p FROM Powerpoint p", Powerpoint.class);
+        return query.getResultList();
     }
 
     /**
