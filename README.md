@@ -1,7 +1,8 @@
 # Stenden Dashboard
 This is the stenden dashboard an API created for the use within NHL Stenden.
 
-[Raspberry Setup](https://github.com/StendenDashboard/api#raspberry-setup)
+* [Raspberry Setup](https://github.com/StendenDashboard/api#raspberry-setup)
+* [Intellij Setup](https://github.com/StendenDashboard/api#intellij-setup)
 
 ## Raspberry Setup
 
@@ -167,3 +168,47 @@ After the page finishes loading you should see it have true under the running he
 If it did not launch try hitting deploy on Stenden_Dashboard, if it errors you can look under ```/var/lib/tomcat9/logs/catalina.out``` for the logs.
 
 ![img.png](additional_resources/imgApplication.png)
+
+---------------------
+
+## Intellij Setup
+In this part of the tutorial we will be explaining how to setup the API within intellij.
+For the purposes of keeping this installation simple we are going to assume you have Intellij installed if not refer to their website for more information and guidance on how to install it.
+
+### 2.1 Cloning the repository
+First you must clone or download the repository, you can save the code wherever you would like we suggest you put it in an empty folder to not create unforeseen problems.
+
+### 2.2 Install Tomcat9
+We use [Tomcat 9.0.56](https://tomcat.apache.org/download-90.cgi) as a means of running the API, it is required for running the API.
+
+### 2.3 make Application.properties
+To make sure the application runs correctly we must create a new file called ```application.properties```. This file must be placed inside
+```src/main/resources``` on the level of ```changelog_master.xml.```
+
+In this file we will define a few key factors to the API.
+
+* **database.username**: This is the login name for Xampp, you can change this to whatever your Xampp uses or create a new user with the credentials we have supplied.
+* **database.password**: Same as with the username, change it or make a new user in Xampp.
+* **database.url**: The connection string for the database, we use the database stenden_dashboard. Leave this name as is in a later step we will create the database as is needed.
+* **secret.key**: Secret key, leave as is.
+```properties
+database.username=stenden
+database.password=St3nd3n_D@shboard
+database.url=jdbc:mysql://127.0.0.1:3306/stenden_dashboard
+secret.key=secret
+```
+
+### 2.4 Creating the database
+We will create a database by executing the following query inside ```localhost/phpmyadmin```.
+
+```mysql
+CREATE DATABASE stenden_dashboard;
+```
+
+### 2.5 Running the API
+First open the project and build the application to ensure no errors are encountered.
+
+Next navigate to the run anything window and execute
+```mvn clean verify cargo:run```
+
+After a few minutes of startup messages it should be running and you can navigate to the application under the normal ```localhost:8080```
