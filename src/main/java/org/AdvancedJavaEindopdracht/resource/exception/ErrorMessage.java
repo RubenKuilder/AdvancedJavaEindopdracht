@@ -1,4 +1,4 @@
-package org.AdvancedJavaEindopdracht.exception;
+package org.AdvancedJavaEindopdracht.resource.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

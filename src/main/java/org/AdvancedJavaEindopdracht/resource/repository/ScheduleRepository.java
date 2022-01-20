@@ -1,6 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.RssFeed;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,9 +40,13 @@ public class ScheduleRepository {
      * @return      response entity with a single schedule
      */
     public Schedule getById(long id) {
-        TypedQuery<Schedule> query = entityManager.createQuery("SELECT DISTINCT s FROM Schedule s JOIN FETCH s.users u WHERE s.id = :id", Schedule.class);
-        query.setParameter("id", id);
-        return query.getSingleResult();
+        try {
+            TypedQuery<Schedule> query = entityManager.createQuery("SELECT DISTINCT s FROM Schedule s JOIN FETCH s.users u WHERE s.id = :id", Schedule.class);
+            query.setParameter("id", id);
+            return query.getSingleResult();
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -50,8 +56,12 @@ public class ScheduleRepository {
      * @return          response entity with posted schedule
      */
     public Schedule persist(Schedule schedule) {
-        entityManager.persist(schedule);
-        return schedule;
+        try {
+            entityManager.persist(schedule);
+            return schedule;
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

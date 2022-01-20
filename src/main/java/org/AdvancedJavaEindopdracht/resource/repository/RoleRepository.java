@@ -1,5 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
 import org.AdvancedJavaEindopdracht.resource.model.Role;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +38,11 @@ public class RoleRepository {
      * @return      response entity with a single role
      */
     public Role getRole(int id){
-        return manager.find(Role.class, id);
+        try {
+            return manager.find(Role.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -45,8 +52,12 @@ public class RoleRepository {
      * @return      response entity with posted role
      */
     public Role postRole(Role role){
-        manager.persist(role);
-        return manager.find(Role.class, role.getId());
+        try {
+            manager.persist(role);
+            return manager.find(Role.class, role.getId());
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

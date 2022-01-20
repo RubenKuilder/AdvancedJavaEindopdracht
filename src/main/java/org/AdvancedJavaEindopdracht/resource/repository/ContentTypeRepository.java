@@ -1,6 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.Content;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +35,12 @@ public class ContentTypeRepository {
      * @return      response entity with single content type
      */
     public ContentType getById(long id) {
-        return entityManager.find(ContentType.class, id);
+        try {
+            return entityManager.find(ContentType.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
+
     }
 
     /**
@@ -43,8 +50,12 @@ public class ContentTypeRepository {
      * @return              response entity with posted content type
      */
     public ContentType persist(ContentType contentType) {
-        entityManager.persist(contentType);
-        return contentType;
+        try {
+            entityManager.persist(contentType);
+            return contentType;
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

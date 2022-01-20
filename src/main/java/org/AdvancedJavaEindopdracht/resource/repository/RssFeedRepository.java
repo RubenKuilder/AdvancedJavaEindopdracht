@@ -1,5 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.Role;
 import org.AdvancedJavaEindopdracht.resource.model.RssFeed;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +37,11 @@ public class RssFeedRepository {
      * @return      response entity with a single RSS feed
      */
     public RssFeed getRssFeed(int id){
-        return manager.find(RssFeed.class, id);
+        try {
+            return manager.find(RssFeed.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -44,8 +51,12 @@ public class RssFeedRepository {
      * @return          response entity with posted RSS feed
      */
     public RssFeed postRssFeed(RssFeed rssFeed){
-        manager.persist(rssFeed);
-        return manager.find(RssFeed.class, rssFeed.getId());
+        try {
+            manager.persist(rssFeed);
+            return manager.find(RssFeed.class, rssFeed.getId());
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**
