@@ -199,7 +199,7 @@ secret.key=secret
 ```
 
 ### 2.4 Creating the database
-We will create a database by executing the following query inside ```localhost/phpmyadmin```.
+We will create a database by using Xampp. Execute the following query inside ```localhost/phpmyadmin```.
 
 ```mysql
 CREATE DATABASE stenden_dashboard;
