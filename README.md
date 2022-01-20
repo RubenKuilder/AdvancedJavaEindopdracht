@@ -1,7 +1,7 @@
 # Stenden Dashboard
 This is the stenden dashboard an API created for the use within NHL Stenden.
 
-[Raspberry Setup](https://github.com/StendenDashboard/api/markdown_readme#Raspberry-setup)
+[Raspberry Setup](https://github.com/StendenDashboard/api#raspberry-setup)
 
 ## Raspberry Setup
 
