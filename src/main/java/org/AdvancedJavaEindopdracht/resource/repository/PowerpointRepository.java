@@ -25,8 +25,9 @@ public class PowerpointRepository {
      * @return      response entity with list of all powerpoints
      */
     public List<Powerpoint> getPowerpoints(){
-        TypedQuery<Powerpoint> query = manager.createQuery("SELECT p FROM Powerpoint p", Powerpoint.class);
-        return query.getResultList();
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<Powerpoint> query = cb.createQuery(Powerpoint.class);
+        return manager.createQuery(query.select(query.from(Powerpoint.class))).getResultList();
     }
 
     /**
