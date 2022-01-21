@@ -1,8 +1,8 @@
 package org.AdvancedJavaEindopdracht.configuration;
 
 import org.AdvancedJavaEindopdracht.security.JWTFilter;
-import org.AdvancedJavaEindopdracht.exception.UnauthenticatedHandler;
-import org.AdvancedJavaEindopdracht.exception.UserAccessDeniedHandler;
+import org.AdvancedJavaEindopdracht.resource.exception.UnauthenticatedHandler;
+import org.AdvancedJavaEindopdracht.resource.exception.UserAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

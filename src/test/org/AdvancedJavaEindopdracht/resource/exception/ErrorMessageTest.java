@@ -1,4 +1,4 @@
-package org.AdvancedJavaEindopdracht.exception;
+package org.AdvancedJavaEindopdracht.resource.exception;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

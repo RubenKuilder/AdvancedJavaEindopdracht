@@ -1,6 +1,9 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
+import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +38,13 @@ public class GlobalSettingsRepository
      */
     public GlobalSettings getSettingsById(Integer id)
     {
-        TypedQuery<GlobalSettings> query = manager.createQuery("SELECT g FROM GlobalSettings g WHERE id = :id", GlobalSettings.class);
-        query.setParameter("id", id);
-        return query.getSingleResult();
+        try {
+            TypedQuery<GlobalSettings> query = manager.createQuery("SELECT g FROM GlobalSettings g WHERE id = :id", GlobalSettings.class);
+            query.setParameter("id", id);
+            return query.getSingleResult();
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -48,8 +55,12 @@ public class GlobalSettingsRepository
      */
     public GlobalSettings uploadGlobalSettings(GlobalSettings globalSettings)
     {
-        manager.persist(globalSettings);
-        return manager.find(GlobalSettings.class, globalSettings.getId());
+        try {
+            manager.persist(globalSettings);
+            return manager.find(GlobalSettings.class, globalSettings.getId());
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

@@ -1,6 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.Content;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +35,11 @@ public class ContentRespository {
      * @return      response entity with single content
      */
     public Content getById(long id) {
-        return entityManager.find(Content.class, id);
+        try {
+            return entityManager.find(Content.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -43,8 +49,12 @@ public class ContentRespository {
      * @return          response entity with posted content
      */
     public Content persist(Content content) {
-        entityManager.persist(content);
-        return content;
+        try {
+            entityManager.persist(content);
+            return content;
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

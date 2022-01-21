@@ -1,10 +1,14 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
+import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
@@ -35,7 +39,11 @@ public class UserAvailabilityRepository {
      * @return      response entity with a single user availability
      */
     public UserAvailability getUserAvailability(int id){
-        return manager.find(UserAvailability.class, id);
+        try {
+            return manager.find(UserAvailability.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -45,8 +53,12 @@ public class UserAvailabilityRepository {
      * @return                  response entity with posted user availability
      */
     public UserAvailability postUserAvailability(UserAvailability userAvailability){
-        manager.persist(userAvailability);
-        return manager.find(UserAvailability.class, userAvailability.getId());
+        try {
+            manager.persist(userAvailability);
+            return manager.find(UserAvailability.class, userAvailability.getId());
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

@@ -1,7 +1,9 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.event.Event;
+import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +35,11 @@ public class EventRepository {
      * @return      response entity with a single event
      */
     public Event getById(long id) {
-        return entityManager.find(Event.class, id);
+        try {
+            return entityManager.find(Event.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -43,8 +49,12 @@ public class EventRepository {
      * @return      response entity with posted event
      */
     public Event persist(Event event) {
-        entityManager.persist(event);
-        return event;
+        try {
+            entityManager.persist(event);
+            return event;
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

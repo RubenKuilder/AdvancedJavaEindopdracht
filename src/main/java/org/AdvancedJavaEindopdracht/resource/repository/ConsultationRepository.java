@@ -1,5 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.Consultation;
 import org.springframework.stereotype.Repository;
 
@@ -44,10 +46,14 @@ public class ConsultationRepository {
      * @return      response entity with a single consultation
      */
     public Consultation getById(long id) {
-        TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
+        try {
+            TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
 
-        query.setParameter("id", id);
-        return query.getSingleResult();
+            query.setParameter("id", id);
+            return query.getSingleResult();
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -57,8 +63,12 @@ public class ConsultationRepository {
      * @return              response entity with posted consultation
      */
     public Consultation persist(Consultation consultation) {
-        entityManager.persist(consultation);
-        return consultation;
+        try {
+            entityManager.persist(consultation);
+            return consultation;
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

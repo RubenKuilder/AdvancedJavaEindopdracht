@@ -1,6 +1,9 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.User;
+import org.AdvancedJavaEindopdracht.resource.model.UserAvailability;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -36,7 +39,11 @@ public class UserRepository {
      * @return      response entity with a single user
      */
     public User getUser(int id){
-        return manager.find(User.class, id);
+        try {
+            return manager.find(User.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -46,13 +53,17 @@ public class UserRepository {
      * @return      response entity with posted user
      */
     public User postUser(User user){
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        user.setApproved(false);
-        user.setRole("ROLE_USER");
-        user.setEnabled(false);
+        try {
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setApproved(false);
+            user.setRole("ROLE_USER");
+            user.setEnabled(false);
 
-        manager.persist(user);
-        return manager.find(User.class, user.getId());
+            manager.persist(user);
+            return manager.find(User.class, user.getId());
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

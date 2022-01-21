@@ -1,5 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
 import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.springframework.stereotype.Repository;
@@ -37,7 +40,11 @@ public class PowerpointRepository {
      * @return      response entity with a single powerpoint
      */
     public Powerpoint getPowerpoint(int id){
-        return manager.find(Powerpoint.class, id);
+        try {
+            return manager.find(Powerpoint.class, id);
+        }catch(Exception e){
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -47,8 +54,12 @@ public class PowerpointRepository {
      * @return              response entity with posted powerpoint
      */
     public Powerpoint postPowerpoint(Powerpoint powerpoint){
-        manager.persist(powerpoint);
-        return manager.find(Powerpoint.class, powerpoint.getId());
+        try {
+            manager.persist(powerpoint);
+            return manager.find(Powerpoint.class, powerpoint.getId());
+        }catch(Exception e){
+            throw new BadRequestException();
+        }
     }
 
     /**

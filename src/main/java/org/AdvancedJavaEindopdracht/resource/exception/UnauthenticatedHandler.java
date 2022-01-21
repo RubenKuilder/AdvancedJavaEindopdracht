@@ -1,10 +1,8 @@
-package org.AdvancedJavaEindopdracht.exception;
+package org.AdvancedJavaEindopdracht.resource.exception;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,6 +14,6 @@ public class UnauthenticatedHandler implements AuthenticationEntryPoint {
             HttpServletResponse httpServletResponse,
             AuthenticationException e) throws IOException {
         httpServletResponse.setStatus(401);
-        httpServletResponse.getWriter().write("{\"message\":\"You're not authenticated.\"}");
+        httpServletResponse.getWriter().write("{\"message\":\"Bad credentials.\"}");
     }
 }
