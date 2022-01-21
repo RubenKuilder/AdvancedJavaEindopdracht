@@ -97,7 +97,7 @@ public class UserAvailabilityControllerTest {
         user.setEmail("test");
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date date = sdf.parse("08-12-2021 00:00:00");
+        Date date = sdf.parse("08-12-2021 05:05:05");
 
         ua.setUser(user);
         ua.setDate(date);
@@ -106,7 +106,6 @@ public class UserAvailabilityControllerTest {
                         .content(new ObjectMapper().writeValueAsString(ua))
                         .contentType("application/json"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.date").value("08-12-2021 00:00:00"));
-
+                .andExpect(jsonPath("$.date").value("08-12-2021 05:05:05"));
     }
 }
