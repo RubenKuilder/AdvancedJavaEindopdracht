@@ -253,7 +253,7 @@
                     <deployables>
                         <!--The part of the project to deploy, in our case, this whole project-->
                         <deployable>
-                            <groupId>org.AdvancedJavaEindopdracht</groupId>
+                            <groupId>org.eindopdracht</groupId>
                             <artifactId>AdvancedJavaEindopdracht</artifactId>
                             <type>war</type>
                             <properties>

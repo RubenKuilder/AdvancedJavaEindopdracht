@@ -1,0 +1,22 @@
+package org.eindopdracht.resource.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name = "role")
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @NotBlank
+    @Column(name = "role", nullable = false)
+    private String role;
+
+}
