@@ -59,14 +59,4 @@ public class ContentService {
         return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
     }
 
-    /**
-     * Maps Entity to DTO and patches a single content.
-     *
-     * @param id            id of the content to patch
-     * @param contentDto    content to patch
-     * @return              response entity with patched content
-     */
-    public ContentDto patch(long id, ContentDto contentDto) {
-        return contentMapper.mapFromEntity(contentRespository.patch(id, contentMapper.mapToEntity(contentDto)));
-    }
 }

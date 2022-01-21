@@ -109,24 +109,6 @@ class ConsultationControllerTest
     }
 
     @Test
-    void patchConsultation() throws Exception
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date startDateTime = sdf.parse("12-12-1999 00:00:00");
-
-        Consultation consultation = new Consultation();
-        consultation.setStartDateTime(startDateTime);
-
-        this.mockMvc.perform(patch("/consultation/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(consultation)))
-                .andExpect(status().isOk())
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.startDateTime").value("12-12-1999 00:00:00"))
-                .andExpect(jsonPath("$.endDateTime").value("08-12-2022 00:00:00"));
-    }
-
-    @Test
     void deleteConsultation() throws Exception
     {
         this.mockMvc.perform(delete("/consultation/1"))

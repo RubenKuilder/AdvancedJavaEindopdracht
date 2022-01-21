@@ -61,16 +61,4 @@ public class ContentController {
     public ResponseEntity<ContentDto> put(@PathVariable long id, @RequestBody @Valid ContentDto contentDto) {
         return ResponseEntity.ok(contentService.put(id, contentDto));
     }
-
-    /**
-     * Patch a single content.
-     *
-     * @param id            id of the content to patch
-     * @param contentDto    content to patch
-     * @return              response entity with patched content
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<ContentDto> patch(@PathVariable int id, @RequestBody ContentDto contentDto) {
-        return ResponseEntity.ok(contentService.patch(id, contentDto));
-    }
 }

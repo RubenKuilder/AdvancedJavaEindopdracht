@@ -69,30 +69,4 @@ public class ContentRespository {
         content.setId(id);
         return entityManager.merge(content);
     }
-
-    /**
-     * Patch a single content.
-     * Updates whatever field is set in the new object.
-     * If a field is null, it will not be updated.
-     *
-     * @param id        id of the content to patch
-     * @param content   content to patch
-     * @return          response entity with patched content
-     */
-    public Content patch(long id, Content content) {
-        if (getById(id) == null)
-            throw new DataNotFoundException();
-
-        Content updatedContent = getById(id);
-
-        if (content.getContentType() != null) {
-            updatedContent.setContentType(content.getContentType());
-        }
-
-        if (content.getPath() != null) {
-            updatedContent.setPath(content.getPath());
-        }
-
-        return updatedContent;
-    }
 }

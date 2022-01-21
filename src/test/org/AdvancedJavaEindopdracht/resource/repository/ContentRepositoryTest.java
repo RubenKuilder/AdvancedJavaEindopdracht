@@ -76,15 +76,4 @@ public class ContentRepositoryTest {
         assertNull(putContent.getPath());
     }
 
-    @Test
-    void patchContent()
-    {
-        Content content = new Content();
-        content.setPath("Patch Path");
-
-        Content patchedContent = contentRespository.patch(1, content);
-
-        assertEquals(1, patchedContent.getContentType().getId());
-        assertEquals("Patch Path", patchedContent.getPath());
-    }
 }

@@ -77,15 +77,4 @@ public class ContentServiceTest {
         assertNull(putContent.getPath());
     }
 
-    @Test
-    void patchContent()
-    {
-        ContentDto contentDto = new ContentDto();
-        contentDto.setPath("Patch Path");
-
-        ContentDto patchedContent = contentService.patch(1, contentDto);
-
-        assertEquals(1, patchedContent.getContentType().getId());
-        assertEquals("Patch Path", patchedContent.getPath());
-    }
 }

@@ -85,33 +85,6 @@ public class ConsultationRepository {
     }
 
     /**
-     * Patch a single consultation.
-     * Updates whatever field is set in the new object.
-     * If a field is null, it will not be updated.
-     *
-     * @param id            id of the consultation to patch
-     * @param consultation  consultation to patch
-     * @return              response entity with patched consultation
-     */
-    public Consultation patch(long id, Consultation consultation) {
-        Consultation updatedConsultation = getById(id);
-
-        if (consultation.getUsers() != null) {
-            updatedConsultation.setUsers(consultation.getUsers());
-        }
-
-        if (consultation.getStartDateTime() != null) {
-            updatedConsultation.setStartDateTime(consultation.getStartDateTime());
-        }
-
-        if (consultation.getEndDateTime() != null) {
-            updatedConsultation.setEndDateTime(consultation.getEndDateTime());
-        }
-
-        return updatedConsultation;
-    }
-
-    /**
      * Delete a single consultation and return it.
      *
      * @param id    id of the consultation to delete

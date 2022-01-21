@@ -75,20 +75,6 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void patchConsultation() throws Exception
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date startDateTime = sdf.parse("12-12-2021 00:00:00");
-
-        ConsultationDto consultationDto = new ConsultationDto();
-        consultationDto.setStartDateTime(startDateTime);
-        ConsultationDto patchedConsultation = consultationService.patch(1, consultationDto);
-
-        assertEquals(startDateTime, patchedConsultation.getStartDateTime());
-        assertEquals("2022-12-08 00:00:00.0", patchedConsultation.getEndDateTime().toString());
-    }
-
-    @Test
     void deleteConsultation() throws Exception
     {
         ConsultationDto consultationDto = consultationService.delete(1);

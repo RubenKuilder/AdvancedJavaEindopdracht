@@ -103,20 +103,6 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void patchConsultation() throws Exception
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date startDateTime = sdf.parse("12-12-2021 00:00:00");
-
-        Consultation consultation = new Consultation();
-        consultation.setStartDateTime(startDateTime);
-        Consultation patchedConsultation = consultationRepository.patch(1, consultation);
-
-        assertEquals(startDateTime, patchedConsultation.getStartDateTime());
-        assertEquals("2022-12-08 00:00:00.0", patchedConsultation.getEndDateTime().toString());
-    }
-
-    @Test
     public void deleteConsultation() throws Exception
     {
         Consultation consultation = consultationRepository.delete(1);

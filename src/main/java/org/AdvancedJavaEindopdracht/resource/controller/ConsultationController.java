@@ -63,18 +63,6 @@ public class ConsultationController {
     }
 
     /**
-     * Patch a single consultation.
-     *
-     * @param id                id of the consultation to patch
-     * @param consultationDto   consultation to patch
-     * @return                  response entity with patched consultation
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<ConsultationDto> patch(@PathVariable int id, @RequestBody ConsultationDto consultationDto) {
-        return ResponseEntity.ok(consultationService.patch(id, consultationDto));
-    }
-
-    /**
      * Delete a single consultation.
      *
      * @param id    id of the consultation to delete

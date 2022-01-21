@@ -61,17 +61,6 @@ public class ConsultationService {
     }
 
     /**
-     * Maps Entity to DTO and patches a single consultation.
-     *
-     * @param id                id of the consultation to patch
-     * @param consultationDto   consultation to patch
-     * @return                  response entity with patched consultation
-     */
-    public ConsultationDto patch(long id, ConsultationDto consultationDto) {
-        return consultationMapper.mapFromEntity(consultationRepository.patch(id, consultationMapper.mapToEntity(consultationDto)));
-    }
-
-    /**
      * Maps Entity to DTO and deletes a single consultation.
      *
      * @param id    id of the consultation to delete
