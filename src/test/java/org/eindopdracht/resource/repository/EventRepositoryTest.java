@@ -111,21 +111,4 @@ public class EventRepositoryTest {
         assertNull(putEvent.getDuration());
     }
 
-    @Test
-    void patchEvent() throws Exception
-    {
-        Event event = new Event();
-        event.setUser_id(2L);
-        event.setDescription("Description");
-
-        Event patchedEvent = eventRepository.patch(1, event);
-
-
-        assertEquals(1, patchedEvent.getContent().getId());
-        assertEquals(2, patchedEvent.getUser_id());
-        assertEquals("Description", patchedEvent.getDescription());
-        assertEquals("2021-11-08 00:00:00.0", patchedEvent.getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", patchedEvent.getEndDateTime().toString());
-        assertEquals(2000, patchedEvent.getDuration());
-    }
 }

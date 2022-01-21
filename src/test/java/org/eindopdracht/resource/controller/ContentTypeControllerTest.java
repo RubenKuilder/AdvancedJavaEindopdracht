@@ -79,20 +79,6 @@ class ContentTypeControllerTest
     }
 
     @Test
-    void patchContentType() throws Exception
-    {
-        ContentType contentType = new ContentType();
-        contentType.setName("Text");
-
-        this.mockMvc.perform(patch("/contenttype/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(contentType)))
-                .andExpect(status().isOk())
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.name").value("Text"));
-    }
-
-    @Test
     void deleteContentType() throws Exception
     {
         this.mockMvc.perform(delete("/contenttype/1"))

@@ -62,17 +62,6 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void patchContentType()
-    {
-        ContentTypeDto contentTypeDto = new ContentTypeDto();
-        contentTypeDto.setName("New content type");
-
-        ContentTypeDto patchedContentTypeDto = contentTypeService.patch(1, contentTypeDto);
-
-        assertEquals("New content type", patchedContentTypeDto.getName());
-    }
-
-    @Test
     void deleteContentType()
     {
         ContentTypeDto deletedContentType = contentTypeService.delete(1);

@@ -62,18 +62,6 @@ public class ScheduleController {
     }
 
     /**
-     * Patch a single schedule.
-     *
-     * @param id            id of the schedule to patch
-     * @param scheduleDto   consultation to patch
-     * @return              response entity with patched schedule
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<ScheduleDto> patch(@PathVariable int id, @RequestBody ScheduleDto scheduleDto) {
-        return ResponseEntity.ok(scheduleService.patch(id, scheduleDto));
-    }
-
-    /**
      * Delete a single schedule.
      *
      * @param id    id of the schedule to delete

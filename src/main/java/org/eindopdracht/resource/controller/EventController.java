@@ -63,18 +63,6 @@ public class EventController {
     }
 
     /**
-     * Patch a single event.
-     *
-     * @param id        id of the event to patch
-     * @param eventDto  event to patch
-     * @return          response entity with patched event
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<EventDto> patch(@PathVariable int id, @RequestBody EventDto eventDto) {
-        return ResponseEntity.ok(eventService.patch(id, eventDto));
-    }
-
-    /**
      * Delete a single event.
      *
      * @param id    id of the event to delete

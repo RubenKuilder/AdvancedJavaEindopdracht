@@ -65,18 +65,6 @@ public class ContentTypeController {
     }
 
     /**
-     * Patch a single content type.
-     *
-     * @param id                id of the content type to patch
-     * @param contentTypeDto    content type to patch
-     * @return                  response entity with patched content type
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<ContentTypeDto> patch(@PathVariable int id, @RequestBody ContentTypeDto contentTypeDto) {
-        return ResponseEntity.ok(contentTypeService.patch(id, contentTypeDto));
-    }
-
-    /**
      * Delete a single content type.
      *
      * @param id    id of the content type to delete

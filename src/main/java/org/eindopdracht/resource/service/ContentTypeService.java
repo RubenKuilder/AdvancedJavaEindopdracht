@@ -82,17 +82,6 @@ public class ContentTypeService {
     }
 
     /**
-     * Maps Entity to DTO and patches a single content type.
-     *
-     * @param id                id of the content type to patch
-     * @param contentTypeDto    content type to patch
-     * @return                  response entity with patched content type
-     */
-    public ContentTypeDto patch(long id, ContentTypeDto contentTypeDto) {
-        return contentTypeMapper.mapFromEntity(contentTypeRepository.patch(id, contentTypeMapper.mapToEntity(contentTypeDto)));
-    }
-
-    /**
      * Maps Entity to DTO and deletes a single content type.
      *
      * @param id    id of the content type to delete

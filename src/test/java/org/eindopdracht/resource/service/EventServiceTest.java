@@ -111,21 +111,4 @@ public class EventServiceTest {
         assertNull(putEventDto.getDuration());
     }
 
-    @Test
-    void patchEvent()
-    {
-        EventDto eventDto = new EventDto();
-        eventDto.setUser_id(2L);
-        eventDto.setDescription("Description");
-
-        EventDto patchedEventDto = eventService.patch(1, eventDto);
-
-
-        assertEquals(1, patchedEventDto.getContent().getId());
-        assertEquals(2, patchedEventDto.getUser_id());
-        assertEquals("Description", patchedEventDto.getDescription());
-        assertEquals("2021-11-08 00:00:00.0", patchedEventDto.getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", patchedEventDto.getEndDateTime().toString());
-        assertEquals(2000, patchedEventDto.getDuration());
-    }
 }

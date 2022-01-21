@@ -61,17 +61,6 @@ public class ContentTypeRepositoryTest {
     }
 
     @Test
-    void patchContentType() throws Exception
-    {
-        ContentType contentType = new ContentType();
-        contentType.setName("New content type");
-
-        ContentType patchedContentTypeDto = contentTypeRepository.patch(1, contentType);
-
-        assertEquals("New content type", patchedContentTypeDto.getName());
-    }
-
-    @Test
     void deleteContentType() throws Exception
     {
         ContentType deletedContentType = contentTypeRepository.delete(1);

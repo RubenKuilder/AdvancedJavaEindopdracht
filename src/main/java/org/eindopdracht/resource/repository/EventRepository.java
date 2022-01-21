@@ -61,48 +61,6 @@ public class EventRepository {
     }
 
     /**
-     * Patch a single event.
-     * Updates whatever field is set in the new object.
-     * If a field is null, it will not be updated.
-     *
-     * @param id    id of the event to patch
-     * @param event event to patch
-     * @return      response entity with patched event
-     */
-    public Event patch(long id, Event event) {
-        if (getById(id) == null)
-            throw new DataNotFoundException();
-
-        Event updatedEvent = getById(id);
-
-        if (event.getContent() != null) {
-            updatedEvent.setContent(event.getContent());
-        }
-
-        if (event.getUser_id() != null) {
-            updatedEvent.setUser_id(event.getUser_id());
-        }
-
-        if (event.getDescription() != null) {
-            updatedEvent.setDescription(event.getDescription());
-        }
-
-        if (event.getStartDateTime() != null) {
-            updatedEvent.setStartDateTime(event.getStartDateTime());
-        }
-
-        if (event.getEndDateTime() != null) {
-            updatedEvent.setEndDateTime(event.getEndDateTime());
-        }
-
-        if (event.getDuration() != null) {
-            updatedEvent.setDuration(event.getDuration());
-        }
-
-        return updatedEvent;
-    }
-
-    /**
      * Delete a single event and return it.
      *
      * @param id    id of the event to delete

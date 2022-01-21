@@ -61,28 +61,6 @@ public class ContentTypeRepository {
     }
 
     /**
-     * Patch a single content type.
-     * Updates whatever field is set in the new object.
-     * If a field is null, it will not be updated.
-     *
-     * @param id            id of the content type to patch
-     * @param contentType   content type to patch
-     * @return              response entity with patched content type
-     */
-    public ContentType patch(long id, ContentType contentType) {
-        if (getById(id) == null)
-            throw new DataNotFoundException();
-
-        ContentType updatedContentType = getById(id);
-
-        if (contentType.getName() != null) {
-            updatedContentType.setName(contentType.getName());
-        }
-
-        return updatedContentType;
-    }
-
-    /**
      * Delete a single content type.
      *
      * @param id    id of the content type to delete
