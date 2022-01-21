@@ -28,7 +28,7 @@ class UserServiceTest {
     {
         List<UserDTO> list = service.getUsers();
 
-        assertEquals(2, list.size());
+        assertEquals(3, list.size());
     }
 
     @Test

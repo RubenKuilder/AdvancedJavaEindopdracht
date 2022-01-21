@@ -1,5 +1,9 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
+import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,11 +14,11 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.AdvancedJavaEindopdracht.configuration.DatabaseConfigTest.class)
@@ -42,6 +46,10 @@ public class ConsultationServiceTest {
         ConsultationDto consultationDto = consultationService.getById(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", consultationDto.getEndDateTime().toString());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            consultationService.getById(5135);
+        });
     }
 
     @Test
@@ -79,13 +87,15 @@ public class ConsultationServiceTest {
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
+        Date endDateTime = sdf.parse("12-12-2021 00:00:00");
 
         ConsultationDto consultationDto = new ConsultationDto();
         consultationDto.setStartDateTime(startDateTime);
+        consultationDto.setEndDateTime(endDateTime);
         ConsultationDto patchedConsultation = consultationService.patch(1, consultationDto);
 
         assertEquals(startDateTime, patchedConsultation.getStartDateTime());
-        assertEquals("2022-12-08 00:00:00.0", patchedConsultation.getEndDateTime().toString());
+        assertEquals(endDateTime, patchedConsultation.getEndDateTime());
     }
 
     @Test
@@ -94,5 +104,9 @@ public class ConsultationServiceTest {
         ConsultationDto consultationDto = consultationService.delete(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", consultationDto.getEndDateTime().toString());
+
+        assertThrows(NoContentException.class, () -> {
+            consultationService.delete(3151);
+        });
     }
 }

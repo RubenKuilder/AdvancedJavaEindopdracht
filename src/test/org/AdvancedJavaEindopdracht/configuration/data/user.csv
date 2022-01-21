@@ -1,3 +1,4 @@
 name,password,profileImagePath,email,isApproved,role,enabled
 Madlyaza,$2a$12$T25MRWx2iDzdtXHV3JDkMODY/d2R/jZjtgMD.AYHqPdXFzkTOkqqG,thijs,thijs,1,ROLE_USER,1
 thijs,$2a$12$I450gpW4mjyhX1DUI/jZ8O4NsKz8ba2SjPWyr3No.CrwjV3pyVPwi,thijs,thijs,1,ROLE_USER,1
+Disabled,$2a$12$T25MRWx2iDzdtXHV3JDkMODY/d2R/jZjtgMD.AYHqPdXFzkTOkqqG,thijs,thijs,0,ROLE_USER,0

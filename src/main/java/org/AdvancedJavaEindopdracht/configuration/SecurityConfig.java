@@ -41,10 +41,14 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private DataSource dataSource;
+
     @Autowired
     private JWTProvider jwtProvider;
+
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     /**
      * Here we define what we want to use for password encoding.
