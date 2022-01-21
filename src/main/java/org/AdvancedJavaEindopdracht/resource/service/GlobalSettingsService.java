@@ -2,6 +2,9 @@ package org.AdvancedJavaEindopdracht.resource.service;
 
 import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.GlobalSettingsDto;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.repository.GlobalSettingsRepository;
 import org.springframework.stereotype.Service;
@@ -38,8 +41,13 @@ public class GlobalSettingsService
      */
     public GlobalSettingsDto getGlobalSettingsById(Integer id)
     {
-
+try{
         return convertToDto.toGlobalSettingsDto(globalSettingsRepository.getSettingsById(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -50,7 +58,12 @@ public class GlobalSettingsService
      */
     public GlobalSettingsDto createGlobalSettings(GlobalSettings globalSettings)
     {
-        return convertToDto.toGlobalSettingsDto(globalSettingsRepository.uploadGlobalSettings(globalSettings));
+        try{
+        return convertToDto.toGlobalSettingsDto(globalSettingsRepository.uploadGlobalSettings(globalSettings));        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -61,7 +74,13 @@ public class GlobalSettingsService
      */
     public GlobalSettingsDto deleteGlobalSettings(Integer id)
     {
+        try{
         return convertToDto.toGlobalSettingsDto(globalSettingsRepository.deleteGlobalSettings(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 
     /**
@@ -73,6 +92,12 @@ public class GlobalSettingsService
      */
     public GlobalSettingsDto updateGlobalSettings(GlobalSettings globalSettings, Integer id)
     {
+        try{
         return convertToDto.toGlobalSettingsDto(globalSettingsRepository.updateGlobalSettings(globalSettings, id));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 }

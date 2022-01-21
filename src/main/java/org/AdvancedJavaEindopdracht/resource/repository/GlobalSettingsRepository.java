@@ -38,13 +38,9 @@ public class GlobalSettingsRepository
      */
     public GlobalSettings getSettingsById(Integer id)
     {
-        try {
             TypedQuery<GlobalSettings> query = manager.createQuery("SELECT g FROM GlobalSettings g WHERE id = :id", GlobalSettings.class);
             query.setParameter("id", id);
             return query.getSingleResult();
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -55,12 +51,8 @@ public class GlobalSettingsRepository
      */
     public GlobalSettings uploadGlobalSettings(GlobalSettings globalSettings)
     {
-        try {
             manager.persist(globalSettings);
             return manager.find(GlobalSettings.class, globalSettings.getId());
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

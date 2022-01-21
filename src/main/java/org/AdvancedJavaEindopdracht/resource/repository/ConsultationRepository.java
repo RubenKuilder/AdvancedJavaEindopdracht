@@ -32,7 +32,6 @@ public class ConsultationRepository {
      */
     public List<Consultation> get() {
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u order by c.id", Consultation.class);
-
         return query.getResultList();
     }
 
@@ -46,14 +45,9 @@ public class ConsultationRepository {
      * @return      response entity with a single consultation
      */
     public Consultation getById(long id) {
-        try {
             TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
-
             query.setParameter("id", id);
             return query.getSingleResult();
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -63,12 +57,8 @@ public class ConsultationRepository {
      * @return              response entity with posted consultation
      */
     public Consultation persist(Consultation consultation) {
-        try {
             entityManager.persist(consultation);
             return consultation;
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

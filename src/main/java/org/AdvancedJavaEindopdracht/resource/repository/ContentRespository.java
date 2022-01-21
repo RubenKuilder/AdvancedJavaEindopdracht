@@ -35,11 +35,7 @@ public class ContentRespository {
      * @return      response entity with single content
      */
     public Content getById(long id) {
-        try {
-            return entityManager.find(Content.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
+        return entityManager.find(Content.class, id);
     }
 
     /**
@@ -49,12 +45,8 @@ public class ContentRespository {
      * @return          response entity with posted content
      */
     public Content persist(Content content) {
-        try {
             entityManager.persist(content);
             return content;
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

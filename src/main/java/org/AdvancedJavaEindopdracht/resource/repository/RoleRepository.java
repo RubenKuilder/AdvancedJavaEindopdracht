@@ -38,11 +38,7 @@ public class RoleRepository {
      * @return      response entity with a single role
      */
     public Role getRole(int id){
-        try {
             return manager.find(Role.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -52,12 +48,8 @@ public class RoleRepository {
      * @return      response entity with posted role
      */
     public Role postRole(Role role){
-        try {
             manager.persist(role);
             return manager.find(Role.class, role.getId());
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

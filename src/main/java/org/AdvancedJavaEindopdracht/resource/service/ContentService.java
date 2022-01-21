@@ -1,5 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentMapper;
 import org.AdvancedJavaEindopdracht.resource.repository.ContentRespository;
@@ -33,7 +35,13 @@ public class ContentService {
      * @return      response entity with single content
      */
     public ContentDto getById(long id) {
-        return contentMapper.mapFromEntity(contentRespository.getById(id));
+        try
+        {
+            return contentMapper.mapFromEntity(contentRespository.getById(id));
+        }
+        catch (Exception ex) {
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -43,9 +51,15 @@ public class ContentService {
      * @return              response entity with posted content
      */
     public ContentDto persist(ContentDto contentDto) {
+        try{
         return contentMapper.mapFromEntity(
                 contentRespository.persist(contentMapper.mapToEntity(contentDto))
         );
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -56,7 +70,13 @@ public class ContentService {
      * @return              response entity with put content
      */
     public ContentDto put(long id, ContentDto contentDto) {
+        try{
         return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**

@@ -1,5 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.event.EventDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.EventMapper;
 import org.AdvancedJavaEindopdracht.resource.repository.EventRepository;
@@ -33,7 +36,13 @@ public class EventService {
      * @return      response entity with single event
      */
     public EventDto getById(long id) {
+        try{
         return eventMapper.mapFromEntity(eventRepository.getById(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -43,9 +52,15 @@ public class EventService {
      * @return          response entity with posted event
      */
     public EventDto persist(EventDto eventDto) {
+        try{
         return eventMapper.mapFromEntity(
                 eventRepository.persist(eventMapper.mapToEntity(eventDto))
         );
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -56,7 +71,13 @@ public class EventService {
      * @return          response entity with put event
      */
     public EventDto put(long id, EventDto eventDto) {
+        try{
         return eventMapper.mapFromEntity(eventRepository.put(id, eventMapper.mapToEntity(eventDto)));
+    }
+        catch (Exception ex)
+    {
+        throw new BadRequestException();
+    }
     }
 
     /**
@@ -67,7 +88,13 @@ public class EventService {
      * @return          response entity with patched event
      */
     public EventDto patch(long id, EventDto eventDto) {
+        try{
         return eventMapper.mapFromEntity(eventRepository.patch(id, eventMapper.mapToEntity(eventDto)));
+    }
+        catch (Exception ex)
+    {
+        throw new BadRequestException();
+    }
     }
 
     /**
@@ -77,6 +104,12 @@ public class EventService {
      * @return      response entity with deleted event
      */
     public EventDto delete(long id) {
+        try{
         return eventMapper.mapFromEntity(eventRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

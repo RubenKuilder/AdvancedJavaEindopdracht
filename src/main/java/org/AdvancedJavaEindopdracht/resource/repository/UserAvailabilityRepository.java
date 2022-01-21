@@ -39,11 +39,7 @@ public class UserAvailabilityRepository {
      * @return      response entity with a single user availability
      */
     public UserAvailability getUserAvailability(int id){
-        try {
             return manager.find(UserAvailability.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -53,12 +49,8 @@ public class UserAvailabilityRepository {
      * @return                  response entity with posted user availability
      */
     public UserAvailability postUserAvailability(UserAvailability userAvailability){
-        try {
             manager.persist(userAvailability);
             return manager.find(UserAvailability.class, userAvailability.getId());
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

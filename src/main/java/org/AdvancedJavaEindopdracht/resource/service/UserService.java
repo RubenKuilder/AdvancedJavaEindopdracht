@@ -2,6 +2,9 @@ package org.AdvancedJavaEindopdracht.resource.service;
 
 import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.UserDTO;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -34,7 +37,13 @@ public class UserService {
      * @return      response entity with single user
      */
     public UserDTO getUser(Integer id){
+        try{
         return convertToDTO.toUserDTO(userRepository.getUser(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -44,7 +53,13 @@ public class UserService {
      * @return      response entity with posted user
      */
     public UserDTO create(User user){
+        try{
         return convertToDTO.toUserDTO(userRepository.postUser(user));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -55,7 +70,13 @@ public class UserService {
      * @return      response entity with put user
      */
     public UserDTO update(User user, Integer id){
+        try{
         return convertToDTO.toUserDTO(userRepository.putUser(user, id));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -65,6 +86,12 @@ public class UserService {
      * @return      response entity with deleted user
      */
     public UserDTO delete(Integer id){
+        try{
         return convertToDTO.toUserDTO(userRepository.getUser(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

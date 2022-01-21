@@ -35,11 +35,7 @@ public class EventRepository {
      * @return      response entity with a single event
      */
     public Event getById(long id) {
-        try {
             return entityManager.find(Event.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -49,12 +45,8 @@ public class EventRepository {
      * @return      response entity with posted event
      */
     public Event persist(Event event) {
-        try {
             entityManager.persist(event);
             return event;
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

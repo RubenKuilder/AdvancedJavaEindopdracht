@@ -1,6 +1,9 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
 import org.AdvancedJavaEindopdracht.ConvertToDTO;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentTypeMapper;
 import org.AdvancedJavaEindopdracht.resource.repository.ContentTypeRepository;
@@ -35,7 +38,12 @@ public class ContentTypeService {
      * @return      response entity with single content type
      */
     public ContentTypeDto getById(long id) {
-        return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
+        try {
+            return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
+        }
+        catch (Exception ex) {
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -45,9 +53,15 @@ public class ContentTypeService {
      * @return                  response entity with posted content type
      */
     public ContentTypeDto persist(ContentTypeDto contentTypeDto) {
+        try{
         return contentTypeMapper.mapFromEntity(
                 contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
         );
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -58,7 +72,13 @@ public class ContentTypeService {
      * @return                  response entity with put content type
      */
     public ContentTypeDto put(long id, ContentTypeDto contentTypeDto) {
+        try{
         return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -79,6 +99,12 @@ public class ContentTypeService {
      * @return      response entity with deleted content type
      */
     public ContentTypeDto delete(long id) {
+        try{
         return convertToDto.toContentTypeDTO(contentTypeRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

@@ -39,11 +39,7 @@ public class UserRepository {
      * @return      response entity with a single user
      */
     public User getUser(int id){
-        try {
             return manager.find(User.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -53,7 +49,6 @@ public class UserRepository {
      * @return      response entity with posted user
      */
     public User postUser(User user){
-        try {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             user.setApproved(false);
             user.setRole("ROLE_USER");
@@ -61,9 +56,6 @@ public class UserRepository {
 
             manager.persist(user);
             return manager.find(User.class, user.getId());
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

@@ -2,6 +2,9 @@ package org.AdvancedJavaEindopdracht.resource.service;
 
 import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.RoleDTO;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.Role;
 import org.AdvancedJavaEindopdracht.resource.repository.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -33,7 +36,13 @@ public class RoleService {
      * @return      response entity with single role
      */
     public RoleDTO getRole(Integer id){
+        try{
         return convertToDTO.toRoleDTO(roleRepository.getRole(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -43,7 +52,13 @@ public class RoleService {
      * @return      response entity with posted role
      */
     public RoleDTO create(Role role){
+        try{
         return convertToDTO.toRoleDTO(roleRepository.postRole(role));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -54,7 +69,13 @@ public class RoleService {
      * @return      response entity with put role
      */
     public RoleDTO update(Role role, Integer id){
+        try{
         return convertToDTO.toRoleDTO(roleRepository.putRole(role, id));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -64,6 +85,12 @@ public class RoleService {
      * @return      response entity with deleted role
      */
     public RoleDTO delete(Integer id){
+        try{
         return convertToDTO.toRoleDTO(roleRepository.deleteRole(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

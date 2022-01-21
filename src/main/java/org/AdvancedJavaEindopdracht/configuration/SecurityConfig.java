@@ -1,5 +1,6 @@
 package org.AdvancedJavaEindopdracht.configuration;
 
+import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.security.JWTFilter;
 import org.AdvancedJavaEindopdracht.resource.exception.UnauthenticatedHandler;
 import org.AdvancedJavaEindopdracht.resource.exception.UserAccessDeniedHandler;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -140,8 +142,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/signup/**")
-                .permitAll();
+                .antMatchers("/signup/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/consultation/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/content/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/contenttype/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/event/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/globalsettings/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/powerpoint/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/role/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/rssfeed/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/schedule/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/useravailability/**").permitAll();
 
         // First we configure it to allow authentication and authorization in REST
         // This is just a helper method made by me to split it up

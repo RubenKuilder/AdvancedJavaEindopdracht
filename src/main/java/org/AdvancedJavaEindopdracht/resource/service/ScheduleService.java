@@ -1,5 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleDto;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.ScheduleMapper;
 import org.AdvancedJavaEindopdracht.resource.repository.ScheduleRepository;
@@ -33,7 +36,13 @@ public class ScheduleService {
      * @return      response entity with single schedule
      */
     public ScheduleDto getById(long id) {
+        try{
         return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -43,9 +52,16 @@ public class ScheduleService {
      * @return              response entity with posted schedule
      */
     public ScheduleDto persist(ScheduleDto scheduleDto) {
-        return scheduleMapper.mapFromEntity(
-                scheduleRepository.post(scheduleMapper.mapToEntity(scheduleDto))
-        );
+        try
+        {
+            return scheduleMapper.mapFromEntity(
+                    scheduleRepository.post(scheduleMapper.mapToEntity(scheduleDto))
+            );
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -56,7 +72,13 @@ public class ScheduleService {
      * @return              response entity with put schedule
      */
     public ScheduleDto put(long id, ScheduleDto scheduleDto) {
+        try{
         return scheduleMapper.mapFromEntity(scheduleRepository.put(id, scheduleMapper.mapToEntity(scheduleDto)));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -77,6 +99,12 @@ public class ScheduleService {
      * @return      response entity with deleted schedule
      */
     public ScheduleDto delete(long id) {
+        try{
         return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

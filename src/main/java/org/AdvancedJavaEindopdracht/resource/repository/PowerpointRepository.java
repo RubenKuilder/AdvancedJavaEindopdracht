@@ -40,11 +40,7 @@ public class PowerpointRepository {
      * @return      response entity with a single powerpoint
      */
     public Powerpoint getPowerpoint(int id){
-        try {
             return manager.find(Powerpoint.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -54,12 +50,8 @@ public class PowerpointRepository {
      * @return              response entity with posted powerpoint
      */
     public Powerpoint postPowerpoint(Powerpoint powerpoint){
-        try {
             manager.persist(powerpoint);
             return manager.find(Powerpoint.class, powerpoint.getId());
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**

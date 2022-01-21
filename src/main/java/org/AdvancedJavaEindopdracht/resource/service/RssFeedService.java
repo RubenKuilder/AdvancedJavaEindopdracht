@@ -2,6 +2,9 @@ package org.AdvancedJavaEindopdracht.resource.service;
 
 import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.RssFeedDTO;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.RssFeed;
 import org.AdvancedJavaEindopdracht.resource.repository.RssFeedRepository;
 import org.springframework.stereotype.Service;
@@ -33,7 +36,13 @@ public class RssFeedService {
      * @return      response entity with single RSS feed
      */
     public RssFeedDTO getRssFeed(Integer id){
+        try{
         return convertToDTO.toRssFeedDTO(repository.getRssFeed(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -43,7 +52,13 @@ public class RssFeedService {
      * @return          response entity with posted RSS feed
      */
     public RssFeedDTO create(RssFeed rssFeed){
+        try{
         return convertToDTO.toRssFeedDTO(repository.postRssFeed(rssFeed));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -54,7 +69,13 @@ public class RssFeedService {
      * @return          response entity with put RSS feed
      */
     public RssFeedDTO update(RssFeed rssFeed, Integer id){
+        try{
         return convertToDTO.toRssFeedDTO(repository.putRssFeed(rssFeed, id));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -64,6 +85,12 @@ public class RssFeedService {
      * @return      response entity with deleted RSS feed
      */
     public RssFeedDTO delete(Integer id){
+        try{
         return convertToDTO.toRssFeedDTO(repository.deleteRssFeed(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

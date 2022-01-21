@@ -1,5 +1,8 @@
 package org.AdvancedJavaEindopdracht.resource.service;
 
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationDto;
 import org.AdvancedJavaEindopdracht.resource.model.consultation.ConsultationMapper;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.ContentDto;
@@ -14,6 +17,7 @@ public class ConsultationService {
     private final ConsultationMapper consultationMapper;
 
     public ConsultationService(ConsultationRepository consultationRepository, ConsultationMapper consultationMapper) {
+
         this.consultationRepository = consultationRepository;
         this.consultationMapper = consultationMapper;
     }
@@ -34,7 +38,14 @@ public class ConsultationService {
      * @return      response entity with single consultation
      */
     public ConsultationDto getById(long id) {
-        return consultationMapper.mapFromEntity(consultationRepository.getById(id));
+        try
+        {
+            return consultationMapper.mapFromEntity(consultationRepository.getById(id));
+        }
+        catch (Exception ex)
+        {
+            throw new DataNotFoundException();
+        }
     }
 
     /**
@@ -44,9 +55,15 @@ public class ConsultationService {
      * @return                  response entity with posted consultation
      */
     public ConsultationDto persist(ConsultationDto consultationDto) {
-        return consultationMapper.mapFromEntity(
-                consultationRepository.persist(consultationMapper.mapToEntity(consultationDto))
-        );
+        try{
+            return consultationMapper.mapFromEntity(
+                    consultationRepository.persist(consultationMapper.mapToEntity(consultationDto))
+            );
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -57,7 +74,13 @@ public class ConsultationService {
      * @return                  response entity with put consultation
      */
     public ConsultationDto put(long id, ConsultationDto consultationDto) {
+        try{
         return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
+    }
+        catch (Exception ex)
+    {
+        throw new BadRequestException();
+    }
     }
 
     /**
@@ -78,6 +101,13 @@ public class ConsultationService {
      * @return      response entity with deleted consultation
      */
     public ConsultationDto delete(long id) throws Exception {
-        return consultationMapper.mapFromEntity(consultationRepository.delete(id));
+        try
+        {
+            return consultationMapper.mapFromEntity(consultationRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

@@ -3,6 +3,9 @@ package org.AdvancedJavaEindopdracht.resource.service;
 import org.AdvancedJavaEindopdracht.ConvertToDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.PowerpointDTO;
 import org.AdvancedJavaEindopdracht.resource.dto.RoleDTO;
+import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.NoContentException;
 import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
 import org.AdvancedJavaEindopdracht.resource.model.Role;
 import org.AdvancedJavaEindopdracht.resource.repository.PowerpointRepository;
@@ -36,7 +39,13 @@ public class PowerpointService {
      * @return      response entity with single powerpoint
      */
     public PowerpointDTO getPowerpoint(Integer id){
+        try{
         return convertToDTO.toPowerpointDTO(repository.getPowerpoint(id));
+    }
+        catch (Exception ex)
+    {
+        throw new DataNotFoundException();
+    }
     }
 
     /**
@@ -46,7 +55,13 @@ public class PowerpointService {
      * @return              response entity with posted powerpoint
      */
     public PowerpointDTO create(Powerpoint powerpoint){
+        try{
         return convertToDTO.toPowerpointDTO(repository.postPowerpoint(powerpoint));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -57,7 +72,13 @@ public class PowerpointService {
      * @return              response entity with put powerpoint
      */
     public PowerpointDTO update(Powerpoint powerpoint, Integer id){
+        try{
         return convertToDTO.toPowerpointDTO(repository.putPowerpoint(powerpoint, id));
+        }
+        catch (Exception ex)
+        {
+            throw new BadRequestException();
+        }
     }
 
     /**
@@ -67,6 +88,12 @@ public class PowerpointService {
      * @return      response entity with deleted powerpoint
      */
     public PowerpointDTO delete(Integer id){
+        try{
         return convertToDTO.toPowerpointDTO(repository.deletePowerpoint(id));
+        }
+        catch(Exception ex)
+        {
+            throw new NoContentException();
+        }
     }
 }

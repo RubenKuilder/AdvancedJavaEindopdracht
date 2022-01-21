@@ -37,11 +37,7 @@ public class RssFeedRepository {
      * @return      response entity with a single RSS feed
      */
     public RssFeed getRssFeed(int id){
-        try {
             return manager.find(RssFeed.class, id);
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
     }
 
     /**
@@ -51,12 +47,8 @@ public class RssFeedRepository {
      * @return          response entity with posted RSS feed
      */
     public RssFeed postRssFeed(RssFeed rssFeed){
-        try {
             manager.persist(rssFeed);
             return manager.find(RssFeed.class, rssFeed.getId());
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
     }
 
     /**
