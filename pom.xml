@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.AdvancedJavaEindopdracht</groupId>
-    <artifactId>AdvancedJavaEindopdracht</artifactId>
+    <groupId>org.eindopdracht</groupId>
+    <artifactId>eindopdracht</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -254,7 +254,7 @@
                         <!--The part of the project to deploy, in our case, this whole project-->
                         <deployable>
                             <groupId>org.eindopdracht</groupId>
-                            <artifactId>AdvancedJavaEindopdracht</artifactId>
+                            <artifactId>eindopdracht</artifactId>
                             <type>war</type>
                             <properties>
                                 <!--We listen to the root path-->

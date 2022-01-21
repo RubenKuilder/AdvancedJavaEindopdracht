@@ -92,19 +92,4 @@ class ContentControllerTest
                 .andExpect(jsonPath("$.contentType.name").value("Text"))
                 .andExpect(jsonPath("$.path").value("Put Path"));
     }
-
-    @Test
-    void patchContent() throws Exception
-    {
-        Content content = new Content();
-        content.setPath("Patch Path");
-
-        this.mockMvc.perform(patch("/content/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(content)))
-                .andExpect(status().isOk())
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.contentType.name").value("Text"))
-                .andExpect(jsonPath("$.path").value("Patch Path"));
-    }
 }

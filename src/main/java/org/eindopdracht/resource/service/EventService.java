@@ -80,22 +80,6 @@ public class EventService {
     }
     }
 
-    /**
-     * Maps Entity to DTO and patches a single event.
-     *
-     * @param id        id of the event to patch
-     * @param eventDto  event to patch
-     * @return          response entity with patched event
-     */
-    public EventDto patch(long id, EventDto eventDto) {
-        try{
-        return eventMapper.mapFromEntity(eventRepository.patch(id, eventMapper.mapToEntity(eventDto)));
-    }
-        catch (Exception ex)
-    {
-        throw new BadRequestException();
-    }
-    }
 
     /**
      * Maps Entity to DTO and deletes a single event.

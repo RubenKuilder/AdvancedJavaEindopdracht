@@ -111,22 +111,6 @@ class EventControllerTest
     }
 
     @Test
-    void patchEvent() throws Exception
-    {
-        Event event = new Event();
-        event.setDescription("Description");
-        event.setDuration(2000L);
-        event.setUser_id(1L);
-        this.mockMvc.perform(patch("/event/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(event)))
-                .andExpect(status().isOk())
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.description").value("Description"))
-                .andExpect(jsonPath("$.duration").value(2000L));
-    }
-
-    @Test
     void deleteEvent() throws Exception
     {
         this.mockMvc.perform(delete("/event/1"))
