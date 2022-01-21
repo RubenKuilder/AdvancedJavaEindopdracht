@@ -1,7 +1,7 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 
-import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
+import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
 import org.junit.jupiter.api.*;
