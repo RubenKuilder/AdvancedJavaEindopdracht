@@ -213,7 +213,10 @@ Next navigate to the run anything window and execute
 
 After a few minutes of startup messages it should be running, and you can navigate to the application under the normal ```localhost:8080```
 
-### 2.6 Running tests with coverage (_optional?_)
+### 2.6 Creating first user
+Create a default user to use for the authentication for getting 
+
+### 2.7 Running tests with coverage (_optional?_)
 This part is optional unless it's not, I will explain. Running test with coverage for some of the team had an issue involving the coverage reporter.
 The default Idea coverage reporter would not function with dependency injection so every single test would break, to fix this we had to switch the coverage reporter to a different one which then made the tests work.
 

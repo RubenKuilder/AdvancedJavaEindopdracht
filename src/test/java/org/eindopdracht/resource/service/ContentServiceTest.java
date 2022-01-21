@@ -24,7 +24,8 @@ public class ContentServiceTest {
     private ContentService contentService;
 
     @Test
-    void getAllContent() {
+    void getAllContent()
+    {
         List<ContentDto> contentDtoList = contentService.get();
 
         assertEquals(3, contentDtoList.size());
@@ -37,14 +38,16 @@ public class ContentServiceTest {
     }
 
     @Test
-    void getById() {
+    void getById()
+    {
         ContentDto contentDto = contentService.getById(1);
         assertEquals(1, contentDto.getContentType().getId());
         assertEquals("Location Path", contentDto.getPath());
     }
 
     @Test
-    void postContent() {
+    void postContent()
+    {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -59,7 +62,8 @@ public class ContentServiceTest {
     }
 
     @Test
-    void putContent() {
+    void putContent()
+    {
         ContentType contentType = new ContentType();
         contentType.setId(1L);
         contentType.setName("Text");
@@ -73,14 +77,4 @@ public class ContentServiceTest {
         assertNull(putContent.getPath());
     }
 
-    @Test
-    void patchContent() {
-        ContentDto contentDto = new ContentDto();
-        contentDto.setPath("Patch Path");
-
-        ContentDto patchedContent = contentService.patch(1, contentDto);
-
-        assertEquals(1, patchedContent.getContentType().getId());
-        assertEquals("Patch Path", patchedContent.getPath());
-    }
 }

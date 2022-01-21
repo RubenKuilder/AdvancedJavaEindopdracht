@@ -27,7 +27,8 @@ public class EventRepositoryTest {
     private EventRepository eventRepository;
 
     @Test
-    void getAllEvents() {
+    void getAllEvents()
+    {
         List<Event> eventList = eventRepository.get();
 
         assertEquals(2, eventList.size());
@@ -47,7 +48,8 @@ public class EventRepositoryTest {
     }
 
     @Test
-    void getById() {
+    void getById()
+    {
         Event event = eventRepository.getById(1);
 
         assertEquals(1, event.getContent().getId());
@@ -59,7 +61,8 @@ public class EventRepositoryTest {
     }
 
     @Test
-    void postEvent() throws Exception {
+    void postEvent() throws Exception
+    {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -89,7 +92,8 @@ public class EventRepositoryTest {
     }
 
     @Test
-    void putEvent() throws Exception {
+    void putEvent() throws Exception
+    {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
@@ -107,20 +111,4 @@ public class EventRepositoryTest {
         assertNull(putEvent.getDuration());
     }
 
-    @Test
-    void patchEvent() throws Exception {
-        Event event = new Event();
-        event.setUser_id(2L);
-        event.setDescription("Description");
-
-        Event patchedEvent = eventRepository.patch(1, event);
-
-
-        assertEquals(1, patchedEvent.getContent().getId());
-        assertEquals(2, patchedEvent.getUser_id());
-        assertEquals("Description", patchedEvent.getDescription());
-        assertEquals("2021-11-08 00:00:00.0", patchedEvent.getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", patchedEvent.getEndDateTime().toString());
-        assertEquals(2000, patchedEvent.getDuration());
-    }
 }

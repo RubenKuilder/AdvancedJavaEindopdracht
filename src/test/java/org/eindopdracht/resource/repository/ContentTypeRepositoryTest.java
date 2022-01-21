@@ -4,6 +4,7 @@ import org.eindopdracht.resource.model.event.content.contentType.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,8 @@ public class ContentTypeRepositoryTest {
     private ContentTypeRepository contentTypeRepository;
 
     @Test
-    void getAllContent() throws Exception {
+    void getAllContent() throws Exception
+    {
         List<ContentType> contentTypeList = contentTypeRepository.get();
 
         assertEquals(3, contentTypeList.size());
@@ -30,13 +32,15 @@ public class ContentTypeRepositoryTest {
     }
 
     @Test
-    void getById() throws Exception {
+    void getById() throws Exception
+    {
         ContentType contentType = contentTypeRepository.getById(1);
         assertEquals("Text", contentType.getName());
     }
 
     @Test
-    void postContentType() throws Exception {
+    void postContentType() throws Exception
+    {
         ContentType contentType = new ContentType();
         contentType.setName("New content type");
 
@@ -46,7 +50,8 @@ public class ContentTypeRepositoryTest {
     }
 
     @Test
-    void putContentType() throws Exception {
+    void putContentType() throws Exception
+    {
         ContentType contentType = new ContentType();
         contentType.setName("New content type");
 
@@ -56,17 +61,8 @@ public class ContentTypeRepositoryTest {
     }
 
     @Test
-    void patchContentType() throws Exception {
-        ContentType contentType = new ContentType();
-        contentType.setName("New content type");
-
-        ContentType patchedContentTypeDto = contentTypeRepository.patch(1, contentType);
-
-        assertEquals("New content type", patchedContentTypeDto.getName());
-    }
-
-    @Test
-    void deleteContentType() throws Exception {
+    void deleteContentType() throws Exception
+    {
         ContentType deletedContentType = contentTypeRepository.delete(1);
 
         assertEquals("Text", deletedContentType.getName());
