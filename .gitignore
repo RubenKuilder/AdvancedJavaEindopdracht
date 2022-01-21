@@ -143,3 +143,4 @@ hs_err_pid*
 /target/
 /target/**
 src/main/resources/application.properties
+!/additional_resources/Stenden_Dashboard.war

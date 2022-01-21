@@ -1,7 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
-import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.event.content.contentType.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,25 +16,59 @@ public class ContentTypeRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Select queries all content types and returns them in a list.
+     *
+     * @return      response entity with list of all content types
+     */
     public List<ContentType> get() {
         TypedQuery<ContentType> query = entityManager.createQuery("SELECT c FROM ContentType c", ContentType.class);
         return query.getResultList();
     }
 
+    /**
+     * Find a single content type and return it.
+     *
+     * @param id    id of the content type to find
+     * @return      response entity with single content type
+     */
     public ContentType getById(long id) {
         return entityManager.find(ContentType.class, id);
     }
 
+    /**
+     * Post a single content type.
+     *
+     * @param contentType   content type to post
+     * @return              response entity with posted content type
+     */
     public ContentType persist(ContentType contentType) {
         entityManager.persist(contentType);
         return contentType;
     }
 
+    /**
+     * Put a single content type.
+     * Updates all fields.
+     *
+     * @param id            id of the content type to put
+     * @param contentType   content type to put
+     * @return              response entity with put content type
+     */
     public ContentType put(long id, ContentType contentType) {
         contentType.setId(id);
         return entityManager.merge(contentType);
     }
 
+    /**
+     * Patch a single content type.
+     * Updates whatever field is set in the new object.
+     * If a field is null, it will not be updated.
+     *
+     * @param id            id of the content type to patch
+     * @param contentType   content type to patch
+     * @return              response entity with patched content type
+     */
     public ContentType patch(long id, ContentType contentType) {
         if (getById(id) == null)
             throw new DataNotFoundException();
@@ -49,6 +82,12 @@ public class ContentTypeRepository {
         return updatedContentType;
     }
 
+    /**
+     * Delete a single content type.
+     *
+     * @param id    id of the content type to delete
+     * @return      response entity with deleted content type
+     */
     public ContentType delete(long id) {
         ContentType contentType = entityManager.find(ContentType.class, id);
         entityManager.remove(contentType);

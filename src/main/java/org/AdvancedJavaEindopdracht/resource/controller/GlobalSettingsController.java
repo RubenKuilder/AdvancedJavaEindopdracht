@@ -22,30 +22,60 @@ public class GlobalSettingsController
         this.globalSettingsService = globalSettingsService;
     }
 
+    /**
+     * Returns a list of all global settings.
+     *
+     * @return      response entity with list of all global settings
+     */
     @GetMapping()
     public ResponseEntity<List<GlobalSettingsDto>> getSettings()
     {
         return new ResponseEntity<>(globalSettingsService.getGlobalSettings(), HttpStatus.OK);
     }
 
+    /**
+     * Returns a single global setting.
+     *
+     * @param id    id of the global setting to find
+     * @return      response entity with single global setting
+     */
     @GetMapping("/{id}")
     public ResponseEntity<GlobalSettingsDto> getSettingsById(@PathVariable Integer id)
     {
         return new ResponseEntity<>(globalSettingsService.getGlobalSettingsById(id), HttpStatus.OK);
     }
 
+    /**
+     * Post a single global setting.
+     *
+     * @param globalSettings    global setting to post
+     * @return                  response entity with posted global setting
+     */
     @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GlobalSettingsDto> createSettings(@RequestBody GlobalSettings globalSettings)
     {
         return new ResponseEntity<>(globalSettingsService.createGlobalSettings(globalSettings), HttpStatus.OK);
     }
 
+    /**
+     * Delete a single global setting.
+     *
+     * @param id    id of the global setting to delete
+     * @return      response entity with deleted global setting
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<GlobalSettingsDto> deleteSettings(@PathVariable Integer id)
     {
         return new ResponseEntity<>(globalSettingsService.deleteGlobalSettings(id), HttpStatus.OK);
     }
 
+    /**
+     * Put a single global setting.
+     *
+     * @param id                id of the global setting to put
+     * @param globalSettings    global setting to put
+     * @return                  response entity with put global setting
+     */
     @PutMapping(value = "/{id}",
     consumes = MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE)
