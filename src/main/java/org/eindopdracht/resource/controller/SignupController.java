@@ -11,23 +11,22 @@ import javax.validation.Valid;
 @RestController
 @CrossOrigin()
 @RequestMapping("/signup")
-public class SignupController{
+public class SignupController {
 
     private final UserService service;
 
     public SignupController(UserService service) {
-            this.service = service;
-        }
+        this.service = service;
+    }
 
     /**
      * Post a single user.
      *
-     * @param user  user to post
-     * @return      response entity with user
+     * @param user user to post
+     * @return response entity with user
      */
     @PostMapping
-    public ResponseEntity<UserDTO> signup(@Valid @RequestBody User user)
-    {
+    public ResponseEntity<UserDTO> signup(@Valid @RequestBody User user) {
         return ResponseEntity.ok(service.create(user));
     }
 }

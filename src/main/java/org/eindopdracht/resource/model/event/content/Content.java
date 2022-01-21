@@ -18,7 +18,7 @@ public class Content {
     private Long id;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name="contentType_id")
+    @JoinColumn(name = "contentType_id")
     private ContentType contentType;
 
     private String path;

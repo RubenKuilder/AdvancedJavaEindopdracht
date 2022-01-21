@@ -20,23 +20,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class EventControllerTest
-{
+class EventControllerTest {
     @Autowired
     private WebApplicationContext webContext;
 
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).build();
     }
 
 
     @Test
-    void getAll() throws Exception
-    {
+    void getAll() throws Exception {
         this.mockMvc.perform(get("/event").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -46,8 +43,7 @@ class EventControllerTest
     }
 
     @Test
-    void getById() throws Exception
-    {
+    void getById() throws Exception {
         this.mockMvc.perform(get("/event/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -57,8 +53,7 @@ class EventControllerTest
     }
 
     @Test
-    void postEvent() throws Exception
-    {
+    void postEvent() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -84,8 +79,7 @@ class EventControllerTest
     }
 
     @Test
-    void putEvent() throws Exception
-    {
+    void putEvent() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -111,8 +105,7 @@ class EventControllerTest
     }
 
     @Test
-    void patchEvent() throws Exception
-    {
+    void patchEvent() throws Exception {
         Event event = new Event();
         event.setDescription("Description");
         event.setDuration(2000L);
@@ -127,8 +120,7 @@ class EventControllerTest
     }
 
     @Test
-    void deleteEvent() throws Exception
-    {
+    void deleteEvent() throws Exception {
         this.mockMvc.perform(delete("/event/1"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))

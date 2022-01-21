@@ -59,7 +59,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="userAvailability" baseColumnNames="user_id" constraintName="fk_user_availability_user"
+        <addForeignKeyConstraint baseTableName="userAvailability" baseColumnNames="user_id"
+                                 constraintName="fk_user_availability_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
     </changeSet>
@@ -91,7 +92,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="content" baseColumnNames="contentType_id" constraintName="fk_contentType_content"
+        <addForeignKeyConstraint baseTableName="content" baseColumnNames="contentType_id"
+                                 constraintName="fk_contentType_content"
                                  referencedTableName="contentType"
                                  referencedColumnNames="id"/>
         <createTable tableName="event">
@@ -155,7 +157,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="powerpoint" baseColumnNames="user_id" constraintName="fk_powerpoint_user"
+        <addForeignKeyConstraint baseTableName="powerpoint" baseColumnNames="user_id"
+                                 constraintName="fk_powerpoint_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
     </changeSet>
@@ -192,10 +195,12 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="userSchedule" baseColumnNames="user_id" constraintName="fk_userSchedule_user"
+        <addForeignKeyConstraint baseTableName="userSchedule" baseColumnNames="user_id"
+                                 constraintName="fk_userSchedule_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="userSchedule" baseColumnNames="schedule_id" constraintName="fk_userSchedule_schedule"
+        <addForeignKeyConstraint baseTableName="userSchedule" baseColumnNames="schedule_id"
+                                 constraintName="fk_userSchedule_schedule"
                                  referencedTableName="schedule"
                                  referencedColumnNames="id"/>
     </changeSet>
@@ -226,14 +231,16 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="userConsultation" baseColumnNames="user_id" constraintName="fk_userConsultation_user"
+        <addForeignKeyConstraint baseTableName="userConsultation" baseColumnNames="user_id"
+                                 constraintName="fk_userConsultation_user"
                                  referencedTableName="user"
                                  referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="userConsultation" baseColumnNames="consultation_id" constraintName="fk_userConsultation_consultation"
+        <addForeignKeyConstraint baseTableName="userConsultation" baseColumnNames="consultation_id"
+                                 constraintName="fk_userConsultation_consultation"
                                  referencedTableName="consultation"
                                  referencedColumnNames="id"/>
     </changeSet>
-    
+
     <changeSet id="7" author="Robbie Eijkelkamp" context="eventSettings created">
         <preConditions>
             <not>
@@ -272,34 +279,38 @@
             </column>
         </addColumn>
     </changeSet>
-    
+
     <changeSet id="10" author="Robbie Eijkelkamp">
         <preConditions>
             <tableExists tableName="schedule"/>
         </preConditions>
-        <renameColumn tableName="schedule" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
-        <renameColumn tableName="schedule" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
+        <renameColumn tableName="schedule" oldColumnName="startDate" newColumnName="startDateTime"
+                      columnDataType="datetime"/>
+        <renameColumn tableName="schedule" oldColumnName="endDate" newColumnName="endDateTime"
+                      columnDataType="datetime"/>
     </changeSet>
-    
+
     <changeSet id="11" author="Robbie Eijkelkamp">
         <preConditions>
             <tableExists tableName="event"/>
         </preConditions>
         <dropForeignKeyConstraint baseTableName="event" constraintName="fk_event_content"/>
-        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content_updated"
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id"
+                                 constraintName="fk_event_content_updated"
                                  referencedTableName="content"
                                  referencedColumnNames="id"
-        onDelete="SET NULL"
-        onUpdate="CASCADE"/>
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"/>
         <dropNotNullConstraint tableName="event" columnName="content_id" columnDataType="int"/>
     </changeSet>
-    
+
     <changeSet id="12" author="Robbie Eijkelkamp">
         <preConditions>
             <tableExists tableName="event"/>
         </preConditions>
         <dropForeignKeyConstraint baseTableName="event" constraintName="fk_event_content_updated"/>
-        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content_updated"
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id"
+                                 constraintName="fk_event_content_updated"
                                  referencedTableName="content"
                                  referencedColumnNames="id"
                                  onDelete="NO ACTION"
@@ -312,7 +323,8 @@
             <tableExists tableName="event"/>
         </preConditions>
         <dropForeignKeyConstraint baseTableName="event" constraintName="fk_event_content_updated"/>
-        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id" constraintName="fk_event_content_updated"
+        <addForeignKeyConstraint baseTableName="event" baseColumnNames="content_id"
+                                 constraintName="fk_event_content_updated"
                                  referencedTableName="content"
                                  referencedColumnNames="id"
                                  onDelete="CASCADE"
@@ -324,7 +336,9 @@
         <preConditions>
             <tableExists tableName="rssFeed"/>
         </preConditions>
-        <renameColumn tableName="rssFeed" oldColumnName="startDate" newColumnName="startDateTime" columnDataType="datetime"/>
-        <renameColumn tableName="rssFeed" oldColumnName="endDate" newColumnName="endDateTime" columnDataType="datetime"/>
+        <renameColumn tableName="rssFeed" oldColumnName="startDate" newColumnName="startDateTime"
+                      columnDataType="datetime"/>
+        <renameColumn tableName="rssFeed" oldColumnName="endDate" newColumnName="endDateTime"
+                      columnDataType="datetime"/>
     </changeSet>
 </databaseChangeLog>

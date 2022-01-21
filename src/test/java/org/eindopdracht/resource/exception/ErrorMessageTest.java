@@ -15,7 +15,7 @@ public class ErrorMessageTest {
 
     @Test
     void testGetErrorMessage() {
-       assertEquals("This is a test", error.getError());
+        assertEquals("This is a test", error.getError());
     }
 
     @Test

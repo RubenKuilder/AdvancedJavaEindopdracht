@@ -11,11 +11,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -27,8 +26,7 @@ public class UserAvailibilityServiceTest {
 
     @Test
     @Transactional
-    void getUserAvailabilities()
-    {
+    void getUserAvailabilities() {
         List<UserAvailabilityDTO> list = service.getUserAvailabilities();
 
         assertEquals(2, list.size());
@@ -36,8 +34,7 @@ public class UserAvailibilityServiceTest {
 
     @Test
     @Transactional
-    void getUserAvailability()
-    {
+    void getUserAvailability() {
         UserAvailabilityDTO dto = service.getUserAvailability(1);
 
         assertEquals("Madlyaza", dto.getUser().getName());
@@ -45,8 +42,7 @@ public class UserAvailibilityServiceTest {
 
     @Test
     @Transactional
-    void createUserAvailability()
-    {
+    void createUserAvailability() {
         User user = new User();
         user.setName("test22");
         user.setApproved(true);
@@ -65,8 +61,7 @@ public class UserAvailibilityServiceTest {
 
     @Test
     @Transactional
-    void deleteUserAvailability()
-    {
+    void deleteUserAvailability() {
         service.delete(1);
     }
 

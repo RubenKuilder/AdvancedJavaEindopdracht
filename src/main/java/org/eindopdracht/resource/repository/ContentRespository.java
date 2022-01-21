@@ -19,7 +19,7 @@ public class ContentRespository {
     /**
      * Select queries all content and returns them in a list.
      *
-     * @return      response entity with list of all content
+     * @return response entity with list of all content
      */
     public List<Content> get() {
         TypedQuery<Content> query = entityManager.createQuery("SELECT c FROM Content c", Content.class);
@@ -29,8 +29,8 @@ public class ContentRespository {
     /**
      * Find a single content and return it.
      *
-     * @param id    id of the content to find
-     * @return      response entity with single content
+     * @param id id of the content to find
+     * @return response entity with single content
      */
     public Content getById(long id) {
         return entityManager.find(Content.class, id);
@@ -39,21 +39,21 @@ public class ContentRespository {
     /**
      * Post a single content.
      *
-     * @param content   content to post
-     * @return          response entity with posted content
+     * @param content content to post
+     * @return response entity with posted content
      */
     public Content persist(Content content) {
-            entityManager.persist(content);
-            return content;
+        entityManager.persist(content);
+        return content;
     }
 
     /**
      * Put a single content.
      * Updates all fields.
      *
-     * @param id        id of the content to put
-     * @param content   content to put
-     * @return          response entity with put content
+     * @param id      id of the content to put
+     * @param content content to put
+     * @return response entity with put content
      */
     public Content put(long id, Content content) {
         content.setId(id);
@@ -65,9 +65,9 @@ public class ContentRespository {
      * Updates whatever field is set in the new object.
      * If a field is null, it will not be updated.
      *
-     * @param id        id of the content to patch
-     * @param content   content to patch
-     * @return          response entity with patched content
+     * @param id      id of the content to patch
+     * @param content content to patch
+     * @return response entity with patched content
      */
     public Content patch(long id, Content content) {
         if (getById(id) == null)

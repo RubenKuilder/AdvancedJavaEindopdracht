@@ -12,30 +12,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class RoleServiceTest
-{
+class RoleServiceTest {
     @Autowired
     private RoleService service;
 
     @Test
     @Transactional
-    void getRoles()
-    {
-        List<RoleDTO>  list = service.getRoles();
+    void getRoles() {
+        List<RoleDTO> list = service.getRoles();
 
         assertEquals(2, list.size());
     }
 
     @Test
     @Transactional
-    void getRole()
-    {
+    void getRole() {
         RoleDTO role = service.getRole(1);
 
         assertEquals("user", role.getRole());
@@ -43,8 +40,7 @@ class RoleServiceTest
 
     @Test
     @Transactional
-    void createRole()
-    {
+    void createRole() {
         Role role = new Role();
         role.setRole("test");
         RoleDTO dto = service.create(role);
@@ -54,15 +50,13 @@ class RoleServiceTest
 
     @Test
     @Transactional
-    void deleteRole()
-    {
+    void deleteRole() {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRole()
-    {
+    void updateRole() {
         Role role = new Role();
         role.setRole("test");
         RoleDTO dto = service.update(role, 1);

@@ -16,30 +16,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class RssServiceTest
-{
+class RssServiceTest {
     @Autowired
     private RssFeedService service;
 
     @Test
     @Transactional
-    void getRssFeeds()
-    {
-        List<RssFeedDTO>  list = service.getRssFeeds();
+    void getRssFeeds() {
+        List<RssFeedDTO> list = service.getRssFeeds();
 
         assertEquals(2, list.size());
     }
 
     @Test
     @Transactional
-    void getRssFeed()
-    {
+    void getRssFeed() {
         RssFeedDTO rss = service.getRssFeed(1);
 
         assertEquals("Madlyaza", rss.getUser().getName());
@@ -47,8 +44,7 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void createRss() throws ParseException
-    {
+    void createRss() throws ParseException {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -73,15 +69,13 @@ class RssServiceTest
 
     @Test
     @Transactional
-    void deleteRss()
-    {
+    void deleteRss() {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRss()
-    {
+    void updateRss() {
         RssFeed feed = new RssFeed();
         feed.setLink("test");
         feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));

@@ -12,13 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-public class AuthenticationTest
-{
+public class AuthenticationTest {
     @Autowired
     private WebApplicationContext webContext;
 
@@ -27,16 +27,14 @@ public class AuthenticationTest
     private final String jwtTokenHeader = "jwt-new-token";
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webContext)
                 .apply(springSecurity())
                 .build();
     }
 
     @Test
-    void testNotAuthenticated() throws Exception
-    {
+    void testNotAuthenticated() throws Exception {
         this.mockMvc.perform(post("/content/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized())
@@ -44,11 +42,10 @@ public class AuthenticationTest
     }
 
     @Test
-    void testDisabledAccount() throws Exception
-    {
+    void testDisabledAccount() throws Exception {
         MvcResult mvcResult = this.mockMvc.perform(post("/authenticate")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"Disabled\",\"password\":\"password\"}"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"Disabled\",\"password\":\"password\"}"))
                 .andReturn();
         String token = mvcResult.getResponse().getContentAsString();
 

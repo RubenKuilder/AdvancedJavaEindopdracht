@@ -3,7 +3,10 @@ package org.eindopdracht.resource.repository;
 
 import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.model.schedule.Schedule;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,8 +33,7 @@ public class ScheduleRepositoryTest {
 
     @Test
     @Order(1)
-    void getScheduleByIDTest()
-    {
+    void getScheduleByIDTest() {
         Schedule schedule = scheduleRepository.getById(1);
 
         assertEquals("Mooie titel post", schedule.getTitle());
@@ -40,8 +42,7 @@ public class ScheduleRepositoryTest {
 
     @Test
     @Order(2)
-    public void deleteScheduleTest()
-    {
+    public void deleteScheduleTest() {
         Schedule schedule = scheduleRepository.delete(1);
 
         assertEquals("Mooie titel post", schedule.getTitle());
@@ -49,8 +50,7 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    void getScheduleTest()
-    {
+    void getScheduleTest() {
 
         List<Schedule> scheduleList = scheduleRepository.get();
 
@@ -59,8 +59,7 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    void postScheduleTest() throws Exception
-    {
+    void postScheduleTest() throws Exception {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);
@@ -85,8 +84,7 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    void putScheduleTest() throws Exception
-    {
+    void putScheduleTest() throws Exception {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);
@@ -111,8 +109,7 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    void patchScheduleTest() throws ParseException
-    {
+    void patchScheduleTest() throws ParseException {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);

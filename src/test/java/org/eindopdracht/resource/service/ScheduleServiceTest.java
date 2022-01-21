@@ -18,9 +18,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -33,8 +31,7 @@ public class ScheduleServiceTest {
 
     @Test
     @Order(1)
-    void getScheduleByIDTest()
-    {
+    void getScheduleByIDTest() {
         ScheduleDto scheduleDto = scheduleService.getById(1);
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
@@ -43,8 +40,7 @@ public class ScheduleServiceTest {
 
     @Test
     @Order(2)
-    void getScheduleTest()
-    {
+    void getScheduleTest() {
         List<ScheduleDto> scheduleDtoList = scheduleService.getAll();
 
         assertEquals("Mooie titel post", scheduleDtoList.get(1).getTitle());
@@ -61,10 +57,8 @@ public class ScheduleServiceTest {
     }
 
 
-
     @Test
-    void postScheduleTest() throws Exception
-    {
+    void postScheduleTest() throws Exception {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);
@@ -89,8 +83,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    void putScheduleTest() throws Exception
-    {
+    void putScheduleTest() throws Exception {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);

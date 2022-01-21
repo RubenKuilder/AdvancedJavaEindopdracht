@@ -24,23 +24,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class ConsultationControllerTest
-{
+class ConsultationControllerTest {
     @Autowired
     private WebApplicationContext webContext;
 
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).build();
     }
 
 
     @Test
-    void getAllConsultation() throws Exception
-    {
+    void getAllConsultation() throws Exception {
         this.mockMvc.perform(get("/consultation").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -51,8 +48,7 @@ class ConsultationControllerTest
     }
 
     @Test
-    void getById() throws Exception
-    {
+    void getById() throws Exception {
         this.mockMvc.perform(get("/consultation/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -61,8 +57,7 @@ class ConsultationControllerTest
     }
 
     @Test
-    void postConsultation() throws Exception
-    {
+    void postConsultation() throws Exception {
         User user = new User();
         List<User> usersList = Arrays.asList(user);
 
@@ -85,8 +80,7 @@ class ConsultationControllerTest
     }
 
     @Test
-    void putConsultation() throws Exception
-    {
+    void putConsultation() throws Exception {
         User user = new User();
         List<User> usersList = Arrays.asList(user);
 
@@ -109,8 +103,7 @@ class ConsultationControllerTest
     }
 
     @Test
-    void patchConsultation() throws Exception
-    {
+    void patchConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-1999 00:00:00");
 
@@ -127,8 +120,7 @@ class ConsultationControllerTest
     }
 
     @Test
-    void deleteConsultation() throws Exception
-    {
+    void deleteConsultation() throws Exception {
         this.mockMvc.perform(delete("/consultation/1"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))

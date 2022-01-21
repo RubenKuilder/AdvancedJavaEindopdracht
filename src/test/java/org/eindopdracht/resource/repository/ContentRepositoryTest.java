@@ -24,8 +24,7 @@ public class ContentRepositoryTest {
     private ContentRespository contentRespository;
 
     @Test
-    void getAll()
-    {
+    void getAll() {
         List<Content> contentList = contentRespository.get();
         assertEquals(3, contentList.size());
         assertEquals(1, contentList.get(0).getContentType().getId());
@@ -37,16 +36,14 @@ public class ContentRepositoryTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         Content content = contentRespository.getById(1);
         assertEquals(1, content.getContentType().getId());
         assertEquals("Location Path", content.getPath());
     }
 
     @Test
-    void postContent()
-    {
+    void postContent() {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -61,8 +58,7 @@ public class ContentRepositoryTest {
     }
 
     @Test
-    void putContent()
-    {
+    void putContent() {
         ContentType contentType = new ContentType();
         contentType.setId(1L);
         contentType.setName("Text");
@@ -77,8 +73,7 @@ public class ContentRepositoryTest {
     }
 
     @Test
-    void patchContent()
-    {
+    void patchContent() {
         Content content = new Content();
         content.setPath("Patch Path");
 

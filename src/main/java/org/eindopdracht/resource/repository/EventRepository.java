@@ -19,7 +19,7 @@ public class EventRepository {
     /**
      * Select queries all events and returns them in a list.
      *
-     * @return      response entity with list of all events
+     * @return response entity with list of all events
      */
     public List<Event> get() {
         TypedQuery<Event> query = entityManager.createQuery("SELECT e FROM Event e", Event.class);
@@ -29,22 +29,22 @@ public class EventRepository {
     /**
      * Find a single event and return it.
      *
-     * @param id    id of the event to find
-     * @return      response entity with a single event
+     * @param id id of the event to find
+     * @return response entity with a single event
      */
     public Event getById(long id) {
-            return entityManager.find(Event.class, id);
+        return entityManager.find(Event.class, id);
     }
 
     /**
      * Post a single event.
      *
      * @param event event to post
-     * @return      response entity with posted event
+     * @return response entity with posted event
      */
     public Event persist(Event event) {
-            entityManager.persist(event);
-            return event;
+        entityManager.persist(event);
+        return event;
     }
 
     /**
@@ -53,7 +53,7 @@ public class EventRepository {
      *
      * @param id    id of the event to put
      * @param event event to put
-     * @return      response entity with put event
+     * @return response entity with put event
      */
     public Event put(long id, Event event) {
         event.setId(id);
@@ -67,7 +67,7 @@ public class EventRepository {
      *
      * @param id    id of the event to patch
      * @param event event to patch
-     * @return      response entity with patched event
+     * @return response entity with patched event
      */
     public Event patch(long id, Event event) {
         if (getById(id) == null)
@@ -105,8 +105,8 @@ public class EventRepository {
     /**
      * Delete a single event and return it.
      *
-     * @param id    id of the event to delete
-     * @return      response entity with deleted event
+     * @param id id of the event to delete
+     * @return response entity with deleted event
      */
     public Event delete(long id) {
         Event eventToDelete = getById(id);

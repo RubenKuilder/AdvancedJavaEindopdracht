@@ -13,30 +13,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class PowerpointServiceTest
-{
+class PowerpointServiceTest {
     @Autowired
     private PowerpointService service;
 
     @Test
     @Transactional
-    void getPowerpoints()
-    {
-        List<PowerpointDTO>  list = service.getPowerpoints();
+    void getPowerpoints() {
+        List<PowerpointDTO> list = service.getPowerpoints();
 
         assertEquals(1, list.size());
     }
 
     @Test
     @Transactional
-    void getPowerpoint()
-    {
+    void getPowerpoint() {
         PowerpointDTO dto = service.getPowerpoint(1);
 
         assertEquals("Madlyaza", dto.getUser().getName());
@@ -44,8 +41,7 @@ class PowerpointServiceTest
 
     @Test
     @Transactional
-    void createRole()
-    {
+    void createRole() {
         Powerpoint powerpoint = new Powerpoint();
         User user = new User();
         user.setName("test");
@@ -64,15 +60,13 @@ class PowerpointServiceTest
 
     @Test
     @Transactional
-    void deleteRole()
-    {
+    void deleteRole() {
         service.delete(1);
     }
 
     @Test
     @Transactional
-    void updateRole()
-    {
+    void updateRole() {
         Powerpoint powerpoint = new Powerpoint();
         User user = new User();
         user.setName("test22");

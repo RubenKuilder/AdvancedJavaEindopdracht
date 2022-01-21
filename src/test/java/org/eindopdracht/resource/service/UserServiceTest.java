@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -24,8 +24,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void getUsers()
-    {
+    void getUsers() {
         List<UserDTO> list = service.getUsers();
 
         assertEquals(3, list.size());
@@ -33,8 +32,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void getUser()
-    {
+    void getUser() {
         UserDTO dto = service.getUser(1);
 
         assertEquals("Madlyaza", dto.getName());
@@ -42,8 +40,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void createUser()
-    {
+    void createUser() {
         User user = new User();
         user.setName("test22");
         user.setApproved(true);
@@ -59,15 +56,13 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void deleteUser()
-    {
-        assertEquals("Madlyaza",service.delete(1).getName());
+    void deleteUser() {
+        assertEquals("Madlyaza", service.delete(1).getName());
     }
 
     @Test
     @Transactional
-    void updateUser()
-    {
+    void updateUser() {
         User user = new User();
         user.setName("test33");
         user.setApproved(true);

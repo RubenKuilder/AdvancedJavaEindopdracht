@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin()
 @RequestMapping("/authenticate")
-public class LoginController
-{
+public class LoginController {
 
     private final AuthenticationManager authenticationManager;
 
     private final JWTProvider jwtProvider;
 
-    public LoginController(AuthenticationManager authenticationManager, JWTProvider jwtProvider)
-    {
+    public LoginController(AuthenticationManager authenticationManager, JWTProvider jwtProvider) {
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
     }
@@ -29,12 +27,11 @@ public class LoginController
     /**
      * Post a single login.
      *
-     * @param login     login to post
-     * @return          response entity with token
+     * @param login login to post
+     * @return response entity with token
      */
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody LoginDTO login)
-    {
+    public ResponseEntity<String> login(@RequestBody LoginDTO login) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login.getName(), login.getPassword()));
 
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();

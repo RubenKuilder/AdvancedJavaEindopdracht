@@ -22,8 +22,7 @@ public class ContentTypeServiceTest {
     private ContentTypeService contentTypeService;
 
     @Test
-    void getAllContent()
-    {
+    void getAllContent() {
         List<ContentTypeDto> contentTypeDtoList = contentTypeService.get();
 
         assertEquals(3, contentTypeDtoList.size());
@@ -33,15 +32,13 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         ContentTypeDto contentTypeDto = contentTypeService.getById(1);
         assertEquals("Text", contentTypeDto.getName());
     }
 
     @Test
-    void postContentType()
-    {
+    void postContentType() {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
@@ -51,8 +48,7 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void putContentType()
-    {
+    void putContentType() {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
@@ -62,8 +58,7 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void patchContentType()
-    {
+    void patchContentType() {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
@@ -73,8 +68,7 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void deleteContentType()
-    {
+    void deleteContentType() {
         ContentTypeDto deletedContentType = contentTypeService.delete(1);
 
         assertEquals("Text", deletedContentType.getName());

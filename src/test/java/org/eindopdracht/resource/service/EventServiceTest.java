@@ -27,8 +27,7 @@ public class EventServiceTest {
     private EventService eventService;
 
     @Test
-    void getAllEvents()
-    {
+    void getAllEvents() {
         List<EventDto> eventDtoList = eventService.get();
 
         assertEquals(2, eventDtoList.size());
@@ -48,8 +47,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         EventDto eventDto = eventService.getById(1);
 
         assertEquals(1, eventDto.getContent().getId());
@@ -61,8 +59,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void postEvent() throws Exception
-    {
+    void postEvent() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -92,8 +89,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void putEvent() throws Exception
-    {
+    void putEvent() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
@@ -112,8 +108,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void patchEvent()
-    {
+    void patchEvent() {
         EventDto eventDto = new EventDto();
         eventDto.setUser_id(2L);
         eventDto.setDescription("Description");
