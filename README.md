@@ -192,8 +192,8 @@ In this file we will define a few key factors to the API.
 * **database.url**: The connection string for the database, we use the database stenden_dashboard. Leave this name as is in a later step we will create the database as is needed.
 * **secret.key**: Secret key, leave as is.
 ```properties
-database.username=stenden
-database.password=St3nd3n_D@shboard
+database.username=[Username]
+database.password=[Password]
 database.url=jdbc:mysql://127.0.0.1:3306/stenden_dashboard
 secret.key=secret
 ```
