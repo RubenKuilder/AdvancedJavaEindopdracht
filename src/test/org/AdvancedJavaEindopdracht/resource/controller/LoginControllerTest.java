@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
@@ -24,8 +25,7 @@ class LoginControllerTest
     @Autowired
     private WebApplicationContext webContext;
 
-    @Autowired
-    private JWTProvider jwtProvider;
+    private final String jwtTokenHeader = "jwt-new-token";
 
     private MockMvc mockMvc;
 
@@ -40,12 +40,10 @@ class LoginControllerTest
     @Test
     void login() throws Exception
     {
-        MvcResult mvcResult = this.mockMvc.perform(post("/authenticate")
+        this.mockMvc.perform(post("/authenticate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"Madlyaza\",\"password\":\"password\"}"))
                 .andExpect(status().isOk())
-                .andReturn();
-
-        Assertions.assertTrue(jwtProvider.validateToken(mvcResult.getResponse().getContentAsString()));
+                .andExpect(header().exists(jwtTokenHeader));
     }
 }

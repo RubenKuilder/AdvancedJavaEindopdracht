@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -37,7 +38,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     }
 
     @Bean(name = "dataSourceTest")
-    public DataSource dataSource()
+    public DataSource dataSourceTest()
     {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.h2.Driver");
@@ -57,8 +58,8 @@ public class DatabaseConfigTest implements WebMvcConfigurer
 
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setPackagesToScan("org.AdvancedJavaEindopdracht");
-        em.setDataSource(dataSource());
+        em.setPackagesToScan("org.AdvancedJavaEindopdracht.resource.model");
+        em.setDataSource(dataSourceTest());
         em.setPersistenceUnitName("EmFactory");
         em.setJpaProperties(additionalProperties());
 
@@ -85,7 +86,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     public SpringLiquibase liquibase()
     {
         SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setDataSource(dataSource());
+        liquibase.setDataSource(dataSourceTest());
         liquibase.setChangeLog("classpath:org/AdvancedJavaEindopdracht/configuration/test_master.xml");
 
         return liquibase;

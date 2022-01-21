@@ -54,11 +54,11 @@ public class AuthenticationTest
     }
 
     @Test
-    void testAccessDenied() throws Exception
+    void testDisabledAccount() throws Exception
     {
         MvcResult mvcResult = this.mockMvc.perform(post("/authenticate")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"Madlyaza\",\"password\":\"password\"}"))
+                .content("{\"name\":\"Disabled\",\"password\":\"password\"}"))
                 .andReturn();
         String token = mvcResult.getResponse().getContentAsString();
 
@@ -66,6 +66,6 @@ public class AuthenticationTest
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("authorization", "Bearer " + token)
                         .content("{\"name\":\"Text\"}"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isUnauthorized());
     }
 }
