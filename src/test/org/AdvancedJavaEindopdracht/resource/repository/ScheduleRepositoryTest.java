@@ -1,12 +1,10 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
 
+import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.User;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -78,7 +77,7 @@ public class ScheduleRepositoryTest {
         schedule.setEndDateTime(endDateTime);
         schedule.setUsers(usersList);
 
-        Schedule persistedScheduleDto = scheduleRepository.persist(schedule);
+        Schedule persistedScheduleDto = scheduleRepository.post(schedule);
 
         assertEquals("Mooie titel post", persistedScheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", persistedScheduleDto.getDescription());
@@ -113,13 +112,24 @@ public class ScheduleRepositoryTest {
     }
 
     @Test
-    void patchScheduleTest(){
+    void patchScheduleTest() throws ParseException
+    {
+        User user = new User();
+        user.setId(1);
+        List<User> usersList = Arrays.asList(user);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date startDateTime = sdf.parse("10-01-2022 15:40:10");
+        Date endDateTime = sdf.parse("10-01-2022 15:50:10");
 
         Schedule schedule = new Schedule();
         schedule.setTitle("Mooie titel patch");
         schedule.setDescription("Mooie beschrijving patch");
+        schedule.setUsers(usersList);
+        schedule.setStartDateTime(startDateTime);
+        schedule.setEndDateTime(endDateTime);
 
-        Schedule patchedSchedule = scheduleRepository.put(1, schedule);
+        Schedule patchedSchedule = scheduleRepository.patch(1, schedule);
 
         assertEquals("Mooie titel patch", patchedSchedule.getTitle());
         assertEquals("Mooie beschrijving patch", patchedSchedule.getDescription());

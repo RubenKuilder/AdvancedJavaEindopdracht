@@ -12,19 +12,19 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "user_availability")
+@Table(name = "userAvailability")
 public class UserAvailability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 
     @NotNull
     @Column(name = "date", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private Date date;
 }

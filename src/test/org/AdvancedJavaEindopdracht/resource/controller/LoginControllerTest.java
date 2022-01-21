@@ -42,7 +42,7 @@ class LoginControllerTest
     {
         MvcResult mvcResult = this.mockMvc.perform(post("/authenticate")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"name\":\"Madlyaza\",\"password\":\"Password\"}"))
+                        .content("{\"name\":\"Madlyaza\",\"password\":\"password\"}"))
                 .andExpect(status().isOk())
                 .andReturn();
 

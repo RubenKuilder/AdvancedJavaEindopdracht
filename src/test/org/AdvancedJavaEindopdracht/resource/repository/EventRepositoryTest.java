@@ -27,7 +27,7 @@ public class EventRepositoryTest {
     private EventRepository eventRepository;
 
     @Test
-    void getAllEvents() throws Exception
+    void getAllEvents()
     {
         List<Event> eventList = eventRepository.get();
 
@@ -48,7 +48,7 @@ public class EventRepositoryTest {
     }
 
     @Test
-    void getById() throws Exception
+    void getById()
     {
         Event event = eventRepository.getById(1);
 

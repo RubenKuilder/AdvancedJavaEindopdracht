@@ -1,8 +1,6 @@
 package org.AdvancedJavaEindopdracht.resource.repository;
 
-import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestException;
-import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
-import org.AdvancedJavaEindopdracht.resource.model.RssFeed;
+import org.AdvancedJavaEindopdracht.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.schedule.Schedule;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 @Transactional
@@ -40,13 +39,9 @@ public class ScheduleRepository {
      * @return      response entity with a single schedule
      */
     public Schedule getById(long id) {
-        try {
-            TypedQuery<Schedule> query = entityManager.createQuery("SELECT DISTINCT s FROM Schedule s JOIN FETCH s.users u WHERE s.id = :id", Schedule.class);
-            query.setParameter("id", id);
-            return query.getSingleResult();
-        }catch(Exception e){
-            throw new DataNotFoundException();
-        }
+        TypedQuery<Schedule> query = entityManager.createQuery("SELECT DISTINCT s FROM Schedule s JOIN FETCH s.users u WHERE s.id = :id", Schedule.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
     }
 
     /**
@@ -55,13 +50,9 @@ public class ScheduleRepository {
      * @param schedule  schedule to post
      * @return          response entity with posted schedule
      */
-    public Schedule persist(Schedule schedule) {
-        try {
-            entityManager.persist(schedule);
-            return schedule;
-        }catch(Exception e){
-            throw new BadRequestException();
-        }
+    public Schedule post(Schedule schedule) {
+        entityManager.persist(schedule);
+        return schedule;
     }
 
     /**
@@ -102,6 +93,15 @@ public class ScheduleRepository {
 
         if (schedule.getEndDateTime() != null) {
             updatedSchedule.setEndDateTime(schedule.getEndDateTime());
+        }
+
+        if(schedule.getDescription() != null && !Objects.equals(schedule.getDescription(), "")) {
+            updatedSchedule.setDescription(schedule.getDescription());
+        }
+
+        if(schedule.getTitle() != null && !Objects.equals(schedule.getTitle(), ""))
+        {
+            updatedSchedule.setTitle(schedule.getTitle());
         }
 
         return updatedSchedule;

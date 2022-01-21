@@ -4,6 +4,7 @@ import org.AdvancedJavaEindopdracht.resource.exception.general.BadRequestExcepti
 import org.AdvancedJavaEindopdracht.resource.exception.general.DataNotFoundException;
 import org.AdvancedJavaEindopdracht.resource.model.GlobalSettings;
 import org.AdvancedJavaEindopdracht.resource.model.Powerpoint;
+import org.AdvancedJavaEindopdracht.resource.model.event.Event;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
