@@ -37,6 +37,8 @@ public class RssFeedRepositoryTest {
         user.setEmail("true");
         user.setPassword("true");
         user.setProfileImagePath("true");
+        user.setRole("ROLE_USER");
+        user.setEnabled(false);
 
         this.feed = new RssFeed();
         this.feed.setUser(this.user);
