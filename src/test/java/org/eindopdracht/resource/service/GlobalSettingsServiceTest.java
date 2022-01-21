@@ -1,6 +1,8 @@
 package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.dto.GlobalSettingsDto;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.GlobalSettings;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,6 +41,10 @@ class GlobalSettingsServiceTest {
         GlobalSettingsDto globalSettingsDto = globalSettingsService.getGlobalSettingsById(1);
         assertTrue(globalSettingsDto.isSoundOn());
         assertEquals(new Time(00, 00, 00), globalSettingsDto.getSwitchTime());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            globalSettingsService.getGlobalSettingsById(1124);
+        });
     }
 
     @Test
@@ -59,6 +65,10 @@ class GlobalSettingsServiceTest {
         GlobalSettingsDto globalSettingsDto = globalSettingsService.deleteGlobalSettings(1);
         assertTrue(globalSettingsDto.isSoundOn());
         assertEquals(new Time(00, 00, 00), globalSettingsDto.getSwitchTime());
+
+        assertThrows(NoContentException.class, () -> {
+            globalSettingsService.deleteGlobalSettings(1421);
+        });
     }
 
     @Test

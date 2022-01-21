@@ -1,6 +1,8 @@
 package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.dto.PowerpointDTO;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.Powerpoint;
 import org.eindopdracht.resource.model.User;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -37,6 +40,10 @@ class PowerpointServiceTest {
         PowerpointDTO dto = service.getPowerpoint(1);
 
         assertEquals("Madlyaza", dto.getUser().getName());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            service.getPowerpoint(123);
+        });
     }
 
     @Test
@@ -62,6 +69,9 @@ class PowerpointServiceTest {
     @Transactional
     void deleteRole() {
         service.delete(1);
+        assertThrows(NoContentException.class, () -> {
+            service.delete(123);
+        });
     }
 
     @Test

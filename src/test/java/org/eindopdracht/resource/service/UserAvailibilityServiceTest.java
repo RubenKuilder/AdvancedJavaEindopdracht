@@ -1,6 +1,8 @@
 package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.dto.UserAvailabilityDTO;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.model.UserAvailability;
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -38,6 +41,10 @@ public class UserAvailibilityServiceTest {
         UserAvailabilityDTO dto = service.getUserAvailability(1);
 
         assertEquals("Madlyaza", dto.getUser().getName());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            service.getUserAvailability(234234);
+        });
     }
 
     @Test
@@ -63,6 +70,10 @@ public class UserAvailibilityServiceTest {
     @Transactional
     void deleteUserAvailability() {
         service.delete(1);
+
+        assertThrows(NoContentException.class, () -> {
+            service.delete(234);
+        });
     }
 
     @Test

@@ -32,8 +32,7 @@ public class ConsultationRepositoryTest {
     private Consultation consultation;
 
     @BeforeEach
-    public void setUp() throws ParseException
-    {
+    public void setUp() throws ParseException {
         this.user = new User();
         user.setName("test");
         user.setApproved(true);
@@ -45,16 +44,15 @@ public class ConsultationRepositoryTest {
         Date startDateTime = sdf.parse("01-01-2022 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
 
-        this.consultation= new Consultation();
+        this.consultation = new Consultation();
         consultation.setStartDateTime(startDateTime);
         consultation.setEndDateTime(endDateTime);
         List<User> usersList = Arrays.asList(user);
         consultation.setUsers(usersList);
     }
-    
+
     @Test
-    public void getAllConsultation()
-    {
+    public void getAllConsultation() {
         List<Consultation> consultationList = consultationRepository.get();
 
         assertEquals(2, consultationList.size());
@@ -65,16 +63,14 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void getById() throws Exception
-    {
+    public void getById() throws Exception {
         Consultation consultation = consultationRepository.getById(1);
         assertEquals("2021-11-08 00:00:00.0", consultation.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", consultation.getEndDateTime().toString());
     }
 
     @Test
-    public void postConsultation() throws Exception
-    {
+    public void postConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -89,8 +85,7 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void putConsultation() throws Exception
-    {
+    public void putConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
@@ -103,8 +98,7 @@ public class ConsultationRepositoryTest {
     }
 
     @Test
-    public void deleteConsultation() throws Exception
-    {
+    public void deleteConsultation() throws Exception {
         Consultation consultation = consultationRepository.delete(1);
         assertEquals("2021-11-08 00:00:00.0", consultation.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", consultation.getEndDateTime().toString());

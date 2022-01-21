@@ -68,43 +68,6 @@ public class ScheduleRepository {
         return entityManager.merge(schedule);
     }
 
-    /**
-     * Patch a single schedule.
-     * Updates whatever field is set in the new object.
-     * If a field is null, it will not be updated.
-     *
-     * @param id       id of the schedule to patch
-     * @param schedule consultation to patch
-     * @return response entity with patched schedule
-     */
-    public Schedule patch(long id, Schedule schedule) {
-        if (getById(id) == null)
-            throw new DataNotFoundException();
-
-        Schedule updatedSchedule = getById(id);
-
-        if (schedule.getUsers() != null) {
-            updatedSchedule.setUsers(schedule.getUsers());
-        }
-
-        if (schedule.getStartDateTime() != null) {
-            updatedSchedule.setStartDateTime(schedule.getStartDateTime());
-        }
-
-        if (schedule.getEndDateTime() != null) {
-            updatedSchedule.setEndDateTime(schedule.getEndDateTime());
-        }
-
-        if (schedule.getDescription() != null && !Objects.equals(schedule.getDescription(), "")) {
-            updatedSchedule.setDescription(schedule.getDescription());
-        }
-
-        if (schedule.getTitle() != null && !Objects.equals(schedule.getTitle(), "")) {
-            updatedSchedule.setTitle(schedule.getTitle());
-        }
-
-        return updatedSchedule;
-    }
 
     /**
      * Delete a single schedule and return it.

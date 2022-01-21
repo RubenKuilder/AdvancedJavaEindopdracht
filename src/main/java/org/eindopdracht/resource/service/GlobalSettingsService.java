@@ -40,7 +40,7 @@ public class GlobalSettingsService {
         try {
             return convertToDto.toGlobalSettingsDto(globalSettingsRepository.getSettingsById(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -68,7 +68,7 @@ public class GlobalSettingsService {
         try {
             return convertToDto.toGlobalSettingsDto(globalSettingsRepository.deleteGlobalSettings(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 

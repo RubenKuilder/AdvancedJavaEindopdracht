@@ -1,6 +1,8 @@
 package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.dto.RssFeedDTO;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.RssFeed;
 import org.eindopdracht.resource.model.User;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -40,6 +43,9 @@ class RssServiceTest {
         RssFeedDTO rss = service.getRssFeed(1);
 
         assertEquals("Madlyaza", rss.getUser().getName());
+        assertThrows(DataNotFoundException.class, () -> {
+            service.getRssFeed(23321);
+        });
     }
 
     @Test
@@ -71,6 +77,9 @@ class RssServiceTest {
     @Transactional
     void deleteRss() {
         service.delete(1);
+        assertThrows(NoContentException.class, () -> {
+            service.delete(2332);
+        });
     }
 
     @Test

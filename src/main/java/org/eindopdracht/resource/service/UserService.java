@@ -42,7 +42,7 @@ public class UserService {
         try {
             return convertToDTO.toUserDTO(userRepository.getUser(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -85,7 +85,7 @@ public class UserService {
         try {
             return convertToDTO.toUserDTO(userRepository.getUser(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

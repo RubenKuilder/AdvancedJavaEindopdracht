@@ -21,7 +21,7 @@ public class ContentController {
     /**
      * Returns a list of all content.
      *
-     * @return      response entity with list of all content
+     * @return response entity with list of all content
      */
     @GetMapping
     public ResponseEntity<List<ContentDto>> get() {
@@ -31,8 +31,8 @@ public class ContentController {
     /**
      * Returns a single content.
      *
-     * @param id    id of the content to find
-     * @return      response entity with single content
+     * @param id id of the content to find
+     * @return response entity with single content
      */
     @GetMapping("/{id}")
     public ResponseEntity<ContentDto> getById(@PathVariable long id) {
@@ -42,8 +42,8 @@ public class ContentController {
     /**
      * Post a single content.
      *
-     * @param contentDto    content to post
-     * @return              response entity with posted content
+     * @param contentDto content to post
+     * @return response entity with posted content
      */
     @PostMapping
     public ResponseEntity<ContentDto> post(@RequestBody @Valid ContentDto contentDto) {
@@ -53,9 +53,9 @@ public class ContentController {
     /**
      * Put a single content.
      *
-     * @param id            id of the content to put
-     * @param contentDto    content to put
-     * @return              response entity with put content
+     * @param id         id of the content to put
+     * @param contentDto content to put
+     * @return response entity with put content
      */
     @PutMapping("/{id}")
     public ResponseEntity<ContentDto> put(@PathVariable long id, @RequestBody @Valid ContentDto contentDto) {

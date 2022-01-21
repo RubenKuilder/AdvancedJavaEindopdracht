@@ -39,7 +39,7 @@ public class ScheduleService {
         try {
             return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -75,17 +75,6 @@ public class ScheduleService {
     }
 
     /**
-     * Maps Entity to DTO and patches a single schedule.
-     *
-     * @param id          id of the schedule to patch
-     * @param scheduleDto consultation to patch
-     * @return response entity with patched schedule
-     */
-    public ScheduleDto patch(long id, ScheduleDto scheduleDto) {
-        return scheduleMapper.mapFromEntity(scheduleRepository.patch(id, scheduleMapper.mapToEntity(scheduleDto)));
-    }
-
-    /**
      * Maps Entity to DTO and deletes a single schedule.
      *
      * @param id id of the schedule to delete
@@ -95,7 +84,7 @@ public class ScheduleService {
         try {
             return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

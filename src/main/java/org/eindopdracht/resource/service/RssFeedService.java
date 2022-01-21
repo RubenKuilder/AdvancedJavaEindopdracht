@@ -41,7 +41,7 @@ public class RssFeedService {
         try {
             return convertToDTO.toRssFeedDTO(repository.getRssFeed(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -84,7 +84,7 @@ public class RssFeedService {
         try {
             return convertToDTO.toRssFeedDTO(repository.deleteRssFeed(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

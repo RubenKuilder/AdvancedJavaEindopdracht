@@ -41,7 +41,7 @@ public class UserAvailabilityService {
         try {
             return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.getUserAvailability(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -84,7 +84,7 @@ public class UserAvailabilityService {
         try {
             return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.deleteUserAvailability(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

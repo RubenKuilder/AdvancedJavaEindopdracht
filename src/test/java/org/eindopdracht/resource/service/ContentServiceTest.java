@@ -1,5 +1,6 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.model.event.content.ContentDto;
 import org.eindopdracht.resource.model.event.content.contentType.ContentType;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -24,8 +24,7 @@ public class ContentServiceTest {
     private ContentService contentService;
 
     @Test
-    void getAllContent()
-    {
+    void getAllContent() {
         List<ContentDto> contentDtoList = contentService.get();
 
         assertEquals(3, contentDtoList.size());
@@ -38,16 +37,18 @@ public class ContentServiceTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         ContentDto contentDto = contentService.getById(1);
         assertEquals(1, contentDto.getContentType().getId());
         assertEquals("Location Path", contentDto.getPath());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            ContentDto contentDtoTst = contentService.getById(2313123);
+        });
     }
 
     @Test
-    void postContent()
-    {
+    void postContent() {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -62,8 +63,7 @@ public class ContentServiceTest {
     }
 
     @Test
-    void putContent()
-    {
+    void putContent() {
         ContentType contentType = new ContentType();
         contentType.setId(1L);
         contentType.setName("Text");

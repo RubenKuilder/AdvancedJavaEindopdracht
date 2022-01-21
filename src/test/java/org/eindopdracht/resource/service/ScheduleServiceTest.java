@@ -1,5 +1,7 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.model.schedule.ScheduleDto;
 import org.junit.jupiter.api.MethodOrderer;
@@ -19,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -36,6 +39,10 @@ public class ScheduleServiceTest {
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            scheduleService.getById(1234);
+        });
     }
 
     @Test
@@ -54,6 +61,10 @@ public class ScheduleServiceTest {
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
+
+        assertThrows(NoContentException.class, () -> {
+            scheduleService.delete(1324324);
+        });
     }
 
 

@@ -41,7 +41,7 @@ public class RoleService {
         try {
             return convertToDTO.toRoleDTO(roleRepository.getRole(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -84,7 +84,7 @@ public class RoleService {
         try {
             return convertToDTO.toRoleDTO(roleRepository.deleteRole(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

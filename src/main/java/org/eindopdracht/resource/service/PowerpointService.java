@@ -41,7 +41,7 @@ public class PowerpointService {
         try {
             return convertToDTO.toPowerpointDTO(repository.getPowerpoint(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -84,7 +84,7 @@ public class PowerpointService {
         try {
             return convertToDTO.toPowerpointDTO(repository.deletePowerpoint(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }
