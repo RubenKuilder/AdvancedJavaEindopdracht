@@ -1,5 +1,7 @@
-package org.eindopdracht.resource.model.consultation;
+package org.eindopdracht.resource.mapper;
 
+import org.eindopdracht.resource.model.consultation.Consultation;
+import org.eindopdracht.resource.model.consultation.ConsultationDto;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 

@@ -4,7 +4,7 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.schedule.ScheduleDto;
-import org.eindopdracht.resource.model.schedule.ScheduleMapper;
+import org.eindopdracht.resource.mapper.ScheduleMapper;
 import org.eindopdracht.resource.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 

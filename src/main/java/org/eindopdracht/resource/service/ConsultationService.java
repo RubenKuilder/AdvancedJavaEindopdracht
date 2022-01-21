@@ -4,7 +4,7 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.consultation.ConsultationDto;
-import org.eindopdracht.resource.model.consultation.ConsultationMapper;
+import org.eindopdracht.resource.mapper.ConsultationMapper;
 import org.eindopdracht.resource.repository.ConsultationRepository;
 import org.springframework.stereotype.Service;
 

@@ -5,7 +5,7 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeMapper;
+import org.eindopdracht.resource.mapper.ContentTypeMapper;
 import org.eindopdracht.resource.repository.ContentTypeRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,7 @@
-package org.eindopdracht.resource.model.event;
+package org.eindopdracht.resource.mapper;
 
+import org.eindopdracht.resource.model.event.Event;
+import org.eindopdracht.resource.model.event.EventDto;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 

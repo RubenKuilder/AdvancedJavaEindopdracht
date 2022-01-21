@@ -3,7 +3,7 @@ package org.eindopdracht.resource.service;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.model.event.content.ContentDto;
-import org.eindopdracht.resource.model.event.content.ContentMapper;
+import org.eindopdracht.resource.mapper.ContentMapper;
 import org.eindopdracht.resource.repository.ContentRespository;
 import org.springframework.stereotype.Service;
 
