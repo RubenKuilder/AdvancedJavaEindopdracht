@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="changelog_master.xml"/>
+    <changeSet id="11" author="Madlyaza">
+        <preConditions>
+            <tableExists tableName="globalSettings"/>
+        </preConditions>
+        <loadData tableName="globalSettings" file="data/GlobalSettings.csv">
+            <column header="soundOn" name="soundOn" type="BOOLEAN"/>
+            <column header="switchTime" name="switchTime" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="12" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="user"/>
+        </preConditions>
+        <loadData tableName="user" file="data/user.csv">
+            <column header="name" name="name" type="STRING"/>
+            <column header="password" name="password" type="STRING"/>
+            <column header="profileImagePath" name="profileImagePath" type="STRING"/>
+            <column header="email" name="email" type="STRING"/>
+            <column header="isApproved" name="isApproved" type="BOOLEAN"/>
+            <column header="role" name="role" type="STRING"/>
+            <column header="enabled" name="enabled" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="13" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="role"/>
+        </preConditions>
+        <loadData tableName="role" file="data/role.csv">
+            <column header="role" name="role" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="14" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="userAvailability"/>
+        </preConditions>
+        <loadData tableName="userAvailability" file="data/user_availability.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="date" name="date"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="15" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="powerpoint"/>
+        </preConditions>
+        <loadData tableName="powerpoint" file="data/powerpoint.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="path" name="path"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="16" author="ThijsRijkers">
+        <preConditions>
+            <tableExists tableName="rssfeed"/>
+        </preConditions>
+        <loadData tableName="rssfeed" file="data/RssFeed.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="link" name="link"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="17" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="consultation"/>
+        </preConditions>
+        <loadData tableName="consultation" file="data/consultation.csv">
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="18" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="userConsultation"/>
+        </preConditions>
+        <loadData tableName="userConsultation" file="data/consultation_user.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="consultation_id" name="consultation_id"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="19" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="schedule"/>
+        </preConditions>
+        <loadData tableName="schedule" file="data/schedule.csv">
+            <column header="title" name="title"/>
+            <column header="description" name="description"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="userSchedule"/>
+        </preConditions>
+        <loadData tableName="userschedule" file="data/user_schedule.csv">
+            <column header="user_id" name="user_id"/>
+            <column header="schedule_id" name="schedule_id"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="21" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="contentType"/>
+        </preConditions>
+        <loadData tableName="contentType" file="data/contenttype.csv">
+            <column header="name" name="name"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="22" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="content"/>
+        </preConditions>
+        <loadData tableName="content" file="data/content.csv">
+            <column header="contentType_id" name="contentType_id"/>
+            <column header="path" name="path"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="23" author="Robbie Eijkelkamp">
+        <preConditions>
+            <tableExists tableName="content"/>
+        </preConditions>
+        <loadData tableName="event" file="data/event.csv">
+            <column header="content_id" name="content_id"/>
+            <column header="user_id" name="user_id"/>
+            <column header="description" name="description"/>
+            <column header="startDateTime" name="startDateTime"/>
+            <column header="endDateTime" name="endDateTime"/>
+            <column header="duration" name="duration"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
