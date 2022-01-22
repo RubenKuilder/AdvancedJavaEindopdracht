@@ -227,7 +227,7 @@ Create a default user to use for the authentication of your first API calls. Run
 The name is ```Admin``` and password is also ```Admin```.
 
 ```mysql
-INSERT INTO `user`(`name`, `password`, `profileImagePath`, `email`, `isApproved`, `role`, `enabled`) VALUES ('Admin','$2a$12$NoKsrvdso8xBoRciD7ExMOynmfFzyYNutUdJMJxMmxApSr9qqYudS','https://i.imgur.com/N1Y2UGC.png','Admin@hotmail.com','1','ROLE_ADMIN','1');
+INSERT INTO `user`(`name`, `password`, `profileImagePath`, `email`, `isApproved`, `role`, `enabled`) VALUES ('Admin','$2a$12$NoKsrvdso8xBoRciD7ExMOynmfFzyYNutUdJMJxMmxApSr9qqYudS','https://i.imgur.com/N1Y2UGC.png','Admin@hotmail.com','1','ROLE_USER','1');
 ```
 
 ### 2.9 Running tests with coverage (_optional?_)

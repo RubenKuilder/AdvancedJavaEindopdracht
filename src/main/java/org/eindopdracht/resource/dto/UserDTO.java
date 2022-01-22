@@ -1,5 +1,6 @@
 package org.eindopdracht.resource.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +16,10 @@ import java.util.List;
 public class UserDTO {
     private int id;
 
+    @JsonIgnore
     List<Consultation> consultations;
 
+    @JsonIgnore
     List<Schedule> schedules;
 
     @NotBlank
