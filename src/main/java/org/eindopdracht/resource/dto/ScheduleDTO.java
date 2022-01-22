@@ -18,7 +18,6 @@ import java.util.List;
 public class ScheduleDTO {
     private int id;
 
-    @NotNull
     List<User> users;
 
     @NotBlank
