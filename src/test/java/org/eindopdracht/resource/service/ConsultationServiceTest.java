@@ -6,7 +6,6 @@ import org.eindopdracht.resource.dto.ConsultationDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,8 +48,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void postConsultation() throws Exception
-    {
+    void postConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -65,8 +63,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void putConsultation() throws Exception
-    {
+    void putConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
@@ -76,22 +73,6 @@ public class ConsultationServiceTest {
 
         assertEquals(startDateTime, putConsultation.getStartDateTime());
         assertNull(putConsultation.getEndDateTime());
-    }
-
-    @Test
-    void patchConsultation() throws Exception
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date startDateTime = sdf.parse("12-12-2021 00:00:00");
-        Date endDateTime = sdf.parse("12-12-2021 00:00:00");
-
-        ConsultationDTO consultationDto = new ConsultationDTO();
-        consultationDto.setStartDateTime(startDateTime);
-        consultationDto.setEndDateTime(endDateTime);
-        ConsultationDTO patchedConsultation = consultationService.patch(1, consultationDto);
-
-        assertEquals(startDateTime, patchedConsultation.getStartDateTime());
-        assertEquals(endDateTime, patchedConsultation.getEndDateTime());
     }
 
     @Test

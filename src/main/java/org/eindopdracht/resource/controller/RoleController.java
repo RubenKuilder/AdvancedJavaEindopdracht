@@ -24,23 +24,23 @@ public class RoleController {
     /**
      * Returns a list of all roles.
      *
-     * @return      response entity with list of all roles
+     * @return response entity with list of all roles
      */
     @GetMapping
     @ResponseBody
-    public ResponseEntity<List<RoleDTO>> getUsers(){
+    public ResponseEntity<List<RoleDTO>> getUsers() {
         return ResponseEntity.ok(service.getRoles());
     }
 
     /**
      * Returns a single role.
      *
-     * @param id    id of the role to find
-     * @return      response entity with single role
+     * @param id id of the role to find
+     * @return response entity with single role
      */
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<RoleDTO> getRole(@PathVariable("id") final Integer id){
+    public ResponseEntity<RoleDTO> getRole(@PathVariable("id") final Integer id) {
         return ResponseEntity.ok(service.getRole(id));
     }
 
@@ -71,11 +71,11 @@ public class RoleController {
     /**
      * Delete a single role.
      *
-     * @param id    id of the role to delete
-     * @return      response entity with deleted role
+     * @param id id of the role to delete
+     * @return response entity with deleted role
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<RoleDTO> deleteRole(@PathVariable("id") final Integer id){
+    public ResponseEntity<RoleDTO> deleteRole(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

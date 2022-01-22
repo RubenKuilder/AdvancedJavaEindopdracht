@@ -25,17 +25,14 @@ import java.util.Properties;
 @EnableTransactionManagement
 @Configuration
 @ComponentScan(basePackages = "org.eindopdracht")
-public class DatabaseConfigTest implements WebMvcConfigurer
-{
+public class DatabaseConfigTest implements WebMvcConfigurer {
     @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer)
-    {
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.defaultContentType(MediaType.APPLICATION_JSON);
     }
 
     @Bean
-    public DataSource dataSource()
-    {
+    public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.h2.Driver");
         ds.setUrl("jdbc:h2:mem:unit-testing-jpa;DB_CLOSE_DELAY=-1;MODE=MySQL");
@@ -46,8 +43,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
-    {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setShowSql(true);
         vendorAdapter.setGenerateDdl(true);
@@ -63,15 +59,13 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
-    {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
 
-    private Properties additionalProperties()
-    {
+    private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
@@ -79,8 +73,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     }
 
     @Bean
-    public SpringLiquibase liquibase(DataSource dataSource)
-    {
+    public SpringLiquibase liquibase(DataSource dataSource) {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource);
         liquibase.setChangeLog("classpath:test_master.xml");
@@ -89,8 +82,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer
     }
 
     @Bean
-    public BeanPostProcessor persistenceTranslation()
-    {
+    public BeanPostProcessor persistenceTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 }

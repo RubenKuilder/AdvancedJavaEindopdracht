@@ -3,76 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/GlobalSettings.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=":" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/consultation.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/content.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/contenttype.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/event.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/role.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/schedule.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/user.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/userSchedule.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/main/test/org/AdvancedJavaEindopdracht/configuration/data/user_availability.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/src/test/org/AdvancedJavaEindopdracht/configuration/data/RssFeed.csv">
           <value>
             <Attribute>
@@ -94,6 +24,7 @@
             </Attribute>
           </value>
         </entry>
+<<<<<<< HEAD
         <entry key="/src/test/resources/data/user_availability.csv">
           <value>
             <Attribute>
@@ -136,6 +67,8 @@
             </Attribute>
           </value>
         </entry>
+=======
+>>>>>>> main
       </map>
     </option>
   </component>

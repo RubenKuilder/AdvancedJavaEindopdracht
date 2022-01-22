@@ -13,19 +13,17 @@ import java.util.List;
 @RestController
 @CrossOrigin()
 @RequestMapping("/settings")
-public class GlobalSettingsController
-{
+public class GlobalSettingsController {
     private final GlobalSettingsService globalSettingsService;
 
-    private GlobalSettingsController(GlobalSettingsService globalSettingsService)
-    {
+    private GlobalSettingsController(GlobalSettingsService globalSettingsService) {
         this.globalSettingsService = globalSettingsService;
     }
 
     /**
      * Returns a list of all global settings.
      *
-     * @return      response entity with list of all global settings
+     * @return response entity with list of all global settings
      */
     @GetMapping()
     public ResponseEntity<List<GlobalSettingsDTO>> getSettings()
@@ -36,8 +34,8 @@ public class GlobalSettingsController
     /**
      * Returns a single global setting.
      *
-     * @param id    id of the global setting to find
-     * @return      response entity with single global setting
+     * @param id id of the global setting to find
+     * @return response entity with single global setting
      */
     @GetMapping("/{id}")
     public ResponseEntity<GlobalSettingsDTO> getSettingsById(@PathVariable Integer id)
@@ -60,8 +58,8 @@ public class GlobalSettingsController
     /**
      * Delete a single global setting.
      *
-     * @param id    id of the global setting to delete
-     * @return      response entity with deleted global setting
+     * @param id id of the global setting to delete
+     * @return response entity with deleted global setting
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<GlobalSettingsDTO> deleteSettings(@PathVariable Integer id)

@@ -2,18 +2,17 @@ package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.dto.ContentDTO;
 import org.eindopdracht.resource.model.ContentType;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -42,11 +41,14 @@ public class ContentServiceTest {
         ContentDTO contentDto = contentService.getById(1);
         assertEquals(1, contentDto.getContentType().getId());
         assertEquals("Location Path", contentDto.getPath());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            ContentDTO contentDtoTst = contentService.getById(2313123);
+        });
     }
 
     @Test
-    void postContent()
-    {
+    void postContent() {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -61,8 +63,7 @@ public class ContentServiceTest {
     }
 
     @Test
-    void putContent()
-    {
+    void putContent() {
         ContentType contentType = new ContentType();
         contentType.setId(1L);
         contentType.setName("Text");
@@ -74,17 +75,5 @@ public class ContentServiceTest {
 
         assertEquals("Text", putContent.getContentType().getName());
         assertNull(putContent.getPath());
-    }
-
-    @Test
-    void patchContent()
-    {
-        ContentDTO contentDto = new ContentDTO();
-        contentDto.setPath("Patch Path");
-
-        ContentDTO patchedContent = contentService.patch(1, contentDto);
-
-        assertEquals(1, patchedContent.getContentType().getId());
-        assertEquals("Patch Path", patchedContent.getPath());
     }
 }

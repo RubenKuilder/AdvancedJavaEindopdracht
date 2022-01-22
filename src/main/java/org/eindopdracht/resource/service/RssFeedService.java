@@ -41,7 +41,7 @@ public class RssFeedService {
         try {
             return rssFeedMapper.mapFromEntity(rssFeedRepository.getRssFeed(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -86,7 +86,7 @@ public class RssFeedService {
         try {
             return rssFeedMapper.mapFromEntity(rssFeedRepository.deleteRssFeed(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin()
 @RequestMapping("/authenticate")
-public class LoginController
-{
+public class LoginController {
 
     private final AuthenticationManager authenticationManager;
 
     private final JWTProvider jwtProvider;
 
-    public LoginController(AuthenticationManager authenticationManager, JWTProvider jwtProvider)
-    {
+    public LoginController(AuthenticationManager authenticationManager, JWTProvider jwtProvider) {
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
     }

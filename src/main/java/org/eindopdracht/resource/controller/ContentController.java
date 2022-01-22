@@ -21,7 +21,7 @@ public class ContentController {
     /**
      * Returns a list of all content.
      *
-     * @return      response entity with list of all content
+     * @return response entity with list of all content
      */
     @GetMapping
     public ResponseEntity<List<ContentDTO>> get() {
@@ -31,8 +31,8 @@ public class ContentController {
     /**
      * Returns a single content.
      *
-     * @param id    id of the content to find
-     * @return      response entity with single content
+     * @param id id of the content to find
+     * @return response entity with single content
      */
     @GetMapping("/{id}")
     public ResponseEntity<ContentDTO> getById(@PathVariable long id) {
@@ -42,8 +42,8 @@ public class ContentController {
     /**
      * Post a single content.
      *
-     * @param contentDto    content to post
-     * @return              response entity with posted content
+     * @param contentDto content to post
+     * @return response entity with posted content
      */
     @PostMapping
     public ResponseEntity<ContentDTO> post(@RequestBody @Valid ContentDTO contentDto) {
@@ -53,24 +53,12 @@ public class ContentController {
     /**
      * Put a single content.
      *
-     * @param id            id of the content to put
-     * @param contentDto    content to put
-     * @return              response entity with put content
+     * @param id         id of the content to put
+     * @param contentDto content to put
+     * @return response entity with put content
      */
     @PutMapping("/{id}")
     public ResponseEntity<ContentDTO> put(@PathVariable long id, @RequestBody @Valid ContentDTO contentDto) {
         return ResponseEntity.ok(contentService.put(id, contentDto));
-    }
-
-    /**
-     * Patch a single content.
-     *
-     * @param id            id of the content to patch
-     * @param contentDto    content to patch
-     * @return              response entity with patched content
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<ContentDTO> patch(@PathVariable int id, @RequestBody ContentDTO contentDto) {
-        return ResponseEntity.ok(contentService.patch(id, contentDto));
     }
 }

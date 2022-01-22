@@ -41,7 +41,7 @@ public class UserService {
         try {
             return userMapper.mapFromEntity(userRepository.getUser(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -86,7 +86,7 @@ public class UserService {
         try {
             return userMapper.mapFromEntity(userRepository.deleteUser(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

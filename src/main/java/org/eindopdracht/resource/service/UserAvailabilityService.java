@@ -41,7 +41,7 @@ public class UserAvailabilityService {
         try {
             return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.getUserAvailability(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -86,7 +86,7 @@ public class UserAvailabilityService {
         try {
             return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.deleteUserAvailability(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

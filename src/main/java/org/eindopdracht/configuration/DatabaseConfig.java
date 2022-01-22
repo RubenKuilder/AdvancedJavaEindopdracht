@@ -21,8 +21,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("org.eindopdracht.resource.repository")
-public class DatabaseConfig
-{
+public class DatabaseConfig {
     @Value("${database.username}")
     private String databaseName;
     @Value("${database.password}")
@@ -31,8 +30,7 @@ public class DatabaseConfig
     private String databaseUrl;
 
     @Bean
-    public DataSource dataSource()
-    {
+    public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
 
@@ -44,8 +42,7 @@ public class DatabaseConfig
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
-    {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setShowSql(true);
         vendorAdapter.setGenerateDdl(true);
@@ -61,15 +58,13 @@ public class DatabaseConfig
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
-    {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
     }
 
-    private Properties additionalProperties()
-    {
+    private Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
@@ -77,8 +72,7 @@ public class DatabaseConfig
     }
 
     @Bean
-    public SpringLiquibase liquibase(DataSource dataSource)
-    {
+    public SpringLiquibase liquibase(DataSource dataSource) {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource);
         liquibase.setChangeLog("classpath:changelog_master.xml");

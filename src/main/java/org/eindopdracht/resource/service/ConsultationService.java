@@ -40,7 +40,7 @@ public class ConsultationService {
         try {
             return consultationMapper.mapFromEntity(consultationRepository.getById(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -76,17 +76,6 @@ public class ConsultationService {
     }
 
     /**
-     * Maps Entity to DTO and patches a single consultation.
-     *
-     * @param id              id of the consultation to patch
-     * @param consultationDto consultation to patch
-     * @return response entity with patched consultation
-     */
-    public ConsultationDTO patch(long id, ConsultationDTO consultationDto) {
-        return consultationMapper.mapFromEntity(consultationRepository.patch(id, consultationMapper.mapToEntity(consultationDto)));
-    }
-
-    /**
      * Maps Entity to DTO and deletes a single consultation.
      *
      * @param id id of the consultation to delete
@@ -96,7 +85,7 @@ public class ConsultationService {
         try {
             return consultationMapper.mapFromEntity(consultationRepository.delete(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " + id);
         }
     }
 }

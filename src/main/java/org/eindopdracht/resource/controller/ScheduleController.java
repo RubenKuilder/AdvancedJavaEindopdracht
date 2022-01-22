@@ -20,7 +20,7 @@ public class ScheduleController {
     /**
      * Returns a list of all schedules.
      *
-     * @return      response entity with list of all schedules
+     * @return response entity with list of all schedules
      */
     @GetMapping
     public ResponseEntity<List<ScheduleDTO>> get() {
@@ -30,8 +30,8 @@ public class ScheduleController {
     /**
      * Returns a single schedule.
      *
-     * @param id    id of the schedule to find
-     * @return      response entity with single schedule
+     * @param id id of the schedule to find
+     * @return response entity with single schedule
      */
     @GetMapping("/{id}")
     public ResponseEntity<ScheduleDTO> getById(@PathVariable long id) {
@@ -41,8 +41,8 @@ public class ScheduleController {
     /**
      * Post a single schedule.
      *
-     * @param scheduleDto   schedule to post
-     * @return              response entity with posted schedule
+     * @param scheduleDto schedule to post
+     * @return response entity with posted schedule
      */
     @PostMapping
     public ResponseEntity<ScheduleDTO> post(@RequestBody @Valid ScheduleDTO scheduleDto) {
@@ -52,9 +52,9 @@ public class ScheduleController {
     /**
      * Put a single schedule.
      *
-     * @param id            id of the schedule to put
-     * @param scheduleDto   schedule to put
-     * @return              response entity with put schedule
+     * @param id          id of the schedule to put
+     * @param scheduleDto schedule to put
+     * @return response entity with put schedule
      */
     @PutMapping("/{id}")
     public ResponseEntity<ScheduleDTO> put(@PathVariable long id, @RequestBody @Valid ScheduleDTO scheduleDto) {
@@ -62,22 +62,10 @@ public class ScheduleController {
     }
 
     /**
-     * Patch a single schedule.
-     *
-     * @param id            id of the schedule to patch
-     * @param scheduleDto   consultation to patch
-     * @return              response entity with patched schedule
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<ScheduleDTO> patch(@PathVariable int id, @RequestBody ScheduleDTO scheduleDto) {
-        return ResponseEntity.ok(scheduleService.patch(id, scheduleDto));
-    }
-
-    /**
      * Delete a single schedule.
      *
-     * @param id    id of the schedule to delete
-     * @return      response entity with deleted schedule
+     * @param id id of the schedule to delete
+     * @return response entity with deleted schedule
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<ScheduleDTO> delete(@PathVariable int id) {

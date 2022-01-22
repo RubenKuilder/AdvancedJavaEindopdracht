@@ -18,22 +18,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class ContentTypeControllerTest
-{
+class ContentTypeControllerTest {
     @Autowired
     private WebApplicationContext webContext;
 
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).build();
     }
 
     @Test
-    void getAll() throws Exception
-    {
+    void getAll() throws Exception {
         this.mockMvc.perform(get("/contenttype").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -42,8 +39,7 @@ class ContentTypeControllerTest
     }
 
     @Test
-    void getById() throws Exception
-    {
+    void getById() throws Exception {
         this.mockMvc.perform(get("/contenttype/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -51,8 +47,7 @@ class ContentTypeControllerTest
     }
 
     @Test
-    void postContentType() throws Exception
-    {
+    void postContentType() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -65,8 +60,7 @@ class ContentTypeControllerTest
     }
 
     @Test
-    void putContentType() throws Exception
-    {
+    void putContentType() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -79,22 +73,7 @@ class ContentTypeControllerTest
     }
 
     @Test
-    void patchContentType() throws Exception
-    {
-        ContentType contentType = new ContentType();
-        contentType.setName("Text");
-
-        this.mockMvc.perform(patch("/contenttype/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(contentType)))
-                .andExpect(status().isOk())
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.name").value("Text"));
-    }
-
-    @Test
-    void deleteContentType() throws Exception
-    {
+    void deleteContentType() throws Exception {
         this.mockMvc.perform(delete("/contenttype/1"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))

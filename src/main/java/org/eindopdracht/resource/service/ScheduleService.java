@@ -23,7 +23,7 @@ public class ScheduleService {
     /**
      * Maps Entity to DTO and returns a list of all schedules.
      *
-     * @return      response entity with list of all schedules
+     * @return response entity with list of all schedules
      */
     public List<ScheduleDTO> getAll() {
         return scheduleMapper.mapFromEntityList(scheduleRepository.get());
@@ -32,24 +32,23 @@ public class ScheduleService {
     /**
      * Maps Entity to DTO and returns a single schedule.
      *
-     * @param id    id of the schedule to find
-     * @return      response entity with single schedule
+     * @param id id of the schedule to find
+     * @return response entity with single schedule
      */
     public ScheduleDTO getById(long id) {
-        try{
-        return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
-    }
-        catch (Exception ex)
-    {
-        throw new DataNotFoundException();
-    }
+        try {
+            return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
+        }
+        catch (Exception ex) {
+            throw new DataNotFoundException("id: " + id);
+        }
     }
 
     /**
      * Maps Entity to DTO and posts a single schedule.
      *
-     * @param scheduleDto   schedule to post
-     * @return              response entity with posted schedule
+     * @param scheduleDto schedule to post
+     * @return response entity with posted schedule
      */
     public ScheduleDTO persist(ScheduleDTO scheduleDto) {
         try
@@ -57,9 +56,7 @@ public class ScheduleService {
             return scheduleMapper.mapFromEntity(
                     scheduleRepository.post(scheduleMapper.mapToEntity(scheduleDto))
             );
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -67,9 +64,9 @@ public class ScheduleService {
     /**
      * Maps Entity to DTO and puts a single schedule.
      *
-     * @param id            id of the schedule to put
-     * @param scheduleDto   schedule to put
-     * @return              response entity with put schedule
+     * @param id          id of the schedule to put
+     * @param scheduleDto schedule to put
+     * @return response entity with put schedule
      */
     public ScheduleDTO put(long id, ScheduleDTO scheduleDto) {
         try{
@@ -82,21 +79,10 @@ public class ScheduleService {
     }
 
     /**
-     * Maps Entity to DTO and patches a single schedule.
-     *
-     * @param id            id of the schedule to patch
-     * @param scheduleDto   consultation to patch
-     * @return              response entity with patched schedule
-     */
-    public ScheduleDTO patch(long id, ScheduleDTO scheduleDto) {
-        return scheduleMapper.mapFromEntity(scheduleRepository.patch(id, scheduleMapper.mapToEntity(scheduleDto)));
-    }
-
-    /**
      * Maps Entity to DTO and deletes a single schedule.
      *
-     * @param id    id of the schedule to delete
-     * @return      response entity with deleted schedule
+     * @param id id of the schedule to delete
+     * @return response entity with deleted schedule
      */
     public ScheduleDTO delete(long id) {
         try{
@@ -104,7 +90,7 @@ public class ScheduleService {
         }
         catch(Exception ex)
         {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

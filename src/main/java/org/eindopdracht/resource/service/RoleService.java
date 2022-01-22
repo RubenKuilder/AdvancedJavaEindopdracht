@@ -41,7 +41,7 @@ public class RoleService {
         try {
             return roleMapper.mapFromEntity(roleRepository.getRole(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -86,7 +86,7 @@ public class RoleService {
         try {
             return roleMapper.mapFromEntity(roleRepository.deleteRole(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

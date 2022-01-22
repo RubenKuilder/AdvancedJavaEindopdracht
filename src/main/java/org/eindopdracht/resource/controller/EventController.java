@@ -21,7 +21,7 @@ public class EventController {
     /**
      * Returns a list of all events.
      *
-     * @return      response entity with list of all events
+     * @return response entity with list of all events
      */
     @GetMapping
     public ResponseEntity<List<EventDTO>> get() {
@@ -31,8 +31,8 @@ public class EventController {
     /**
      * Returns a single event.
      *
-     * @param id    id of the event to find
-     * @return      response entity with single event
+     * @param id id of the event to find
+     * @return response entity with single event
      */
     @GetMapping("/{id}")
     public ResponseEntity<EventDTO> getById(@PathVariable long id) {
@@ -42,8 +42,8 @@ public class EventController {
     /**
      * Post a single event.
      *
-     * @param eventDto  event to post
-     * @return          response entity with posted event
+     * @param eventDto event to post
+     * @return response entity with posted event
      */
     @PostMapping
     public ResponseEntity<EventDTO> post(@RequestBody @Valid EventDTO eventDto) {
@@ -53,9 +53,9 @@ public class EventController {
     /**
      * Put a single event.
      *
-     * @param id        id of the event to put
-     * @param eventDto  event to put
-     * @return          response entity with put event
+     * @param id       id of the event to put
+     * @param eventDto event to put
+     * @return response entity with put event
      */
     @PutMapping("/{id}")
     public ResponseEntity<EventDTO> put(@PathVariable long id, @RequestBody @Valid EventDTO eventDto) {
@@ -63,22 +63,10 @@ public class EventController {
     }
 
     /**
-     * Patch a single event.
-     *
-     * @param id        id of the event to patch
-     * @param eventDto  event to patch
-     * @return          response entity with patched event
-     */
-    @PatchMapping("/{id}")
-    public ResponseEntity<EventDTO> patch(@PathVariable int id, @RequestBody EventDTO eventDto) {
-        return ResponseEntity.ok(eventService.patch(id, eventDto));
-    }
-
-    /**
      * Delete a single event.
      *
-     * @param id    id of the event to delete
-     * @return      response entity with deleted event
+     * @param id id of the event to delete
+     * @return response entity with deleted event
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<EventDTO> delete(@PathVariable int id) {

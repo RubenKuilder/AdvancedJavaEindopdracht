@@ -11,13 +11,13 @@ import javax.validation.Valid;
 @RestController
 @CrossOrigin()
 @RequestMapping("/signup")
-public class SignupController{
+public class SignupController {
 
     private final UserService service;
 
     public SignupController(UserService service) {
-            this.service = service;
-        }
+        this.service = service;
+    }
 
     /**
      * Post a single user.

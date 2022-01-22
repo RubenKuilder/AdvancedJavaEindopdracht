@@ -15,11 +15,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-class LoginControllerTest
-{
+class LoginControllerTest {
     @Autowired
     private WebApplicationContext webContext;
 
@@ -29,15 +27,13 @@ class LoginControllerTest
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webContext)
                 .build();
     }
 
     @Test
-    void login() throws Exception
-    {
+    void login() throws Exception {
         MvcResult mvcResult = this.mockMvc.perform(post("/authenticate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"name\":\"Madlyaza\",\"password\":\"password\"}"))

@@ -13,11 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -123,27 +125,6 @@ public class ScheduleControllerTest {
                 .andExpect(jsonPath("$.description").value("Mooie beschrijving put"))
                 .andExpect(jsonPath("$.startDateTime").value("10-01-2022 15:40:10"))
                 .andExpect(jsonPath("$.endDateTime").value("10-01-2022 15:50:10"))
-                .andReturn();
-    }
-
-    @Test
-    public void patchScheduleTest() throws Exception {
-
-        User user = new User();
-        List<User> usersList = Arrays.asList(user);
-
-        Schedule schedule = new Schedule();
-        schedule.setTitle("Mooie titel patch test");
-        schedule.setDescription("Mooie beschrijving patch test");
-        schedule.setUsers(usersList);
-
-        mockMvc.perform(put("/schedule/1")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(schedule)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("Mooie titel patch test"))
-                .andExpect(jsonPath("$.description").value("Mooie beschrijving patch test"))
                 .andReturn();
     }
 }

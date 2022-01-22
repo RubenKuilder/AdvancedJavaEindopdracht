@@ -22,7 +22,7 @@ public class ContentService {
     /**
      * Maps Entity to DTO and returns a list of all content.
      *
-     * @return      response entity with list of all content
+     * @return response entity with list of all content
      */
     public List<ContentDTO> get() {
         return contentMapper.mapFromEntityList(contentRespository.get());
@@ -31,24 +31,23 @@ public class ContentService {
     /**
      * Maps Entity to DTO and returns a single content.
      *
-     * @param id    id of the content to find
-     * @return      response entity with single content
+     * @param id id of the content to find
+     * @return response entity with single content
      */
     public ContentDTO getById(long id) {
         try
         {
             return contentMapper.mapFromEntity(contentRespository.getById(id));
-        }
-        catch (Exception ex) {
-            throw new DataNotFoundException();
+        } catch (Exception ex) {
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
     /**
      * Maps Entity to DTO and posts a single content.
      *
-     * @param contentDto    content to post
-     * @return              response entity with posted content
+     * @param contentDto content to post
+     * @return response entity with posted content
      */
     public ContentDTO persist(ContentDTO contentDto) {
         try{
@@ -65,28 +64,17 @@ public class ContentService {
     /**
      * Maps Entity to DTO and puts a single content.
      *
-     * @param id            id of the content to put
-     * @param contentDto    content to put
-     * @return              response entity with put content
+     * @param id         id of the content to put
+     * @param contentDto content to put
+     * @return response entity with put content
      */
     public ContentDTO put(long id, ContentDTO contentDto) {
         try{
-        return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
+            return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
         }
         catch (Exception ex)
         {
             throw new BadRequestException();
         }
-    }
-
-    /**
-     * Maps Entity to DTO and patches a single content.
-     *
-     * @param id            id of the content to patch
-     * @param contentDto    content to patch
-     * @return              response entity with patched content
-     */
-    public ContentDTO patch(long id, ContentDTO contentDto) {
-        return contentMapper.mapFromEntity(contentRespository.patch(id, contentMapper.mapToEntity(contentDto)));
     }
 }

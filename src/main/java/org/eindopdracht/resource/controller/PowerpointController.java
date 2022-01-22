@@ -25,23 +25,23 @@ public class PowerpointController {
     /**
      * Returns a list of all powerpoints.
      *
-     * @return      response entity with list of all powerpoints
+     * @return response entity with list of all powerpoints
      */
     @GetMapping
     @ResponseBody
-    public ResponseEntity<List<PowerpointDTO>> getPowerpoints(){
+    public ResponseEntity<List<PowerpointDTO>> getPowerpoints() {
         return ResponseEntity.ok(service.getPowerpoints());
     }
 
     /**
      * Returns a single powerpoint.
      *
-     * @param id    id of the powerpoint to find
-     * @return      response entity with single powerpoint
+     * @param id id of the powerpoint to find
+     * @return response entity with single powerpoint
      */
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<PowerpointDTO> getPowerpoint(@PathVariable("id") final Integer id){
+    public ResponseEntity<PowerpointDTO> getPowerpoint(@PathVariable("id") final Integer id) {
         return ResponseEntity.ok(service.getPowerpoint(id));
     }
 
@@ -72,11 +72,11 @@ public class PowerpointController {
     /**
      * Delete a single powerpoint.
      *
-     * @param id    id of the powerpoint to delete
-     * @return      response entity with deleted powerpoint
+     * @param id id of the powerpoint to delete
+     * @return response entity with deleted powerpoint
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<PowerpointDTO> deletePowerpoint(@PathVariable("id") final Integer id){
+    public ResponseEntity<PowerpointDTO> deletePowerpoint(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 

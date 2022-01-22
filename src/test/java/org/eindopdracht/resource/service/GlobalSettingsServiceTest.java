@@ -1,11 +1,13 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.dto.EventDTO;
 import org.eindopdracht.resource.dto.GlobalSettingsDTO;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.GlobalSettings;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class GlobalSettingsServiceTest
-{
+class GlobalSettingsServiceTest {
     @Autowired
     private GlobalSettingsService globalSettingsService;
 
@@ -40,7 +41,11 @@ class GlobalSettingsServiceTest
     {
         GlobalSettingsDTO globalSettingsDto = globalSettingsService.getGlobalSettingsById(1);
         assertTrue(globalSettingsDto.isSoundOn());
-        assertEquals(new Time(00,00,00), globalSettingsDto.getSwitchTime());
+        assertEquals(new Time(00, 00, 00), globalSettingsDto.getSwitchTime());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            globalSettingsService.getGlobalSettingsById(1124);
+        });
     }
 
     @Test
@@ -62,7 +67,11 @@ class GlobalSettingsServiceTest
     {
         GlobalSettingsDTO globalSettingsDto = globalSettingsService.deleteGlobalSettings(1);
         assertTrue(globalSettingsDto.isSoundOn());
-        assertEquals(new Time(00,00,00), globalSettingsDto.getSwitchTime());
+        assertEquals(new Time(00, 00, 00), globalSettingsDto.getSwitchTime());
+
+        assertThrows(NoContentException.class, () -> {
+            globalSettingsService.deleteGlobalSettings(1421);
+        });
     }
 
     @Test

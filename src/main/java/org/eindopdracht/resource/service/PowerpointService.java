@@ -40,7 +40,7 @@ public class PowerpointService {
         try {
             return powerpointMapper.mapFromEntity(powerpointRepository.getPowerpoint(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
@@ -85,7 +85,7 @@ public class PowerpointService {
         try {
             return powerpointMapper.mapFromEntity(powerpointRepository.deletePowerpoint(id));
         } catch (Exception ex) {
-            throw new NoContentException();
+            throw new NoContentException("id: " +id);
         }
     }
 }

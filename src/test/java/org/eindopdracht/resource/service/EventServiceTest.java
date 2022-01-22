@@ -3,10 +3,10 @@ package org.eindopdracht.resource.service;
 import org.eindopdracht.resource.dto.EventDTO;
 import org.eindopdracht.resource.model.Content;
 import org.eindopdracht.resource.model.ContentType;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -57,11 +56,14 @@ public class EventServiceTest {
         assertEquals("2021-11-08 00:00:00.0", eventDto.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", eventDto.getEndDateTime().toString());
         assertEquals(2000, eventDto.getDuration());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            eventService.getById(354);
+        });
     }
 
     @Test
-    void postEvent() throws Exception
-    {
+    void postEvent() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -91,8 +93,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void putEvent() throws Exception
-    {
+    void putEvent() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
@@ -108,23 +109,5 @@ public class EventServiceTest {
         assertEquals(startDateTime, putEventDTO.getStartDateTime());
         assertNull(putEventDTO.getEndDateTime());
         assertNull(putEventDTO.getDuration());
-    }
-
-    @Test
-    void patchEvent()
-    {
-        EventDTO eventDto = new EventDTO();
-        eventDto.setUser_id(2L);
-        eventDto.setDescription("Description");
-
-        EventDTO patchedEventDTO = eventService.patch(1, eventDto);
-
-
-        assertEquals(1, patchedEventDTO.getContent().getId());
-        assertEquals(2, patchedEventDTO.getUser_id());
-        assertEquals("Description", patchedEventDTO.getDescription());
-        assertEquals("2021-11-08 00:00:00.0", patchedEventDTO.getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", patchedEventDTO.getEndDateTime().toString());
-        assertEquals(2000, patchedEventDTO.getDuration());
     }
 }
