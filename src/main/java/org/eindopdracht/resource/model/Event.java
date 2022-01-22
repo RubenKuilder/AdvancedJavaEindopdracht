@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "eventEntity")
+@Entity
 @Table(name = "event")
 public class Event {
     @Id
