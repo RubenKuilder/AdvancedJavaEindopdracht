@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("contentTypeMapperComponent")
 public class ContentTypeMapper implements EntityMapper<ContentType, ContentTypeDTO> {
     @Override
     public ContentTypeDTO mapFromEntity(ContentType contentType) {

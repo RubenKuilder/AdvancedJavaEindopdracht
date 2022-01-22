@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("eventMapperComponent")
 public class EventMapper implements EntityMapper<Event, EventDTO> {
     @Override
     public EventDTO mapFromEntity(Event event) {

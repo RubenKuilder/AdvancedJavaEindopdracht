@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("globalSettingsMapperComponent")
 public class GlobalSettingsMapper implements EntityMapper<GlobalSettings, GlobalSettingsDTO> {
     @Override
     public GlobalSettingsDTO mapFromEntity(GlobalSettings globalSettings) {

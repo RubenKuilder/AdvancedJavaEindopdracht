@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("rssFeedMapperComponent")
 public class RssFeedMapper implements EntityMapper<RssFeed, RssFeedDTO> {
     @Override
     public RssFeedDTO mapFromEntity(RssFeed rssFeed) {

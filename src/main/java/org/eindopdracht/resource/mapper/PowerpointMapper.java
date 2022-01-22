@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("powerpointMapperComponent")
 public class PowerpointMapper implements EntityMapper<Powerpoint, PowerpointDTO> {
     @Override
     public PowerpointDTO mapFromEntity(Powerpoint powerpoint) {

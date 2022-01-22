@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("roleMapperComponent")
 public class RoleMapper implements EntityMapper<Role, RoleDTO> {
     @Override
     public RoleDTO mapFromEntity(Role role) {

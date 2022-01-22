@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("consultationMapperTest")
+@Component("consultationMapperComponent")
 public class ConsultationMapper implements EntityMapper<Consultation, ConsultationDTO> {
     @Override
     public ConsultationDTO mapFromEntity(Consultation consultation) {

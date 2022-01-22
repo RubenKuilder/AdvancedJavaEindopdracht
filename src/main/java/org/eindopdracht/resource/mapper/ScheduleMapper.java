@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("scheduleMapperComponent")
 public class ScheduleMapper implements EntityMapper<Schedule, ScheduleDTO> {
     @Override
     public ScheduleDTO mapFromEntity(Schedule schedule) {

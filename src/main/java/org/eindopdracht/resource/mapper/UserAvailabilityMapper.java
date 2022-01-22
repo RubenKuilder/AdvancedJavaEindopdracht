@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("userAvailabilityComponent")
 public class UserAvailabilityMapper implements EntityMapper<UserAvailability, UserAvailabilityDTO> {
     @Override
     public UserAvailabilityDTO mapFromEntity(UserAvailability userAvailability) {
