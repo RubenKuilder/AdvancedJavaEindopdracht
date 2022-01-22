@@ -1,10 +1,10 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.dto.UserDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
+import org.eindopdracht.resource.mapper.UserMapper;
 import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-
-    private final ConvertToDTO convertToDTO = new ConvertToDTO();
-
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     /**
@@ -29,7 +28,7 @@ public class UserService {
      * @return response entity with list of all users
      */
     public List<UserDTO> getUsers() {
-        return userRepository.getUsers().stream().map(convertToDTO::toUserDTO).collect(Collectors.toList());
+        return userMapper.mapFromEntityList(userRepository.getUsers());
     }
 
     /**
@@ -40,7 +39,7 @@ public class UserService {
      */
     public UserDTO getUser(Integer id) {
         try {
-            return convertToDTO.toUserDTO(userRepository.getUser(id));
+            return userMapper.mapFromEntity(userRepository.getUser(id));
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " +id);
         }
@@ -49,12 +48,14 @@ public class UserService {
     /**
      * Maps Entity to DTO and posts a single user.
      *
-     * @param user user to post
+     * @param userDTO user to post
      * @return response entity with posted user
      */
-    public UserDTO create(User user) {
+    public UserDTO create(UserDTO userDTO) {
         try {
-            return convertToDTO.toUserDTO(userRepository.postUser(user));
+            return userMapper.mapFromEntity(
+                    userRepository.postUser(userMapper.mapToEntity(userDTO))
+            );
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -64,12 +65,12 @@ public class UserService {
      * Maps Entity to DTO and puts a single user.
      *
      * @param id   id of the user to put
-     * @param user user to put
+     * @param userDTO user to put
      * @return response entity with put user
      */
-    public UserDTO update(User user, Integer id) {
+    public UserDTO update(UserDTO userDTO, Integer id) {
         try {
-            return convertToDTO.toUserDTO(userRepository.putUser(user, id));
+            return userMapper.mapFromEntity(userRepository.putUser(userMapper.mapToEntity(userDTO), id));
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -83,7 +84,7 @@ public class UserService {
      */
     public UserDTO delete(Integer id) {
         try {
-            return convertToDTO.toUserDTO(userRepository.getUser(id));
+            return userMapper.mapFromEntity(userRepository.deleteUser(id));
         } catch (Exception ex) {
             throw new NoContentException("id: " +id);
         }

@@ -48,25 +48,25 @@ public class RssFeedController {
     /**
      * Post a single RSS feed.
      *
-     * @param rssFeed RSS feed to post
-     * @return response entity with posted RSS feed
+     * @param rssFeedDTO   RSS feed to post
+     * @return          response entity with posted RSS feed
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<RssFeedDTO> postRssFeed(@Valid @RequestBody RssFeed rssFeed) {
-        return ResponseEntity.ok(service.create(rssFeed));
+    public ResponseEntity<RssFeedDTO> postRssFeed(@Valid @RequestBody RssFeedDTO rssFeedDTO){
+        return ResponseEntity.ok(service.create(rssFeedDTO));
     }
 
     /**
      * Put a single RSS feed.
      *
-     * @param id      id of the RSS feed to put
-     * @param rssFeed RSS feed to put
-     * @return response entity with put RSS feed
+     * @param id        id of the RSS feed to put
+     * @param rssFeedDTO   RSS feed to put
+     * @return          response entity with put RSS feed
      */
     @PutMapping("/{id}")
-    public ResponseEntity<RssFeedDTO> putRssFeed(@PathVariable("id") final Integer id, @Valid @RequestBody RssFeed rssFeed) {
-        return ResponseEntity.ok(service.update(rssFeed, id));
+    public ResponseEntity<RssFeedDTO> putRssFeed(@PathVariable("id") final Integer id, @Valid @RequestBody RssFeedDTO rssFeedDTO){
+        return ResponseEntity.ok(service.update(rssFeedDTO, id));
     }
 
     /**

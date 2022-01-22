@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 class RoleServiceTest {
     @Autowired
@@ -46,12 +45,13 @@ class RoleServiceTest {
 
     @Test
     @Transactional
-    void createRole() {
-        Role role = new Role();
-        role.setRole("test");
-        RoleDTO dto = service.create(role);
+    void createRole()
+    {
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setRole("test");
+        RoleDTO persistedRoleDTO = service.create(roleDTO);
 
-        assertEquals("test", dto.getRole());
+        assertEquals("test", persistedRoleDTO.getRole());
     }
 
     @Test
@@ -65,11 +65,12 @@ class RoleServiceTest {
 
     @Test
     @Transactional
-    void updateRole() {
-        Role role = new Role();
-        role.setRole("test");
-        RoleDTO dto = service.update(role, 1);
+    void updateRole()
+    {
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setRole("test");
+        RoleDTO persistedRoleDTO = service.update(roleDTO, 1);
 
-        assertEquals("test", dto.getRole());
+        assertEquals("test", persistedRoleDTO.getRole());
     }
 }

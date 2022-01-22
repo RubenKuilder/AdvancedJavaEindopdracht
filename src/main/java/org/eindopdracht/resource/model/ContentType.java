@@ -1,4 +1,4 @@
-package org.eindopdracht.resource.model.event.content.contentType;
+package org.eindopdracht.resource.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +14,6 @@ import javax.persistence.*;
 public class ContentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
 }

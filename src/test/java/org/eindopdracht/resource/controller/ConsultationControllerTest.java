@@ -2,7 +2,7 @@ package org.eindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eindopdracht.resource.model.User;
-import org.eindopdracht.resource.model.consultation.Consultation;
+import org.eindopdracht.resource.model.Consultation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

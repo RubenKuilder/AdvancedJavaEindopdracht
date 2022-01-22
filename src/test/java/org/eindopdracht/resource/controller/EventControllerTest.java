@@ -1,9 +1,9 @@
 package org.eindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.eindopdracht.resource.model.event.Event;
-import org.eindopdracht.resource.model.event.content.Content;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.Event;
+import org.eindopdracht.resource.model.Content;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,10 +64,10 @@ class EventControllerTest {
         Event event = new Event();
         event.setContent(content);
         event.setDescription("Description");
-        event.setDuration(2000L);
+        event.setDuration(2000);
         event.setEndDateTime(null);
         event.setStartDateTime(null);
-        event.setUser_id(1L);
+        event.setUser_id(1);
 
         this.mockMvc.perform(post("/event")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -90,10 +90,10 @@ class EventControllerTest {
         Event event = new Event();
         event.setContent(content);
         event.setDescription("Description");
-        event.setDuration(2000L);
+        event.setDuration(2000);
         event.setEndDateTime(null);
         event.setStartDateTime(null);
-        event.setUser_id(1L);
+        event.setUser_id(1);
 
         this.mockMvc.perform(put("/event/1")
                         .contentType(MediaType.APPLICATION_JSON)

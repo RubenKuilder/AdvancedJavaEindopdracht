@@ -1,8 +1,8 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.event.Event;
-import org.eindopdracht.resource.model.event.content.Content;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.Event;
+import org.eindopdracht.resource.model.Content;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class EventRepositoryTest {
     @Autowired
@@ -71,17 +70,17 @@ public class EventRepositoryTest {
         content.setContentType(contentType);
         content.setPath("Hele mooie path");
         event.setContent(content);
-        event.setUser_id(1L);
+        event.setUser_id(1);
         event.setDescription("Description");
         event.setStartDateTime(startDateTime);
         event.setEndDateTime(endDateTime);
-        event.setDuration(500L);
+        event.setDuration(500);
 
         Event persistedEvent = eventRepository.persist(event);
 
         assertEquals("New content type", persistedEvent.getContent().getContentType().getName());
         assertEquals("Hele mooie path", persistedEvent.getContent().getPath());
-        assertEquals(1L, persistedEvent.getUser_id());
+        assertEquals(1, persistedEvent.getUser_id());
         assertEquals("Description", persistedEvent.getDescription());
         assertEquals(startDateTime, persistedEvent.getStartDateTime());
         assertEquals(endDateTime, persistedEvent.getEndDateTime());
@@ -94,17 +93,16 @@ public class EventRepositoryTest {
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
         Event event = new Event();
-        event.setUser_id(1L);
+        event.setUser_id(1);
         event.setDescription("Description");
         event.setStartDateTime(startDateTime);
 
         Event putEvent = eventRepository.put(1, event);
 
-        assertEquals(1L, putEvent.getUser_id());
+        assertEquals(1, putEvent.getUser_id());
         assertEquals("Description", putEvent.getDescription());
         assertEquals(startDateTime, putEvent.getStartDateTime());
         assertNull(putEvent.getEndDateTime());
-        assertNull(putEvent.getDuration());
     }
 
 }

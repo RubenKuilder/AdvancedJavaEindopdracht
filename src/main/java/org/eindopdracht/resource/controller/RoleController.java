@@ -47,25 +47,25 @@ public class RoleController {
     /**
      * Post a single role.
      *
-     * @param role role to post
-     * @return response entity with posted role
+     * @param roleDTO  role to post
+     * @return      response entity with posted role
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<RoleDTO> postRole(@Valid @RequestBody Role role) {
-        return ResponseEntity.ok(service.create(role));
+    public ResponseEntity<RoleDTO> postRole(@Valid @RequestBody RoleDTO roleDTO){
+        return ResponseEntity.ok(service.create(roleDTO));
     }
 
     /**
      * Put a single role.
      *
-     * @param id   id of the role to put
-     * @param role role to put
-     * @return response entity with put role
+     * @param id    id of the role to put
+     * @param roleDTO  role to put
+     * @return      response entity with put role
      */
     @PutMapping("/{id}")
-    public ResponseEntity<RoleDTO> putRole(@PathVariable("id") final Integer id, @Valid @RequestBody Role role) {
-        return ResponseEntity.ok(service.update(role, id));
+    public ResponseEntity<RoleDTO> putRole(@PathVariable("id") final Integer id, @Valid @RequestBody RoleDTO roleDTO){
+        return ResponseEntity.ok(service.update(roleDTO, id));
     }
 
     /**

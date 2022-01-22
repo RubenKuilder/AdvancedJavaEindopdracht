@@ -3,8 +3,8 @@ package org.eindopdracht.resource.service;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.model.event.EventDto;
-import org.eindopdracht.resource.model.event.EventMapper;
+import org.eindopdracht.resource.dto.EventDTO;
+import org.eindopdracht.resource.mapper.EventMapper;
 import org.eindopdracht.resource.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class EventService {
      *
      * @return response entity with list of all events
      */
-    public List<EventDto> get() {
+    public List<EventDTO> get() {
         return eventMapper.mapFromEntityList(eventRepository.get());
     }
 
@@ -35,11 +35,12 @@ public class EventService {
      * @param id id of the event to find
      * @return response entity with single event
      */
-    public EventDto getById(long id) {
-        try {
+    public EventDTO getById(int id) {
+        try{
             return eventMapper.mapFromEntity(eventRepository.getById(id));
-        } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+        }
+        catch (Exception ex) {
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -49,12 +50,14 @@ public class EventService {
      * @param eventDto event to post
      * @return response entity with posted event
      */
-    public EventDto persist(EventDto eventDto) {
-        try {
+    public EventDTO persist(EventDTO eventDto) {
+        try{
             return eventMapper.mapFromEntity(
                     eventRepository.persist(eventMapper.mapToEntity(eventDto))
             );
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             throw new BadRequestException();
         }
     }
@@ -66,7 +69,7 @@ public class EventService {
      * @param eventDto event to put
      * @return response entity with put event
      */
-    public EventDto put(long id, EventDto eventDto) {
+    public EventDTO put(int id, EventDTO eventDto) {
         try {
             return eventMapper.mapFromEntity(eventRepository.put(id, eventMapper.mapToEntity(eventDto)));
         } catch (Exception ex) {
@@ -74,17 +77,18 @@ public class EventService {
         }
     }
 
-
     /**
      * Maps Entity to DTO and deletes a single event.
      *
      * @param id id of the event to delete
      * @return response entity with deleted event
      */
-    public EventDto delete(long id) {
-        try {
-            return eventMapper.mapFromEntity(eventRepository.delete(id));
-        } catch (Exception ex) {
+    public EventDTO delete(int id) {
+        try{
+        return eventMapper.mapFromEntity(eventRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
             throw new NoContentException("id: " +id);
         }
     }

@@ -48,26 +48,25 @@ public class UserController {
     /**
      * Post a single user.
      *
-     * @param user user to post
+     * @param userDTO user to post
      * @return response entity with posted user
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<UserDTO> postUser(@Valid @RequestBody User user) {
-        return ResponseEntity.ok(service.create(user));
+    public ResponseEntity<UserDTO> postUser(@Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(service.create(userDTO));
     }
 
     /**
      * Put a single user.
      *
      * @param id   id of the user to put
-     * @param user user to put
+     * @param userDTO user to put
      * @return response entity with put user
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> putUser(@PathVariable("id") final Integer id, @Valid @RequestBody User user) {
-        service.update(user, id);
-        return ResponseEntity.ok(service.update(user, id));
+    public ResponseEntity<UserDTO> putUser(@PathVariable("id") final Integer id, @Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(service.update(userDTO, id));
     }
 
     /**

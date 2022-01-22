@@ -22,11 +22,12 @@ public class SignupController {
     /**
      * Post a single user.
      *
-     * @param user user to post
-     * @return response entity with user
+     * @param userDTO  user to post
+     * @return      response entity with user
      */
     @PostMapping
-    public ResponseEntity<UserDTO> signup(@Valid @RequestBody User user) {
-        return ResponseEntity.ok(service.create(user));
+    public ResponseEntity<UserDTO> signup(@Valid @RequestBody UserDTO userDTO)
+    {
+        return ResponseEntity.ok(service.create(userDTO));
     }
 }

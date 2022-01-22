@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.controller;
 
-import org.eindopdracht.resource.model.event.EventDto;
+import org.eindopdracht.resource.dto.EventDTO;
 import org.eindopdracht.resource.service.EventService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class EventController {
      * @return response entity with list of all events
      */
     @GetMapping
-    public ResponseEntity<List<EventDto>> get() {
+    public ResponseEntity<List<EventDTO>> get() {
         return ResponseEntity.ok(eventService.get());
     }
 
@@ -35,7 +35,7 @@ public class EventController {
      * @return response entity with single event
      */
     @GetMapping("/{id}")
-    public ResponseEntity<EventDto> getById(@PathVariable long id) {
+    public ResponseEntity<EventDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(eventService.getById(id));
     }
 
@@ -46,7 +46,7 @@ public class EventController {
      * @return response entity with posted event
      */
     @PostMapping
-    public ResponseEntity<EventDto> post(@RequestBody @Valid EventDto eventDto) {
+    public ResponseEntity<EventDTO> post(@RequestBody @Valid EventDTO eventDto) {
         return ResponseEntity.ok(eventService.persist(eventDto));
     }
 
@@ -58,7 +58,7 @@ public class EventController {
      * @return response entity with put event
      */
     @PutMapping("/{id}")
-    public ResponseEntity<EventDto> put(@PathVariable long id, @RequestBody @Valid EventDto eventDto) {
+    public ResponseEntity<EventDTO> put(@PathVariable int id, @RequestBody @Valid EventDTO eventDto) {
         return ResponseEntity.ok(eventService.put(id, eventDto));
     }
 
@@ -69,7 +69,7 @@ public class EventController {
      * @return response entity with deleted event
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<EventDto> delete(@PathVariable int id) {
+    public ResponseEntity<EventDTO> delete(@PathVariable int id) {
         return ResponseEntity.ok(eventService.delete(id));
     }
 }

@@ -1,5 +1,7 @@
-package org.eindopdracht.resource.model.event;
+package org.eindopdracht.resource.mapper;
 
+import org.eindopdracht.resource.model.Event;
+import org.eindopdracht.resource.dto.EventDTO;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EventMapper implements EntityMapper<Event, EventDto> {
+public class EventMapper implements EntityMapper<Event, EventDTO> {
     @Override
-    public EventDto mapFromEntity(Event event) {
-        return new EventDto(
+    public EventDTO mapFromEntity(Event event) {
+        return new EventDTO(
                 event.getId(),
                 event.getContent(),
                 event.getUser_id(),
@@ -22,7 +24,7 @@ public class EventMapper implements EntityMapper<Event, EventDto> {
     }
 
     @Override
-    public Event mapToEntity(EventDto eventDto) {
+    public Event mapToEntity(EventDTO eventDto) {
         return new Event(
                 eventDto.getId(),
                 eventDto.getContent(),
@@ -34,12 +36,12 @@ public class EventMapper implements EntityMapper<Event, EventDto> {
         );
     }
 
-    public List<EventDto> mapFromEntityList(List<Event> entities) {
-        List<EventDto> EventDtoList = new ArrayList<>();
+    public List<EventDTO> mapFromEntityList(List<Event> entities) {
+        List<EventDTO> eventDTOList = new ArrayList<>();
         for (Event entity : entities) {
-            EventDtoList.add(mapFromEntity(entity));
+            eventDTOList.add(mapFromEntity(entity));
         }
 
-        return EventDtoList;
+        return eventDTOList;
     }
 }

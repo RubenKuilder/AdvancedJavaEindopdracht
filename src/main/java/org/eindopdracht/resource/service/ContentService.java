@@ -2,8 +2,8 @@ package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
-import org.eindopdracht.resource.model.event.content.ContentDto;
-import org.eindopdracht.resource.model.event.content.ContentMapper;
+import org.eindopdracht.resource.dto.ContentDTO;
+import org.eindopdracht.resource.mapper.ContentMapper;
 import org.eindopdracht.resource.repository.ContentRespository;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class ContentService {
      *
      * @return response entity with list of all content
      */
-    public List<ContentDto> get() {
+    public List<ContentDTO> get() {
         return contentMapper.mapFromEntityList(contentRespository.get());
     }
 
@@ -34,8 +34,9 @@ public class ContentService {
      * @param id id of the content to find
      * @return response entity with single content
      */
-    public ContentDto getById(long id) {
-        try {
+    public ContentDTO getById(int id) {
+        try
+        {
             return contentMapper.mapFromEntity(contentRespository.getById(id));
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " + id);
@@ -48,12 +49,14 @@ public class ContentService {
      * @param contentDto content to post
      * @return response entity with posted content
      */
-    public ContentDto persist(ContentDto contentDto) {
-        try {
-            return contentMapper.mapFromEntity(
-                    contentRespository.persist(contentMapper.mapToEntity(contentDto))
-            );
-        } catch (Exception ex) {
+    public ContentDTO persist(ContentDTO contentDto) {
+        try{
+        return contentMapper.mapFromEntity(
+                contentRespository.persist(contentMapper.mapToEntity(contentDto))
+        );
+        }
+        catch (Exception ex)
+        {
             throw new BadRequestException();
         }
     }
@@ -65,12 +68,13 @@ public class ContentService {
      * @param contentDto content to put
      * @return response entity with put content
      */
-    public ContentDto put(long id, ContentDto contentDto) {
-        try {
+    public ContentDTO put(int id, ContentDTO contentDto) {
+        try{
             return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             throw new BadRequestException();
         }
     }
-
 }

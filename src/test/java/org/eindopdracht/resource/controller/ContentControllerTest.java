@@ -1,8 +1,8 @@
 package org.eindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.eindopdracht.resource.model.event.content.Content;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.Content;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +72,7 @@ class ContentControllerTest {
     void putContent() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
-        contentType.setId(1L);
+        contentType.setId(1);
 
         Content content = new Content();
         content.setContentType(contentType);

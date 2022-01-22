@@ -1,10 +1,10 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.dto.UserAvailabilityDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
+import org.eindopdracht.resource.mapper.UserAvailabilityMapper;
 import org.eindopdracht.resource.model.UserAvailability;
 import org.eindopdracht.resource.repository.UserAvailabilityRepository;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserAvailabilityService {
-    private final ConvertToDTO convertToDTO = new ConvertToDTO();
-
     private final UserAvailabilityRepository userAvailabilityRepository;
+    private final UserAvailabilityMapper userAvailabilityMapper;
 
-    public UserAvailabilityService(UserAvailabilityRepository userAvailabilityRepository) {
+    public UserAvailabilityService(UserAvailabilityRepository userAvailabilityRepository, UserAvailabilityMapper userAvailabilityMapper) {
         this.userAvailabilityRepository = userAvailabilityRepository;
+        this.userAvailabilityMapper = userAvailabilityMapper;
     }
 
     /**
@@ -28,7 +28,7 @@ public class UserAvailabilityService {
      * @return response entity with list of all user availabilities
      */
     public List<UserAvailabilityDTO> getUserAvailabilities() {
-        return userAvailabilityRepository.getUserAvailabilities().stream().map(convertToDTO::toUserAvailabilityDTO).collect(Collectors.toList());
+        return userAvailabilityMapper.mapFromEntityList(userAvailabilityRepository.getUserAvailabilities());
     }
 
     /**
@@ -39,7 +39,7 @@ public class UserAvailabilityService {
      */
     public UserAvailabilityDTO getUserAvailability(Integer id) {
         try {
-            return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.getUserAvailability(id));
+            return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.getUserAvailability(id));
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " +id);
         }
@@ -48,12 +48,14 @@ public class UserAvailabilityService {
     /**
      * Maps Entity to DTO and posts a single user availability.
      *
-     * @param userAvailability user availability to post
+     * @param userAvailabilityDTO user availability to post
      * @return response entity with posted user availability
      */
-    public UserAvailabilityDTO create(UserAvailability userAvailability) {
+    public UserAvailabilityDTO create(UserAvailabilityDTO userAvailabilityDTO) {
         try {
-            return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.postUserAvailability(userAvailability));
+            return userAvailabilityMapper.mapFromEntity(
+                    userAvailabilityRepository.postUserAvailability(userAvailabilityMapper.mapToEntity(userAvailabilityDTO))
+            );
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -63,12 +65,12 @@ public class UserAvailabilityService {
      * Maps Entity to DTO and puts a single user availability.
      *
      * @param id               id of the user availability to put
-     * @param userAvailability user availability to put
+     * @param userAvailabilityDTO user availability to put
      * @return response entity with put user availability
      */
-    public UserAvailabilityDTO update(UserAvailability userAvailability, Integer id) {
+    public UserAvailabilityDTO update(UserAvailabilityDTO userAvailabilityDTO, Integer id) {
         try {
-            return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.putUserAvailability(userAvailability, id));
+            return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.putUserAvailability(userAvailabilityMapper.mapToEntity(userAvailabilityDTO), id));
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -82,7 +84,7 @@ public class UserAvailabilityService {
      */
     public UserAvailabilityDTO delete(Integer id) {
         try {
-            return convertToDTO.toUserAvailabilityDTO(userAvailabilityRepository.deleteUserAvailability(id));
+            return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.deleteUserAvailability(id));
         } catch (Exception ex) {
             throw new NoContentException("id: " +id);
         }

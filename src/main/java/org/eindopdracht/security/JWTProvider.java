@@ -24,8 +24,8 @@ public class JWTProvider {
     private final UserDetailsService userDetailsService;
     // When we sign a JSON Web Token, we use a secret key so nobody can re-sign an edited token and present it as valid
     private String secretKey;
-    // For how long do we want a token to stay valid?
-    private long validityInMilliseconds = 600000; // 10 minutes
+    // For how int do we want a token to stay valid?
+    private int validityInMilliseconds = 600000; // 10 minutes
 
 
     public JWTProvider(UserDetailsService userDetailsService, String secretKey) {

@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,7 @@ public class ContentTypeRepository {
      * @param id id of the content type to find
      * @return response entity with single content type
      */
-    public ContentType getById(long id) {
+    public ContentType getById(int id) {
         return entityManager.find(ContentType.class, id);
     }
 
@@ -54,7 +54,7 @@ public class ContentTypeRepository {
      * @param contentType content type to put
      * @return response entity with put content type
      */
-    public ContentType put(long id, ContentType contentType) {
+    public ContentType put(int id, ContentType contentType) {
         contentType.setId(id);
         return entityManager.merge(contentType);
     }
@@ -65,7 +65,7 @@ public class ContentTypeRepository {
      * @param id id of the content type to delete
      * @return response entity with deleted content type
      */
-    public ContentType delete(long id) {
+    public ContentType delete(int id) {
         ContentType contentType = entityManager.find(ContentType.class, id);
         entityManager.remove(contentType);
         return contentType;

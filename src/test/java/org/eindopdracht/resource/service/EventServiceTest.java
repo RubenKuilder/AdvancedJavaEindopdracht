@@ -1,13 +1,12 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.dto.EventDTO;
+import org.eindopdracht.resource.model.Content;
+import org.eindopdracht.resource.model.ContentType;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
-import org.eindopdracht.resource.model.event.EventDto;
-import org.eindopdracht.resource.model.event.content.Content;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,35 +19,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class EventServiceTest {
     @Autowired
     private EventService eventService;
 
     @Test
-    void getAllEvents() {
-        List<EventDto> eventDtoList = eventService.get();
+    void getAllEvents()
+    {
+        List<EventDTO> eventDTOList = eventService.get();
 
-        assertEquals(2, eventDtoList.size());
-        assertEquals(1, eventDtoList.get(0).getContent().getId());
-        assertEquals(1, eventDtoList.get(0).getUser_id());
-        assertEquals("Test", eventDtoList.get(0).getDescription());
-        assertEquals("2021-11-08 00:00:00.0", eventDtoList.get(0).getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", eventDtoList.get(0).getEndDateTime().toString());
-        assertEquals(2000, eventDtoList.get(0).getDuration());
+        assertEquals(2, eventDTOList.size());
+        assertEquals(1, eventDTOList.get(0).getContent().getId());
+        assertEquals(1, eventDTOList.get(0).getUser_id());
+        assertEquals("Test", eventDTOList.get(0).getDescription());
+        assertEquals("2021-11-08 00:00:00.0", eventDTOList.get(0).getStartDateTime().toString());
+        assertEquals("2022-12-08 00:00:00.0", eventDTOList.get(0).getEndDateTime().toString());
+        assertEquals(2000, eventDTOList.get(0).getDuration());
 
-        assertEquals(1, eventDtoList.get(1).getContent().getId());
-        assertEquals(1, eventDtoList.get(1).getUser_id());
-        assertEquals("Test", eventDtoList.get(1).getDescription());
-        assertEquals("2021-11-08 00:00:00.0", eventDtoList.get(1).getStartDateTime().toString());
-        assertEquals("2022-12-08 00:00:00.0", eventDtoList.get(1).getEndDateTime().toString());
-        assertEquals(2000, eventDtoList.get(1).getDuration());
+        assertEquals(1, eventDTOList.get(1).getContent().getId());
+        assertEquals(1, eventDTOList.get(1).getUser_id());
+        assertEquals("Test", eventDTOList.get(1).getDescription());
+        assertEquals("2021-11-08 00:00:00.0", eventDTOList.get(1).getStartDateTime().toString());
+        assertEquals("2022-12-08 00:00:00.0", eventDTOList.get(1).getEndDateTime().toString());
+        assertEquals(2000, eventDTOList.get(1).getDuration());
     }
 
     @Test
-    void getById() {
-        EventDto eventDto = eventService.getById(1);
+    void getById()
+    {
+        EventDTO eventDto = eventService.getById(1);
 
         assertEquals(1, eventDto.getContent().getId());
         assertEquals(1, eventDto.getUser_id());
@@ -68,28 +68,28 @@ public class EventServiceTest {
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
 
-        EventDto eventDto = new EventDto();
+        EventDTO eventDto = new EventDTO();
         Content content = new Content();
         ContentType contentType = new ContentType();
         contentType.setName("New content type");
         content.setContentType(contentType);
         content.setPath("Hele mooie path");
         eventDto.setContent(content);
-        eventDto.setUser_id(1L);
+        eventDto.setUser_id(1);
         eventDto.setDescription("Description");
         eventDto.setStartDateTime(startDateTime);
         eventDto.setEndDateTime(endDateTime);
-        eventDto.setDuration(500L);
+        eventDto.setDuration(500);
 
-        EventDto persistedEventDto = eventService.persist(eventDto);
+        EventDTO persistedEventDTO = eventService.persist(eventDto);
 
-        assertEquals("New content type", persistedEventDto.getContent().getContentType().getName());
-        assertEquals("Hele mooie path", persistedEventDto.getContent().getPath());
-        assertEquals(1L, persistedEventDto.getUser_id());
-        assertEquals("Description", persistedEventDto.getDescription());
-        assertEquals(startDateTime, persistedEventDto.getStartDateTime());
-        assertEquals(endDateTime, persistedEventDto.getEndDateTime());
-        assertEquals(500L, persistedEventDto.getDuration());
+        assertEquals("New content type", persistedEventDTO.getContent().getContentType().getName());
+        assertEquals("Hele mooie path", persistedEventDTO.getContent().getPath());
+        assertEquals(1, persistedEventDTO.getUser_id());
+        assertEquals("Description", persistedEventDTO.getDescription());
+        assertEquals(startDateTime, persistedEventDTO.getStartDateTime());
+        assertEquals(endDateTime, persistedEventDTO.getEndDateTime());
+        assertEquals(500L, persistedEventDTO.getDuration());
     }
 
     @Test
@@ -97,18 +97,16 @@ public class EventServiceTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
-        EventDto eventDto = new EventDto();
-        eventDto.setUser_id(1L);
+        EventDTO eventDto = new EventDTO();
+        eventDto.setUser_id(1);
         eventDto.setDescription("Description");
         eventDto.setStartDateTime(startDateTime);
 
-        EventDto putEventDto = eventService.put(1, eventDto);
+        EventDTO putEventDTO = eventService.put(1, eventDto);
 
-        assertEquals(1L, putEventDto.getUser_id());
-        assertEquals("Description", putEventDto.getDescription());
-        assertEquals(startDateTime, putEventDto.getStartDateTime());
-        assertNull(putEventDto.getEndDateTime());
-        assertNull(putEventDto.getDuration());
+        assertEquals(1, putEventDTO.getUser_id());
+        assertEquals("Description", putEventDTO.getDescription());
+        assertEquals(startDateTime, putEventDTO.getStartDateTime());
+        assertNull(putEventDTO.getEndDateTime());
     }
-
 }

@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.event.content.Content;
+import org.eindopdracht.resource.model.Content;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,7 @@ public class ContentRespository {
      * @param id id of the content to find
      * @return response entity with single content
      */
-    public Content getById(long id) {
+    public Content getById(int id) {
         return entityManager.find(Content.class, id);
     }
 
@@ -54,7 +54,7 @@ public class ContentRespository {
      * @param content content to put
      * @return response entity with put content
      */
-    public Content put(long id, Content content) {
+    public Content put(int id, Content content) {
         content.setId(id);
         return entityManager.merge(content);
     }

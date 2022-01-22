@@ -3,8 +3,8 @@ package org.eindopdracht.resource.service;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.model.schedule.ScheduleDto;
-import org.eindopdracht.resource.model.schedule.ScheduleMapper;
+import org.eindopdracht.resource.dto.ScheduleDTO;
+import org.eindopdracht.resource.mapper.ScheduleMapper;
 import org.eindopdracht.resource.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class ScheduleService {
      *
      * @return response entity with list of all schedules
      */
-    public List<ScheduleDto> getAll() {
+    public List<ScheduleDTO> getAll() {
         return scheduleMapper.mapFromEntityList(scheduleRepository.get());
     }
 
@@ -35,11 +35,12 @@ public class ScheduleService {
      * @param id id of the schedule to find
      * @return response entity with single schedule
      */
-    public ScheduleDto getById(long id) {
+    public ScheduleDTO getById(int id) {
         try {
             return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
-        } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+        }
+        catch (Exception ex) {
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -49,8 +50,9 @@ public class ScheduleService {
      * @param scheduleDto schedule to post
      * @return response entity with posted schedule
      */
-    public ScheduleDto persist(ScheduleDto scheduleDto) {
-        try {
+    public ScheduleDTO persist(ScheduleDTO scheduleDto) {
+        try
+        {
             return scheduleMapper.mapFromEntity(
                     scheduleRepository.post(scheduleMapper.mapToEntity(scheduleDto))
             );
@@ -66,10 +68,12 @@ public class ScheduleService {
      * @param scheduleDto schedule to put
      * @return response entity with put schedule
      */
-    public ScheduleDto put(long id, ScheduleDto scheduleDto) {
-        try {
-            return scheduleMapper.mapFromEntity(scheduleRepository.put(id, scheduleMapper.mapToEntity(scheduleDto)));
-        } catch (Exception ex) {
+    public ScheduleDTO put(int id, ScheduleDTO scheduleDto) {
+        try{
+        return scheduleMapper.mapFromEntity(scheduleRepository.put(id, scheduleMapper.mapToEntity(scheduleDto)));
+        }
+        catch (Exception ex)
+        {
             throw new BadRequestException();
         }
     }
@@ -80,10 +84,12 @@ public class ScheduleService {
      * @param id id of the schedule to delete
      * @return response entity with deleted schedule
      */
-    public ScheduleDto delete(long id) {
-        try {
-            return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
-        } catch (Exception ex) {
+    public ScheduleDTO delete(int id) {
+        try{
+        return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
             throw new NoContentException("id: " +id);
         }
     }

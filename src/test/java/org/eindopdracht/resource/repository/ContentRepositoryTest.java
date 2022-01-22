@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.event.content.Content;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.Content;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class ContentRepositoryTest {
@@ -60,7 +59,7 @@ public class ContentRepositoryTest {
     @Test
     void putContent() {
         ContentType contentType = new ContentType();
-        contentType.setId(1L);
+        contentType.setId(1);
         contentType.setName("Text");
 
         Content content = new Content();

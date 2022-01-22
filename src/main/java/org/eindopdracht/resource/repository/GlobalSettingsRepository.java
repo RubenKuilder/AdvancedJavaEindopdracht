@@ -45,7 +45,7 @@ public class GlobalSettingsRepository {
      */
     public GlobalSettings uploadGlobalSettings(GlobalSettings globalSettings) {
         manager.persist(globalSettings);
-        return manager.find(GlobalSettings.class, globalSettings.getId());
+        return globalSettings;
     }
 
     /**
@@ -69,9 +69,6 @@ public class GlobalSettingsRepository {
      * @return response entity with put global setting
      */
     public GlobalSettings updateGlobalSettings(GlobalSettings globalSettings, Integer id) {
-        GlobalSettings globalSettingsToUpdate = manager.find(GlobalSettings.class, id);
-        globalSettingsToUpdate.setSwitchTime(globalSettings.getSwitchTime());
-        globalSettingsToUpdate.setSoundOn(globalSettings.isSoundOn());
-        return globalSettingsToUpdate;
+        return manager.merge(globalSettings);
     }
 }

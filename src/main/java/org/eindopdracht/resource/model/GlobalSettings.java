@@ -1,6 +1,7 @@
 package org.eindopdracht.resource.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,9 @@ import java.sql.Time;
 @Entity
 @Data
 @NoArgsConstructor
-public class GlobalSettings {
+@AllArgsConstructor
+public class GlobalSettings
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

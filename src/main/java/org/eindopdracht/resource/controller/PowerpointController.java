@@ -48,25 +48,25 @@ public class PowerpointController {
     /**
      * Post a single powerpoint.
      *
-     * @param powerpoint powerpoint to post
-     * @return response entity with posted powerpoint
+     * @param powerpointDTO    powerpoint to post
+     * @return              response entity with posted powerpoint
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<PowerpointDTO> postPowerpoint(@Valid @RequestBody Powerpoint powerpoint) {
-        return ResponseEntity.ok(service.create(powerpoint));
+    public ResponseEntity<PowerpointDTO> postPowerpoint(@Valid @RequestBody PowerpointDTO powerpointDTO){
+        return ResponseEntity.ok(service.create(powerpointDTO));
     }
 
     /**
      * Put a single powerpoint.
      *
-     * @param id         id of the powerpoint to put
-     * @param powerpoint powerpoint to put
-     * @return response entity with put powerpoint
+     * @param id            id of the powerpoint to put
+     * @param powerpointDTO    powerpoint to put
+     * @return              response entity with put powerpoint
      */
     @PutMapping("/{id}")
-    public ResponseEntity<PowerpointDTO> putPowerpoint(@PathVariable("id") final Integer id, @Valid @RequestBody Powerpoint powerpoint) {
-        return ResponseEntity.ok(service.update(powerpoint, id));
+    public ResponseEntity<PowerpointDTO> putPowerpoint(@PathVariable("id") final Integer id, @Valid @RequestBody PowerpointDTO powerpointDTO) {
+        return ResponseEntity.ok(service.update(powerpointDTO, id));
     }
 
     /**

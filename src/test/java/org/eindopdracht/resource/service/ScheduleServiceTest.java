@@ -3,7 +3,7 @@ package org.eindopdracht.resource.service;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.User;
-import org.eindopdracht.resource.model.schedule.ScheduleDto;
+import org.eindopdracht.resource.dto.ScheduleDTO;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Transactional
 public class ScheduleServiceTest {
@@ -34,8 +33,9 @@ public class ScheduleServiceTest {
 
     @Test
     @Order(1)
-    void getScheduleByIDTest() {
-        ScheduleDto scheduleDto = scheduleService.getById(1);
+    void getScheduleByIDTest()
+    {
+        ScheduleDTO scheduleDto = scheduleService.getById(1);
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
@@ -47,17 +47,18 @@ public class ScheduleServiceTest {
 
     @Test
     @Order(2)
-    void getScheduleTest() {
-        List<ScheduleDto> scheduleDtoList = scheduleService.getAll();
+    void getScheduleTest()
+    {
+        List<ScheduleDTO> scheduleDTOList = scheduleService.getAll();
 
-        assertEquals("Mooie titel post", scheduleDtoList.get(1).getTitle());
-        assertEquals("Mooie beschrijving post", scheduleDtoList.get(1).getDescription());
+        assertEquals("Mooie titel post", scheduleDTOList.get(1).getTitle());
+        assertEquals("Mooie beschrijving post", scheduleDTOList.get(1).getDescription());
     }
 
     @Test
     @Order(3)
     public void deleteScheduleTest() {
-        ScheduleDto scheduleDto = scheduleService.delete(1);
+        ScheduleDTO scheduleDto = scheduleService.delete(1);
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
@@ -78,19 +79,19 @@ public class ScheduleServiceTest {
         Date startDateTime = sdf.parse("10-01-2022 15:40:10");
         Date endDateTime = sdf.parse("10-01-2022 15:50:10");
 
-        ScheduleDto scheduleDto = new ScheduleDto();
+        ScheduleDTO scheduleDto = new ScheduleDTO();
         scheduleDto.setTitle("Mooie titel post");
         scheduleDto.setDescription("Mooie beschrijving post");
         scheduleDto.setStartDateTime(startDateTime);
         scheduleDto.setEndDateTime(endDateTime);
         scheduleDto.setUsers(usersList);
 
-        ScheduleDto persistedScheduleDto = scheduleService.persist(scheduleDto);
+        ScheduleDTO persistedScheduleDTO = scheduleService.persist(scheduleDto);
 
-        assertEquals("Mooie titel post", persistedScheduleDto.getTitle());
-        assertEquals("Mooie beschrijving post", persistedScheduleDto.getDescription());
-        assertEquals(startDateTime, persistedScheduleDto.getStartDateTime());
-        assertEquals(endDateTime, persistedScheduleDto.getEndDateTime());
+        assertEquals("Mooie titel post", persistedScheduleDTO.getTitle());
+        assertEquals("Mooie beschrijving post", persistedScheduleDTO.getDescription());
+        assertEquals(startDateTime, persistedScheduleDTO.getStartDateTime());
+        assertEquals(endDateTime, persistedScheduleDTO.getEndDateTime());
     }
 
     @Test
@@ -103,30 +104,30 @@ public class ScheduleServiceTest {
         Date startDateTime = sdf.parse("10-01-2022 15:40:10");
         Date endDateTime = sdf.parse("10-01-2022 15:50:10");
 
-        ScheduleDto scheduleDto = new ScheduleDto();
+        ScheduleDTO scheduleDto = new ScheduleDTO();
         scheduleDto.setTitle("Mooie titel put");
         scheduleDto.setDescription("Mooie beschrijving put");
         scheduleDto.setStartDateTime(startDateTime);
         scheduleDto.setEndDateTime(endDateTime);
         scheduleDto.setUsers(usersList);
 
-        ScheduleDto puttedScheduleDto = scheduleService.put(1, scheduleDto);
+        ScheduleDTO puttedScheduleDTO = scheduleService.put(1, scheduleDto);
 
-        assertEquals("Mooie titel put", puttedScheduleDto.getTitle());
-        assertEquals("Mooie beschrijving put", puttedScheduleDto.getDescription());
-        assertEquals(startDateTime, puttedScheduleDto.getStartDateTime());
-        assertEquals(endDateTime, puttedScheduleDto.getEndDateTime());
+        assertEquals("Mooie titel put", puttedScheduleDTO.getTitle());
+        assertEquals("Mooie beschrijving put", puttedScheduleDTO.getDescription());
+        assertEquals(startDateTime, puttedScheduleDTO.getStartDateTime());
+        assertEquals(endDateTime, puttedScheduleDTO.getEndDateTime());
     }
 
     @Test
     void patchScheduleTest() {
-        ScheduleDto scheduleDto = new ScheduleDto();
+        ScheduleDTO scheduleDto = new ScheduleDTO();
         scheduleDto.setTitle("Mooie titel patch");
         scheduleDto.setDescription("Mooie beschrijving patch");
 
-        ScheduleDto patchedScheduleDto = scheduleService.put(1, scheduleDto);
+        ScheduleDTO patchedScheduleDTO = scheduleService.put(1, scheduleDto);
 
-        assertEquals("Mooie titel patch", patchedScheduleDto.getTitle());
-        assertEquals("Mooie beschrijving patch", patchedScheduleDto.getDescription());
+        assertEquals("Mooie titel patch", patchedScheduleDTO.getTitle());
+        assertEquals("Mooie beschrijving patch", patchedScheduleDTO.getDescription());
     }
 }

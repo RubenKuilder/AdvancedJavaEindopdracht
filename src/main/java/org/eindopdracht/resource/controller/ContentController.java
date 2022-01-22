@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.controller;
 
-import org.eindopdracht.resource.model.event.content.ContentDto;
+import org.eindopdracht.resource.dto.ContentDTO;
 import org.eindopdracht.resource.service.ContentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class ContentController {
      * @return response entity with list of all content
      */
     @GetMapping
-    public ResponseEntity<List<ContentDto>> get() {
+    public ResponseEntity<List<ContentDTO>> get() {
         return ResponseEntity.ok(contentService.get());
     }
 
@@ -35,7 +35,7 @@ public class ContentController {
      * @return response entity with single content
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ContentDto> getById(@PathVariable long id) {
+    public ResponseEntity<ContentDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(contentService.getById(id));
     }
 
@@ -46,7 +46,7 @@ public class ContentController {
      * @return response entity with posted content
      */
     @PostMapping
-    public ResponseEntity<ContentDto> post(@RequestBody @Valid ContentDto contentDto) {
+    public ResponseEntity<ContentDTO> post(@RequestBody @Valid ContentDTO contentDto) {
         return ResponseEntity.ok(contentService.persist(contentDto));
     }
 
@@ -58,7 +58,7 @@ public class ContentController {
      * @return response entity with put content
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ContentDto> put(@PathVariable long id, @RequestBody @Valid ContentDto contentDto) {
+    public ResponseEntity<ContentDTO> put(@PathVariable int id, @RequestBody @Valid ContentDTO contentDto) {
         return ResponseEntity.ok(contentService.put(id, contentDto));
     }
 }

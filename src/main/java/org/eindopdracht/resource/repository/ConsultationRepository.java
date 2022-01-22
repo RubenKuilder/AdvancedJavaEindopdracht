@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.consultation.Consultation;
+import org.eindopdracht.resource.model.Consultation;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -42,7 +42,7 @@ public class ConsultationRepository {
      * @param id id of the consultation to find
      * @return response entity with a single consultation
      */
-    public Consultation getById(long id) {
+    public Consultation getById(int id) {
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
         query.setParameter("id", id);
         return query.getSingleResult();
@@ -67,7 +67,7 @@ public class ConsultationRepository {
      * @param consultation consultation to put
      * @return response entity with put consultation
      */
-    public Consultation put(long id, Consultation consultation) {
+    public Consultation put(int id, Consultation consultation) {
         consultation.setId(id);
         return entityManager.merge(consultation);
     }
@@ -78,7 +78,7 @@ public class ConsultationRepository {
      * @param id id of the consultation to delete
      * @return response entity with deleted consultation
      */
-    public Consultation delete(long id) {
+    public Consultation delete(int id) {
         Consultation consultationToDelete = getById(id);
 
         entityManager.remove(entityManager.contains(consultationToDelete) ? consultationToDelete : entityManager.merge(consultationToDelete));

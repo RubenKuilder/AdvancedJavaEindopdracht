@@ -1,11 +1,10 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeMapper;
+import org.eindopdracht.resource.dto.ContentTypeDTO;
+import org.eindopdracht.resource.mapper.ContentTypeMapper;
 import org.eindopdracht.resource.repository.ContentTypeRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,6 @@ import java.util.List;
 public class ContentTypeService {
     private final ContentTypeRepository contentTypeRepository;
     private final ContentTypeMapper contentTypeMapper;
-    private final ConvertToDTO convertToDto = new ConvertToDTO();
 
     public ContentTypeService(ContentTypeRepository contentTypeRepository, ContentTypeMapper contentTypeMapper) {
         this.contentTypeRepository = contentTypeRepository;
@@ -27,7 +25,7 @@ public class ContentTypeService {
      *
      * @return response entity with list of all content types
      */
-    public List<ContentTypeDto> get() {
+    public List<ContentTypeDTO> get() {
         return contentTypeMapper.mapFromEntityList(contentTypeRepository.get());
     }
 
@@ -37,7 +35,7 @@ public class ContentTypeService {
      * @param id id of the content type to find
      * @return response entity with single content type
      */
-    public ContentTypeDto getById(long id) {
+    public ContentTypeDTO getById(int id) {
         try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
         } catch (Exception ex) {
@@ -51,12 +49,14 @@ public class ContentTypeService {
      * @param contentTypeDto content type to post
      * @return response entity with posted content type
      */
-    public ContentTypeDto persist(ContentTypeDto contentTypeDto) {
-        try {
-            return contentTypeMapper.mapFromEntity(
-                    contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
-            );
-        } catch (Exception ex) {
+    public ContentTypeDTO persist(ContentTypeDTO contentTypeDto) {
+        try{
+        return contentTypeMapper.mapFromEntity(
+                contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
+        );
+        }
+        catch (Exception ex)
+        {
             throw new BadRequestException();
         }
     }
@@ -68,10 +68,12 @@ public class ContentTypeService {
      * @param contentTypeDto content type to put
      * @return response entity with put content type
      */
-    public ContentTypeDto put(long id, ContentTypeDto contentTypeDto) {
-        try {
-            return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
-        } catch (Exception ex) {
+    public ContentTypeDTO put(int id, ContentTypeDTO contentTypeDto) {
+        try{
+        return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
+        }
+        catch (Exception ex)
+        {
             throw new BadRequestException();
         }
     }
@@ -82,10 +84,12 @@ public class ContentTypeService {
      * @param id id of the content type to delete
      * @return response entity with deleted content type
      */
-    public ContentTypeDto delete(long id) {
-        try {
-            return convertToDto.toContentTypeDTO(contentTypeRepository.delete(id));
-        } catch (Exception ex) {
+    public ContentTypeDTO delete(int id) {
+        try{
+            return contentTypeMapper.mapFromEntity(contentTypeRepository.delete(id));
+        }
+        catch(Exception ex)
+        {
             throw new NoContentException("id: " +id);
         }
     }

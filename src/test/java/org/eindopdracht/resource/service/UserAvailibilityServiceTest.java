@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class UserAvailibilityServiceTest {
     @Autowired
@@ -57,13 +56,13 @@ public class UserAvailibilityServiceTest {
         user.setPassword("true");
         user.setProfileImagePath("true");
 
-        UserAvailability ua = new UserAvailability();
-        ua.setUser(user);
-        ua.setDate(new Date(2010, 3, 5, 5, 5, 5));
+        UserAvailabilityDTO userAvailabilityDTO = new UserAvailabilityDTO();
+        userAvailabilityDTO.setUser(user);
+        userAvailabilityDTO.setDate(new Date(2010, 3, 5, 5, 5, 5));
 
-        UserAvailabilityDTO dto = service.create(ua);
+        UserAvailabilityDTO persisteduserAvailabilityDTO = service.create(userAvailabilityDTO);
 
-        assertEquals("test22", dto.getUser().getName());
+        assertEquals("test22", persisteduserAvailabilityDTO.getUser().getName());
     }
 
     @Test
@@ -86,13 +85,13 @@ public class UserAvailibilityServiceTest {
         user.setPassword("true");
         user.setProfileImagePath("true");
 
-        UserAvailability ua = new UserAvailability();
-        ua.setUser(user);
-        ua.setDate(new Date(2010, 3, 5));
+        UserAvailabilityDTO userAvailabilityDTO = new UserAvailabilityDTO();
+        userAvailabilityDTO.setUser(user);
+        userAvailabilityDTO.setDate(new Date(2010, 3, 5));
 
 
-        UserAvailabilityDTO dto = service.update(ua, 1);
+        UserAvailabilityDTO persisteduserAvailabilityDTO = service.update(userAvailabilityDTO, 1);
 
-        assertEquals("test33", dto.getUser().getName());
+        assertEquals("test33", persisteduserAvailabilityDTO.getUser().getName());
     }
 }

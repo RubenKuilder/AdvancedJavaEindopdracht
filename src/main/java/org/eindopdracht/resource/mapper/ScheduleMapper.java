@@ -1,5 +1,7 @@
-package org.eindopdracht.resource.model.schedule;
+package org.eindopdracht.resource.mapper;
 
+import org.eindopdracht.resource.model.Schedule;
+import org.eindopdracht.resource.dto.ScheduleDTO;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ScheduleMapper implements EntityMapper<Schedule, ScheduleDto> {
+public class ScheduleMapper implements EntityMapper<Schedule, ScheduleDTO> {
     @Override
-    public ScheduleDto mapFromEntity(Schedule schedule) {
-        return new ScheduleDto(
+    public ScheduleDTO mapFromEntity(Schedule schedule) {
+        return new ScheduleDTO(
                 schedule.getId(),
                 schedule.getUsers(),
                 schedule.getTitle(),
@@ -21,7 +23,7 @@ public class ScheduleMapper implements EntityMapper<Schedule, ScheduleDto> {
     }
 
     @Override
-    public Schedule mapToEntity(ScheduleDto scheduleDto) {
+    public Schedule mapToEntity(ScheduleDTO scheduleDto) {
         return new Schedule(
                 scheduleDto.getId(),
                 scheduleDto.getUsers(),
@@ -32,12 +34,12 @@ public class ScheduleMapper implements EntityMapper<Schedule, ScheduleDto> {
         );
     }
 
-    public List<ScheduleDto> mapFromEntityList(List<Schedule> entities) {
-        List<ScheduleDto> ScheduleDtoList = new ArrayList<>();
+    public List<ScheduleDTO> mapFromEntityList(List<Schedule> entities) {
+        List<ScheduleDTO> scheduleDTOList = new ArrayList<>();
         for (Schedule entity : entities) {
-            ScheduleDtoList.add(mapFromEntity(entity));
+            scheduleDTOList.add(mapFromEntity(entity));
         }
 
-        return ScheduleDtoList;
+        return scheduleDTOList;
     }
 }

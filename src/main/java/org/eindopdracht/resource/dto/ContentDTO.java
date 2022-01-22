@@ -1,17 +1,20 @@
-package org.eindopdracht.resource.model.event.content;
+package org.eindopdracht.resource.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.ContentType;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ContentDto {
-    private Long id;
+public class ContentDTO {
+    private int id;
+
+    @NotNull
     private ContentType contentType;
 
     @NotBlank

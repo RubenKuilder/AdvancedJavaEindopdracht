@@ -48,25 +48,25 @@ public class UserAvailabilityController {
     /**
      * Post a single user availability.
      *
-     * @param availability user availability to post
+     * @param availabilityDTO user availability to post
      * @return response entity with posted user availability
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<UserAvailabilityDTO> postAvailability(@Valid @RequestBody UserAvailability availability) {
-        return ResponseEntity.ok(service.create(availability));
+    public ResponseEntity<UserAvailabilityDTO> postAvailability(@Valid @RequestBody UserAvailabilityDTO availabilityDTO) {
+        return ResponseEntity.ok(service.create(availabilityDTO));
     }
 
     /**
      * Put a single user availability.
      *
      * @param id           id of the user availability to put
-     * @param availability user availability to put
+     * @param availabilityDTO user availability to put
      * @return response entity with put user availability
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserAvailabilityDTO> putAvailability(@PathVariable("id") final Integer id, @Valid @RequestBody UserAvailability availability) {
-        return ResponseEntity.ok(service.update(availability, id));
+    public ResponseEntity<UserAvailabilityDTO> putAvailability(@PathVariable("id") final Integer id, @Valid @RequestBody UserAvailabilityDTO availabilityDTO) {
+        return ResponseEntity.ok(service.update(availabilityDTO, id));
     }
 
     /**

@@ -2,7 +2,7 @@ package org.eindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eindopdracht.resource.model.User;
-import org.eindopdracht.resource.model.schedule.Schedule;
+import org.eindopdracht.resource.model.Schedule;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -125,27 +125,6 @@ public class ScheduleControllerTest {
                 .andExpect(jsonPath("$.description").value("Mooie beschrijving put"))
                 .andExpect(jsonPath("$.startDateTime").value("10-01-2022 15:40:10"))
                 .andExpect(jsonPath("$.endDateTime").value("10-01-2022 15:50:10"))
-                .andReturn();
-    }
-
-    @Test
-    public void patchScheduleTest() throws Exception {
-
-        User user = new User();
-        List<User> usersList = Arrays.asList(user);
-
-        Schedule schedule = new Schedule();
-        schedule.setTitle("Mooie titel patch test");
-        schedule.setDescription("Mooie beschrijving patch test");
-        schedule.setUsers(usersList);
-
-        mockMvc.perform(put("/schedule/1")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(schedule)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("Mooie titel patch test"))
-                .andExpect(jsonPath("$.description").value("Mooie beschrijving patch test"))
                 .andReturn();
     }
 }

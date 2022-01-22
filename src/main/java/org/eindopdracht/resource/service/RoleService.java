@@ -1,10 +1,10 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.dto.RoleDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
+import org.eindopdracht.resource.mapper.RoleMapper;
 import org.eindopdracht.resource.model.Role;
 import org.eindopdracht.resource.repository.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class RoleService {
-    private final ConvertToDTO convertToDTO = new ConvertToDTO();
-
     private final RoleRepository roleRepository;
+    private final RoleMapper roleMapper;
 
-    public RoleService(RoleRepository roleRepository) {
+    public RoleService(RoleRepository roleRepository, RoleMapper roleMapper) {
         this.roleRepository = roleRepository;
+        this.roleMapper = roleMapper;
     }
 
     /**
@@ -28,7 +28,7 @@ public class RoleService {
      * @return response entity with list of all roles
      */
     public List<RoleDTO> getRoles() {
-        return roleRepository.getRoles().stream().map(convertToDTO::toRoleDTO).collect(Collectors.toList());
+        return roleMapper.mapFromEntityList(roleRepository.getRoles());
     }
 
     /**
@@ -39,7 +39,7 @@ public class RoleService {
      */
     public RoleDTO getRole(Integer id) {
         try {
-            return convertToDTO.toRoleDTO(roleRepository.getRole(id));
+            return roleMapper.mapFromEntity(roleRepository.getRole(id));
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " +id);
         }
@@ -48,12 +48,14 @@ public class RoleService {
     /**
      * Maps Entity to DTO and posts a single role.
      *
-     * @param role role to post
+     * @param roleDTO role to post
      * @return response entity with posted role
      */
-    public RoleDTO create(Role role) {
+    public RoleDTO create(RoleDTO roleDTO) {
         try {
-            return convertToDTO.toRoleDTO(roleRepository.postRole(role));
+            return roleMapper.mapFromEntity(
+                    roleRepository.postRole(roleMapper.mapToEntity(roleDTO))
+            );
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -63,12 +65,12 @@ public class RoleService {
      * Maps Entity to DTO and puts a single role.
      *
      * @param id   id of the role to put
-     * @param role role to put
+     * @param roleDTO role to put
      * @return response entity with put role
      */
-    public RoleDTO update(Role role, Integer id) {
+    public RoleDTO update(RoleDTO roleDTO, Integer id) {
         try {
-            return convertToDTO.toRoleDTO(roleRepository.putRole(role, id));
+            return roleMapper.mapFromEntity(roleRepository.putRole(roleMapper.mapToEntity(roleDTO), id));
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -82,7 +84,7 @@ public class RoleService {
      */
     public RoleDTO delete(Integer id) {
         try {
-            return convertToDTO.toRoleDTO(roleRepository.deleteRole(id));
+            return roleMapper.mapFromEntity(roleRepository.deleteRole(id));
         } catch (Exception ex) {
             throw new NoContentException("id: " +id);
         }

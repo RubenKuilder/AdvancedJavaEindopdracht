@@ -1,25 +1,24 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.dto.PowerpointDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
+import org.eindopdracht.resource.mapper.PowerpointMapper;
 import org.eindopdracht.resource.model.Powerpoint;
 import org.eindopdracht.resource.repository.PowerpointRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PowerpointService {
-    private final ConvertToDTO convertToDTO = new ConvertToDTO();
+    private final PowerpointRepository powerpointRepository;
+    private final PowerpointMapper powerpointMapper;
 
-    private final PowerpointRepository repository;
-
-    public PowerpointService(PowerpointRepository roleRepository) {
-        this.repository = roleRepository;
+    public PowerpointService(PowerpointRepository roleRepository, PowerpointMapper powerpointMapper) {
+        this.powerpointRepository = roleRepository;
+        this.powerpointMapper = powerpointMapper;
     }
 
     /**
@@ -28,7 +27,7 @@ public class PowerpointService {
      * @return response entity with list of all powerpoints
      */
     public List<PowerpointDTO> getPowerpoints() {
-        return repository.getPowerpoints().stream().map(convertToDTO::toPowerpointDTO).collect(Collectors.toList());
+        return powerpointMapper.mapFromEntityList(powerpointRepository.getPowerpoints());
     }
 
     /**
@@ -39,7 +38,7 @@ public class PowerpointService {
      */
     public PowerpointDTO getPowerpoint(Integer id) {
         try {
-            return convertToDTO.toPowerpointDTO(repository.getPowerpoint(id));
+            return powerpointMapper.mapFromEntity(powerpointRepository.getPowerpoint(id));
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " +id);
         }
@@ -48,12 +47,14 @@ public class PowerpointService {
     /**
      * Maps Entity to DTO and posts a single powerpoint.
      *
-     * @param powerpoint powerpoint to post
+     * @param powerpointDTO powerpoint to post
      * @return response entity with posted powerpoint
      */
-    public PowerpointDTO create(Powerpoint powerpoint) {
+    public PowerpointDTO create(PowerpointDTO powerpointDTO) {
         try {
-            return convertToDTO.toPowerpointDTO(repository.postPowerpoint(powerpoint));
+            return powerpointMapper.mapFromEntity(
+                    powerpointRepository.postPowerpoint(powerpointMapper.mapToEntity(powerpointDTO))
+            );
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -63,12 +64,12 @@ public class PowerpointService {
      * Maps Entity to DTO and puts a single powerpoint.
      *
      * @param id         id of the powerpoint to put
-     * @param powerpoint powerpoint to put
+     * @param powerpointDTO powerpoint to put
      * @return response entity with put powerpoint
      */
-    public PowerpointDTO update(Powerpoint powerpoint, Integer id) {
+    public PowerpointDTO update(PowerpointDTO powerpointDTO, Integer id) {
         try {
-            return convertToDTO.toPowerpointDTO(repository.putPowerpoint(powerpoint, id));
+            return powerpointMapper.mapFromEntity(powerpointRepository.putPowerpoint(powerpointMapper.mapToEntity(powerpointDTO), id));
         } catch (Exception ex) {
             throw new BadRequestException();
         }
@@ -82,7 +83,7 @@ public class PowerpointService {
      */
     public PowerpointDTO delete(Integer id) {
         try {
-            return convertToDTO.toPowerpointDTO(repository.deletePowerpoint(id));
+            return powerpointMapper.mapFromEntity(powerpointRepository.deletePowerpoint(id));
         } catch (Exception ex) {
             throw new NoContentException("id: " +id);
         }
