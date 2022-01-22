@@ -208,7 +208,12 @@ We will create a database by using Xampp. Execute the following query inside ```
 CREATE DATABASE stenden_dashboard;
 ```
 
-### 2.6 Running the API
+### 2.6 Configure Java SDK in project
+Go to project settings in Intellij and configure the project SDK.
+
+In the top left click File -> Project Structure -> Project -> SDK -> Select a JDK (16 was used during development) You can also download one here if you do not have it currently.
+
+### 2.7 Running the API
 First open the project and build the application to ensure no errors are encountered.
 
 Next navigate to the run anything window and execute
@@ -216,10 +221,16 @@ Next navigate to the run anything window and execute
 
 After a few minutes of startup messages it should be running, and you can navigate to the application under the normal ```localhost:8080```
 
-### 2.7 Creating first user
-Create a default user to use for the authentication for getting 
+### 2.8 Creating first user
+Create a default user to use for the authentication of your first API calls. Run the following Query in ```localhost/phpmyadmin```
 
-### 2.8 Running tests with coverage (_optional?_)
+The name is ```Admin``` and password is also ```Admin```.
+
+```mysql
+INSERT INTO `user`(`name`, `password`, `profileImagePath`, `email`, `isApproved`, `role`, `enabled`) VALUES ('Admin','$2a$12$NoKsrvdso8xBoRciD7ExMOynmfFzyYNutUdJMJxMmxApSr9qqYudS','https://i.imgur.com/N1Y2UGC.png','Admin@hotmail.com','1','ROLE_ADMIN','1');
+```
+
+### 2.9 Running tests with coverage (_optional?_)
 This part is optional unless it's not, I will explain. Running test with coverage for some of the team had an issue involving the coverage reporter.
 The default Idea coverage reporter would not function with dependency injection so every single test would break, to fix this we had to switch the coverage reporter to a different one which then made the tests work.
 
