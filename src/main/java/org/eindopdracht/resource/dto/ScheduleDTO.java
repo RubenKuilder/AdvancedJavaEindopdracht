@@ -17,17 +17,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScheduleDTO {
-    @NotNull
-    private Long id;
+    private int id;
 
     @NotNull
     List<User> users;
 
-    @NotNull
+    @NotBlank
     @Size(max = 50)
     private String title;
 
-    @NotNull
+    @NotBlank
     @Size(max = 250)
     private String description;
 

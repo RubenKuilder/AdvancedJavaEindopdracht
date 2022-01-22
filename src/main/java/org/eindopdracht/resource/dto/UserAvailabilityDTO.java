@@ -14,7 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserAvailabilityDTO {
-    @NotNull
     private int id;
 
     @NotNull

@@ -36,7 +36,7 @@ public class ConsultationService {
      * @param id id of the consultation to find
      * @return response entity with single consultation
      */
-    public ConsultationDTO getById(long id) {
+    public ConsultationDTO getById(int id) {
         try {
             return consultationMapper.mapFromEntity(consultationRepository.getById(id));
         } catch (Exception ex) {
@@ -67,7 +67,7 @@ public class ConsultationService {
      * @param consultationDto consultation to put
      * @return response entity with put consultation
      */
-    public ConsultationDTO put(long id, ConsultationDTO consultationDto) {
+    public ConsultationDTO put(int id, ConsultationDTO consultationDto) {
         try {
             return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
         } catch (Exception ex) {
@@ -81,7 +81,7 @@ public class ConsultationService {
      * @param id id of the consultation to delete
      * @return response entity with deleted consultation
      */
-    public ConsultationDTO delete(long id) throws Exception {
+    public ConsultationDTO delete(int id) throws Exception {
         try {
             return consultationMapper.mapFromEntity(consultationRepository.delete(id));
         } catch (Exception ex) {

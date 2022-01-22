@@ -12,12 +12,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContentDTO {
-    @NotNull
-    private Long id;
+    private int id;
 
     @NotNull
     private ContentType contentType;
 
-    @NotNull
+    @NotBlank
     private String path;
 }

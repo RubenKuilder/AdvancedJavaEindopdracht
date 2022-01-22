@@ -59,7 +59,7 @@ public class ContentRepositoryTest {
     @Test
     void putContent() {
         ContentType contentType = new ContentType();
-        contentType.setId(1L);
+        contentType.setId(1);
         contentType.setName("Text");
 
         Content content = new Content();

@@ -14,13 +14,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RssFeedDTO {
-    @NotNull
     private int id;
 
     @NotNull
     private User user;
 
-    @NotNull
+    @NotBlank
     private String link;
 
     @NotNull

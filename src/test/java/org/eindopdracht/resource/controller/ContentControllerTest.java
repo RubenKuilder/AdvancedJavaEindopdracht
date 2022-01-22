@@ -72,7 +72,7 @@ class ContentControllerTest {
     void putContent() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
-        contentType.setId(1L);
+        contentType.setId(1);
 
         Content content = new Content();
         content.setContentType(contentType);

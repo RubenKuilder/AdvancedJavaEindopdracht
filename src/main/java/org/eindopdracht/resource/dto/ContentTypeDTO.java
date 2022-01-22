@@ -11,9 +11,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContentTypeDTO {
-    @NotNull
-    private Long id;
+    private int id;
 
-    @NotNull
+    @NotBlank
     private String name;
 }

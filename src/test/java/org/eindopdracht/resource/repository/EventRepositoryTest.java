@@ -70,17 +70,17 @@ public class EventRepositoryTest {
         content.setContentType(contentType);
         content.setPath("Hele mooie path");
         event.setContent(content);
-        event.setUser_id(1L);
+        event.setUser_id(1);
         event.setDescription("Description");
         event.setStartDateTime(startDateTime);
         event.setEndDateTime(endDateTime);
-        event.setDuration(500L);
+        event.setDuration(500);
 
         Event persistedEvent = eventRepository.persist(event);
 
         assertEquals("New content type", persistedEvent.getContent().getContentType().getName());
         assertEquals("Hele mooie path", persistedEvent.getContent().getPath());
-        assertEquals(1L, persistedEvent.getUser_id());
+        assertEquals(1, persistedEvent.getUser_id());
         assertEquals("Description", persistedEvent.getDescription());
         assertEquals(startDateTime, persistedEvent.getStartDateTime());
         assertEquals(endDateTime, persistedEvent.getEndDateTime());
@@ -93,17 +93,16 @@ public class EventRepositoryTest {
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
         Event event = new Event();
-        event.setUser_id(1L);
+        event.setUser_id(1);
         event.setDescription("Description");
         event.setStartDateTime(startDateTime);
 
         Event putEvent = eventRepository.put(1, event);
 
-        assertEquals(1L, putEvent.getUser_id());
+        assertEquals(1, putEvent.getUser_id());
         assertEquals("Description", putEvent.getDescription());
         assertEquals(startDateTime, putEvent.getStartDateTime());
         assertNull(putEvent.getEndDateTime());
-        assertNull(putEvent.getDuration());
     }
 
 }

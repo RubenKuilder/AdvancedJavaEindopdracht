@@ -15,13 +15,13 @@ import java.util.Date;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "content_id")
     private Content content;
 
-    private Long user_id;
+    private int user_id;
 
     private String description;
 
@@ -29,5 +29,5 @@ public class Event {
 
     private Date endDateTime;
 
-    private Long duration;
+    private int duration;
 }

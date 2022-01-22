@@ -12,12 +12,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PowerpointDTO {
-    @NotNull
     private int id;
 
     @NotNull
     private User user;
 
-    @NotNull
+    @NotBlank
     private String path;
 }

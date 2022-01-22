@@ -31,7 +31,7 @@ public class EventRepository {
      * @param id id of the event to find
      * @return response entity with a single event
      */
-    public Event getById(long id) {
+    public Event getById(int id) {
         return entityManager.find(Event.class, id);
     }
 
@@ -54,7 +54,7 @@ public class EventRepository {
      * @param event event to put
      * @return response entity with put event
      */
-    public Event put(long id, Event event) {
+    public Event put(int id, Event event) {
         event.setId(id);
         return entityManager.merge(event);
     }
@@ -65,7 +65,7 @@ public class EventRepository {
      * @param id id of the event to delete
      * @return response entity with deleted event
      */
-    public Event delete(long id) {
+    public Event delete(int id) {
         Event eventToDelete = getById(id);
 
         entityManager.remove(entityManager.contains(eventToDelete) ? eventToDelete : entityManager.merge(eventToDelete));

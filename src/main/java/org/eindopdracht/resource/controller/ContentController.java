@@ -35,7 +35,7 @@ public class ContentController {
      * @return response entity with single content
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ContentDTO> getById(@PathVariable long id) {
+    public ResponseEntity<ContentDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(contentService.getById(id));
     }
 
@@ -58,7 +58,7 @@ public class ContentController {
      * @return response entity with put content
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ContentDTO> put(@PathVariable long id, @RequestBody @Valid ContentDTO contentDto) {
+    public ResponseEntity<ContentDTO> put(@PathVariable int id, @RequestBody @Valid ContentDTO contentDto) {
         return ResponseEntity.ok(contentService.put(id, contentDto));
     }
 }

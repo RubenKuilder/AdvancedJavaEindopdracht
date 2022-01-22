@@ -38,7 +38,7 @@ public class ScheduleRepository {
      * @param id id of the schedule to find
      * @return response entity with a single schedule
      */
-    public Schedule getById(long id) {
+    public Schedule getById(int id) {
         TypedQuery<Schedule> query = entityManager.createQuery("SELECT DISTINCT s FROM Schedule s JOIN FETCH s.users u WHERE s.id = :id", Schedule.class);
         query.setParameter("id", id);
         return query.getSingleResult();
@@ -63,7 +63,7 @@ public class ScheduleRepository {
      * @param schedule schedule to put
      * @return response entity with put schedule
      */
-    public Schedule put(long id, Schedule schedule) {
+    public Schedule put(int id, Schedule schedule) {
         schedule.setId(id);
         return entityManager.merge(schedule);
     }
@@ -75,7 +75,7 @@ public class ScheduleRepository {
      * @param id id of the schedule to delete
      * @return response entity with deleted schedule
      */
-    public Schedule delete(long id) {
+    public Schedule delete(int id) {
         Schedule scheduleToDelete = getById(id);
 
         entityManager.remove(entityManager.contains(scheduleToDelete) ? scheduleToDelete : entityManager.merge(scheduleToDelete));

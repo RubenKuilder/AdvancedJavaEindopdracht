@@ -35,7 +35,7 @@ public class ContentTypeService {
      * @param id id of the content type to find
      * @return response entity with single content type
      */
-    public ContentTypeDTO getById(long id) {
+    public ContentTypeDTO getById(int id) {
         try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
         } catch (Exception ex) {
@@ -68,7 +68,7 @@ public class ContentTypeService {
      * @param contentTypeDto content type to put
      * @return response entity with put content type
      */
-    public ContentTypeDTO put(long id, ContentTypeDTO contentTypeDto) {
+    public ContentTypeDTO put(int id, ContentTypeDTO contentTypeDto) {
         try{
         return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
         }
@@ -84,7 +84,7 @@ public class ContentTypeService {
      * @param id id of the content type to delete
      * @return response entity with deleted content type
      */
-    public ContentTypeDTO delete(long id) {
+    public ContentTypeDTO delete(int id) {
         try{
             return contentTypeMapper.mapFromEntity(contentTypeRepository.delete(id));
         }

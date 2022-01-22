@@ -75,17 +75,17 @@ public class EventServiceTest {
         content.setContentType(contentType);
         content.setPath("Hele mooie path");
         eventDto.setContent(content);
-        eventDto.setUser_id(1L);
+        eventDto.setUser_id(1);
         eventDto.setDescription("Description");
         eventDto.setStartDateTime(startDateTime);
         eventDto.setEndDateTime(endDateTime);
-        eventDto.setDuration(500L);
+        eventDto.setDuration(500);
 
         EventDTO persistedEventDTO = eventService.persist(eventDto);
 
         assertEquals("New content type", persistedEventDTO.getContent().getContentType().getName());
         assertEquals("Hele mooie path", persistedEventDTO.getContent().getPath());
-        assertEquals(1L, persistedEventDTO.getUser_id());
+        assertEquals(1, persistedEventDTO.getUser_id());
         assertEquals("Description", persistedEventDTO.getDescription());
         assertEquals(startDateTime, persistedEventDTO.getStartDateTime());
         assertEquals(endDateTime, persistedEventDTO.getEndDateTime());
@@ -98,16 +98,15 @@ public class EventServiceTest {
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
         EventDTO eventDto = new EventDTO();
-        eventDto.setUser_id(1L);
+        eventDto.setUser_id(1);
         eventDto.setDescription("Description");
         eventDto.setStartDateTime(startDateTime);
 
         EventDTO putEventDTO = eventService.put(1, eventDto);
 
-        assertEquals(1L, putEventDTO.getUser_id());
+        assertEquals(1, putEventDTO.getUser_id());
         assertEquals("Description", putEventDTO.getDescription());
         assertEquals(startDateTime, putEventDTO.getStartDateTime());
         assertNull(putEventDTO.getEndDateTime());
-        assertNull(putEventDTO.getDuration());
     }
 }

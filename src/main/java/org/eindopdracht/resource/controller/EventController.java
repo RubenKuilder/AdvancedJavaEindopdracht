@@ -35,7 +35,7 @@ public class EventController {
      * @return response entity with single event
      */
     @GetMapping("/{id}")
-    public ResponseEntity<EventDTO> getById(@PathVariable long id) {
+    public ResponseEntity<EventDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(eventService.getById(id));
     }
 
@@ -58,7 +58,7 @@ public class EventController {
      * @return response entity with put event
      */
     @PutMapping("/{id}")
-    public ResponseEntity<EventDTO> put(@PathVariable long id, @RequestBody @Valid EventDTO eventDto) {
+    public ResponseEntity<EventDTO> put(@PathVariable int id, @RequestBody @Valid EventDTO eventDto) {
         return ResponseEntity.ok(eventService.put(id, eventDto));
     }
 

@@ -65,7 +65,7 @@ public class ContentServiceTest {
     @Test
     void putContent() {
         ContentType contentType = new ContentType();
-        contentType.setId(1L);
+        contentType.setId(1);
         contentType.setName("Text");
 
         ContentDTO contentDto = new ContentDTO();

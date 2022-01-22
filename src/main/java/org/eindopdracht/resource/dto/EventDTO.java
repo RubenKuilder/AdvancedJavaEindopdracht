@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eindopdracht.resource.model.Content;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -14,13 +15,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventDTO {
-    @NotNull
-    private Long id;
+    private int id;
     
     private Content content;
 
     @NotNull
-    private Long user_id;
+    private int user_id;
 
     @Size(max = 500)
     private String description;
@@ -31,5 +31,5 @@ public class EventDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
     private Date endDateTime;
 
-    private Long duration;
+    private int duration;
 }

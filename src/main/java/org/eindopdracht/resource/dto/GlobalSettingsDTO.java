@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
 
@@ -12,12 +13,11 @@ import java.sql.Time;
 @AllArgsConstructor
 public class GlobalSettingsDTO
 {
-    @NotNull
     private Integer id;
 
-    @NotNull
+    @NotBlank
     private boolean soundOn;
 
-    @NotNull
+    @NotBlank
     private Time switchTime;
 }

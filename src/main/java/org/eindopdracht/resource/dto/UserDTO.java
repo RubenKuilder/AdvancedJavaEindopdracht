@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.eindopdracht.resource.model.Consultation;
 import org.eindopdracht.resource.model.Schedule;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -13,31 +14,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    @NotNull
     private int id;
 
     List<Consultation> consultations;
 
     List<Schedule> schedules;
 
-    @NotNull
+    @NotBlank
     private String name;
 
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String profileImagePath;
 
-    @NotNull
     private boolean isApproved;
-
-    @NotNull
+    
     private String role;
 
-    @NotNull
     private boolean enabled;
 }

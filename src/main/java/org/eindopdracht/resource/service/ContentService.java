@@ -34,7 +34,7 @@ public class ContentService {
      * @param id id of the content to find
      * @return response entity with single content
      */
-    public ContentDTO getById(long id) {
+    public ContentDTO getById(int id) {
         try
         {
             return contentMapper.mapFromEntity(contentRespository.getById(id));
@@ -68,7 +68,7 @@ public class ContentService {
      * @param contentDto content to put
      * @return response entity with put content
      */
-    public ContentDTO put(long id, ContentDTO contentDto) {
+    public ContentDTO put(int id, ContentDTO contentDto) {
         try{
             return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
         }

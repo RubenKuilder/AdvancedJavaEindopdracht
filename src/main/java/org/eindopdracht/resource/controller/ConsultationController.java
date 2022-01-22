@@ -35,7 +35,7 @@ public class ConsultationController {
      * @return response entity with single consultation
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ConsultationDTO> getById(@PathVariable long id) {
+    public ResponseEntity<ConsultationDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(consultationService.getById(id));
     }
 
@@ -58,7 +58,7 @@ public class ConsultationController {
      * @return response entity with put consultation
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ConsultationDTO> put(@PathVariable long id, @RequestBody @Valid ConsultationDTO consultationDto) {
+    public ResponseEntity<ConsultationDTO> put(@PathVariable int id, @RequestBody @Valid ConsultationDTO consultationDto) {
         return ResponseEntity.ok(consultationService.put(id, consultationDto));
     }
 

@@ -64,10 +64,10 @@ class EventControllerTest {
         Event event = new Event();
         event.setContent(content);
         event.setDescription("Description");
-        event.setDuration(2000L);
+        event.setDuration(2000);
         event.setEndDateTime(null);
         event.setStartDateTime(null);
-        event.setUser_id(1L);
+        event.setUser_id(1);
 
         this.mockMvc.perform(post("/event")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -90,10 +90,10 @@ class EventControllerTest {
         Event event = new Event();
         event.setContent(content);
         event.setDescription("Description");
-        event.setDuration(2000L);
+        event.setDuration(2000);
         event.setEndDateTime(null);
         event.setStartDateTime(null);
-        event.setUser_id(1L);
+        event.setUser_id(1);
 
         this.mockMvc.perform(put("/event/1")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -35,7 +35,7 @@ public class EventService {
      * @param id id of the event to find
      * @return response entity with single event
      */
-    public EventDTO getById(long id) {
+    public EventDTO getById(int id) {
         try{
             return eventMapper.mapFromEntity(eventRepository.getById(id));
         }
@@ -69,7 +69,7 @@ public class EventService {
      * @param eventDto event to put
      * @return response entity with put event
      */
-    public EventDTO put(long id, EventDTO eventDto) {
+    public EventDTO put(int id, EventDTO eventDto) {
         try {
             return eventMapper.mapFromEntity(eventRepository.put(id, eventMapper.mapToEntity(eventDto)));
         } catch (Exception ex) {
@@ -83,7 +83,7 @@ public class EventService {
      * @param id id of the event to delete
      * @return response entity with deleted event
      */
-    public EventDTO delete(long id) {
+    public EventDTO delete(int id) {
         try{
         return eventMapper.mapFromEntity(eventRepository.delete(id));
         }

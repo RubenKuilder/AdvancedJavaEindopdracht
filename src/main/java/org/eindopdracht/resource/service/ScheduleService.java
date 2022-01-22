@@ -35,7 +35,7 @@ public class ScheduleService {
      * @param id id of the schedule to find
      * @return response entity with single schedule
      */
-    public ScheduleDTO getById(long id) {
+    public ScheduleDTO getById(int id) {
         try {
             return scheduleMapper.mapFromEntity(scheduleRepository.getById(id));
         }
@@ -68,7 +68,7 @@ public class ScheduleService {
      * @param scheduleDto schedule to put
      * @return response entity with put schedule
      */
-    public ScheduleDTO put(long id, ScheduleDTO scheduleDto) {
+    public ScheduleDTO put(int id, ScheduleDTO scheduleDto) {
         try{
         return scheduleMapper.mapFromEntity(scheduleRepository.put(id, scheduleMapper.mapToEntity(scheduleDto)));
         }
@@ -84,7 +84,7 @@ public class ScheduleService {
      * @param id id of the schedule to delete
      * @return response entity with deleted schedule
      */
-    public ScheduleDTO delete(long id) {
+    public ScheduleDTO delete(int id) {
         try{
         return scheduleMapper.mapFromEntity(scheduleRepository.delete(id));
         }

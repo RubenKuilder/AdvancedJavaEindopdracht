@@ -34,7 +34,7 @@ public class ScheduleController {
      * @return response entity with single schedule
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ScheduleDTO> getById(@PathVariable long id) {
+    public ResponseEntity<ScheduleDTO> getById(@PathVariable int id) {
         return ResponseEntity.ok(scheduleService.getById(id));
     }
 
@@ -57,7 +57,7 @@ public class ScheduleController {
      * @return response entity with put schedule
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ScheduleDTO> put(@PathVariable long id, @RequestBody @Valid ScheduleDTO scheduleDto) {
+    public ResponseEntity<ScheduleDTO> put(@PathVariable int id, @RequestBody @Valid ScheduleDTO scheduleDto) {
         return ResponseEntity.ok(scheduleService.put(id, scheduleDto));
     }
 
