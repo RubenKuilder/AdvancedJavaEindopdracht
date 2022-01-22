@@ -178,10 +178,13 @@ For the purposes of keeping this installation simple we are going to assume you 
 ### 2.1 Cloning the repository
 First you must clone or download the repository, you can save the code wherever you would like we suggest you put it in an empty folder to not create unforeseen problems.
 
-### 2.2 Install Tomcat9
+### 2.2 Install Java
+Make sure that Java is installed on your machine and updated since we will need it for the next step, if not you can find downloads [here](https://www.java.com/nl/download/manual.jsp).
+
+### 2.3 Install Tomcat9
 We use [Tomcat 9.0.56](https://tomcat.apache.org/download-90.cgi) as a means of running the API, it is required for running the API.
 
-### 2.3 make Application.properties
+### 2.4 make Application.properties
 To make sure the application runs correctly we must create a new file called ```application.properties```. This file must be placed inside
 ```src/main/resources``` on the level of ```changelog_master.xml.```
 
@@ -198,14 +201,14 @@ database.url=jdbc:mysql://127.0.0.1:3306/stenden_dashboard
 secret.key=secret
 ```
 
-### 2.4 Creating the database
+### 2.5 Creating the database
 We will create a database by using Xampp. Execute the following query inside ```localhost/phpmyadmin```.
 
 ```mysql
 CREATE DATABASE stenden_dashboard;
 ```
 
-### 2.5 Running the API
+### 2.6 Running the API
 First open the project and build the application to ensure no errors are encountered.
 
 Next navigate to the run anything window and execute
@@ -213,10 +216,10 @@ Next navigate to the run anything window and execute
 
 After a few minutes of startup messages it should be running, and you can navigate to the application under the normal ```localhost:8080```
 
-### 2.6 Creating first user
+### 2.7 Creating first user
 Create a default user to use for the authentication for getting 
 
-### 2.7 Running tests with coverage (_optional?_)
+### 2.8 Running tests with coverage (_optional?_)
 This part is optional unless it's not, I will explain. Running test with coverage for some of the team had an issue involving the coverage reporter.
 The default Idea coverage reporter would not function with dependency injection so every single test would break, to fix this we had to switch the coverage reporter to a different one which then made the tests work.
 
