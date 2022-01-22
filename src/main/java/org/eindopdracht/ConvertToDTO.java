@@ -8,8 +8,7 @@ import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 
 public class ConvertToDTO {
 
-    public GlobalSettingsDto toGlobalSettingsDto(GlobalSettings globalSettings)
-    {
+    public GlobalSettingsDto toGlobalSettingsDto(GlobalSettings globalSettings) {
         GlobalSettingsDto globalSettingsDto = new GlobalSettingsDto();
         globalSettingsDto.setSoundOn(globalSettings.isSoundOn());
         globalSettingsDto.setSwitchTime(globalSettings.getSwitchTime());
@@ -42,22 +41,21 @@ public class ConvertToDTO {
         return roleDTO;
     }
 
-    public UserAvailabilityDTO toUserAvailabilityDTO (UserAvailability userAvailability) {
+    public UserAvailabilityDTO toUserAvailabilityDTO(UserAvailability userAvailability) {
         UserAvailabilityDTO userAvailabilityDTO = new UserAvailabilityDTO();
         userAvailabilityDTO.setUser(userAvailability.getUser());
         userAvailabilityDTO.setDate(userAvailability.getDate());
         return userAvailabilityDTO;
     }
 
-    public PowerpointDTO toPowerpointDTO (Powerpoint powerpoint) {
+    public PowerpointDTO toPowerpointDTO(Powerpoint powerpoint) {
         PowerpointDTO powerpointDTO = new PowerpointDTO();
         powerpointDTO.setUser(powerpoint.getUser());
         powerpointDTO.setPath(powerpoint.getPath());
         return powerpointDTO;
     }
 
-    public ContentTypeDto toContentTypeDTO(ContentType contentType)
-    {
+    public ContentTypeDto toContentTypeDTO(ContentType contentType) {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName(contentType.getName());
         return contentTypeDto;

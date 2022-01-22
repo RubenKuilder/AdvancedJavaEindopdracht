@@ -22,7 +22,7 @@ public class ContentService {
     /**
      * Maps Entity to DTO and returns a list of all content.
      *
-     * @return      response entity with list of all content
+     * @return response entity with list of all content
      */
     public List<ContentDto> get() {
         return contentMapper.mapFromEntityList(contentRespository.get());
@@ -31,33 +31,29 @@ public class ContentService {
     /**
      * Maps Entity to DTO and returns a single content.
      *
-     * @param id    id of the content to find
-     * @return      response entity with single content
+     * @param id id of the content to find
+     * @return response entity with single content
      */
     public ContentDto getById(long id) {
-        try
-        {
+        try {
             return contentMapper.mapFromEntity(contentRespository.getById(id));
-        }
-        catch (Exception ex) {
-            throw new DataNotFoundException();
+        } catch (Exception ex) {
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
     /**
      * Maps Entity to DTO and posts a single content.
      *
-     * @param contentDto    content to post
-     * @return              response entity with posted content
+     * @param contentDto content to post
+     * @return response entity with posted content
      */
     public ContentDto persist(ContentDto contentDto) {
-        try{
-        return contentMapper.mapFromEntity(
-                contentRespository.persist(contentMapper.mapToEntity(contentDto))
-        );
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentMapper.mapFromEntity(
+                    contentRespository.persist(contentMapper.mapToEntity(contentDto))
+            );
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -65,16 +61,14 @@ public class ContentService {
     /**
      * Maps Entity to DTO and puts a single content.
      *
-     * @param id            id of the content to put
-     * @param contentDto    content to put
-     * @return              response entity with put content
+     * @param id         id of the content to put
+     * @param contentDto content to put
+     * @return response entity with put content
      */
     public ContentDto put(long id, ContentDto contentDto) {
-        try{
-        return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }

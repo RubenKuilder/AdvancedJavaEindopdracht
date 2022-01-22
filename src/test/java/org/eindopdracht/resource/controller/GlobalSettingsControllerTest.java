@@ -17,23 +17,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class GlobalSettingsControllerTest
-{
+class GlobalSettingsControllerTest {
     @Autowired
     private WebApplicationContext webContext;
 
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).build();
     }
 
     @Test
     @Order(1)
-    void getGlobalSettings() throws Exception
-    {
+    void getGlobalSettings() throws Exception {
         this.mockMvc.perform(get("/settings").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -45,8 +42,7 @@ class GlobalSettingsControllerTest
 
     @Test
     @Order(2)
-    void getGlobalSettingsById() throws Exception
-    {
+    void getGlobalSettingsById() throws Exception {
         this.mockMvc.perform(get("/settings/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -56,8 +52,7 @@ class GlobalSettingsControllerTest
 
     @Test
     @Order(3)
-    void createGlobalSettings() throws Exception
-    {
+    void createGlobalSettings() throws Exception {
         this.mockMvc.perform(post("/settings")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"soundOn\":false,\"switchTime\":\"00:12:03\"}"))
@@ -69,8 +64,7 @@ class GlobalSettingsControllerTest
 
     @Test
     @Order(4)
-    void deleteGlobalSettings() throws Exception
-    {
+    void deleteGlobalSettings() throws Exception {
         this.mockMvc.perform(delete("/settings/1"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -80,8 +74,7 @@ class GlobalSettingsControllerTest
 
     @Test
     @Order(5)
-    void updateGlobalSettings() throws Exception
-    {
+    void updateGlobalSettings() throws Exception {
         this.mockMvc.perform(put("/settings/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"soundOn\":false,\"switchTime\":\"00:12:03\"}"))

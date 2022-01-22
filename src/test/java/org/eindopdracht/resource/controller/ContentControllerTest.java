@@ -19,22 +19,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
-class ContentControllerTest
-{
+class ContentControllerTest {
     @Autowired
     private WebApplicationContext webContext;
 
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setup()
-    {
+    public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).build();
     }
 
     @Test
-    void getAll() throws Exception
-    {
+    void getAll() throws Exception {
         this.mockMvc.perform(get("/content").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -45,8 +42,7 @@ class ContentControllerTest
     }
 
     @Test
-    void getById() throws Exception
-    {
+    void getById() throws Exception {
         this.mockMvc.perform(get("/content/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
@@ -55,8 +51,7 @@ class ContentControllerTest
     }
 
     @Test
-    void postContent() throws Exception
-    {
+    void postContent() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
@@ -74,8 +69,7 @@ class ContentControllerTest
     }
 
     @Test
-    void putContent() throws Exception
-    {
+    void putContent() throws Exception {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
         contentType.setId(1L);

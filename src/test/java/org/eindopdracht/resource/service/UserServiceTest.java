@@ -1,6 +1,8 @@
 package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.dto.UserDTO;
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -24,8 +27,7 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void getUsers()
-    {
+    void getUsers() {
         List<UserDTO> list = service.getUsers();
 
         assertEquals(3, list.size());
@@ -33,17 +35,19 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void getUser()
-    {
+    void getUser() {
         UserDTO dto = service.getUser(1);
 
         assertEquals("Madlyaza", dto.getName());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            service.getUser(2431);
+        });
     }
 
     @Test
     @Transactional
-    void createUser()
-    {
+    void createUser() {
         User user = new User();
         user.setName("test22");
         user.setApproved(true);
@@ -59,15 +63,16 @@ class UserServiceTest {
 
     @Test
     @Transactional
-    void deleteUser()
-    {
-        assertEquals("Madlyaza",service.delete(1).getName());
+    void deleteUser() {
+        assertEquals("Madlyaza", service.delete(1).getName());
+        assertThrows(NoContentException.class, () -> {
+            service.delete(241);
+        });
     }
 
     @Test
     @Transactional
-    void updateUser()
-    {
+    void updateUser() {
         User user = new User();
         user.setName("test33");
         user.setApproved(true);

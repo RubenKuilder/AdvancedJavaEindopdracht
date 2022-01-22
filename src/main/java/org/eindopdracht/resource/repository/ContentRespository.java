@@ -1,6 +1,5 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.model.event.content.Content;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,7 @@ public class ContentRespository {
     /**
      * Select queries all content and returns them in a list.
      *
-     * @return      response entity with list of all content
+     * @return response entity with list of all content
      */
     public List<Content> get() {
         TypedQuery<Content> query = entityManager.createQuery("SELECT c FROM Content c", Content.class);
@@ -29,8 +28,8 @@ public class ContentRespository {
     /**
      * Find a single content and return it.
      *
-     * @param id    id of the content to find
-     * @return      response entity with single content
+     * @param id id of the content to find
+     * @return response entity with single content
      */
     public Content getById(long id) {
         return entityManager.find(Content.class, id);
@@ -39,21 +38,21 @@ public class ContentRespository {
     /**
      * Post a single content.
      *
-     * @param content   content to post
-     * @return          response entity with posted content
+     * @param content content to post
+     * @return response entity with posted content
      */
     public Content persist(Content content) {
-            entityManager.persist(content);
-            return content;
+        entityManager.persist(content);
+        return content;
     }
 
     /**
      * Put a single content.
      * Updates all fields.
      *
-     * @param id        id of the content to put
-     * @param content   content to put
-     * @return          response entity with put content
+     * @param id      id of the content to put
+     * @param content content to put
+     * @return response entity with put content
      */
     public Content put(long id, Content content) {
         content.setId(id);

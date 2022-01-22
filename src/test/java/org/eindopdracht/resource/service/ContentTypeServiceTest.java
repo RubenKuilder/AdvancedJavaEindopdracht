@@ -1,5 +1,8 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
+import org.eindopdracht.resource.model.event.content.ContentDto;
 import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -22,8 +26,7 @@ public class ContentTypeServiceTest {
     private ContentTypeService contentTypeService;
 
     @Test
-    void getAllContent()
-    {
+    void getAllContent() {
         List<ContentTypeDto> contentTypeDtoList = contentTypeService.get();
 
         assertEquals(3, contentTypeDtoList.size());
@@ -33,15 +36,17 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         ContentTypeDto contentTypeDto = contentTypeService.getById(1);
         assertEquals("Text", contentTypeDto.getName());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            contentTypeService.getById(2123);
+        });
     }
 
     @Test
-    void postContentType()
-    {
+    void postContentType() {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
@@ -51,8 +56,7 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void putContentType()
-    {
+    void putContentType() {
         ContentTypeDto contentTypeDto = new ContentTypeDto();
         contentTypeDto.setName("New content type");
 
@@ -62,10 +66,13 @@ public class ContentTypeServiceTest {
     }
 
     @Test
-    void deleteContentType()
-    {
+    void deleteContentType() {
         ContentTypeDto deletedContentType = contentTypeService.delete(1);
 
         assertEquals("Text", deletedContentType.getName());
+
+        assertThrows(NoContentException.class, () -> {
+            contentTypeService.delete(3224);
+        });
     }
 }

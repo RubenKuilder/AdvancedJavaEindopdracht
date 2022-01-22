@@ -18,8 +18,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false,cascade = CascadeType.ALL)
-    @JoinColumn(name="content_id")
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "content_id")
     private Content content;
 
     private Long user_id;

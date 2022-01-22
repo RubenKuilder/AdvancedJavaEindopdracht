@@ -8,8 +8,7 @@ import java.sql.Time;
 
 @Data
 @NoArgsConstructor
-public class GlobalSettingsDto
-{
+public class GlobalSettingsDto {
     @NotNull
     private boolean soundOn;
 

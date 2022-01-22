@@ -26,8 +26,7 @@ public class ConsultationServiceTest {
     private ConsultationService consultationService;
 
     @Test
-    void getAllConsultation()
-    {
+    void getAllConsultation() {
         List<ConsultationDto> consultationDtoList = consultationService.get();
 
         assertEquals(2, consultationDtoList.size());
@@ -38,8 +37,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         ConsultationDto consultationDto = consultationService.getById(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", consultationDto.getEndDateTime().toString());
@@ -50,8 +48,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void postConsultation() throws Exception
-    {
+    void postConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -66,8 +63,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void putConsultation() throws Exception
-    {
+    void putConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
@@ -80,8 +76,7 @@ public class ConsultationServiceTest {
     }
 
     @Test
-    void deleteConsultation() throws Exception
-    {
+    void deleteConsultation() throws Exception {
         ConsultationDto consultationDto = consultationService.delete(1);
         assertEquals("2021-11-08 00:00:00.0", consultationDto.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", consultationDto.getEndDateTime().toString());

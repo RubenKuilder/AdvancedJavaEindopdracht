@@ -24,7 +24,7 @@ public class ConsultationService {
     /**
      * Maps Entity to DTO and returns a list of all consultations.
      *
-     * @return      response entity with list of all consultations
+     * @return response entity with list of all consultations
      */
     public List<ConsultationDto> get() {
         return consultationMapper.mapFromEntityList(consultationRepository.get());
@@ -33,34 +33,29 @@ public class ConsultationService {
     /**
      * Maps Entity to DTO and returns a single consultation.
      *
-     * @param id    id of the consultation to find
-     * @return      response entity with single consultation
+     * @param id id of the consultation to find
+     * @return response entity with single consultation
      */
     public ConsultationDto getById(long id) {
-        try
-        {
+        try {
             return consultationMapper.mapFromEntity(consultationRepository.getById(id));
-        }
-        catch (Exception ex)
-        {
-            throw new DataNotFoundException();
+        } catch (Exception ex) {
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
     /**
      * Maps Entity to DTO and posts a single consultation.
      *
-     * @param consultationDto   consultation to post
-     * @return                  response entity with posted consultation
+     * @param consultationDto consultation to post
+     * @return response entity with posted consultation
      */
     public ConsultationDto persist(ConsultationDto consultationDto) {
-        try{
+        try {
             return consultationMapper.mapFromEntity(
                     consultationRepository.persist(consultationMapper.mapToEntity(consultationDto))
             );
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -68,34 +63,29 @@ public class ConsultationService {
     /**
      * Maps Entity to DTO and puts a single consultation.
      *
-     * @param id                id of the consultation to put
-     * @param consultationDto   consultation to put
-     * @return                  response entity with put consultation
+     * @param id              id of the consultation to put
+     * @param consultationDto consultation to put
+     * @return response entity with put consultation
      */
     public ConsultationDto put(long id, ConsultationDto consultationDto) {
-        try{
-        return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
-    }
-        catch (Exception ex)
-    {
-        throw new BadRequestException();
-    }
+        try {
+            return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
+        } catch (Exception ex) {
+            throw new BadRequestException();
+        }
     }
 
     /**
      * Maps Entity to DTO and deletes a single consultation.
      *
-     * @param id    id of the consultation to delete
-     * @return      response entity with deleted consultation
+     * @param id id of the consultation to delete
+     * @return response entity with deleted consultation
      */
     public ConsultationDto delete(long id) throws Exception {
-        try
-        {
+        try {
             return consultationMapper.mapFromEntity(consultationRepository.delete(id));
-        }
-        catch(Exception ex)
-        {
-            throw new NoContentException();
+        } catch (Exception ex) {
+            throw new NoContentException("id: " + id);
         }
     }
 }

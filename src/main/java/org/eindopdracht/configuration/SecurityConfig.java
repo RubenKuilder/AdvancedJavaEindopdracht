@@ -1,8 +1,9 @@
 package org.eindopdracht.configuration;
 
-import org.eindopdracht.security.JWTFilter;
 import org.eindopdracht.resource.exception.UnauthenticatedHandler;
 import org.eindopdracht.resource.exception.UserAccessDeniedHandler;
+import org.eindopdracht.security.JWTFilter;
+import org.eindopdracht.security.JWTProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +23,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import org.eindopdracht.security.JWTProvider;
 
 import javax.sql.DataSource;
 
@@ -82,7 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * We create the JWTProvider bean, which is used for generating and verifying JWT's.
      *
      * @param userDetailsService For retrieving the user while creating the JWT.
-     * @param secretKey The phrase used to encode the JWT in such a way only we can produce it.
+     * @param secretKey          The phrase used to encode the JWT in such a way only we can produce it.
      * @return
      */
     @Bean
@@ -117,6 +116,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * We expose the AuthenticationManager to our application, so we can use it to authenticate login requests
+     *
      * @return
      * @throws Exception
      */
@@ -146,16 +146,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/signup/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/consultation/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/content/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/contenttype/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/event/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/globalsettings/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/powerpoint/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/role/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/rssfeed/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/schedule/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/useravailability/**").permitAll();
+                .antMatchers(HttpMethod.GET, "/consultation/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/content/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/contenttype/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/event/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/globalsettings/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/powerpoint/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/role/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/rssfeed/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/schedule/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/useravailability/**").permitAll();
 
         // First we configure it to allow authentication and authorization in REST
         // This is just a helper method made by me to split it up
@@ -205,7 +205,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // We need to register our JWTFilter. We register it before the UsernamePasswordAuthenticationFilter,
         // as that is part of the group of filters where Spring expects updates to the SecurityContextHolder
-        http.addFilterBefore(new JWTFilter( jwtProvider), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JWTFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class);
 
         // As it's a REST API, we don't want Spring remembering sessions for users. It should be stateless.
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

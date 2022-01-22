@@ -25,7 +25,7 @@ public class ContentTypeService {
     /**
      * Maps Entity to DTO and returns a list of all content types.
      *
-     * @return      response entity with list of all content types
+     * @return response entity with list of all content types
      */
     public List<ContentTypeDto> get() {
         return contentTypeMapper.mapFromEntityList(contentTypeRepository.get());
@@ -34,32 +34,29 @@ public class ContentTypeService {
     /**
      * Maps Entity to DTO and returns a single content type.
      *
-     * @param id    id of the content type to find
-     * @return      response entity with single content type
+     * @param id id of the content type to find
+     * @return response entity with single content type
      */
     public ContentTypeDto getById(long id) {
         try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
-        }
-        catch (Exception ex) {
-            throw new DataNotFoundException();
+        } catch (Exception ex) {
+            throw new DataNotFoundException("id: " +id);
         }
     }
 
     /**
      * Maps Entity to DTO and posts a single content type.
      *
-     * @param contentTypeDto    content type to post
-     * @return                  response entity with posted content type
+     * @param contentTypeDto content type to post
+     * @return response entity with posted content type
      */
     public ContentTypeDto persist(ContentTypeDto contentTypeDto) {
-        try{
-        return contentTypeMapper.mapFromEntity(
-                contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
-        );
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentTypeMapper.mapFromEntity(
+                    contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
+            );
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -67,16 +64,14 @@ public class ContentTypeService {
     /**
      * Maps Entity to DTO and puts a single content type.
      *
-     * @param id                id of the content type to put
-     * @param contentTypeDto    content type to put
-     * @return                  response entity with put content type
+     * @param id             id of the content type to put
+     * @param contentTypeDto content type to put
+     * @return response entity with put content type
      */
     public ContentTypeDto put(long id, ContentTypeDto contentTypeDto) {
-        try{
-        return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -84,16 +79,14 @@ public class ContentTypeService {
     /**
      * Maps Entity to DTO and deletes a single content type.
      *
-     * @param id    id of the content type to delete
-     * @return      response entity with deleted content type
+     * @param id id of the content type to delete
+     * @return response entity with deleted content type
      */
     public ContentTypeDto delete(long id) {
-        try{
-        return convertToDto.toContentTypeDTO(contentTypeRepository.delete(id));
-        }
-        catch(Exception ex)
-        {
-            throw new NoContentException();
+        try {
+            return convertToDto.toContentTypeDTO(contentTypeRepository.delete(id));
+        } catch (Exception ex) {
+            throw new NoContentException("id: " +id);
         }
     }
 }

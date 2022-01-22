@@ -1,5 +1,7 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
+import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.model.schedule.ScheduleDto;
 import org.junit.jupiter.api.MethodOrderer;
@@ -18,9 +20,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -33,18 +34,20 @@ public class ScheduleServiceTest {
 
     @Test
     @Order(1)
-    void getScheduleByIDTest()
-    {
+    void getScheduleByIDTest() {
         ScheduleDto scheduleDto = scheduleService.getById(1);
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            scheduleService.getById(1234);
+        });
     }
 
     @Test
     @Order(2)
-    void getScheduleTest()
-    {
+    void getScheduleTest() {
         List<ScheduleDto> scheduleDtoList = scheduleService.getAll();
 
         assertEquals("Mooie titel post", scheduleDtoList.get(1).getTitle());
@@ -58,13 +61,15 @@ public class ScheduleServiceTest {
 
         assertEquals("Mooie titel post", scheduleDto.getTitle());
         assertEquals("Mooie beschrijving post", scheduleDto.getDescription());
+
+        assertThrows(NoContentException.class, () -> {
+            scheduleService.delete(1324324);
+        });
     }
 
 
-
     @Test
-    void postScheduleTest() throws Exception
-    {
+    void postScheduleTest() throws Exception {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);
@@ -89,8 +94,7 @@ public class ScheduleServiceTest {
     }
 
     @Test
-    void putScheduleTest() throws Exception
-    {
+    void putScheduleTest() throws Exception {
         User user = new User();
         user.setId(1);
         List<User> usersList = Arrays.asList(user);

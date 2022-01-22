@@ -20,7 +20,7 @@ public class ScheduleController {
     /**
      * Returns a list of all schedules.
      *
-     * @return      response entity with list of all schedules
+     * @return response entity with list of all schedules
      */
     @GetMapping
     public ResponseEntity<List<ScheduleDto>> get() {
@@ -30,8 +30,8 @@ public class ScheduleController {
     /**
      * Returns a single schedule.
      *
-     * @param id    id of the schedule to find
-     * @return      response entity with single schedule
+     * @param id id of the schedule to find
+     * @return response entity with single schedule
      */
     @GetMapping("/{id}")
     public ResponseEntity<ScheduleDto> getById(@PathVariable long id) {
@@ -41,8 +41,8 @@ public class ScheduleController {
     /**
      * Post a single schedule.
      *
-     * @param scheduleDto   schedule to post
-     * @return              response entity with posted schedule
+     * @param scheduleDto schedule to post
+     * @return response entity with posted schedule
      */
     @PostMapping
     public ResponseEntity<ScheduleDto> post(@RequestBody @Valid ScheduleDto scheduleDto) {
@@ -52,9 +52,9 @@ public class ScheduleController {
     /**
      * Put a single schedule.
      *
-     * @param id            id of the schedule to put
-     * @param scheduleDto   schedule to put
-     * @return              response entity with put schedule
+     * @param id          id of the schedule to put
+     * @param scheduleDto schedule to put
+     * @return response entity with put schedule
      */
     @PutMapping("/{id}")
     public ResponseEntity<ScheduleDto> put(@PathVariable long id, @RequestBody @Valid ScheduleDto scheduleDto) {
@@ -64,8 +64,8 @@ public class ScheduleController {
     /**
      * Delete a single schedule.
      *
-     * @param id    id of the schedule to delete
-     * @return      response entity with deleted schedule
+     * @param id id of the schedule to delete
+     * @return response entity with deleted schedule
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<ScheduleDto> delete(@PathVariable int id) {

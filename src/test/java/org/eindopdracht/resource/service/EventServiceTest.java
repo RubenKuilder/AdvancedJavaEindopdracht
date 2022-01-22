@@ -1,5 +1,6 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.model.event.EventDto;
 import org.eindopdracht.resource.model.event.content.Content;
 import org.eindopdracht.resource.model.event.content.contentType.ContentType;
@@ -15,8 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
@@ -27,8 +27,7 @@ public class EventServiceTest {
     private EventService eventService;
 
     @Test
-    void getAllEvents()
-    {
+    void getAllEvents() {
         List<EventDto> eventDtoList = eventService.get();
 
         assertEquals(2, eventDtoList.size());
@@ -48,8 +47,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void getById()
-    {
+    void getById() {
         EventDto eventDto = eventService.getById(1);
 
         assertEquals(1, eventDto.getContent().getId());
@@ -58,11 +56,14 @@ public class EventServiceTest {
         assertEquals("2021-11-08 00:00:00.0", eventDto.getStartDateTime().toString());
         assertEquals("2022-12-08 00:00:00.0", eventDto.getEndDateTime().toString());
         assertEquals(2000, eventDto.getDuration());
+
+        assertThrows(DataNotFoundException.class, () -> {
+            eventService.getById(354);
+        });
     }
 
     @Test
-    void postEvent() throws Exception
-    {
+    void postEvent() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
         Date endDateTime = sdf.parse("01-01-2022 00:00:00");
@@ -92,8 +93,7 @@ public class EventServiceTest {
     }
 
     @Test
-    void putEvent() throws Exception
-    {
+    void putEvent() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
 
