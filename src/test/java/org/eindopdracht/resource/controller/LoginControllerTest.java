@@ -17,7 +17,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 class LoginControllerTest
 {

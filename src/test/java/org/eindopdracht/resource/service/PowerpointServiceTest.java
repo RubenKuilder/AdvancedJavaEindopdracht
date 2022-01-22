@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 class PowerpointServiceTest
 {
@@ -46,7 +45,7 @@ class PowerpointServiceTest
     @Transactional
     void createRole()
     {
-        Powerpoint powerpoint = new Powerpoint();
+        PowerpointDTO powerpointDTO = new PowerpointDTO();
         User user = new User();
         user.setName("test");
         user.setApproved(true);
@@ -54,12 +53,12 @@ class PowerpointServiceTest
         user.setPassword("true");
         user.setProfileImagePath("true");
 
-        powerpoint.setPath("test");
-        powerpoint.setUser(user);
+        powerpointDTO.setPath("test");
+        powerpointDTO.setUser(user);
 
-        PowerpointDTO dto = service.create(powerpoint);
+        PowerpointDTO persistedPowerpointDTO = service.create(powerpointDTO);
 
-        assertEquals("test", dto.getUser().getName());
+        assertEquals("test", persistedPowerpointDTO.getUser().getName());
     }
 
     @Test
@@ -73,7 +72,7 @@ class PowerpointServiceTest
     @Transactional
     void updateRole()
     {
-        Powerpoint powerpoint = new Powerpoint();
+        PowerpointDTO powerpointDTO = new PowerpointDTO();
         User user = new User();
         user.setName("test22");
         user.setApproved(true);
@@ -81,11 +80,11 @@ class PowerpointServiceTest
         user.setPassword("true");
         user.setProfileImagePath("true");
 
-        powerpoint.setPath("test");
-        powerpoint.setUser(user);
+        powerpointDTO.setPath("test");
+        powerpointDTO.setUser(user);
 
-        PowerpointDTO dto = service.update(powerpoint, 1);
+        PowerpointDTO persistedPowerpointDTO = service.update(powerpointDTO, 1);
 
-        assertEquals("test22", dto.getUser().getName());
+        assertEquals("test22", persistedPowerpointDTO.getUser().getName());
     }
 }

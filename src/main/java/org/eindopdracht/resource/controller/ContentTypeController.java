@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.controller;
 
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
+import org.eindopdracht.resource.dto.ContentTypeDTO;
 import org.eindopdracht.resource.service.ContentTypeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class ContentTypeController {
      * @return      response entity with list of all content types
      */
     @GetMapping
-    public ResponseEntity<List<ContentTypeDto>> get() {
+    public ResponseEntity<List<ContentTypeDTO>> get() {
         return ResponseEntity.ok(contentTypeService.get());
     }
 
@@ -37,7 +37,7 @@ public class ContentTypeController {
      * @return      response entity with single content type
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ContentTypeDto> getById(@PathVariable long id) {
+    public ResponseEntity<ContentTypeDTO> getById(@PathVariable long id) {
         return ResponseEntity.ok(contentTypeService.getById(id));
     }
 
@@ -48,7 +48,7 @@ public class ContentTypeController {
      * @return                  response entity with posted content type
      */
     @PostMapping
-    public ResponseEntity<ContentTypeDto> post(@RequestBody @Valid ContentTypeDto contentTypeDto) {
+    public ResponseEntity<ContentTypeDTO> post(@RequestBody @Valid ContentTypeDTO contentTypeDto) {
         return ResponseEntity.ok(contentTypeService.persist(contentTypeDto));
     }
 
@@ -60,7 +60,7 @@ public class ContentTypeController {
      * @return                  response entity with put content type
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ContentTypeDto> put(@PathVariable long id, @RequestBody @Valid ContentTypeDto contentTypeDto) {
+    public ResponseEntity<ContentTypeDTO> put(@PathVariable long id, @RequestBody @Valid ContentTypeDTO contentTypeDto) {
         return ResponseEntity.ok(contentTypeService.put(id, contentTypeDto));
     }
 
@@ -72,7 +72,7 @@ public class ContentTypeController {
      * @return                  response entity with patched content type
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<ContentTypeDto> patch(@PathVariable int id, @RequestBody ContentTypeDto contentTypeDto) {
+    public ResponseEntity<ContentTypeDTO> patch(@PathVariable int id, @RequestBody ContentTypeDTO contentTypeDto) {
         return ResponseEntity.ok(contentTypeService.patch(id, contentTypeDto));
     }
 
@@ -83,7 +83,7 @@ public class ContentTypeController {
      * @return      response entity with deleted content type
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ContentTypeDto> delete(@PathVariable int id) {
+    public ResponseEntity<ContentTypeDTO> delete(@PathVariable int id) {
         return new ResponseEntity<>(contentTypeService.delete(id), HttpStatus.OK);
     }
 }

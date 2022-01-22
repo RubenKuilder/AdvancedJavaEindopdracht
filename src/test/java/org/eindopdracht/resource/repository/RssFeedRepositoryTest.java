@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class RssFeedRepositoryTest {
 

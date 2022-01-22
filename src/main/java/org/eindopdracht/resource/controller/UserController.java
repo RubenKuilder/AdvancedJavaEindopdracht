@@ -25,59 +25,58 @@ public class UserController {
     /**
      * Returns a list of all users.
      *
-     * @return      response entity with list of all users
+     * @return response entity with list of all users
      */
     @GetMapping
     @ResponseBody
-    public ResponseEntity<List<UserDTO>> getUsers(){
+    public ResponseEntity<List<UserDTO>> getUsers() {
         return ResponseEntity.ok(service.getUsers());
     }
 
     /**
      * Returns a single user.
      *
-     * @param id    id of the user to find
-     * @return      response entity with single user
+     * @param id id of the user to find
+     * @return response entity with single user
      */
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<UserDTO> getUser(@PathVariable("id") final Integer id){
+    public ResponseEntity<UserDTO> getUser(@PathVariable("id") final Integer id) {
         return ResponseEntity.ok(service.getUser(id));
     }
 
     /**
      * Post a single user.
      *
-     * @param user  user to post
-     * @return      response entity with posted user
+     * @param userDTO user to post
+     * @return response entity with posted user
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<UserDTO> postUser(@Valid @RequestBody User user){
-        return ResponseEntity.ok(service.create(user));
+    public ResponseEntity<UserDTO> postUser(@Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(service.create(userDTO));
     }
 
     /**
      * Put a single user.
      *
-     * @param id    id of the user to put
-     * @param user  user to put
-     * @return      response entity with put user
+     * @param id   id of the user to put
+     * @param userDTO user to put
+     * @return response entity with put user
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> putUser(@PathVariable("id") final Integer id, @Valid @RequestBody User user){
-        service.update(user, id);
-        return ResponseEntity.ok(service.update(user, id));
+    public ResponseEntity<UserDTO> putUser(@PathVariable("id") final Integer id, @Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(service.update(userDTO, id));
     }
 
     /**
      * Delete a single user.
      *
-     * @param id    id of the user to delete
-     * @return      response entity with deleted user
+     * @param id id of the user to delete
+     * @return response entity with deleted user
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserDTO> deleteUser(@PathVariable("id") final Integer id){
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable("id") final Integer id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }

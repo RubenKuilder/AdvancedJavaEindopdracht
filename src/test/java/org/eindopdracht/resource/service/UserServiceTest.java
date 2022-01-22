@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 class UserServiceTest {
     @Autowired
@@ -44,17 +43,16 @@ class UserServiceTest {
     @Transactional
     void createUser()
     {
-        User user = new User();
-        user.setName("test22");
-        user.setApproved(true);
-        user.setEmail("true");
-        user.setPassword("true");
-        user.setProfileImagePath("true");
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("test22");
+        userDTO.setApproved(true);
+        userDTO.setEmail("true");
+        userDTO.setPassword("true");
+        userDTO.setProfileImagePath("true");
 
+        UserDTO persistedUserDTO = service.create(userDTO);
 
-        UserDTO dto = service.create(user);
-
-        assertEquals("test22", dto.getName());
+        assertEquals("test22", persistedUserDTO.getName());
     }
 
     @Test
@@ -68,14 +66,15 @@ class UserServiceTest {
     @Transactional
     void updateUser()
     {
-        User user = new User();
-        user.setName("test33");
-        user.setApproved(true);
-        user.setEmail("true");
-        user.setPassword("true");
-        user.setProfileImagePath("true");
-        UserDTO dto = service.update(user, 1);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("test33");
+        userDTO.setApproved(true);
+        userDTO.setEmail("true");
+        userDTO.setPassword("true");
+        userDTO.setProfileImagePath("true");
 
-        assertEquals("test33", dto.getName());
+        UserDTO persistedUserDTO = service.update(userDTO, 1);
+
+        assertEquals("test33", persistedUserDTO.getName());
     }
 }

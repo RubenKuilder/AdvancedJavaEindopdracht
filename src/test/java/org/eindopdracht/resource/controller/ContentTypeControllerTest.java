@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

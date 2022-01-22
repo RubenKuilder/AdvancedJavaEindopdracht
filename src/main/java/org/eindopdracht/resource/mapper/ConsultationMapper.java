@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.model.consultation.Consultation;
-import org.eindopdracht.resource.model.consultation.ConsultationDto;
+import org.eindopdracht.resource.model.Consultation;
+import org.eindopdracht.resource.dto.ConsultationDTO;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ConsultationMapper implements EntityMapper<Consultation, ConsultationDto> {
+public class ConsultationMapper implements EntityMapper<Consultation, ConsultationDTO> {
     @Override
-    public ConsultationDto mapFromEntity(Consultation consultation) {
-        return new ConsultationDto(
+    public ConsultationDTO mapFromEntity(Consultation consultation) {
+        return new ConsultationDTO(
                 consultation.getId(),
                 consultation.getUsers(),
                 consultation.getStartDateTime(),
@@ -21,7 +21,7 @@ public class ConsultationMapper implements EntityMapper<Consultation, Consultati
     }
 
     @Override
-    public Consultation mapToEntity(ConsultationDto consultationDto) {
+    public Consultation mapToEntity(ConsultationDTO consultationDto) {
         return new Consultation(
                 consultationDto.getId(),
                 consultationDto.getUsers(),
@@ -30,12 +30,12 @@ public class ConsultationMapper implements EntityMapper<Consultation, Consultati
         );
     }
 
-    public List<ConsultationDto> mapFromEntityList(List<Consultation> entities) {
-        List<ConsultationDto> ConsultationDtoList = new ArrayList<>();
+    public List<ConsultationDTO> mapFromEntityList(List<Consultation> entities) {
+        List<ConsultationDTO> consultationDTOList = new ArrayList<>();
         for (Consultation entity : entities) {
-            ConsultationDtoList.add(mapFromEntity(entity));
+            consultationDTOList.add(mapFromEntity(entity));
         }
 
-        return ConsultationDtoList;
+        return consultationDTOList;
     }
 }

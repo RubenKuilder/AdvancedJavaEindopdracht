@@ -1,8 +1,8 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.event.Event;
-import org.eindopdracht.resource.model.event.content.Content;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.Event;
+import org.eindopdracht.resource.model.Content;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class EventRepositoryTest {
     @Autowired

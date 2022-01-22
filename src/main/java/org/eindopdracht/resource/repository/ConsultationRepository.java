@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.repository;
 
-import org.eindopdracht.resource.model.consultation.Consultation;
+import org.eindopdracht.resource.model.Consultation;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

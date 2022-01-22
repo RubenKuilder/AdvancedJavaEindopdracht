@@ -1,28 +1,43 @@
 package org.eindopdracht.resource.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.eindopdracht.resource.model.Consultation;
+import org.eindopdracht.resource.model.Schedule;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
-    @NotBlank
+    @NotNull
     private int id;
 
-    @NotBlank
+    List<Consultation> consultations;
+
+    List<Schedule> schedules;
+
+    @NotNull
     private String name;
 
-    @NotBlank
+    @NotNull
     private String password;
 
-    @NotBlank
+    @NotNull
     private String email;
 
-    @NotBlank
+    @NotNull
     private String profileImagePath;
 
-    @NotBlank
+    @NotNull
     private boolean isApproved;
 
+    @NotNull
+    private String role;
+
+    @NotNull
+    private boolean enabled;
 }

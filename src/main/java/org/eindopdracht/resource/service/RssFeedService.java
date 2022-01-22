@@ -1,10 +1,10 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.dto.RssFeedDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
+import org.eindopdracht.resource.mapper.RssFeedMapper;
 import org.eindopdracht.resource.model.RssFeed;
 import org.eindopdracht.resource.repository.RssFeedRepository;
 import org.springframework.stereotype.Service;
@@ -14,49 +14,49 @@ import java.util.stream.Collectors;
 
 @Service
 public class RssFeedService {
-    private final ConvertToDTO convertToDTO = new ConvertToDTO();
+    private final RssFeedRepository rssFeedRepository;
+    private final RssFeedMapper rssFeedMapper;
 
-    private final RssFeedRepository repository;
-
-    public RssFeedService(RssFeedRepository rssFeedRepository){
-        this.repository = rssFeedRepository;
+    public RssFeedService(RssFeedRepository rssFeedRepository, RssFeedMapper rssFeedMapper) {
+        this.rssFeedRepository = rssFeedRepository;
+        this.rssFeedMapper = rssFeedMapper;
     }
 
     /**
      * Maps Entity to DTO and returns a list of all RSS feeds.
      *
-     * @return      response entity with list of all RSS feeds
+     * @return response entity with list of all RSS feeds
      */
-    public List<RssFeedDTO> getRssFeeds() { return repository.getRssFeeds().stream().map(convertToDTO::toRssFeedDTO).collect(Collectors.toList());}
+    public List<RssFeedDTO> getRssFeeds() {
+        return rssFeedMapper.mapFromEntityList(rssFeedRepository.getRssFeeds());
+    }
 
     /**
      * Maps Entity to DTO and returns a single RSS feed.
      *
-     * @param id    id of the RSS feed to find
-     * @return      response entity with single RSS feed
+     * @param id id of the RSS feed to find
+     * @return response entity with single RSS feed
      */
-    public RssFeedDTO getRssFeed(Integer id){
-        try{
-        return convertToDTO.toRssFeedDTO(repository.getRssFeed(id));
-    }
-        catch (Exception ex)
-    {
-        throw new DataNotFoundException();
-    }
+    public RssFeedDTO getRssFeed(Integer id) {
+        try {
+            return rssFeedMapper.mapFromEntity(rssFeedRepository.getRssFeed(id));
+        } catch (Exception ex) {
+            throw new DataNotFoundException();
+        }
     }
 
     /**
      * Maps Entity to DTO and posts a single RSS feed.
      *
-     * @param rssFeed   RSS feed to post
-     * @return          response entity with posted RSS feed
+     * @param rssFeedDTO RSS feed to post
+     * @return response entity with posted RSS feed
      */
-    public RssFeedDTO create(RssFeed rssFeed){
-        try{
-        return convertToDTO.toRssFeedDTO(repository.postRssFeed(rssFeed));
-        }
-        catch (Exception ex)
-        {
+    public RssFeedDTO create(RssFeedDTO rssFeedDTO) {
+        try {
+            return rssFeedMapper.mapFromEntity(
+                    rssFeedRepository.postRssFeed(rssFeedMapper.mapToEntity(rssFeedDTO))
+            );
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -64,16 +64,14 @@ public class RssFeedService {
     /**
      * Maps Entity to DTO and puts a single RSS feed.
      *
-     * @param id        id of the RSS feed to put
-     * @param rssFeed   RSS feed to put
-     * @return          response entity with put RSS feed
+     * @param id      id of the RSS feed to put
+     * @param rssFeedDTO RSS feed to put
+     * @return response entity with put RSS feed
      */
-    public RssFeedDTO update(RssFeed rssFeed, Integer id){
-        try{
-        return convertToDTO.toRssFeedDTO(repository.putRssFeed(rssFeed, id));
-        }
-        catch (Exception ex)
-        {
+    public RssFeedDTO update(RssFeedDTO rssFeedDTO, Integer id) {
+        try {
+            return rssFeedMapper.mapFromEntity(rssFeedRepository.putRssFeed(rssFeedMapper.mapToEntity(rssFeedDTO), id));
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -81,15 +79,13 @@ public class RssFeedService {
     /**
      * Maps Entity to DTO and deletes a single RSS feed.
      *
-     * @param id    id of the RSS feed to delete
-     * @return      response entity with deleted RSS feed
+     * @param id id of the RSS feed to delete
+     * @return response entity with deleted RSS feed
      */
-    public RssFeedDTO delete(Integer id){
-        try{
-        return convertToDTO.toRssFeedDTO(repository.deleteRssFeed(id));
-        }
-        catch(Exception ex)
-        {
+    public RssFeedDTO delete(Integer id) {
+        try {
+            return rssFeedMapper.mapFromEntity(rssFeedRepository.deleteRssFeed(id));
+        } catch (Exception ex) {
             throw new NoContentException();
         }
     }

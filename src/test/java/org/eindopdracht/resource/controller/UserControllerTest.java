@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Transactional
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 public class UserControllerTest {
     @Autowired

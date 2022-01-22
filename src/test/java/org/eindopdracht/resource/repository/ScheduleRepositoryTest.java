@@ -2,7 +2,7 @@ package org.eindopdracht.resource.repository;
 
 
 import org.eindopdracht.resource.model.User;
-import org.eindopdracht.resource.model.schedule.Schedule;
+import org.eindopdracht.resource.model.Schedule;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Transactional
 public class ScheduleRepositoryTest {

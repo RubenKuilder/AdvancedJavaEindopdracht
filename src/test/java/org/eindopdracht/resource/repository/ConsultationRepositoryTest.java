@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.repository;
 
 import org.eindopdracht.resource.model.User;
-import org.eindopdracht.resource.model.consultation.Consultation;
+import org.eindopdracht.resource.model.Consultation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class ConsultationRepositoryTest {

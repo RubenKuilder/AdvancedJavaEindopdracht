@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.repository;
 
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.model.ContentType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

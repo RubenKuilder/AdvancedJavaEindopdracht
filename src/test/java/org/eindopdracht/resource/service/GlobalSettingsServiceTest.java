@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.resource.dto.GlobalSettingsDto;
+import org.eindopdracht.resource.dto.GlobalSettingsDTO;
 import org.eindopdracht.resource.model.GlobalSettings;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 class GlobalSettingsServiceTest
 {
@@ -28,18 +27,18 @@ class GlobalSettingsServiceTest
     @Transactional
     void getGlobalSettings()
     {
-        List<GlobalSettingsDto> globalSettingsDtoList = globalSettingsService.getGlobalSettings();
+        List<GlobalSettingsDTO> globalSettingsDTOList = globalSettingsService.getGlobalSettings();
 
-        assertEquals(3, globalSettingsDtoList.size());
-        assertTrue(globalSettingsDtoList.get(0).isSoundOn());
-        assertFalse(globalSettingsDtoList.get(1).isSoundOn());
+        assertEquals(3, globalSettingsDTOList.size());
+        assertTrue(globalSettingsDTOList.get(0).isSoundOn());
+        assertFalse(globalSettingsDTOList.get(1).isSoundOn());
     }
 
     @Test
     @Transactional
     void getGlobalSettingsById()
     {
-        GlobalSettingsDto globalSettingsDto = globalSettingsService.getGlobalSettingsById(1);
+        GlobalSettingsDTO globalSettingsDto = globalSettingsService.getGlobalSettingsById(1);
         assertTrue(globalSettingsDto.isSoundOn());
         assertEquals(new Time(00,00,00), globalSettingsDto.getSwitchTime());
     }
@@ -48,20 +47,20 @@ class GlobalSettingsServiceTest
     @Transactional
     void createGlobalSettings()
     {
-        GlobalSettings globalSettings = new GlobalSettings();
-        globalSettings.setSwitchTime(new Time(12,12,12));
-        globalSettings.setSoundOn(false);
-        GlobalSettingsDto globalSettingsDto = globalSettingsService.createGlobalSettings(globalSettings);
+        GlobalSettingsDTO globalSettingsDTO = new GlobalSettingsDTO();
+        globalSettingsDTO.setSwitchTime(new Time(12,12,12));
+        globalSettingsDTO.setSoundOn(false);
+        GlobalSettingsDTO persistedGlobalSettingsDTO = globalSettingsService.createGlobalSettings(globalSettingsDTO);
 
-        assertFalse(globalSettingsDto.isSoundOn());
-        assertEquals(new Time(12,12,12),globalSettingsDto.getSwitchTime());
+        assertFalse(persistedGlobalSettingsDTO.isSoundOn());
+        assertEquals(new Time(12,12,12),persistedGlobalSettingsDTO.getSwitchTime());
     }
 
     @Test
     @Transactional
     void deleteGlobalSettings()
     {
-        GlobalSettingsDto globalSettingsDto = globalSettingsService.deleteGlobalSettings(1);
+        GlobalSettingsDTO globalSettingsDto = globalSettingsService.deleteGlobalSettings(1);
         assertTrue(globalSettingsDto.isSoundOn());
         assertEquals(new Time(00,00,00), globalSettingsDto.getSwitchTime());
     }
@@ -70,12 +69,12 @@ class GlobalSettingsServiceTest
     @Transactional
     void updateGlobalSettings()
     {
-        GlobalSettings globalSettings = new GlobalSettings();
-        globalSettings.setSwitchTime(new Time(12,12,12));
-        globalSettings.setSoundOn(false);
-        GlobalSettingsDto globalSettingsDto = globalSettingsService.updateGlobalSettings(globalSettings, 1);
+        GlobalSettingsDTO globalSettingsDTO = new GlobalSettingsDTO();
+        globalSettingsDTO.setSwitchTime(new Time(12,12,12));
+        globalSettingsDTO.setSoundOn(false);
+        GlobalSettingsDTO putGlobalSettingsDTO = globalSettingsService.updateGlobalSettings(globalSettingsDTO, 1);
 
-        assertFalse(globalSettingsDto.isSoundOn());
-        assertEquals(new Time(12, 12, 12), globalSettingsDto.getSwitchTime());
+        assertFalse(putGlobalSettingsDTO.isSoundOn());
+        assertEquals(new Time(12, 12, 12), putGlobalSettingsDTO.getSwitchTime());
     }
 }

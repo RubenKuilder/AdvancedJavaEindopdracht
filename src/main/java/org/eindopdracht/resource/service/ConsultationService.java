@@ -1,9 +1,9 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.dto.ConsultationDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.model.consultation.ConsultationDto;
 import org.eindopdracht.resource.mapper.ConsultationMapper;
 import org.eindopdracht.resource.repository.ConsultationRepository;
 import org.springframework.stereotype.Service;
@@ -24,25 +24,22 @@ public class ConsultationService {
     /**
      * Maps Entity to DTO and returns a list of all consultations.
      *
-     * @return      response entity with list of all consultations
+     * @return response entity with list of all consultations
      */
-    public List<ConsultationDto> get() {
+    public List<ConsultationDTO> get() {
         return consultationMapper.mapFromEntityList(consultationRepository.get());
     }
 
     /**
      * Maps Entity to DTO and returns a single consultation.
      *
-     * @param id    id of the consultation to find
-     * @return      response entity with single consultation
+     * @param id id of the consultation to find
+     * @return response entity with single consultation
      */
-    public ConsultationDto getById(long id) {
-        try
-        {
+    public ConsultationDTO getById(long id) {
+        try {
             return consultationMapper.mapFromEntity(consultationRepository.getById(id));
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             throw new DataNotFoundException();
         }
     }
@@ -50,17 +47,15 @@ public class ConsultationService {
     /**
      * Maps Entity to DTO and posts a single consultation.
      *
-     * @param consultationDto   consultation to post
-     * @return                  response entity with posted consultation
+     * @param consultationDto consultation to post
+     * @return response entity with posted consultation
      */
-    public ConsultationDto persist(ConsultationDto consultationDto) {
-        try{
+    public ConsultationDTO persist(ConsultationDTO consultationDto) {
+        try {
             return consultationMapper.mapFromEntity(
                     consultationRepository.persist(consultationMapper.mapToEntity(consultationDto))
             );
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -68,44 +63,39 @@ public class ConsultationService {
     /**
      * Maps Entity to DTO and puts a single consultation.
      *
-     * @param id                id of the consultation to put
-     * @param consultationDto   consultation to put
-     * @return                  response entity with put consultation
+     * @param id              id of the consultation to put
+     * @param consultationDto consultation to put
+     * @return response entity with put consultation
      */
-    public ConsultationDto put(long id, ConsultationDto consultationDto) {
-        try{
-        return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
-    }
-        catch (Exception ex)
-    {
-        throw new BadRequestException();
-    }
+    public ConsultationDTO put(long id, ConsultationDTO consultationDto) {
+        try {
+            return consultationMapper.mapFromEntity(consultationRepository.put(id, consultationMapper.mapToEntity(consultationDto)));
+        } catch (Exception ex) {
+            throw new BadRequestException();
+        }
     }
 
     /**
      * Maps Entity to DTO and patches a single consultation.
      *
-     * @param id                id of the consultation to patch
-     * @param consultationDto   consultation to patch
-     * @return                  response entity with patched consultation
+     * @param id              id of the consultation to patch
+     * @param consultationDto consultation to patch
+     * @return response entity with patched consultation
      */
-    public ConsultationDto patch(long id, ConsultationDto consultationDto) {
+    public ConsultationDTO patch(long id, ConsultationDTO consultationDto) {
         return consultationMapper.mapFromEntity(consultationRepository.patch(id, consultationMapper.mapToEntity(consultationDto)));
     }
 
     /**
      * Maps Entity to DTO and deletes a single consultation.
      *
-     * @param id    id of the consultation to delete
-     * @return      response entity with deleted consultation
+     * @param id id of the consultation to delete
+     * @return response entity with deleted consultation
      */
-    public ConsultationDto delete(long id) throws Exception {
-        try
-        {
+    public ConsultationDTO delete(long id) throws Exception {
+        try {
             return consultationMapper.mapFromEntity(consultationRepository.delete(id));
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             throw new NoContentException();
         }
     }

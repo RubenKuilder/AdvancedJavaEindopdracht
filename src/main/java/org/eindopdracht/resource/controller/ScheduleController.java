@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.controller;
 
-import org.eindopdracht.resource.model.schedule.ScheduleDto;
+import org.eindopdracht.resource.dto.ScheduleDTO;
 import org.eindopdracht.resource.service.ScheduleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class ScheduleController {
      * @return      response entity with list of all schedules
      */
     @GetMapping
-    public ResponseEntity<List<ScheduleDto>> get() {
+    public ResponseEntity<List<ScheduleDTO>> get() {
         return ResponseEntity.ok(scheduleService.getAll());
     }
 
@@ -34,7 +34,7 @@ public class ScheduleController {
      * @return      response entity with single schedule
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ScheduleDto> getById(@PathVariable long id) {
+    public ResponseEntity<ScheduleDTO> getById(@PathVariable long id) {
         return ResponseEntity.ok(scheduleService.getById(id));
     }
 
@@ -45,7 +45,7 @@ public class ScheduleController {
      * @return              response entity with posted schedule
      */
     @PostMapping
-    public ResponseEntity<ScheduleDto> post(@RequestBody @Valid ScheduleDto scheduleDto) {
+    public ResponseEntity<ScheduleDTO> post(@RequestBody @Valid ScheduleDTO scheduleDto) {
         return ResponseEntity.ok(scheduleService.persist(scheduleDto));
     }
 
@@ -57,7 +57,7 @@ public class ScheduleController {
      * @return              response entity with put schedule
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ScheduleDto> put(@PathVariable long id, @RequestBody @Valid ScheduleDto scheduleDto) {
+    public ResponseEntity<ScheduleDTO> put(@PathVariable long id, @RequestBody @Valid ScheduleDTO scheduleDto) {
         return ResponseEntity.ok(scheduleService.put(id, scheduleDto));
     }
 
@@ -69,7 +69,7 @@ public class ScheduleController {
      * @return              response entity with patched schedule
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<ScheduleDto> patch(@PathVariable int id, @RequestBody ScheduleDto scheduleDto) {
+    public ResponseEntity<ScheduleDTO> patch(@PathVariable int id, @RequestBody ScheduleDTO scheduleDto) {
         return ResponseEntity.ok(scheduleService.patch(id, scheduleDto));
     }
 
@@ -80,7 +80,7 @@ public class ScheduleController {
      * @return      response entity with deleted schedule
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ScheduleDto> delete(@PathVariable int id) {
+    public ResponseEntity<ScheduleDTO> delete(@PathVariable int id) {
         return ResponseEntity.ok(scheduleService.delete(id));
     }
 }

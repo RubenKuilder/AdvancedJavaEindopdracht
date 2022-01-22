@@ -1,10 +1,9 @@
 package org.eindopdracht.resource.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.eindopdracht.resource.model.consultation.Consultation;
-import org.eindopdracht.resource.model.schedule.Schedule;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,9 +12,9 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -51,6 +50,4 @@ public class User {
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
-
-
 }

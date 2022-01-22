@@ -4,7 +4,7 @@ import org.eindopdracht.ConvertToDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
+import org.eindopdracht.resource.dto.ContentTypeDTO;
 import org.eindopdracht.resource.mapper.ContentTypeMapper;
 import org.eindopdracht.resource.repository.ContentTypeRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class ContentTypeService {
      *
      * @return      response entity with list of all content types
      */
-    public List<ContentTypeDto> get() {
+    public List<ContentTypeDTO> get() {
         return contentTypeMapper.mapFromEntityList(contentTypeRepository.get());
     }
 
@@ -37,7 +37,7 @@ public class ContentTypeService {
      * @param id    id of the content type to find
      * @return      response entity with single content type
      */
-    public ContentTypeDto getById(long id) {
+    public ContentTypeDTO getById(long id) {
         try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
         }
@@ -52,7 +52,7 @@ public class ContentTypeService {
      * @param contentTypeDto    content type to post
      * @return                  response entity with posted content type
      */
-    public ContentTypeDto persist(ContentTypeDto contentTypeDto) {
+    public ContentTypeDTO persist(ContentTypeDTO contentTypeDto) {
         try{
         return contentTypeMapper.mapFromEntity(
                 contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
@@ -71,7 +71,7 @@ public class ContentTypeService {
      * @param contentTypeDto    content type to put
      * @return                  response entity with put content type
      */
-    public ContentTypeDto put(long id, ContentTypeDto contentTypeDto) {
+    public ContentTypeDTO put(long id, ContentTypeDTO contentTypeDto) {
         try{
         return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
         }
@@ -88,7 +88,7 @@ public class ContentTypeService {
      * @param contentTypeDto    content type to patch
      * @return                  response entity with patched content type
      */
-    public ContentTypeDto patch(long id, ContentTypeDto contentTypeDto) {
+    public ContentTypeDTO patch(long id, ContentTypeDTO contentTypeDto) {
         return contentTypeMapper.mapFromEntity(contentTypeRepository.patch(id, contentTypeMapper.mapToEntity(contentTypeDto)));
     }
 
@@ -98,7 +98,7 @@ public class ContentTypeService {
      * @param id    id of the content type to delete
      * @return      response entity with deleted content type
      */
-    public ContentTypeDto delete(long id) {
+    public ContentTypeDTO delete(long id) {
         try{
         return convertToDto.toContentTypeDTO(contentTypeRepository.delete(id));
         }

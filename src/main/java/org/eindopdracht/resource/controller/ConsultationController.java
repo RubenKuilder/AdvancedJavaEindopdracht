@@ -1,6 +1,6 @@
 package org.eindopdracht.resource.controller;
 
-import org.eindopdracht.resource.model.consultation.ConsultationDto;
+import org.eindopdracht.resource.dto.ConsultationDTO;
 import org.eindopdracht.resource.service.ConsultationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class ConsultationController {
      * @return      response entity with list of all consultations
      */
     @GetMapping
-    public ResponseEntity<List<ConsultationDto>> get() {
+    public ResponseEntity<List<ConsultationDTO>> get() {
         return ResponseEntity.ok(consultationService.get());
     }
 
@@ -35,7 +35,7 @@ public class ConsultationController {
      * @return      response entity with single consultation
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ConsultationDto> getById(@PathVariable long id) {
+    public ResponseEntity<ConsultationDTO> getById(@PathVariable long id) {
         return ResponseEntity.ok(consultationService.getById(id));
     }
 
@@ -46,7 +46,7 @@ public class ConsultationController {
      * @return                  response entity with posted consultation
      */
     @PostMapping
-    public ResponseEntity<ConsultationDto> post(@RequestBody @Valid ConsultationDto consultationDto) {
+    public ResponseEntity<ConsultationDTO> post(@RequestBody @Valid ConsultationDTO consultationDto) {
         return ResponseEntity.ok(consultationService.persist(consultationDto));
     }
 
@@ -58,7 +58,7 @@ public class ConsultationController {
      * @return                  response entity with put consultation
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ConsultationDto> put(@PathVariable long id, @RequestBody @Valid ConsultationDto consultationDto) {
+    public ResponseEntity<ConsultationDTO> put(@PathVariable long id, @RequestBody @Valid ConsultationDTO consultationDto) {
         return ResponseEntity.ok(consultationService.put(id, consultationDto));
     }
 
@@ -70,7 +70,7 @@ public class ConsultationController {
      * @return                  response entity with patched consultation
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<ConsultationDto> patch(@PathVariable int id, @RequestBody ConsultationDto consultationDto) {
+    public ResponseEntity<ConsultationDTO> patch(@PathVariable int id, @RequestBody ConsultationDTO consultationDto) {
         return ResponseEntity.ok(consultationService.patch(id, consultationDto));
     }
 
@@ -81,7 +81,7 @@ public class ConsultationController {
      * @return      response entity with deleted consultation
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ConsultationDto> delete(@PathVariable int id) throws Exception {
+    public ResponseEntity<ConsultationDTO> delete(@PathVariable int id) throws Exception {
         return ResponseEntity.ok(consultationService.delete(id));
     }
 }

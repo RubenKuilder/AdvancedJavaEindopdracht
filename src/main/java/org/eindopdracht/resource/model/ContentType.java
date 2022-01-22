@@ -1,4 +1,4 @@
-package org.eindopdracht.resource.model.event.content.contentType;
+package org.eindopdracht.resource.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package org.eindopdracht.resource.service;
 
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
-import org.eindopdracht.resource.model.event.content.ContentDto;
+import org.eindopdracht.resource.dto.ContentDTO;
 import org.eindopdracht.resource.mapper.ContentMapper;
 import org.eindopdracht.resource.repository.ContentRespository;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class ContentService {
      *
      * @return      response entity with list of all content
      */
-    public List<ContentDto> get() {
+    public List<ContentDTO> get() {
         return contentMapper.mapFromEntityList(contentRespository.get());
     }
 
@@ -34,7 +34,7 @@ public class ContentService {
      * @param id    id of the content to find
      * @return      response entity with single content
      */
-    public ContentDto getById(long id) {
+    public ContentDTO getById(long id) {
         try
         {
             return contentMapper.mapFromEntity(contentRespository.getById(id));
@@ -50,7 +50,7 @@ public class ContentService {
      * @param contentDto    content to post
      * @return              response entity with posted content
      */
-    public ContentDto persist(ContentDto contentDto) {
+    public ContentDTO persist(ContentDTO contentDto) {
         try{
         return contentMapper.mapFromEntity(
                 contentRespository.persist(contentMapper.mapToEntity(contentDto))
@@ -69,7 +69,7 @@ public class ContentService {
      * @param contentDto    content to put
      * @return              response entity with put content
      */
-    public ContentDto put(long id, ContentDto contentDto) {
+    public ContentDTO put(long id, ContentDTO contentDto) {
         try{
         return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
         }
@@ -86,7 +86,7 @@ public class ContentService {
      * @param contentDto    content to patch
      * @return              response entity with patched content
      */
-    public ContentDto patch(long id, ContentDto contentDto) {
+    public ContentDTO patch(long id, ContentDTO contentDto) {
         return contentMapper.mapFromEntity(contentRespository.patch(id, contentMapper.mapToEntity(contentDto)));
     }
 }

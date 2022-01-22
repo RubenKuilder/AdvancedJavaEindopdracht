@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.service;
 
-import org.eindopdracht.resource.model.event.content.ContentDto;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
+import org.eindopdracht.resource.dto.ContentDTO;
+import org.eindopdracht.resource.model.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 public class ContentServiceTest {
     @Autowired
@@ -26,21 +25,21 @@ public class ContentServiceTest {
     @Test
     void getAllContent()
     {
-        List<ContentDto> contentDtoList = contentService.get();
+        List<ContentDTO> contentDTOList = contentService.get();
 
-        assertEquals(3, contentDtoList.size());
-        assertEquals(1, contentDtoList.get(0).getContentType().getId());
-        assertEquals("Location Path", contentDtoList.get(0).getPath());
-        assertEquals(2, contentDtoList.get(1).getContentType().getId());
-        assertEquals("Location test", contentDtoList.get(1).getPath());
-        assertEquals(3, contentDtoList.get(2).getContentType().getId());
-        assertEquals("Location", contentDtoList.get(2).getPath());
+        assertEquals(3, contentDTOList.size());
+        assertEquals(1, contentDTOList.get(0).getContentType().getId());
+        assertEquals("Location Path", contentDTOList.get(0).getPath());
+        assertEquals(2, contentDTOList.get(1).getContentType().getId());
+        assertEquals("Location test", contentDTOList.get(1).getPath());
+        assertEquals(3, contentDTOList.get(2).getContentType().getId());
+        assertEquals("Location", contentDTOList.get(2).getPath());
     }
 
     @Test
     void getById()
     {
-        ContentDto contentDto = contentService.getById(1);
+        ContentDTO contentDto = contentService.getById(1);
         assertEquals(1, contentDto.getContentType().getId());
         assertEquals("Location Path", contentDto.getPath());
     }
@@ -51,11 +50,11 @@ public class ContentServiceTest {
         ContentType contentType = new ContentType();
         contentType.setName("Text");
 
-        ContentDto contentDto = new ContentDto();
+        ContentDTO contentDto = new ContentDTO();
         contentDto.setContentType(contentType);
         contentDto.setPath("Post Path");
 
-        ContentDto persistedContent = contentService.persist(contentDto);
+        ContentDTO persistedContent = contentService.persist(contentDto);
 
         assertEquals("Text", persistedContent.getContentType().getName());
         assertEquals("Post Path", persistedContent.getPath());
@@ -68,10 +67,10 @@ public class ContentServiceTest {
         contentType.setId(1L);
         contentType.setName("Text");
 
-        ContentDto contentDto = new ContentDto();
+        ContentDTO contentDto = new ContentDTO();
         contentDto.setContentType(contentType);
 
-        ContentDto putContent = contentService.put(1, contentDto);
+        ContentDTO putContent = contentService.put(1, contentDto);
 
         assertEquals("Text", putContent.getContentType().getName());
         assertNull(putContent.getPath());
@@ -80,10 +79,10 @@ public class ContentServiceTest {
     @Test
     void patchContent()
     {
-        ContentDto contentDto = new ContentDto();
+        ContentDTO contentDto = new ContentDTO();
         contentDto.setPath("Patch Path");
 
-        ContentDto patchedContent = contentService.patch(1, contentDto);
+        ContentDTO patchedContent = contentService.patch(1, contentDto);
 
         assertEquals(1, patchedContent.getContentType().getId());
         assertEquals("Patch Path", patchedContent.getPath());

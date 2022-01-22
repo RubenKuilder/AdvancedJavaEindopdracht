@@ -1,18 +1,19 @@
 package org.eindopdracht.resource.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 
 @Data
 @NoArgsConstructor
-public class GlobalSettingsDto
-{
+@AllArgsConstructor
+public class ContentTypeDTO {
     @NotNull
-    private boolean soundOn;
+    private Long id;
 
     @NotNull
-    private Time switchTime;
+    private String name;
 }

@@ -1,4 +1,4 @@
-package org.eindopdracht.resource.model.schedule;
+package org.eindopdracht.resource.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,24 +13,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "schedule")
-public class Schedule {
+@Table(name = "Consultation")
+public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToMany
     @JoinTable(
-            name = "userSchedule",
-            joinColumns = @JoinColumn(name = "schedule_id"),
+            name = "userConsultation",
+            joinColumns = @JoinColumn(name = "consultation_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     List<User> users;
-
-    private String title;
-
-    private String description;
 
     private Date startDateTime;
 
     private Date endDateTime;
+
 }

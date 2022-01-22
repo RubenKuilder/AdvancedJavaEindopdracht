@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
+import org.eindopdracht.resource.model.ContentType;
+import org.eindopdracht.resource.dto.ContentTypeDTO;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 
@@ -9,29 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ContentTypeMapper implements EntityMapper<ContentType, ContentTypeDto> {
+public class ContentTypeMapper implements EntityMapper<ContentType, ContentTypeDTO> {
     @Override
-    public ContentTypeDto mapFromEntity(ContentType contentType) {
-        return new ContentTypeDto(
+    public ContentTypeDTO mapFromEntity(ContentType contentType) {
+        return new ContentTypeDTO(
                 contentType.getId(),
                 contentType.getName()
         );
     }
 
     @Override
-    public ContentType mapToEntity(ContentTypeDto contentTypeDto) {
+    public ContentType mapToEntity(ContentTypeDTO contentTypeDto) {
         return new ContentType(
                 contentTypeDto.getId(),
                 contentTypeDto.getName()
         );
     }
 
-    public List<ContentTypeDto> mapFromEntityList(List<ContentType> entities) {
-        List<ContentTypeDto> ContentTypeDtoList = new ArrayList<>();
+    public List<ContentTypeDTO> mapFromEntityList(List<ContentType> entities) {
+        List<ContentTypeDTO> contentTypeDTOList = new ArrayList<>();
         for (ContentType entity : entities) {
-            ContentTypeDtoList.add(mapFromEntity(entity));
+            contentTypeDTOList.add(mapFromEntity(entity));
         }
 
-        return ContentTypeDtoList;
+        return contentTypeDTOList;
     }
 }

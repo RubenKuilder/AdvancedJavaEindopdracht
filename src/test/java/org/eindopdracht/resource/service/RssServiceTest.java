@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
-@ContextConfiguration(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
 @Transactional
 class RssServiceTest
 {
@@ -49,13 +48,13 @@ class RssServiceTest
     @Transactional
     void createRss() throws ParseException
     {
-        RssFeed feed = new RssFeed();
-        feed.setLink("test");
+        RssFeedDTO feedDTO = new RssFeedDTO();
+        feedDTO.setLink("test");
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("10-01-2022 15:40:10");
         Date endDateTime = sdf.parse("10-01-2022 15:50:10");
-        feed.setStartDateTime(startDateTime);
-        feed.setEndDateTime(endDateTime);
+        feedDTO.setStartDateTime(startDateTime);
+        feedDTO.setEndDateTime(endDateTime);
 
         User user = new User();
         user.setName("test22");
@@ -64,11 +63,11 @@ class RssServiceTest
         user.setPassword("true");
         user.setProfileImagePath("true");
 
-        feed.setUser(user);
+        feedDTO.setUser(user);
 
-        RssFeedDTO dto = service.create(feed);
+        RssFeedDTO persistedFeedDTO = service.create(feedDTO);
 
-        assertEquals("test22", dto.getUser().getName());
+        assertEquals("test22", persistedFeedDTO.getUser().getName());
     }
 
     @Test
@@ -82,10 +81,10 @@ class RssServiceTest
     @Transactional
     void updateRss()
     {
-        RssFeed feed = new RssFeed();
-        feed.setLink("test");
-        feed.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
-        feed.setStartDateTime(new Date(01, 01, 2022, 00, 00, 00));
+        RssFeedDTO feedDTO = new RssFeedDTO();
+        feedDTO.setLink("test");
+        feedDTO.setEndDateTime(new Date(01, 01, 2022, 00, 00, 00));
+        feedDTO.setStartDateTime(new Date(01, 01, 2022, 00, 00, 00));
 
         User user = new User();
         user.setName("test33");
@@ -93,9 +92,9 @@ class RssServiceTest
         user.setEmail("true");
         user.setPassword("true");
         user.setProfileImagePath("true");
-        feed.setUser(user);
-        RssFeedDTO dto = service.update(feed, 1);
+        feedDTO.setUser(user);
+        RssFeedDTO persistedFeedDTO = service.update(feedDTO, 1);
 
-        assertEquals("test33", dto.getUser().getName());
+        assertEquals("test33", persistedFeedDTO.getUser().getName());
     }
 }

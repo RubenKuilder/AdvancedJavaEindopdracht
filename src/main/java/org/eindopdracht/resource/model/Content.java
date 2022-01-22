@@ -1,9 +1,8 @@
-package org.eindopdracht.resource.model.event.content;
+package org.eindopdracht.resource.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
 
 import javax.persistence.*;
 

@@ -2,15 +2,15 @@ package org.eindopdracht;
 
 import org.eindopdracht.resource.dto.*;
 import org.eindopdracht.resource.model.*;
-import org.eindopdracht.resource.model.event.content.contentType.ContentType;
-import org.eindopdracht.resource.model.event.content.contentType.ContentTypeDto;
+import org.eindopdracht.resource.model.ContentType;
+import org.eindopdracht.resource.dto.ContentTypeDTO;
 
 
 public class ConvertToDTO {
 
-    public GlobalSettingsDto toGlobalSettingsDto(GlobalSettings globalSettings)
+    public GlobalSettingsDTO toGlobalSettingsDto(GlobalSettings globalSettings)
     {
-        GlobalSettingsDto globalSettingsDto = new GlobalSettingsDto();
+        GlobalSettingsDTO globalSettingsDto = new GlobalSettingsDTO();
         globalSettingsDto.setSoundOn(globalSettings.isSoundOn());
         globalSettingsDto.setSwitchTime(globalSettings.getSwitchTime());
         return globalSettingsDto;
@@ -56,9 +56,9 @@ public class ConvertToDTO {
         return powerpointDTO;
     }
 
-    public ContentTypeDto toContentTypeDTO(ContentType contentType)
+    public ContentTypeDTO toContentTypeDTO(ContentType contentType)
     {
-        ContentTypeDto contentTypeDto = new ContentTypeDto();
+        ContentTypeDTO contentTypeDto = new ContentTypeDTO();
         contentTypeDto.setName(contentType.getName());
         return contentTypeDto;
     }

@@ -2,7 +2,7 @@ package org.eindopdracht.resource.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eindopdracht.resource.model.User;
-import org.eindopdracht.resource.model.schedule.Schedule;
+import org.eindopdracht.resource.model.Schedule;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
