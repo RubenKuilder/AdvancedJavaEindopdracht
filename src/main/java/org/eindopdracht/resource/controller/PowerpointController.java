@@ -1,7 +1,6 @@
 package org.eindopdracht.resource.controller;
 
 import org.eindopdracht.resource.dto.PowerpointDTO;
-import org.eindopdracht.resource.model.Powerpoint;
 import org.eindopdracht.resource.service.PowerpointService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -48,12 +47,12 @@ public class PowerpointController {
     /**
      * Post a single powerpoint.
      *
-     * @param powerpointDTO    powerpoint to post
-     * @return              response entity with posted powerpoint
+     * @param powerpointDTO powerpoint to post
+     * @return response entity with posted powerpoint
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<PowerpointDTO> postPowerpoint(@Valid @RequestBody PowerpointDTO powerpointDTO){
+    public ResponseEntity<PowerpointDTO> postPowerpoint(@Valid @RequestBody PowerpointDTO powerpointDTO) {
         return ResponseEntity.ok(service.create(powerpointDTO));
     }
 
@@ -61,8 +60,8 @@ public class PowerpointController {
      * Put a single powerpoint.
      *
      * @param id            id of the powerpoint to put
-     * @param powerpointDTO    powerpoint to put
-     * @return              response entity with put powerpoint
+     * @param powerpointDTO powerpoint to put
+     * @return response entity with put powerpoint
      */
     @PutMapping("/{id}")
     public ResponseEntity<PowerpointDTO> putPowerpoint(@PathVariable("id") final Integer id, @Valid @RequestBody PowerpointDTO powerpointDTO) {

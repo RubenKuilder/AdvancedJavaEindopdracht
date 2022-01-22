@@ -1,9 +1,9 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.dto.ContentTypeDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.dto.ContentTypeDTO;
 import org.eindopdracht.resource.mapper.ContentTypeMapper;
 import org.eindopdracht.resource.repository.ContentTypeRepository;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ public class ContentTypeService {
         try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.getById(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -50,13 +50,11 @@ public class ContentTypeService {
      * @return response entity with posted content type
      */
     public ContentTypeDTO persist(ContentTypeDTO contentTypeDto) {
-        try{
-        return contentTypeMapper.mapFromEntity(
-                contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
-        );
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentTypeMapper.mapFromEntity(
+                    contentTypeRepository.persist(contentTypeMapper.mapToEntity(contentTypeDto))
+            );
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -69,11 +67,9 @@ public class ContentTypeService {
      * @return response entity with put content type
      */
     public ContentTypeDTO put(int id, ContentTypeDTO contentTypeDto) {
-        try{
-        return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentTypeMapper.mapFromEntity(contentTypeRepository.put(id, contentTypeMapper.mapToEntity(contentTypeDto)));
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -85,12 +81,10 @@ public class ContentTypeService {
      * @return response entity with deleted content type
      */
     public ContentTypeDTO delete(int id) {
-        try{
+        try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.delete(id));
-        }
-        catch(Exception ex)
-        {
-            throw new NoContentException("id: " +id);
+        } catch (Exception ex) {
+            throw new NoContentException("id: " + id);
         }
     }
 }

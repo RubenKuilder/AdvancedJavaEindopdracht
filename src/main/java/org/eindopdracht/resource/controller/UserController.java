@@ -1,7 +1,6 @@
 package org.eindopdracht.resource.controller;
 
 import org.eindopdracht.resource.dto.UserDTO;
-import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -60,7 +59,7 @@ public class UserController {
     /**
      * Put a single user.
      *
-     * @param id   id of the user to put
+     * @param id      id of the user to put
      * @param userDTO user to put
      * @return response entity with put user
      */

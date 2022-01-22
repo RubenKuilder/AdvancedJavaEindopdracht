@@ -5,12 +5,10 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.mapper.RoleMapper;
-import org.eindopdracht.resource.model.Role;
 import org.eindopdracht.resource.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RoleService {
@@ -41,7 +39,7 @@ public class RoleService {
         try {
             return roleMapper.mapFromEntity(roleRepository.getRole(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -64,7 +62,7 @@ public class RoleService {
     /**
      * Maps Entity to DTO and puts a single role.
      *
-     * @param id   id of the role to put
+     * @param id      id of the role to put
      * @param roleDTO role to put
      * @return response entity with put role
      */
@@ -86,7 +84,7 @@ public class RoleService {
         try {
             return roleMapper.mapFromEntity(roleRepository.deleteRole(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " +id);
+            throw new NoContentException("id: " + id);
         }
     }
 }

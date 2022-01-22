@@ -5,12 +5,10 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.mapper.RssFeedMapper;
-import org.eindopdracht.resource.model.RssFeed;
 import org.eindopdracht.resource.repository.RssFeedRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RssFeedService {
@@ -41,7 +39,7 @@ public class RssFeedService {
         try {
             return rssFeedMapper.mapFromEntity(rssFeedRepository.getRssFeed(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -64,7 +62,7 @@ public class RssFeedService {
     /**
      * Maps Entity to DTO and puts a single RSS feed.
      *
-     * @param id      id of the RSS feed to put
+     * @param id         id of the RSS feed to put
      * @param rssFeedDTO RSS feed to put
      * @return response entity with put RSS feed
      */
@@ -86,7 +84,7 @@ public class RssFeedService {
         try {
             return rssFeedMapper.mapFromEntity(rssFeedRepository.deleteRssFeed(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " +id);
+            throw new NoContentException("id: " + id);
         }
     }
 }

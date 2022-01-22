@@ -5,7 +5,6 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.mapper.GlobalSettingsMapper;
-import org.eindopdracht.resource.model.GlobalSettings;
 import org.eindopdracht.resource.repository.GlobalSettingsRepository;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +39,7 @@ public class GlobalSettingsService {
         try {
             return globalSettingsMapper.mapFromEntity(globalSettingsRepository.getSettingsById(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -70,14 +69,14 @@ public class GlobalSettingsService {
         try {
             return globalSettingsMapper.mapFromEntity(globalSettingsRepository.deleteGlobalSettings(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " +id);
+            throw new NoContentException("id: " + id);
         }
     }
 
     /**
      * Maps Entity to DTO and puts a single global setting.
      *
-     * @param id             id of the global setting to put
+     * @param id                id of the global setting to put
      * @param globalSettingsDTO global setting to put
      * @return response entity with put global setting
      */

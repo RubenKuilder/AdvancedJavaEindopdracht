@@ -5,12 +5,10 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.mapper.UserAvailabilityMapper;
-import org.eindopdracht.resource.model.UserAvailability;
 import org.eindopdracht.resource.repository.UserAvailabilityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserAvailabilityService {
@@ -41,7 +39,7 @@ public class UserAvailabilityService {
         try {
             return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.getUserAvailability(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -64,7 +62,7 @@ public class UserAvailabilityService {
     /**
      * Maps Entity to DTO and puts a single user availability.
      *
-     * @param id               id of the user availability to put
+     * @param id                  id of the user availability to put
      * @param userAvailabilityDTO user availability to put
      * @return response entity with put user availability
      */
@@ -86,7 +84,7 @@ public class UserAvailabilityService {
         try {
             return userAvailabilityMapper.mapFromEntity(userAvailabilityRepository.deleteUserAvailability(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " +id);
+            throw new NoContentException("id: " + id);
         }
     }
 }

@@ -1,8 +1,6 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.dto.PowerpointDTO;
 import org.eindopdracht.resource.dto.RoleDTO;
-import org.eindopdracht.resource.model.Powerpoint;
 import org.eindopdracht.resource.model.Role;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;

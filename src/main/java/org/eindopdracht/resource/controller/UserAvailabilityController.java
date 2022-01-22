@@ -1,7 +1,6 @@
 package org.eindopdracht.resource.controller;
 
 import org.eindopdracht.resource.dto.UserAvailabilityDTO;
-import org.eindopdracht.resource.model.UserAvailability;
 import org.eindopdracht.resource.service.UserAvailabilityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -60,7 +59,7 @@ public class UserAvailabilityController {
     /**
      * Put a single user availability.
      *
-     * @param id           id of the user availability to put
+     * @param id              id of the user availability to put
      * @param availabilityDTO user availability to put
      * @return response entity with put user availability
      */

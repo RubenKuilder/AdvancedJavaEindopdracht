@@ -16,8 +16,7 @@ import java.sql.Time;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GlobalSettings
-{
+public class GlobalSettings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

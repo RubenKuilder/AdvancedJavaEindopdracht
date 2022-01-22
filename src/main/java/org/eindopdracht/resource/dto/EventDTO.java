@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.eindopdracht.resource.model.Content;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -16,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class EventDTO {
     private int id;
-    
+
     private Content content;
 
     @NotNull

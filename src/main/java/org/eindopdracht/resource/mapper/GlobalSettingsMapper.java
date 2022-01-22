@@ -1,8 +1,6 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.dto.ContentDTO;
 import org.eindopdracht.resource.dto.GlobalSettingsDTO;
-import org.eindopdracht.resource.model.Content;
 import org.eindopdracht.resource.model.GlobalSettings;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;

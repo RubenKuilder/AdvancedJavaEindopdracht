@@ -5,12 +5,10 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.mapper.UserMapper;
-import org.eindopdracht.resource.model.User;
 import org.eindopdracht.resource.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -41,7 +39,7 @@ public class UserService {
         try {
             return userMapper.mapFromEntity(userRepository.getUser(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -64,7 +62,7 @@ public class UserService {
     /**
      * Maps Entity to DTO and puts a single user.
      *
-     * @param id   id of the user to put
+     * @param id      id of the user to put
      * @param userDTO user to put
      * @return response entity with put user
      */
@@ -86,7 +84,7 @@ public class UserService {
         try {
             return userMapper.mapFromEntity(userRepository.deleteUser(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " +id);
+            throw new NoContentException("id: " + id);
         }
     }
 }

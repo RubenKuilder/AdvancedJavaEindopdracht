@@ -1,8 +1,8 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.dto.ContentDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
-import org.eindopdracht.resource.dto.ContentDTO;
 import org.eindopdracht.resource.mapper.ContentMapper;
 import org.eindopdracht.resource.repository.ContentRespository;
 import org.springframework.stereotype.Service;
@@ -35,8 +35,7 @@ public class ContentService {
      * @return response entity with single content
      */
     public ContentDTO getById(int id) {
-        try
-        {
+        try {
             return contentMapper.mapFromEntity(contentRespository.getById(id));
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " + id);
@@ -50,13 +49,11 @@ public class ContentService {
      * @return response entity with posted content
      */
     public ContentDTO persist(ContentDTO contentDto) {
-        try{
-        return contentMapper.mapFromEntity(
-                contentRespository.persist(contentMapper.mapToEntity(contentDto))
-        );
-        }
-        catch (Exception ex)
-        {
+        try {
+            return contentMapper.mapFromEntity(
+                    contentRespository.persist(contentMapper.mapToEntity(contentDto))
+            );
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -69,11 +66,9 @@ public class ContentService {
      * @return response entity with put content
      */
     public ContentDTO put(int id, ContentDTO contentDto) {
-        try{
+        try {
             return contentMapper.mapFromEntity(contentRespository.put(id, contentMapper.mapToEntity(contentDto)));
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }

@@ -27,12 +27,11 @@ public class LoginController {
     /**
      * Post a single login.
      *
-     * @param loginDTO     login to post
-     * @return          response entity with token
+     * @param loginDTO login to post
+     * @return response entity with token
      */
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO)
-    {
+    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getName(), loginDTO.getPassword()));
 
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();

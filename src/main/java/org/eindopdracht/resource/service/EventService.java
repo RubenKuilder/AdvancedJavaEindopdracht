@@ -1,9 +1,9 @@
 package org.eindopdracht.resource.service;
 
+import org.eindopdracht.resource.dto.EventDTO;
 import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
-import org.eindopdracht.resource.dto.EventDTO;
 import org.eindopdracht.resource.mapper.EventMapper;
 import org.eindopdracht.resource.repository.EventRepository;
 import org.springframework.stereotype.Service;
@@ -36,10 +36,9 @@ public class EventService {
      * @return response entity with single event
      */
     public EventDTO getById(int id) {
-        try{
+        try {
             return eventMapper.mapFromEntity(eventRepository.getById(id));
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new DataNotFoundException("id: " + id);
         }
     }
@@ -51,13 +50,11 @@ public class EventService {
      * @return response entity with posted event
      */
     public EventDTO persist(EventDTO eventDto) {
-        try{
+        try {
             return eventMapper.mapFromEntity(
                     eventRepository.persist(eventMapper.mapToEntity(eventDto))
             );
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }
@@ -84,12 +81,10 @@ public class EventService {
      * @return response entity with deleted event
      */
     public EventDTO delete(int id) {
-        try{
-        return eventMapper.mapFromEntity(eventRepository.delete(id));
-        }
-        catch(Exception ex)
-        {
-            throw new NoContentException("id: " +id);
+        try {
+            return eventMapper.mapFromEntity(eventRepository.delete(id));
+        } catch (Exception ex) {
+            throw new NoContentException("id: " + id);
         }
     }
 }

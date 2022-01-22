@@ -7,7 +7,6 @@ import org.eindopdracht.resource.model.Consultation;
 import org.eindopdracht.resource.model.Schedule;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -33,7 +32,7 @@ public class UserDTO {
     private String profileImagePath;
 
     private boolean isApproved;
-    
+
     private String role;
 
     private boolean enabled;

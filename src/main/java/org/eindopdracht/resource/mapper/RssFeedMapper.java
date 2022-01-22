@@ -1,8 +1,6 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.dto.RoleDTO;
 import org.eindopdracht.resource.dto.RssFeedDTO;
-import org.eindopdracht.resource.model.Role;
 import org.eindopdracht.resource.model.RssFeed;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;

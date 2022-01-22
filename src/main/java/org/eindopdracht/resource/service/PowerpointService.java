@@ -5,7 +5,6 @@ import org.eindopdracht.resource.exception.general.BadRequestException;
 import org.eindopdracht.resource.exception.general.DataNotFoundException;
 import org.eindopdracht.resource.exception.general.NoContentException;
 import org.eindopdracht.resource.mapper.PowerpointMapper;
-import org.eindopdracht.resource.model.Powerpoint;
 import org.eindopdracht.resource.repository.PowerpointRepository;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +39,7 @@ public class PowerpointService {
         try {
             return powerpointMapper.mapFromEntity(powerpointRepository.getPowerpoint(id));
         } catch (Exception ex) {
-            throw new DataNotFoundException("id: " +id);
+            throw new DataNotFoundException("id: " + id);
         }
     }
 
@@ -63,7 +62,7 @@ public class PowerpointService {
     /**
      * Maps Entity to DTO and puts a single powerpoint.
      *
-     * @param id         id of the powerpoint to put
+     * @param id            id of the powerpoint to put
      * @param powerpointDTO powerpoint to put
      * @return response entity with put powerpoint
      */
@@ -85,7 +84,7 @@ public class PowerpointService {
         try {
             return powerpointMapper.mapFromEntity(powerpointRepository.deletePowerpoint(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " +id);
+            throw new NoContentException("id: " + id);
         }
     }
 }

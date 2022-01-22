@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.model.Schedule;
 import org.eindopdracht.resource.dto.ScheduleDTO;
+import org.eindopdracht.resource.model.Schedule;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 

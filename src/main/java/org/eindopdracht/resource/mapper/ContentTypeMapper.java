@@ -1,7 +1,7 @@
 package org.eindopdracht.resource.mapper;
 
-import org.eindopdracht.resource.model.ContentType;
 import org.eindopdracht.resource.dto.ContentTypeDTO;
+import org.eindopdracht.resource.model.ContentType;
 import org.eindopdracht.util.EntityMapper;
 import org.springframework.stereotype.Component;
 
