@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -25,7 +27,11 @@ import java.util.Properties;
 @EnableTransactionManagement
 @Configuration
 @ComponentScan(basePackages = "org.eindopdracht")
+
+// Misschien dat jullie met overerving hadden kunnen werken voor de database config.
 public class DatabaseConfigTest implements WebMvcConfigurer {
+
+    // Waarom is dit spontaan nodig?
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.defaultContentType(MediaType.APPLICATION_JSON);
@@ -33,6 +39,8 @@ public class DatabaseConfigTest implements WebMvcConfigurer {
 
     @Bean
     public DataSource dataSource() {
+        // Zo kan je ook en in-memory database maken!
+//        new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build()
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.h2.Driver");
         ds.setUrl("jdbc:h2:mem:unit-testing-jpa;DB_CLOSE_DELAY=-1;MODE=MySQL");
@@ -81,7 +89,7 @@ public class DatabaseConfigTest implements WebMvcConfigurer {
         return liquibase;
     }
 
-    @Bean
+    @Bean // Is deze bean relevant voor het testen?
     public BeanPostProcessor persistenceTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }

@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "role")
+// Ligt het aan mij of wordt deze niet gebruikt?
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

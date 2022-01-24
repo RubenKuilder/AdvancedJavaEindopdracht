@@ -16,7 +16,7 @@ import java.util.List;
 public class ConsultationDTO {
     private int id;
 
-    List<User> users;
+    List<User> users; // Waarom zitten hier geen UserDTO's in? Zo geef je wachtwoorden prijs!
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")

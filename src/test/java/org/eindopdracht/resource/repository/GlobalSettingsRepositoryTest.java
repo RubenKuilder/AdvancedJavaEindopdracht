@@ -26,6 +26,7 @@ class GlobalSettingsRepositoryTest {
         List<GlobalSettings> globalSettingsList = globalSettingsRepository.getSettings();
         assertEquals(3, globalSettingsList.size());
         assertTrue(globalSettingsList.get(0).isSoundOn());
+        // Waarom gebruik je een deprecated API?
         assertEquals(new Time(00, 00, 00), globalSettingsList.get(0).getSwitchTime());
     }
 

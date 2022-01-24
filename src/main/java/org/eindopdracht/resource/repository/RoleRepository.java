@@ -34,6 +34,7 @@ public class RoleRepository {
      * @param id id of the role to find
      * @return response entity with a single role
      */
+    // Waarom heet dit getRole en niet getById zoals in andere repositories?
     public Role getRole(int id) {
         return manager.find(Role.class, id);
     }
@@ -70,7 +71,7 @@ public class RoleRepository {
      * @return response entity with deleted role
      */
     public Role deleteRole(int id) {
-        Role role = manager.find(Role.class, id);
+        Role role = manager.find(Role.class, id); // Waarom niet gewoon getRole hergebruiken?
         manager.remove(role);
         return role;
     }

@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
+// Het is een unit test, maar je tuigt alles op alsof het een integratietest gaat zijn
 @Transactional
 public class ConsultationRepositoryTest {
     @Autowired
@@ -68,7 +69,7 @@ public class ConsultationRepositoryTest {
         assertEquals("2022-12-08 00:00:00.0", consultation.getEndDateTime().toString());
     }
 
-    @Test
+    @Test // post of persist?
     public void postConsultation() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date startDateTime = sdf.parse("12-12-2021 00:00:00");
@@ -79,6 +80,8 @@ public class ConsultationRepositoryTest {
         consultation.setEndDateTime(endDateTime);
         Consultation persistedConsultation = consultationRepository.persist(consultation);
 
+        // Test je nu de repository of het Consultation object? Je weet niets over of het gepersist is, alleen dat de data die je terug krijgt overeenkomt met wat je zelf in het object hebt gestopt.
+        // Ik zou het echt via de EntityManager weer opvragen.
         assertEquals(startDateTime, persistedConsultation.getStartDateTime());
         assertEquals(endDateTime, persistedConsultation.getEndDateTime());
     }

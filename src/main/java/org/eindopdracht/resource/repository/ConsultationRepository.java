@@ -1,6 +1,7 @@
 package org.eindopdracht.resource.repository;
 
 import org.eindopdracht.resource.model.Consultation;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,7 +16,7 @@ public class ConsultationRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private final UserRepository userRepository;
+    private final UserRepository userRepository; // Je roept vanuit een repository geen andere repositories aan. Nu gebruiken jullie deze ook niet, maar toch. Vreemd.
 
     public ConsultationRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -45,6 +46,11 @@ public class ConsultationRepository {
     public Consultation getById(int id) {
         TypedQuery<Consultation> query = entityManager.createQuery("SELECT DISTINCT c FROM Consultation c JOIN FETCH c.users u WHERE c.id = :id", Consultation.class);
         query.setParameter("id", id);
+
+        // Dit kan ook zo!
+//        Consultation consultation = entityManager.find(Consultation.class, id);
+//        Hibernate.initialize(consultation.getUsers());
+//        return consultation;
         return query.getSingleResult();
     }
 
@@ -79,7 +85,7 @@ public class ConsultationRepository {
      * @return response entity with deleted consultation
      */
     public Consultation delete(int id) {
-        Consultation consultationToDelete = getById(id);
+        Consultation consultationToDelete = getById(id); // Als je getById doet, dan zit het resultaat toch al per definitie in de Persistence Context? Dus dan hoef je ook niet te checken of het er nog in zit.
 
         entityManager.remove(entityManager.contains(consultationToDelete) ? consultationToDelete : entityManager.merge(consultationToDelete));
         return consultationToDelete;

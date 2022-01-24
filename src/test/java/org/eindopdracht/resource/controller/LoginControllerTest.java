@@ -32,6 +32,7 @@ class LoginControllerTest {
                 .build();
     }
 
+    // Spring security staat niet aan. Wat nu als je per ongeluk de loginendpoint had afgeschermd? Dan merk je dat pas bij deployment!
     @Test
     void login() throws Exception {
         MvcResult mvcResult = this.mockMvc.perform(post("/authenticate")

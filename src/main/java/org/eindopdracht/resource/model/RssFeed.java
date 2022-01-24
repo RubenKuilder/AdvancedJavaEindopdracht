@@ -30,7 +30,7 @@ public class RssFeed {
 
     @NotNull
     @Column(name = "startDateTime", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET") // Waarom JsonFormat? Dit heb je toch nooit nodig om naar JSON om te zetten?
     private Date startDateTime;
 
     @NotNull

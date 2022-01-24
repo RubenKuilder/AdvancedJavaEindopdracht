@@ -17,7 +17,7 @@ public class UserDTO {
     private int id;
 
     @JsonIgnore
-    List<Consultation> consultations;
+    List<Consultation> consultations; // Waarom geen DTO's?
 
     @JsonIgnore
     List<Schedule> schedules;

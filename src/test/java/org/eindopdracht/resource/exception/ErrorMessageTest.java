@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
+// Waarom testen jullie dit DTO maar alle anderen niet? (dat hoeft van mij ook niet, just so you know)
 public class ErrorMessageTest {
     private ErrorMessage error;
 

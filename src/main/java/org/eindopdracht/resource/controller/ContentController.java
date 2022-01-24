@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin() // Dus elk domein mag hier bij?
 @RequestMapping("/content")
 public class ContentController {
     private final ContentService contentService;

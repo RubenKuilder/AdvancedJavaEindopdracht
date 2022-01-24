@@ -54,7 +54,7 @@ public class ContentService {
                     contentRespository.persist(contentMapper.mapToEntity(contentDto))
             );
         } catch (Exception ex) {
-            throw new BadRequestException();
+            throw new BadRequestException(); // Wat zou er nu nog fout kunnen gaan dat het aan de gebruiker ligt? Daarvoor heb je validatie
         }
     }
 

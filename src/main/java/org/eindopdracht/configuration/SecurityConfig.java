@@ -106,6 +106,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .getUserDetailsService();
 
         // Spring requires USERNAME, PASSWORD and ENABLED
+        // Dit was wel ter voorbeeld. Dit doet Spring sowieso al.
         userDetailsService
                 .setUsersByUsernameQuery("SELECT name, password, enabled FROM user WHERE name = ?");
 
@@ -141,7 +142,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors();
+        http.cors(); // Wat doet dit? Moet je het dan niet nog configureren?
 
         http
                 .authorizeRequests()
@@ -150,12 +151,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/content/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/contenttype/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/event/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/globalsettings/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/globalsettings/**").permitAll() // Deze bestaat niet.
                 .antMatchers(HttpMethod.GET, "/powerpoint/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/role/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/rssfeed/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/schedule/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/useravailability/**").permitAll();
+                .antMatchers(HttpMethod.GET, "/useravailability/**").permitAll(); // Dit endpoint bestaat niet. Als dit 'availability' moet zijn, liggen alle wachtwoorden (encrypted, maar toch) OP STRAAT.
 
         // First we configure it to allow authentication and authorization in REST
         // This is just a helper method made by me to split it up

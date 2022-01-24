@@ -59,6 +59,7 @@ public class UserAvailabilityRepository {
      */
     public UserAvailability putUserAvailability(UserAvailability userAvailability, int id) {
         UserAvailability update = manager.find(UserAvailability.class, id);
+        // Je kan ook manager.merge(userAvailability) doen
         update.setUser(userAvailability.getUser());
         update.setDate(userAvailability.getDate());
         return update;

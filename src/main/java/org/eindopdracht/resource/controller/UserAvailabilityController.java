@@ -39,7 +39,7 @@ public class UserAvailabilityController {
      * @return response entity with single user availability
      */
     @GetMapping("/{id}")
-    @ResponseBody
+    @ResponseBody // Waarom staat dit hier? Dat doet @RestController al voor je. En verder gebruiken jullie dit niet in andere classes.
     public ResponseEntity<UserAvailabilityDTO> getUserAvailability(@PathVariable("id") final Integer id) {
         return ResponseEntity.ok(service.getUserAvailability(id));
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component("contentMapperComponent")
 public class ContentMapper implements EntityMapper<Content, ContentDTO> {
@@ -33,6 +34,10 @@ public class ContentMapper implements EntityMapper<Content, ContentDTO> {
         for (Content entity : entities) {
             contentDTOList.add(mapFromEntity(entity));
         }
+        // Dit kan ook zo!
+//        return entities.stream()
+//                .map(this::mapFromEntity)
+//                .collect(Collectors.toList());
 
         return contentDTOList;
     }
