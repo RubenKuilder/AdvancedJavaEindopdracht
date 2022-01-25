@@ -1,5 +1,6 @@
 package org.eindopdracht.configuration;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @Configuration
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories("org.eindopdracht.resource.repository")
+@EnableJpaRepositories("org.eindopdracht.resource.repository") // Jullie gebruiken geen JPA repositories. Dat zijn die interface repositories.
 public class DatabaseConfig {
     @Value("${database.username}")
     private String databaseName;
@@ -31,6 +32,7 @@ public class DatabaseConfig {
 
     @Bean
     public DataSource dataSource() {
+//        new MysqlDataSource() kan je ook doen!
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
 
@@ -66,7 +68,7 @@ public class DatabaseConfig {
 
     private Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "none");
+        properties.setProperty("hibernate.hbm2ddl.auto", "none"); // Is dit niet al de default?
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return properties;
     }

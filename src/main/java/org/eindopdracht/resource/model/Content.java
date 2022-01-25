@@ -16,7 +16,7 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL) // Let hier goed op, CascadeType.ALL.
     @JoinColumn(name = "contentType_id")
     private ContentType contentType;
 

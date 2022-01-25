@@ -36,7 +36,7 @@ public class LoginController {
 
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();
 
-        String token = jwtProvider.createToken(username);
+        String token = jwtProvider.createToken(username); // Meestal stuur je de token in een header.
 
         return new ResponseEntity<>(token, HttpStatus.OK);
     }

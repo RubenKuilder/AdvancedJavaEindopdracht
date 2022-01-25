@@ -9,7 +9,7 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin()
-@RequestMapping("/signup")
+@RequestMapping("/signup") // Dit is geen RESTful URL. Daarnaast, past dit niet beter in de UserController?
 public class SignupController {
 
     private final UserService service;

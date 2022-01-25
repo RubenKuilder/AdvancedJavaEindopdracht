@@ -8,6 +8,7 @@ import org.eindopdracht.resource.mapper.ConsultationMapper;
 import org.eindopdracht.resource.repository.ConsultationRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -36,9 +37,11 @@ public class ConsultationService {
      * @param id id of the consultation to find
      * @return response entity with single consultation
      */
+    // Als je de mapping wel volledig zou doen kan je hier ook @Transactional gebruiken i.p.v. Hibernate.initialize() te gebruiken
     public ConsultationDTO getById(int id) {
         try {
             return consultationMapper.mapFromEntity(consultationRepository.getById(id));
+            // Waarom vang je de exception hier i.p.v. in de repository?
         } catch (Exception ex) {
             throw new DataNotFoundException("id: " + id);
         }

@@ -17,7 +17,7 @@ public class UserMapper implements EntityMapper<User, UserDTO> {
                 user.getConsultations(),
                 user.getSchedules(),
                 user.getName(),
-                user.getPassword(),
+                user.getPassword(), // WAAROM. WAAROM PAK JE HET WACHTWOORD.
                 user.getEmail(),
                 user.getProfileImagePath(),
                 user.isApproved(),

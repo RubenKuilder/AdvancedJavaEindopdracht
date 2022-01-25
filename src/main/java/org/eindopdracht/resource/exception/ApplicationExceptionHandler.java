@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BadRequestException.class)
+    @ExceptionHandler(BadRequestException.class) // Waarom vraag je ook de HttpServletRequest op? Die is optioneel.
     public ErrorMessage badRequestException(BadRequestException exception, HttpServletRequest request) {
-        return new ErrorMessage(String.format(exception.getMessage()));
+        return new ErrorMessage(String.format(exception.getMessage())); // Waarom gebruiken jullie .format?
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

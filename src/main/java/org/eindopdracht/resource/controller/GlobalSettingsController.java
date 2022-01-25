@@ -71,7 +71,7 @@ public class GlobalSettingsController {
      */
     @PutMapping(value = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            produces = MediaType.APPLICATION_JSON_VALUE) // Waarom staat dit hier wel maar verder nergens?
     public ResponseEntity<GlobalSettingsDTO> updateSettings(@PathVariable Integer id, @RequestBody GlobalSettingsDTO globalSettingsDTO) {
         return new ResponseEntity<>(globalSettingsService.updateGlobalSettings(globalSettingsDTO, id), HttpStatus.OK);
     }

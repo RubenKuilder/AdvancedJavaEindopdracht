@@ -110,4 +110,6 @@ class ConsultationControllerTest {
                 .andExpect(jsonPath("$.startDateTime").value("08-11-2021 00:00:00"))
                 .andExpect(jsonPath("$.endDateTime").value("08-12-2022 00:00:00"));
     }
+
+    // Geen validatie tests?
 }

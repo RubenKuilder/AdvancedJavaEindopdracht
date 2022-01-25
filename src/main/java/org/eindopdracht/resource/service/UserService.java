@@ -66,6 +66,7 @@ public class UserService {
      * @param userDTO user to put
      * @return response entity with put user
      */
+    // Waarom heet het hier update en in andere services put?
     public UserDTO update(UserDTO userDTO, Integer id) {
         try {
             return userMapper.mapFromEntity(userRepository.putUser(userMapper.mapToEntity(userDTO), id));

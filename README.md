@@ -194,6 +194,7 @@ In this file we will define a few key factors to the API.
 * **database.password**: Same as with the username, change it or make a new user in Xampp.
 * **database.url**: The connection string for the database, we use the database stenden_dashboard. Leave this name as is in a later step we will create the database as is needed.
 * **secret.key**: Secret key, leave as is.
+Hier verstop je het wachtwoord maar eerder in het document noem je het wel gewoon.
 ```properties
 database.username=[Username]
 database.password=[Password]
@@ -226,10 +227,11 @@ Create a default user to use for the authentication of your first API calls. Run
 
 The name is ```Admin``` and password is also ```Admin```.
 
+Waarom zou je dit niet via Liquibase doen?
 ```mysql
 INSERT INTO `user`(`name`, `password`, `profileImagePath`, `email`, `isApproved`, `role`, `enabled`) VALUES ('Admin','$2a$12$NoKsrvdso8xBoRciD7ExMOynmfFzyYNutUdJMJxMmxApSr9qqYudS','https://i.imgur.com/N1Y2UGC.png','Admin@hotmail.com','1','ROLE_USER','1');
 ```
-
+Trouwens, de quotes moeten niet om de enen voor isApproved en enabled. Dan gaat de query fout.
 ### 2.9 Running tests with coverage (_optional?_)
 This part is optional unless it's not, I will explain. Running test with coverage for some of the team had an issue involving the coverage reporter.
 The default Idea coverage reporter would not function with dependency injection so every single test would break, to fix this we had to switch the coverage reporter to a different one which then made the tests work.

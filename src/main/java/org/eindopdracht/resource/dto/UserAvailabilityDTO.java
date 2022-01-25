@@ -16,7 +16,7 @@ public class UserAvailabilityDTO {
     private int id;
 
     @NotNull
-    private User user;
+    private User user; // Waarom geen UserDTO? Nu stuur je de wachtwoorden mee terug!
 
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", timezone = "CET")

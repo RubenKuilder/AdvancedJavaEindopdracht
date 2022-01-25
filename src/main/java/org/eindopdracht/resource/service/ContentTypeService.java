@@ -84,7 +84,7 @@ public class ContentTypeService {
         try {
             return contentTypeMapper.mapFromEntity(contentTypeRepository.delete(id));
         } catch (Exception ex) {
-            throw new NoContentException("id: " + id);
+            throw new NoContentException("id: " + id); // Wat is het verschil met DataNotFoundException?
         }
     }
 }

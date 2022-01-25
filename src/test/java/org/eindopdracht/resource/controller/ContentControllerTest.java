@@ -86,4 +86,6 @@ class ContentControllerTest {
                 .andExpect(jsonPath("$.contentType.name").value("Text"))
                 .andExpect(jsonPath("$.path").value("Put Path"));
     }
+
+    // Door security uit te schakelen tijdens de tests test je dus niet of je het goed hebt ingesteld. Kijk maar eens naar de @WithMockUser annotatie om het makkelijker te maken
 }

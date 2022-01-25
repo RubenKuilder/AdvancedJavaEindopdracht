@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig(classes = org.eindopdracht.configuration.DatabaseConfigTest.class)
+// Waarom doen jullie een integratietest voor de service? Mock die repositories gewoon!
 @Transactional
 public class ConsultationServiceTest {
     @Autowired

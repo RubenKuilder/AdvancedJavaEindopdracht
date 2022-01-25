@@ -26,7 +26,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .securityContexts(Arrays.asList(securityContext()))
+                .securityContexts(Arrays.asList(securityContext())) // Let op warnings van je IDE. Tenminste, IntelliJ geeft mij hier een suggestie om Collections.singletonList() aan te roepen.
                 .securitySchemes(Arrays.asList(apiKey()))
                 .select()
                 .apis(RequestHandlerSelectors.any())

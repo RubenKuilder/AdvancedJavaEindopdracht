@@ -8,11 +8,11 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Data // Je kan @Data beter niet gebruiken voor database entiteiten. Heeft te maken met de toString, equals en hashCode methodes.
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Consultation")
+@Table(name = "Consultation") // Waarom heeft deze een hoofdletter en bijvoorbeeld 'content' niet?
 public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

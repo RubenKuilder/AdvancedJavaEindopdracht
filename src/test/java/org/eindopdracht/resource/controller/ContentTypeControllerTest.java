@@ -76,7 +76,7 @@ class ContentTypeControllerTest {
     void deleteContentType() throws Exception {
         this.mockMvc.perform(delete("/contenttype/1"))
                 .andExpect(status().isOk())
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))// Zou je dit niet kunnen skippen omdat je al jsonPath gebruikt? Dan merk je dan wel of het stuk gaat.
                 .andExpect(jsonPath("$.name").value("Text"));
     }
 }

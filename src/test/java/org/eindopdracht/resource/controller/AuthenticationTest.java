@@ -55,4 +55,6 @@ public class AuthenticationTest {
                         .content("{\"name\":\"Text\"}"))
                 .andExpect(status().isUnauthorized());
     }
+
+    // Waarom geen test waar het wel goed gaat?
 }

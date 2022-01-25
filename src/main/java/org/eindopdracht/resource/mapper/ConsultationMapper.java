@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("consultationMapperComponent")
+@Component("consultationMapperComponent") // Waarom krijgt het een speciale naam?
 public class ConsultationMapper implements EntityMapper<Consultation, ConsultationDTO> {
     @Override
     public ConsultationDTO mapFromEntity(Consultation consultation) {
@@ -24,7 +24,7 @@ public class ConsultationMapper implements EntityMapper<Consultation, Consultati
     public Consultation mapToEntity(ConsultationDTO consultationDto) {
         return new Consultation(
                 consultationDto.getId(),
-                consultationDto.getUsers(),
+                consultationDto.getUsers(), // Waarom mappen jullie de users niet naar DTO's?
                 consultationDto.getStartDateTime(),
                 consultationDto.getEndDateTime()
         );
